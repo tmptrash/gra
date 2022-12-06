@@ -1,0 +1,10 @@
+body {
+  background-color: black;
+  margin: 0;
+}
+
+span#fps {
+  display: block;
+  position: absolute;
+  color: #fff;
+}
