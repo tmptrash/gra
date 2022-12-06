@@ -3,9 +3,9 @@ import Config from './config'
 export class Hero {
   constructor(c) {
     this.c = c
-    this.x = 60
-    this.y = 60
-    this.vX = 1
+    this.x = 160
+    this.y = 460
+    this.vX = 0
     this.vY = 1
     this.width = 60
     this.height = 60
@@ -14,8 +14,13 @@ export class Hero {
   update() {
     this.x += this.vX
     this.y += this.vY
-    //this.vX += this.g
-    this.vY += Config.gravity
+
+    if (this.y + this.vY + this.height < Config.height) {
+      this.vY += Config.gravity
+    } else {
+      this.vY = 0
+      this.y = Config.height - this.height
+    }
   }
 
   draw() {
