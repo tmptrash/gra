@@ -1,8 +1,10 @@
 import { Scene } from './scene'
 import { Hero } from './hero'
 import { Fps } from './fps'
+import { Sprite } from './sprite'
+import BackPath from '../img/back.png'
 
-const scene = new Scene(Hero, Fps)
+const scene = new Scene([Sprite, 0, 0, BackPath], Hero, Fps)
 
 function animate() {
   window.requestAnimationFrame(animate)
@@ -10,14 +12,3 @@ function animate() {
 }
 
 animate()
-
-window.addEventListener('keydown', e => {
-  switch(e.key) {
-    case 'd':
-      scene.object('Hero').vX = 1
-      break
-    case 'a':
-      scene.object('Hero').vX = -1
-      break
-  }
-})

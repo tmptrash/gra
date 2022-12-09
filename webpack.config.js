@@ -25,4 +25,10 @@ module.exports = {
   optimization: {
     runtimeChunk: 'single',
   },
+  module: {
+    rules: [{
+      test: /\.(png|svg|jpg|jpeg|gif)$/i,
+      type: 'asset/resource'
+    }]
+  }
 };
