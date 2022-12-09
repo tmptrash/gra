@@ -1,35 +1,41 @@
-import { Frames } from './frames'
 import Shared from './shared'
+import { Frames, update } from './frames'
 
-export class Sprite extends Frames {
-  constructor(x, y, src, frames = 1) {
-    super(frames)
-    this.x = x
-    this.y = y
-    this.img = new Image()
-    this.img.src = src
-    this.img.onload = () => this.#onLoad()
+export function Sprite(x, y, src, frames = 1) {
+  const sprite = {
+    x,
+    y,
+    width: 0,
+    height: 0,
+    img: new Image(),
+    frames: null,
+    draw: draw
   }
+  sprite.img.onload = onLoad.bind(null, sprite, frames)
+  sprite.img.src = src
+  return sprite
+}
 
-  draw() {
-    this.img && Shared.ctx.drawImage(
-      this.img,
-      this.frame * this.frameWidth,
-      0,
-      this.frameWidth,
-      this.height,
-      this.x,
-      this.y,
-      this.frameWidth,
-      this.height
-    )
+export function draw(sprite) {
+  if (!sprite.img || !sprite.frames) return
 
-    this.update()
-  }
+  Shared.ctx.drawImage(
+    sprite.img,
+    sprite.frames.frame * sprite.frames.width,
+    0,
+    sprite.frames.width,
+    sprite.height,
+    sprite.x,
+    sprite.y,
+    sprite.frames.width,
+    sprite.height
+  )
 
-  #onLoad() {
-    this.width = this.img.width
-    this.height = this.img.height
-    super.setWidth(this.width)
-  }
+  update(sprite.frames)
+}
+
+function onLoad(sprite, frames) {
+  sprite.width = sprite.img.width
+  sprite.height = sprite.img.height
+  sprite.frames = Frames(sprite.width / frames, frames)
 }

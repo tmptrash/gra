@@ -1,25 +1,22 @@
 import Config from './config'
 
-export class Fps {
-  constructor() {
-    this.time = Date.now()
-    this.fps = 0
-    this.fpsEl = document.getElementById(Config.fpsId)
-    this.drawFps()
+export function Fps() {
+  const fps = {
+    time: Date.now(),
+    fps: 0,
+    fpsEl: document.getElementById(Config.fpsId),
+    draw: draw
+  }
+  return fps
+}
+
+export function draw(fps) {
+  const t = Date.now()
+  if (t - fps.time > 1000) {
+    fps.fpsEl.textContent = `fps: ${fps.fps}`
+    fps.fps = 0
+    fps.time = t
   }
 
-  draw() {
-    const t = Date.now()
-    if (t - this.time > 1000) {
-      this.drawFps()
-      this.fps = 0
-      this.time = t
-    }
-
-    this.fps++
-  }
-
-  drawFps() {
-    this.fpsEl.textContent = `fps: ${this.fps}`
-  }
+  fps.fps++
 }

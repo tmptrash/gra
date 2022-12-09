@@ -1,67 +1,55 @@
 import Config from './config'
-import { KeyHandler } from './keyHandler'
-import { Sprite } from './sprite'
+import { bind } from './keyboard'
+import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import DinoPath from '../img/dino.png'
 
-export class Hero extends Sprite {
-  constructor() {
-    super(160, 460, DinoPath, 4)
-    this.vX = 0
-    this.vY = 1
-    this.isJumping = false
-    this.pressed = { a: false, d: false }
-
-    KeyHandler.bind({
-      keydown: {
-        a: this.#onLeftKeyDown.bind(this),
-        d: this.#onRightKeyDown.bind(this),
-        w: this.#onJumpKeyDown.bind(this)
-      },
-      keyup: {
-        a: this.#onLeftKeyUp.bind(this),
-        d: this.#onRightKeyUp.bind(this)
-      }
-    })
+export function Hero() {
+  const hero = {
+    vX: 0,
+    vY: 1,
+    isJumping: false,
+    pressed: { a: false, d: false },
+    sprite: Sprite(160, 460, DinoPath, 4),
+    draw: draw
   }
-  
-  draw() {
-    super.draw()
-    this.#update()
-  }
-
-  #update() {
-    this.x += this.vX
-    this.y += this.vY
-    this.vX = 0
-    if (this.pressed.d) this.vX = Config.moveSpeed
-    if (this.pressed.a) this.vX = -Config.moveSpeed
-
-    if (this.y + this.vY + this.height < Config.height) {
-      this.vY += Config.gravity
-    } else {
-      this.vY = 0
-      this.y = Config.height - this.height
-      this.isJumping = false
+  bind({
+    keydown: {
+      a: () => hero.pressed.a = true,
+      d: () => hero.pressed.d = true,
+      w: onJumpKeyDown.bind(null, hero)
+    },
+    keyup: {
+      a: () => hero.pressed.a = false,
+      d: () => hero.pressed.d = false
     }
-  }
+  })
 
-  #onLeftKeyDown() {
-    this.pressed.a = true
-  }
-  #onLeftKeyUp() {
-    this.pressed.a = false
-  }
+  return hero
+}
+  
+export function draw(hero) {
+  drawSprite(hero.sprite)
+  update(hero)
+}
 
-  #onRightKeyDown() {
-    this.pressed.d = true
-  }
-  #onRightKeyUp() {
-    this.pressed.d = false
-  }
+function update(hero) {
+  hero.sprite.x += hero.vX
+  hero.sprite.y += hero.vY
+  hero.vX = 0
+  if (hero.pressed.d) hero.vX = Config.moveSpeed
+  if (hero.pressed.a) hero.vX = -Config.moveSpeed
 
-  #onJumpKeyDown() {
-    if (this.isJumping) return
-    this.vY = -Config.jumpHeight
-    this.isJumping = true
+  if (hero.sprite.y + hero.vY + hero.sprite.height < Config.height) {
+    hero.vY += Config.gravity
+  } else {
+    hero.vY = 0
+    hero.sprite.y = Config.height - hero.sprite.height
+    hero.isJumping = false
   }
+}
+
+function onJumpKeyDown(hero) {
+  if (hero.isJumping) return
+  hero.vY = -Config.jumpHeight
+  hero.isJumping = true
 }

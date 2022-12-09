@@ -1,22 +1,18 @@
 import Config from './config'
 
-export class Frames {
-  constructor(frames = 1) {
-    this.frame = 0
-    this.frames = frames
-    this.frameWidth = 0
-    this.time = Date.now()
+export function Frames(width, amount) {
+  return {
+    frame: 0,
+    width,
+    amount,
+    time: Date.now()
   }
+}
 
-  update() {
-    const t = Date.now()
-    if (t - this.time > Config.frameSpeed) {
-      ++this.frame >= this.frames && (this.frame = 0)
-      this.time = t
-    }
-  }
-
-  setWidth(width) {
-    this.frameWidth = width / this.frames
+export function update(frames) {
+  const t = Date.now()
+  if (t - frames.time > Config.frameSpeed) {
+    ++frames.frame >= frames.amount && (frames.frame = 0)
+    frames.time = t
   }
 }
