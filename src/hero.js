@@ -1,7 +1,7 @@
 import Config from './config'
 import { bind } from './keyboard'
-import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
-import DinoPath from '../img/dino.png'
+import { Sprite, draw as drawSprite } from './sprite'
+import DinoPath from '../img/dino-right.png'
 
 export function Hero() {
   const hero = {
@@ -9,8 +9,7 @@ export function Hero() {
     vY: 1,
     isJumping: false,
     pressed: { a: false, d: false },
-    sprite: Sprite(160, 460, DinoPath, 4),
-    draw: draw
+    sprite: Sprite(160, 460, DinoPath, 4)
   }
   bind({
     keydown: {

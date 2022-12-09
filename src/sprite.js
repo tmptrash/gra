@@ -8,8 +8,7 @@ export function Sprite(x, y, src, frames = 1) {
     width: 0,
     height: 0,
     img: new Image(),
-    frames: null,
-    draw: draw
+    frames: null
   }
   sprite.img.onload = onLoad.bind(null, sprite, frames)
   sprite.img.src = src

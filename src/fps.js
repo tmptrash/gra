@@ -4,8 +4,7 @@ export function Fps() {
   const fps = {
     time: Date.now(),
     fps: 0,
-    fpsEl: document.getElementById(Config.fpsId),
-    draw: draw
+    fpsEl: document.getElementById(Config.fpsId)
   }
   return fps
 }
