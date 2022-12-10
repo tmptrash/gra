@@ -1,40 +1,56 @@
 import Shared from './shared'
 import { Frames, update } from './frames'
 
-export function Sprite(x, y, src, frames = 1) {
+export function Sprite(x, y, imgs) {
   const sprite = {
     x,
     y,
-    width: 0,
-    height: 0,
-    img: new Image(),
-    frames: null
+    img: null,
+    imgs: {}
   }
-  sprite.img.onload = onLoad.bind(null, sprite, frames)
-  sprite.img.src = src
+  loadImgs(sprite, typeof imgs === 'string' ? {idle: [imgs]} : imgs)
+  sprite.imgs.idle && setImg(sprite, 'idle')
   return sprite
 }
 
 export function draw(sprite) {
-  if (!sprite.img || !sprite.frames) return
+  const img = sprite.img
+  if (!img || !img.img || !img.frames) return
 
   Shared.ctx.drawImage(
-    sprite.img,
-    sprite.frames.frame * sprite.frames.width,
+    img.img,
+    img.frames.frame * img.frames.width,
     0,
-    sprite.frames.width,
-    sprite.height,
+    img.frames.width,
+    img.height,
     sprite.x,
     sprite.y,
-    sprite.frames.width,
-    sprite.height
+    img.frames.width,
+    img.height
   )
 
-  update(sprite.frames)
+  update(sprite.img.frames)
 }
 
-function onLoad(sprite, frames) {
-  sprite.width = sprite.img.width
-  sprite.height = sprite.img.height
-  sprite.frames = Frames(sprite.width / frames, frames)
+export function setImg(sprite, img) {
+  sprite.img = sprite.imgs[img]
+}
+
+function loadImgs(sprite, imgs) {
+  for(let i in imgs) {
+    const img = sprite.imgs[i] = {
+      width: 0,
+      height: 0,
+      img: new Image(),
+      frames: null
+    }
+    img.img.onload = onLoad.bind(null, img, imgs[i][1])
+    img.img.src = imgs[i][0]
+  }
+}
+
+function onLoad(img, frames = 1) {
+  img.width = img.img.width
+  img.height = img.img.height
+  img.frames = Frames(img.width / frames, frames)
 }
