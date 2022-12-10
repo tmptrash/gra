@@ -1,9 +1,6 @@
 import Config from './config'
 import { bind } from './keyboard'
 import { Sprite, draw as drawSprite } from './sprite'
-import HeroIdlePath from '../img/idle.png'
-import HeroRightPath from '../img/right.png'
-import HeroLeftPath from '../img/left.png'
 
 export function Hero() {
   const hero = {
@@ -11,11 +8,7 @@ export function Hero() {
     vY: 1,
     isJumping: false,
     pressed: { a: false, d: false },
-    sprite: Sprite(160, 460, {
-      idle: [HeroIdlePath, 4],
-      right: [HeroRightPath, 4],
-      left: [HeroLeftPath, 4]
-    })
+    sprite: Sprite(...Config.hero)
   }
   bind({
     keydown: {

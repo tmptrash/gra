@@ -4,9 +4,8 @@ import { Hero, draw as drawHero } from './hero'
 import { Sprite } from './sprite'
 import { Fps, draw as drawFps } from './fps'
 import { draw as drawSprite } from './sprite'
-import BackPath from '../img/back.png'
 
-const back = Sprite(0, 0, BackPath)
+const back = Sprite(...Config.back)
 const hero = Hero()
 const fps = Fps()
 
