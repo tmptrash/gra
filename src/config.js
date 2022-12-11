@@ -1,6 +1,7 @@
-import HeroIdlePath from '../img/idle.png'
-import HeroRightPath from '../img/right.png'
-import HeroLeftPath from '../img/left.png'
+import IdleLeftPath from '../img/idle-left-3.png'
+import IdleRightPath from '../img/idle-right-3.png'
+import WalkLeftPath from '../img/walk-left-6.png'
+import WalkRightPath from '../img/walk-right-6.png'
 import BackPath from '../img/back.png'
 
 export default {
@@ -12,15 +13,16 @@ export default {
   gravity: 1,
   jumpHeight: 15,
   moveSpeed: 5,
-  frameSpeed: 60, // ms
+  frameSpeed: 120, // ms
 
   backColor: 'black',
 
   // sprites
   hero: [160, 460, {
-    idle: [HeroIdlePath, 4],
-    right: [HeroRightPath, 4],
-    left: [HeroLeftPath, 4]
+    idleLeft:  [IdleLeftPath,  3],
+    idleRight: [IdleRightPath, 3],
+    walkLeft:  [WalkLeftPath,  6],
+    walkRight: [WalkRightPath, 6]
   }],
   back: [0, 0, BackPath]
 }

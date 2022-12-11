@@ -2,10 +2,14 @@ import Config from './config'
 import { bind } from './keyboard'
 import { Sprite, draw as drawSprite } from './sprite'
 
+const RIGHT = 0
+const LEFT = 1
+
 export function Hero() {
   const hero = {
     vX: 0,
     vY: 1,
+    dir: RIGHT,
     isJumping: false,
     pressed: { a: false, d: false },
     sprite: Sprite(...Config.hero)
@@ -34,8 +38,12 @@ function update(hero) {
   hero.sprite.x += hero.vX
   hero.sprite.y += hero.vY
   hero.vX = 0
-  if (hero.pressed.d) { hero.sprite.img = hero.sprite.imgs.right, hero.vX = Config.moveSpeed }
-  if (hero.pressed.a) { hero.sprite.img = hero.sprite.imgs.left, hero.vX = -Config.moveSpeed }
+  if (hero.pressed.d) { hero.sprite.img = hero.sprite.imgs.walkRight, hero.vX = Config.moveSpeed, hero.sprite.dir = RIGHT }
+  if (hero.pressed.a) { hero.sprite.img = hero.sprite.imgs.walkLeft, hero.vX = -Config.moveSpeed, hero.sprite.dir = LEFT }
+  if (hero.vX === 0) {
+    if (hero.sprite.dir === RIGHT) hero.sprite.img = hero.sprite.imgs.idleRight
+    else hero.sprite.img = hero.sprite.imgs.idleLeft
+  }
 
   if (hero.sprite.y + hero.vY + hero.sprite.img.height < Config.height) {
     hero.vY += Config.gravity
