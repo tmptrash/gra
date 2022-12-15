@@ -1,4 +1,5 @@
 import Config from './config'
+import Shared from './shared'
 import { bind } from './keyboard'
 import { Sprite, draw as drawSprite } from './sprite'
 
@@ -35,27 +36,27 @@ export function draw(hero) {
 }
 
 function update(hero) {
-  hero.sprite.x += hero.vX
-  hero.sprite.y += hero.vY
+  const sprite = hero.sprite
+  sprite.x += hero.vX
+  sprite.y += hero.vY
   hero.vX = 0
-  if (hero.pressed.d) { hero.sprite.img = hero.sprite.imgs.walkRight, hero.vX = Config.moveSpeed, hero.sprite.dir = RIGHT }
-  if (hero.pressed.a) { hero.sprite.img = hero.sprite.imgs.walkLeft, hero.vX = -Config.moveSpeed, hero.sprite.dir = LEFT }
-  if (hero.vX === 0) {
-    if (hero.sprite.dir === RIGHT) hero.sprite.img = hero.sprite.imgs.idleRight
-    else hero.sprite.img = hero.sprite.imgs.idleLeft
-  }
 
-  if (hero.sprite.y + hero.vY + hero.sprite.img.height < Config.height) {
-    hero.vY += Config.gravity
-  } else {
-    hero.vY = 0
-    hero.sprite.y = Config.height - hero.sprite.img.height
-    hero.isJumping = false
-  }
+  // walk left or right
+  if (hero.pressed.d) { sprite.img = sprite.imgs.walkRight, hero.vX = Config.moveSpeed, sprite.dir = RIGHT }
+  if (hero.pressed.a) { sprite.img = sprite.imgs.walkLeft, hero.vX = -Config.moveSpeed, sprite.dir = LEFT }
+
+  // idle
+  hero.vX === 0 && (sprite.img = (sprite.dir === RIGHT) ? sprite.imgs.idleRight : sprite.imgs.idleLeft)
+
+  // jump
+  if (sprite.y + hero.vY + sprite.img.height < Config.height) hero.vY += Config.gravity
+  else { hero.vY = 0, sprite.y = Config.height - sprite.img.height, hero.isJumping = false }
+  hero.isJumping && (sprite.img = (sprite.dir === RIGHT) ? sprite.imgs.jumpRight : sprite.imgs.jumpLeft)
 }
 
 function onJumpKeyDown(hero) {
   if (hero.isJumping) return
   hero.vY = -Config.jumpHeight
   hero.isJumping = true
+  hero.sprite.imgs.jumpLeft.frames.frame = hero.sprite.imgs.jumpRight.frames.frame = 0
 }

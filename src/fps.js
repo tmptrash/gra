@@ -1,9 +1,11 @@
 import Config from './config'
+import Shared from './shared'
 
 export function Fps() {
   const fps = {
     time: Date.now(),
     fps: 0,
+    curFps: 0,
     fpsEl: document.getElementById(Config.fpsId)
   }
   return fps
@@ -12,10 +14,13 @@ export function Fps() {
 export function draw(fps) {
   const t = Date.now()
   if (t - fps.time > 1000) {
-    fps.fpsEl.textContent = `fps: ${fps.fps}`
-    fps.fps = 0
+    fps.fps = fps.curFps
+    fps.curFps = 0
     fps.time = t
   }
+  Shared.ctx.fillStyle = '#fff'
+  Shared.ctx.font = "16px Tahoma"
+  Shared.ctx.fillText(`fps: ${fps.fps}`, 10, 20)
 
-  fps.fps++
+  fps.curFps++
 }

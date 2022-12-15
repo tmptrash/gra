@@ -17,6 +17,7 @@ export function draw(sprite) {
   const img = sprite.img
   if (!img || !img.img || !img.frames) return
 
+  sprite.pixelated && (Shared.ctx.imageSmoothingEnabled = false)
   Shared.ctx.drawImage(
     img.img,
     img.frames.frame * img.frames.width,
@@ -28,6 +29,7 @@ export function draw(sprite) {
     img.frames.width,
     img.height
   )
+  sprite.pixelated && (Shared.ctx.imageSmoothingEnabled = true)
 
   update(sprite.img.frames)
 }
@@ -44,13 +46,13 @@ function loadImgs(sprite, imgs) {
       img: new Image(),
       frames: null
     }
-    img.img.onload = onLoad.bind(null, img, imgs[i][1])
+    img.img.onload = onLoad.bind(null, img, imgs[i][1], imgs[i][2])
     img.img.src = imgs[i][0]
   }
 }
 
-function onLoad(img, frames = 1) {
+function onLoad(img, frames, timeout) {
   img.width = img.img.width
   img.height = img.img.height
-  img.frames = Frames(img.width / frames, frames)
+  img.frames = Frames(img.width / (frames || 1), frames, timeout)
 }
