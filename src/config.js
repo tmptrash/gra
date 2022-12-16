@@ -25,8 +25,8 @@ export default {
     idleRight: [IdleRightPath, 3, 260],
     walkLeft:  [WalkLeftPath,  6, 60],
     walkRight: [WalkRightPath, 6, 60],
-    jumpLeft:  [JumpLeftPath,  9, 100],
-    jumpRight: [JumpRightPath, 9, 100]
+    jumpLeft:  [JumpLeftPath,  9, 110],
+    jumpRight: [JumpRightPath, 9, 110]
   }],
   back: [0, 0, BackPath]
 }
