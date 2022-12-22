@@ -18,7 +18,7 @@ export default {
   moveSpeed: 5,
 
   backColor: 'black',
-  fronColor: '#fff',
+  frontColor: '#fff',
   frontFont: '16px Tahoma',
 
   // sprites
