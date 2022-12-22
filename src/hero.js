@@ -11,7 +11,7 @@ export function Hero() {
     vY: 1,
     dir: RIGHT,
     isJumping: false,
-    pressed: { a: false, d: false },
+    pressed: { a: false, d: false, w: false },
     sprite: Sprite(...Config.hero)
   }
   bind({
@@ -22,7 +22,8 @@ export function Hero() {
     },
     keyup: {
       a: () => hero.pressed.a = false,
-      d: () => hero.pressed.d = false
+      d: () => hero.pressed.d = false,
+      w: () => hero.pressed.w = false
     }
   })
 
@@ -39,6 +40,7 @@ export function update(hero) {
   sprite.x += hero.vX
   sprite.y += hero.vY
   hero.vX = 0
+  hero.pressed.w && onJumpKeyDown(hero)
 
   // walk left or right
   if (hero.pressed.d) {
@@ -58,10 +60,10 @@ export function update(hero) {
   // stop jumping if it's a ground
   if (sprite.y + hero.vY + sprite.img.height < Config.height) hero.vY += Config.gravity
   else { hero.vY = 0, sprite.y = Config.height - sprite.img.height, hero.isJumping = false }
-  
+
   // update jump frames depending on dir
   if (hero.isJumping) {
-    const dirRight = sprite.img === sprite.imgs.jumpRight 
+    const dirRight = sprite.img === sprite.imgs.jumpRight
     if (sprite.dir === RIGHT) {
       sprite.img = sprite.imgs.jumpRight
       !dirRight && (sprite.img.frames.frame = sprite.imgs.jumpLeft.frames.frame)
@@ -74,7 +76,7 @@ export function update(hero) {
 
 function onJumpKeyDown(hero) {
   if (hero.isJumping) return
+  hero.pressed.w = hero.isJumping = true
   hero.vY = -Config.jumpHeight
-  hero.isJumping = true
   hero.sprite.imgs.jumpLeft.frames.frame = hero.sprite.imgs.jumpRight.frames.frame = 0
 }
