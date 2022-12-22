@@ -1,5 +1,5 @@
 import Shared from './shared'
-import { Frames, update } from './frames'
+import { Frames, update as updateFrames } from './frames'
 
 export function Sprite(x, y, imgs) {
   const sprite = {
@@ -30,8 +30,12 @@ export function draw(sprite) {
     img.height
   )
   sprite.pixelated && (Shared.ctx.imageSmoothingEnabled = true)
+}
 
-  update(sprite.img.frames)
+export function update(sprite) {
+  const img = sprite.img
+  if (!img || !img.img || !img.frames) return
+  updateFrames(sprite.img.frames)
 }
 
 export function setImg(sprite, img) {

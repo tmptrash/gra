@@ -18,8 +18,8 @@ export function draw(fps) {
     fps.curFps = 0
     fps.time = t
   }
-  Shared.ctx.fillStyle = '#fff'
-  Shared.ctx.font = "16px Tahoma"
+  Shared.ctx.fillStyle = Config.frontColor
+  Shared.ctx.font = Config.frontFont
   Shared.ctx.fillText(`fps: ${fps.fps}`, 10, 20)
 
   fps.curFps++

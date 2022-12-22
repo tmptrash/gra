@@ -1,13 +1,15 @@
 import Shared from './shared'
 import Config from './config'
-import { Hero, draw as drawHero } from './hero'
-import { Sprite } from './sprite'
-import { Fps, draw as drawFps, getFps } from './fps'
+import { Hero, draw as drawHero, update as updateHero } from './hero'
+import { Sprite, update as updateSprite } from './sprite'
+import { Fps, draw as drawFps } from './fps'
 import { draw as drawSprite } from './sprite'
 
-const back = Sprite(...Config.back)
-const hero = Hero()
-const fps = Fps()
+const objs = [
+  { draw: drawSprite, update: updateSprite, o: Sprite(...Config.back) },
+  { draw: drawHero,   update: updateHero,   o: Hero() },
+  { draw: drawFps,    update: ()=>{},       o: Fps() }
+]
 
 function init() {
   Shared.ctx = document.getElementById(Config.canvasId).getContext('2d')
@@ -19,9 +21,8 @@ function init() {
 
 function animate() {
   window.requestAnimationFrame(animate)
-  drawSprite(back)
-  drawHero(hero)
-  drawFps(fps)
+  objs.forEach(o => o.draw(o.o))
+  objs.forEach(o => o.update(o.o))
 }
 
 init()

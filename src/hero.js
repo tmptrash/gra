@@ -1,7 +1,6 @@
 import Config from './config'
-import Shared from './shared'
 import { bind } from './keyboard'
-import { Sprite, draw as drawSprite } from './sprite'
+import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 
 const RIGHT = 0
 const LEFT = 1
@@ -32,11 +31,11 @@ export function Hero() {
   
 export function draw(hero) {
   drawSprite(hero.sprite)
-  update(hero)
 }
 
-function update(hero) {
+export function update(hero) {
   const sprite = hero.sprite
+  updateSprite(sprite)
   sprite.x += hero.vX
   sprite.y += hero.vY
   hero.vX = 0

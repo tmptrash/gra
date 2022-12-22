@@ -18,6 +18,8 @@ export default {
   moveSpeed: 5,
 
   backColor: 'black',
+  fronColor: '#fff',
+  frontFont: '16px Tahoma',
 
   // sprites
   hero: [100, 600, {
