@@ -9,10 +9,11 @@ import L1BackPath from '../img/l1-back.png'
 export default {
   fpsId: 'fps',
   canvasId: 'canvas',
-  useSetTimeout: true,
+  useSetTimeout: false,
+  debug: true,
 
   width: 2048,
-  height: 959,
+  height: 900,
   spriteSize: 32,
   hSprites: null,
   vSprites: null,
@@ -26,7 +27,7 @@ export default {
   frontFont: '16px Tahoma',
 
   // sprites
-  hero: [100, 600, [65, 80, 60, 140], {
+  hero: [100, 600, [77, 88, 38, 100], {
     idleLeft:  [IdleLeftPath,  3, 260],
     idleRight: [IdleRightPath, 3, 260],
     walkLeft:  [WalkLeftPath,  6, 80],

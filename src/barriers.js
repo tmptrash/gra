@@ -148,5 +148,5 @@ export function leftBarrier(x, y) {
   const ySprite = Math.floor(y / spriteSize)
   const xSprite = Math.floor(x / spriteSize)
   const offs = ySprite * Config.hSprites + xSprite
-  return Barriers[offs] > 0 ? xSprite * (spriteSize + 1) + 1 : false
+  return Barriers[offs] > 0 ? xSprite * spriteSize + spriteSize + 1 : false
 }

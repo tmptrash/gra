@@ -1,3 +1,4 @@
 export default {
-  ctx: null
+  ctx: null,
+  objs: null
 }
