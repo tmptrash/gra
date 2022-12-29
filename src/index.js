@@ -30,9 +30,9 @@ function onLevelLoad(img) {
 function animate() {
   objs.forEach(o => o.draw(o.o))
   objs.forEach(o => o.update(o.o))
-  const s = objs[1].o.sprite
-  if (rightBarrier(right(s), down(s))) console.log(rightBarrier(right(s), down(s)))
-  if (leftBarrier(left(s), down(s))) console.log(leftBarrier(left(s), down(s)))
+  //const s = objs[1].o.sprite
+  //if (rightBarrier(right(s), down(s))) console.log(rightBarrier(right(s), down(s)))
+  //if (leftBarrier(left(s), down(s))) console.log(leftBarrier(left(s), down(s)))
   Config.useSetTimeout ? setTimeout(animate) : window.requestAnimationFrame(animate)
 }
 
