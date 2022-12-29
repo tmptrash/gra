@@ -1,6 +1,7 @@
 import Config from './config'
 import { bind } from './keyboard'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
+import Shared from './shared'
 
 const RIGHT = 0
 const LEFT = 1
@@ -31,6 +32,12 @@ export function Hero() {
 }
   
 export function draw(hero) {
+  if (hero.sprite.img && hero.sprite.img.frames) {
+    const s = hero.sprite
+    Shared.ctx.fillStyle = 'red'
+    Shared.ctx.fillRect(s.x + s.cut[0], s.y + s.cut[1], s.cut[2], s.cut[3])
+  }
+
   drawSprite(hero.sprite)
 }
 

@@ -1,12 +1,14 @@
 import Shared from './shared'
 import { Frames, update as updateFrames } from './frames'
 
-export function Sprite(x, y, imgs) {
+export function Sprite(x, y, cut, imgs, onLoad = () => {}) {
   const sprite = {
     x,
     y,
+    cut,
     img: null,
-    imgs: {}
+    imgs: {},
+    onLoad
   }
   loadImgs(sprite, typeof imgs === 'string' ? {idle: [imgs]} : imgs)
   sprite.imgs.idle && setImg(sprite, 'idle')
@@ -50,13 +52,14 @@ function loadImgs(sprite, imgs) {
       img: new Image(),
       frames: null
     }
-    img.img.onload = onLoad.bind(null, img, imgs[i][1], imgs[i][2])
+    img.img.onload = onLoad.bind(null, sprite, img, imgs[i][1], imgs[i][2])
     img.img.src = imgs[i][0]
   }
 }
 
-function onLoad(img, frames, timeout) {
+function onLoad(sprite, img, frames, timeout) {
   img.width = img.img.width
   img.height = img.img.height
   img.frames = Frames(img.width / (frames || 1), frames, timeout)
+  sprite.onLoad(img)
 }
