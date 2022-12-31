@@ -1,19 +1,21 @@
 import Shared from './shared'
 import Config from './config'
-import { left, right, up, down } from './sprite'
+import { topLeft, topRight, height } from './sprite'
 import { getMousePos } from './utils'
 
-export function Debug() {
-  const d = { pos: {} }
+export function Debug(objs) {
+  const d = { pos: {}, objs }
   window.addEventListener('mousemove', e => d.pos = getMousePos(Shared.ctx.canvas, e), false)
   return d
 }
 
 export function draw(debug) {
-  if (!Config.debug) return
-  const s = Shared.objs[1].o.sprite
+  const s = debug.objs[1].o.sprite
+  const [x0, y0] = topLeft(s)
+  const [x1,  _] = topRight(s)
+  const h = height(s)
   Shared.ctx.fillStyle = Config.frontColor
   Shared.ctx.font = Config.frontFont
-  Shared.ctx.fillText(`x: ${debug.pos.x}, y: ${debug.pos.y}`, 100, 20)
-  Shared.ctx.fillText(`l: ${left(s)}, u: ${up(s)}, r: ${right(s)}, d: ${down(s)}`, 250, 20)
+  Shared.ctx.fillText(`mouse ${debug.pos.x || 0}:${debug.pos.y || 0}`, 100, 20)
+  Shared.ctx.fillText(`hero ${x0}:${y0}; ${x1}:${y0 + h}`, 250, 20)
 }

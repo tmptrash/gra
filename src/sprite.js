@@ -34,13 +34,16 @@ export function draw(sprite) {
   sprite.pixelated && (Shared.ctx.imageSmoothingEnabled = true)
 }
 
-export const right = (sprite) => sprite.x + sprite.cut[0] + sprite.cut[2]
+export const topRight = (s) => [s.x + s.cut[0] + s.cut[2], s.y + s.cut[1]]
 
-export const left = (sprite) => sprite.x + sprite.cut[0]
+export const topLeft = (s) => [s.x + s.cut[0], s.y + s.cut[1]]
 
-export const up = (sprite) => sprite.y + sprite.cut[1]
+export const height = (s) => s.cut[3]
 
-export const down = (sprite) => sprite.y + sprite.cut[1] + sprite.cut[3]
+export const fullWidth = (s) => s.cut[0] + s.cut[2]
+
+//export const up = (sprite) => sprite.y + sprite.cut[1]
+//export const down = (sprite) => sprite.y + sprite.cut[1] + sprite.cut[3]
 
 export function update(sprite) {
   const img = sprite.img

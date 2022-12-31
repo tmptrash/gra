@@ -2,6 +2,7 @@ import Config from './config'
 import { bind } from './keyboard'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import Shared from './shared'
+import { rightBarrier } from './barriers'
 
 const RIGHT = 0
 const LEFT = 1
@@ -36,8 +37,8 @@ export function draw(hero) {
     const s = hero.sprite
     // Shared.ctx.fillStyle = 'green'
     // Shared.ctx.fillRect(s.x, s.y, s.img.frames.width, s.img.height)
-    Shared.ctx.fillStyle = 'red'
-    Shared.ctx.fillRect(s.x + s.cut[0], s.y + s.cut[1], s.cut[2], s.cut[3])
+    // Shared.ctx.fillStyle = 'red'
+    // Shared.ctx.fillRect(s.x + s.cut[0], s.y + s.cut[1], s.cut[2], s.cut[3])
   }
 
   drawSprite(hero.sprite)
@@ -46,7 +47,10 @@ export function draw(hero) {
 export function update(hero) {
   const sprite = hero.sprite
   updateSprite(sprite)
+
   sprite.x += hero.vX
+  const x = rightBarrier(sprite)
+  x !== false && (sprite.x = x)
   sprite.y += hero.vY
   hero.vX = 0
   hero.pressed.w && onJumpKeyDown(hero)

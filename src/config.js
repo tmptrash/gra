@@ -9,7 +9,7 @@ import L1BackPath from '../img/l1-back.png'
 export default {
   fpsId: 'fps',
   canvasId: 'canvas',
-  useSetTimeout: false,
+  useSetTimeout: true,
   debug: true,
 
   width: 2048,
