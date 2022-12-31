@@ -4,7 +4,7 @@ import { Hero, draw as drawHero, update as updateHero } from './hero'
 import { Sprite, update as updateSprite } from './sprite'
 import { Fps, draw as drawFps } from './fps'
 import { draw as drawSprite } from './sprite'
-import { rightBarrier, leftBarrier } from './barriers'
+//import { rightBarrier, leftBarrier, downBarrier } from './barriers'
 import { Debug, draw as drawDebug } from './debug'
 
 const objs = [
@@ -32,7 +32,8 @@ function animate() {
   objs.forEach(o => o.update(o.o))
   const s = objs[1].o.sprite
   //if (rightBarrier(s)) console.log(rightBarrier(s))
-  //if (leftBarrier(left(s), down(s))) console.log(leftBarrier(left(s), down(s)))
+  //if (leftBarrier((s)) console.log(leftBarrier(s))
+  //if (downBarrier(s)) console.log(downBarrier(s))
   Config.useSetTimeout ? setTimeout(animate) : window.requestAnimationFrame(animate)
 }
 

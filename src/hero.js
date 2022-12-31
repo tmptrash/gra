@@ -2,7 +2,7 @@ import Config from './config'
 import { bind } from './keyboard'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import Shared from './shared'
-import { rightBarrier } from './barriers'
+import { rightBarrier, leftBarrier, downBarrier } from './barriers'
 
 const RIGHT = 0
 const LEFT = 1
@@ -10,7 +10,7 @@ const LEFT = 1
 export function Hero() {
   const hero = {
     vX: 0,
-    vY: 1,
+    vY: Config.gravity,
     dir: RIGHT,
     isJumping: false,
     pressed: { a: false, d: false, w: false },
@@ -45,44 +45,43 @@ export function draw(hero) {
 }
 
 export function update(hero) {
-  const sprite = hero.sprite
-  updateSprite(sprite)
+  const s = hero.sprite
+  updateSprite(s)
 
-  sprite.x += hero.vX
-  const x = rightBarrier(sprite)
-  x !== false && (sprite.x = x)
-  sprite.y += hero.vY
+  s.x += hero.vX, (hero.vX > 0 ? rightBarrier(s) : leftBarrier(s)) && (s.x -= hero.vX)
+  // TODO: i'm here
+  s.y += hero.vY, hero.vY > 0 && downBarrier(s) && (s.y -= hero.vY, hero.vY = 0, hero.isJumping = false)
   hero.vX = 0
   hero.pressed.w && onJumpKeyDown(hero)
 
   // walk left or right
   if (hero.pressed.d) {
-    !hero.isJumping && (sprite.img = sprite.imgs.walkRight)
+    !hero.isJumping && (s.img = s.imgs.walkRight)
     hero.vX = Config.moveSpeed
-    sprite.dir = RIGHT
+    s.dir = RIGHT
   }
   if (hero.pressed.a) {
-    !hero.isJumping && (sprite.img = sprite.imgs.walkLeft)
+    !hero.isJumping && (s.img = s.imgs.walkLeft)
     hero.vX = -Config.moveSpeed
-    sprite.dir = LEFT
+    s.dir = LEFT
   }
 
   // idle
-  hero.vX === 0 && !hero.isJumping && (sprite.img = (sprite.dir === RIGHT) ? sprite.imgs.idleRight : sprite.imgs.idleLeft)
+  hero.vX === 0 && !hero.isJumping && (s.img = (s.dir === RIGHT) ? s.imgs.idleRight : s.imgs.idleLeft)
 
   // stop jumping if it's a ground
-  if (sprite.y + hero.vY + sprite.img.height < Config.height) hero.vY += Config.gravity
-  else { hero.vY = 0, sprite.y = Config.height - sprite.img.height, hero.isJumping = false }
+  if (s.y + s.img.height < Config.height) hero.vY += Config.gravity
+  else { hero.vY = 0, s.y = Config.height - s.img.height, hero.isJumping = false }
 
   // update jump frames depending on dir
   if (hero.isJumping) {
-    const dirRight = sprite.img === sprite.imgs.jumpRight
-    if (sprite.dir === RIGHT) {
-      sprite.img = sprite.imgs.jumpRight
-      !dirRight && (sprite.img.frames.frame = sprite.imgs.jumpLeft.frames.frame)
+    const dirRight = s.img === s.imgs.jumpRight
+    if (s.dir === RIGHT) {
+      s.img = s.imgs.jumpRight
+      !dirRight && (s.img.frames.frame = s.imgs.jumpLeft.frames.frame)
     } else {
-      sprite.img = sprite.imgs.jumpLeft
-      dirRight && (sprite.img.frames.frame = sprite.imgs.jumpRight.frames.frame)
+      s.img = s.imgs.jumpLeft
+      dirRight && (s.img.frames.frame = s.imgs.jumpRight.frames.frame)
     }
   }
 }

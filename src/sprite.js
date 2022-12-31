@@ -11,6 +11,7 @@ export function Sprite(x, y, cut, imgs, onLoad = () => {}) {
     onLoad
   }
   loadImgs(sprite, typeof imgs === 'string' ? {idle: [imgs]} : imgs)
+  // TODO: it should not be here. Should be outside
   sprite.imgs.idle && setImg(sprite, 'idle')
   return sprite
 }
@@ -36,11 +37,13 @@ export function draw(sprite) {
 
 export const topRight = (s) => [s.x + s.cut[0] + s.cut[2], s.y + s.cut[1]]
 
+export const leftDown = (s) => [s.x + s.cut[0], s.y + s.cut[1] + s.cut[3]]
+
 export const topLeft = (s) => [s.x + s.cut[0], s.y + s.cut[1]]
 
 export const height = (s) => s.cut[3]
 
-export const fullWidth = (s) => s.cut[0] + s.cut[2]
+export const width = (s) => s.cut[2]
 
 //export const up = (sprite) => sprite.y + sprite.cut[1]
 //export const down = (sprite) => sprite.y + sprite.cut[1] + sprite.cut[3]
