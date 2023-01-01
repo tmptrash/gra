@@ -3,9 +3,10 @@ import Shared from './shared'
 
 export function Fps() {
   const fps = {
-    time: Date.now(),
-    fps: 0,
+    fTime: Date.now(),
+    uTime: Date.now(),
     curFps: 0,
+    curUps: 0,
     fpsEl: document.getElementById(Config.fpsId)
   }
   return fps
@@ -13,14 +14,26 @@ export function Fps() {
 
 export function draw(fps) {
   const t = Date.now()
-  if (t - fps.time > 1000) {
-    fps.fps = fps.curFps
+  if (t - fps.fTime > 1000) {
+    Shared.fps = fps.curFps
     fps.curFps = 0
-    fps.time = t
+    fps.fTime = t
   }
+  fps.curFps++
+  
   Shared.ctx.fillStyle = Config.frontColor
   Shared.ctx.font = Config.frontFont
-  Shared.ctx.fillText(`fps: ${fps.fps}`, 10, 20)
+  Shared.ctx.fillText(`fps: ${Shared.fps}`, 10, 20)
+  Shared.ctx.fillText(`ups: ${Shared.ups}`, 100, 20)
+}
 
-  fps.curFps++
+export function update(fps) {
+  const t = Date.now()
+  if (t - fps.uTime > 1000) {
+    Shared.ups = fps.curUps
+    fps.curUps = 0
+    fps.uTime = t
+  }
+
+  fps.curUps++
 }

@@ -1,3 +1,5 @@
 export default {
-  ctx: null
+  ctx: null,
+  fps: 0,
+  ups: 0
 }

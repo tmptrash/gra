@@ -9,8 +9,8 @@ import L1BackPath from '../img/l1-back.png'
 export default {
   fpsId: 'fps',
   canvasId: 'canvas',
-  useSetTimeout: true,
   debug: true,
+  useSetTimeout: true,
 
   width: 2048,
   height: 900,
@@ -21,6 +21,8 @@ export default {
   gravity: 1,
   jumpHeight: 20,
   moveSpeed: 1,
+  stepTime: 300,
+  stepSize: 200,
 
   backColor: 'black',
   frontColor: '#fff',
