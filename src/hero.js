@@ -34,7 +34,7 @@ export function Hero() {
   
 export function draw(hero) {
   if (hero.sprite.img && hero.sprite.img.frames) {
-    const s = hero.sprite
+    // const s = hero.sprite
     // Shared.ctx.fillStyle = 'green'
     // Shared.ctx.fillRect(s.x, s.y, s.img.frames.width, s.img.height)
     // Shared.ctx.fillStyle = 'red'
@@ -49,7 +49,6 @@ export function update(hero) {
   updateSprite(s)
 
   s.x += hero.vX, (hero.vX > 0 ? rightBarrier(s) : leftBarrier(s)) && (s.x -= hero.vX)
-  // TODO: i'm here
   s.y += hero.vY, hero.vY > 0 && downBarrier(s) && (s.y -= hero.vY, hero.vY = 0, hero.isJumping = false)
   hero.vX = 0
   hero.pressed.w && onJumpKeyDown(hero)

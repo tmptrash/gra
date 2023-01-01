@@ -20,7 +20,7 @@ export default {
   zoom: 1.5,
   gravity: 1,
   jumpHeight: 20,
-  moveSpeed: 2,
+  moveSpeed: 1,
 
   backColor: 'black',
   frontColor: '#fff',
