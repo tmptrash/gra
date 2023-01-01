@@ -13,7 +13,7 @@ export function Hero() {
     dir: RIGHT,
     frameTime: 0,
     stepTime: performance.now(),
-    stepSize: Config.stepTime / Config.stepSize,
+    stepSize: 0,
     isJumping: false,
     pressed: { a: false, d: false, w: false },
     sprite: Sprite(...Config.hero)

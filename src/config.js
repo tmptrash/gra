@@ -20,7 +20,6 @@ export default {
   zoom: 1.5,
   gravity: 1,
   jumpHeight: 20,
-  moveSpeed: 1,
   stepTime: 300,
   stepSize: 200,
 

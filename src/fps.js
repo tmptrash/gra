@@ -29,8 +29,8 @@ export function draw(fps) {
 
 export function update(fps) {
   const t = Date.now()
-  if (t - fps.uTime > 1000) {
-    Shared.ups = fps.curUps
+  if (t - fps.uTime > 100) {
+    Shared.ups = fps.curUps * 10
     fps.curUps = 0
     fps.uTime = t
   }
