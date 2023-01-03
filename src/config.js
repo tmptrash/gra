@@ -6,6 +6,7 @@ import JumpLeftPath from '../img/jump-left-9.png'
 import JumpRightPath from '../img/jump-right-9.png'
 import L1BackPath from '../img/l1-back.png'
 
+// TODO: review all props
 export default {
   fpsId: 'fps',
   canvasId: 'canvas',
@@ -17,11 +18,12 @@ export default {
   spriteSize: 32,
   hSprites: null,
   vSprites: null,
+  
   zoom: 1.5,
-  gravity: 1,
-  jumpHeight: 20,
+  jumpTime: 1000,
+  jumpSize: 250,
   stepTime: 300,
-  stepSize: 200,
+  stepSize: 150,
 
   backColor: 'black',
   frontColor: '#fff',
@@ -33,8 +35,8 @@ export default {
     idleRight: [IdleRightPath, 3, 260],
     walkLeft:  [WalkLeftPath,  6, 80],
     walkRight: [WalkRightPath, 6, 80],
-    jumpLeft:  [JumpLeftPath,  9, 110],
-    jumpRight: [JumpRightPath, 9, 110]
+    jumpLeft:  [JumpLeftPath,  9, 150],
+    jumpRight: [JumpRightPath, 9, 150]
   }],
   back: [0, 0, null, L1BackPath]
 }
