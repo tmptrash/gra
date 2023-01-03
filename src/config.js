@@ -30,7 +30,7 @@ export default {
   frontFont: '16px Tahoma',
 
   // sprites
-  hero: [100, 600, [77, 88, 38, 100], {
+  hero: [400, 350, [77, 88, 38, 100], {
     idleLeft:  [IdleLeftPath,  3, 260],
     idleRight: [IdleRightPath, 3, 260],
     walkLeft:  [WalkLeftPath,  6, 80],

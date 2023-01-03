@@ -94,7 +94,7 @@ export function update(h) {
   const s = h.sprite
   const left = h.dir === LEFT
 
-  // jump (v0 = sqrt(Config.jumpSize / 2) * 2, tmax = 2 * v0, y = v0 * t - t * t / 2)
+  // jump: v0 = sqrt(Config.jumpSize / 2) * 2, tmax = 2 * v0, y = v0 * t - t * t / 2
   h.pressed.w && onJumpKeyDown(h)
   if (h.isJumping) {
     const time = (t - h.jumpStartTime) / h.jumpTimeDiv
@@ -103,7 +103,7 @@ export function update(h) {
     else s.y = h.jumpY - (h.jumpV0 * time - time * time / 2)
   }
 
-  // walk right or left
+  // walk
   if (h.pressed.d || h.pressed.a) {
     const div = Shared.ups / (1000 / Config.stepTime)
     const stepSize = Config.stepSize / div
@@ -116,21 +116,6 @@ export function update(h) {
     s.img = left ? s.imgs.idleLeft : s.imgs.idleRight
   }
 
-  // // stop jumping if it's a ground
-  // if (s.y + s.img.height < Config.height) hero.vY += Config.gravity
-  // else { hero.vY = 0, s.y = Config.height - s.img.height, hero.isJumping = false }
-
-  // // update jump frames depending on dir
-  // if (hero.isJumping) {
-  //   const dirRight = s.img === s.imgs.jumpRight
-  //   if (s.dir === RIGHT) {
-  //     s.img = s.imgs.jumpRight
-  //     !dirRight && (s.img.frames.frame = s.imgs.jumpLeft.frames.frame)
-  //   } else {
-  //     s.img = s.imgs.jumpLeft
-  //     dirRight && (s.img.frames.frame = s.imgs.jumpRight.frames.frame)
-  //   }
-  // }
   updateSprite(s)
 }
 

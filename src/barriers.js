@@ -132,44 +132,12 @@ const Barriers = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 /**
  * Checks if sprite toches a barrier on the nearest right side
  */
-export function rightBarrier(sprite) {
-  let [x, y] = topRight(sprite)
-  const y1 = y + height(sprite)
-  const spriteSize = Config.spriteSize
-  const xSprite = Math.floor(x / spriteSize)
-
-  while (y <= y1) {
-    const ySprite = Math.floor(y / spriteSize)
-    const offs = ySprite * Config.hSprites + xSprite
-    if (hasBarrier(offs)) return true
-    y += spriteSize
-  }
-
-  const ySprite = Math.floor(y1 / spriteSize)
-  const offs = ySprite * Config.hSprites + xSprite
-  return hasBarrier(offs)
-}
+export const rightBarrier = sprite => xBarrier(topRight, sprite)
 
 /**
  * Checks if sprite toches a barrier on the nearest left side
  */
-export function leftBarrier(sprite) {
-  let [x, y] = topLeft(sprite)
-  const y1 = y + height(sprite)
-  const spriteSize = Config.spriteSize
-  const xSprite = Math.floor(x / spriteSize)
-
-  while (y <= y1) {
-    const ySprite = Math.floor(y / spriteSize)
-    const offs = ySprite * Config.hSprites + xSprite
-    if (hasBarrier(offs)) return true
-    y += spriteSize
-  }
-
-  const ySprite = Math.floor(y1 / spriteSize)
-  const offs = ySprite * Config.hSprites + xSprite
-  return hasBarrier(offs)
-}
+export const leftBarrier = sprite => xBarrier(topLeft, sprite)
 
 /**
  * Checks if sprite toches a barrier on the nearest down side
@@ -193,6 +161,33 @@ export function downBarrier(sprite) {
   return hasBarrier(offs)
 }
 
+function xBarrier(topFn, sprite) {
+  let [x, y] = topFn(sprite)
+  const y1 = y + height(sprite)
+  const spriteSize = Config.spriteSize
+  const xSprite = Math.floor(x / spriteSize)
+
+  while (y <= y1) {
+    const ySprite = Math.floor(y / spriteSize)
+    const offs = ySprite * Config.hSprites + xSprite
+    if (hasBarrier(offs)) return spritePos(xSprite, ySprite, topFn === topLeft)
+    y += spriteSize
+  }
+
+  const ySprite = Math.floor(y1 / spriteSize)
+  const offs = ySprite * Config.hSprites + xSprite
+  if (hasBarrier(offs)) return spritePos(xSprite, ySprite, topFn === topLeft)
+  return false
+}
+
 function hasBarrier(offs) {
   return Barriers[offs] > 0
+}
+
+function spritePos(xSprite, ySprite, left = true) {
+  let x = xSprite * Config.spriteSize
+  let y = ySprite * Config.spriteSize
+
+  !left && (x += Config.spriteSize, y += Config.spriteSize)
+  return [x, y]
 }
