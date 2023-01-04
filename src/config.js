@@ -9,7 +9,8 @@ import L1BackPath from '../img/l1-back.png'
 export default {
   canvasId: 'canvas',
   debug: false,
-  useSetTimeout: true,
+  useSetTimeout: false,
+  fastUps: false,
 
   zoom: 2.1,
   width: 1600,
