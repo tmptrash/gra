@@ -1,8 +1,9 @@
 import Config from './config'
-import { bind } from './keyboard'
-import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import Shared from './shared'
+import { bind } from './keyboard'
+import { Sprite, putLeftSide, draw as drawSprite, update as updateSprite } from './sprite'
 import { rightBarrier, leftBarrier, downBarrier } from './barriers'
+import { isArr } from './utils'
 
 const RIGHT = 0
 const LEFT  = 1
@@ -17,13 +18,14 @@ export function Hero() {
     jumpY: 0,
     isJumping: false,
     stepTime: performance.now(),
+    stepX: 0,
     pressed: { a: false, d: false, w: false },
     sprite: Sprite(...Config.hero)
   }
   bind({
     keydown: {
-      a: () => (hero.pressed.a = true, hero.dir = LEFT),
-      d: () => (hero.pressed.d = true, hero.dir = RIGHT),
+      a: () => (hero.pressed.a = true, hero.stepTime = performance.now(), hero.stepX = hero.sprite.x, hero.dir = LEFT ),
+      d: () => (hero.pressed.d = true, hero.stepTime = performance.now(), hero.stepX = hero.sprite.x, hero.dir = RIGHT),
       w: onJumpKeyDown.bind(null, hero)
     },
     keyup: {
@@ -48,47 +50,6 @@ export function draw(hero) {
   drawSprite(hero.sprite)
 }
 
-// export function update(hero) {
-//   const s = hero.sprite
-//   updateSprite(s)
-
-//   s.x += hero.vX, (hero.vX > 0 ? rightBarrier(s) : leftBarrier(s)) && (s.x -= hero.vX)
-//   s.y += hero.vY, hero.vY > 0 && downBarrier(s) && (s.y -= hero.vY, hero.vY = 0, hero.isJumping = false)
-//   hero.vX = 0
-//   hero.pressed.w && onJumpKeyDown(hero)
-
-//   // walk left or right
-//   if (hero.pressed.d) {
-//     !hero.isJumping && (s.img = s.imgs.walkRight)
-//     hero.vX = Config.moveSpeed
-//     s.dir = RIGHT
-//   }
-//   if (hero.pressed.a) {
-//     !hero.isJumping && (s.img = s.imgs.walkLeft)
-//     hero.vX = -Config.moveSpeed
-//     s.dir = LEFT
-//   }
-
-//   // idle
-//   hero.vX === 0 && !hero.isJumping && (s.img = (s.dir === RIGHT) ? s.imgs.idleRight : s.imgs.idleLeft)
-
-//   // stop jumping if it's a ground
-//   if (s.y + s.img.height < Config.height) hero.vY += Config.gravity
-//   else { hero.vY = 0, s.y = Config.height - s.img.height, hero.isJumping = false }
-
-//   // update jump frames depending on dir
-//   if (hero.isJumping) {
-//     const dirRight = s.img === s.imgs.jumpRight
-//     if (s.dir === RIGHT) {
-//       s.img = s.imgs.jumpRight
-//       !dirRight && (s.img.frames.frame = s.imgs.jumpLeft.frames.frame)
-//     } else {
-//       s.img = s.imgs.jumpLeft
-//       dirRight && (s.img.frames.frame = s.imgs.jumpRight.frames.frame)
-//     }
-//   }
-// }
-
 export function update(h) {
   const t = performance.now()
   const s = h.sprite
@@ -103,11 +64,10 @@ export function update(h) {
     else s.y = h.jumpY - (h.jumpV0 * time - time * time / 2)
   }
 
-  // walk
+  // walk: incX = Config.stepSize / (Config.stepTime / (t1 - t0))
   if (h.pressed.d || h.pressed.a) {
-    const div = Shared.ups / (1000 / Config.stepTime)
-    const stepSize = Config.stepSize / div
-    t - h.stepTime >= Config.stepTime / div && (s.x += (stepSize * (left ? -1 : 1)), h.stepTime = t)
+    //t - h.stepTime >= Config.stepTime / div && (updateX(s, stepSize * (left ? -1 : 1)), h.stepTime = t)
+    s.x = h.stepX + ((Config.stepSize / (Config.stepTime / (t - h.stepTime))) * (left ? -1 : 1))
     !h.isJumping && (s.img = (left ? s.imgs.walkLeft : s.imgs.walkRight))
   }
 
@@ -127,4 +87,13 @@ function onJumpKeyDown(hero) {
   hero.jumpTimeDiv = Config.jumpTime / hero.jumpTime
   hero.jumpY = hero.sprite.y
   hero.sprite.imgs.jumpLeft.frames.frame = hero.sprite.imgs.jumpRight.frames.frame = 0
+}
+
+function updateX(sprite, incX) {
+  sprite.x += incX
+  const pos = incX > 0 ? rightBarrier(sprite) : leftBarrier(sprite)
+  if (isArr(pos)) {
+    if (incX > 0) putLeftSide(sprite, pos[0])
+    //else putRightSide(sprite, pos[0])
+  }
 }

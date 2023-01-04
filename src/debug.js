@@ -14,8 +14,5 @@ export function draw(debug) {
   const [x0, y0] = topLeft(s)
   const [x1,  _] = topRight(s)
   const h = height(s)
-  Shared.ctx.fillStyle = Config.frontColor
-  Shared.ctx.font = Config.frontFont
-  Shared.ctx.fillText(`mouse ${debug.pos.x || 0}:${debug.pos.y || 0}`, 220, 20)
-  Shared.ctx.fillText(`hero ${Math.floor(x0)}:${Math.floor(y0)}; ${Math.floor(x1)}:${Math.floor(y0 + h)}`, 380, 20)
+  Shared.ctx.fillText(`mouse ${debug.pos.x || 0}:${debug.pos.y || 0}  hero ${Math.floor(x0)}:${Math.floor(y0)}; ${Math.floor(x1)}:${Math.floor(y0 + h)}`, 220, 20)
 }

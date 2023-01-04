@@ -8,30 +8,30 @@ import L1BackPath from '../img/l1-back.png'
 
 export default {
   canvasId: 'canvas',
-  debug: true,
+  debug: false,
   useSetTimeout: true,
 
-  width: 2048,
-  height: 900,
+  zoom: 2.1,
+  width: 1600,
+  height: 800,
   spriteSize: 32,
   hSprites: null,
   vSprites: null,
-  
-  zoom: 1.5,
+
   jumpTime: 1000,
   jumpSize: 250,
   stepTime: 300,
-  stepSize: 150,
+  stepSize: 100,
 
   frontColor: '#fff',
   frontFont: '16px Tahoma',
 
   // sprites
-  hero: [400, 350, [77, 88, 38, 100], {
+  hero: [150, 540, [80, 90, 30, 95], {
     idleLeft:  [IdleLeftPath,  3, 260],
     idleRight: [IdleRightPath, 3, 260],
-    walkLeft:  [WalkLeftPath,  6, 80],
-    walkRight: [WalkRightPath, 6, 80],
+    walkLeft:  [WalkLeftPath,  6, 60],
+    walkRight: [WalkRightPath, 6, 60],
     jumpLeft:  [JumpLeftPath,  9, 150],
     jumpRight: [JumpRightPath, 9, 150]
   }],
