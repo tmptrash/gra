@@ -8,6 +8,9 @@ import L1BackPath from '../img/l1-back.png'
 
 export default {
   canvasId: 'canvas',
+  frontColor: '#fff',
+  frontFont: '16px Tahoma',
+
   debug: false,
   useSetTimeout: false,
   fastUps: false,
@@ -23,9 +26,6 @@ export default {
   jumpSize: 250,
   stepTime: 300,
   stepSize: 100,
-
-  frontColor: '#fff',
-  frontFont: '16px Tahoma',
 
   // sprites
   hero: [150, 540, [80, 90, 30, 95], {
