@@ -37,7 +37,7 @@ function draw() {
 
 function update() {
   objs.forEach(o => o.update(o.o))
-  setTimeout(() => window.postMessage(0, '*'), Config.fastUps ? 0 : 1)
+  setTimeout(() => window.postMessage(0, '*'), Config.upsDelay)
 }
 
 init()

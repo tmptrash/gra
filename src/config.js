@@ -10,10 +10,10 @@ export default {
   canvasId: 'canvas',
   frontColor: '#fff',
   frontFont: '16px Tahoma',
-
-  debug: false,
+  
+  debug: true,
+  upsDelay: 4,
   useSetTimeout: false,
-  fastUps: false,
 
   zoom: 2.1,
   width: 1600,
@@ -24,7 +24,7 @@ export default {
 
   jumpTime: 1000,
   jumpSize: 250,
-  stepTime: 300,
+  stepTime: 400,
   stepSize: 100,
 
   // sprites
