@@ -152,6 +152,7 @@ export function downBarrier(sprite) {
   while (x <= x1) {
     const xSprite = Math.floor(x / spriteSize)
     const offs = ySprite * Config.hSprites + xSprite
+    // TODO: should return coordinates
     if (hasBarrier(offs)) return true
     x += spriteSize
   }

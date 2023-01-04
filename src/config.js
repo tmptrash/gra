@@ -6,9 +6,7 @@ import JumpLeftPath from '../img/jump-left-9.png'
 import JumpRightPath from '../img/jump-right-9.png'
 import L1BackPath from '../img/l1-back.png'
 
-// TODO: review all props
 export default {
-  fpsId: 'fps',
   canvasId: 'canvas',
   debug: true,
   useSetTimeout: true,
@@ -25,7 +23,6 @@ export default {
   stepTime: 300,
   stepSize: 150,
 
-  backColor: 'black',
   frontColor: '#fff',
   frontFont: '16px Tahoma',
 

@@ -6,8 +6,7 @@ export function Fps() {
     fTime: Date.now(),
     uTime: Date.now(),
     curFps: 0,
-    curUps: 0,
-    fpsEl: document.getElementById(Config.fpsId)
+    curUps: 0
   }
   return fps
 }
