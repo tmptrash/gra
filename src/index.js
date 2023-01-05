@@ -18,7 +18,7 @@ function init() {
   Shared.ctx.canvas.height = Config.height
   Shared.ctx.fillStyle = Config.frontColor
   Shared.ctx.font = Config.frontFont
-  Shared.ctx.imageSmoothingEnabled = true
+  Shared.ctx.imageSmoothingEnabled = false
   document.body.style.zoom = (1 / window.devicePixelRatio * Config.zoom);
   Config.debug && objs.push({ draw: drawDebug, update: () => { }, o: Debug(objs) })
 

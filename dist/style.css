@@ -10,3 +10,7 @@ body {
   flex-wrap: nowrap;
   height: 100%;
 }
+
+body canvas {
+  image-rendering: pixelated;
+}

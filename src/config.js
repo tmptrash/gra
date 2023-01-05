@@ -9,14 +9,14 @@ import L1BackPath from '../img/l1-back.png'
 export default {
   canvasId: 'canvas',
   frontColor: '#fff',
-  frontFont: '16px Tahoma',
+  frontFont: '11px Tahoma',
   
   debug: true,
-  upsDelay: 4,
+  upsDelay: 2,
   useSetTimeout: false,
 
-  zoom: 2.1,
-  width: 1600,
+  zoom: 2.5,
+  width: 1200,
   height: 800,
   spriteSize: 32,
   hSprites: null,
@@ -28,7 +28,7 @@ export default {
   stepSize: 100,
 
   // sprites
-  hero: [150, 540, [80, 90, 30, 95], {
+  hero: [10, 195, [52, 60, 24, 64], {
     idleLeft:  [IdleLeftPath,  3, 260],
     idleRight: [IdleRightPath, 3, 260],
     walkLeft:  [WalkLeftPath,  6, 60],

@@ -20,7 +20,7 @@ export function draw(fps) {
   }
   fps.curFps++
 
-  Shared.ctx.fillText(`fps: ${Shared.fps}  ups: ${Shared.ups}`, 10, 20)
+  Shared.ctx.fillText(`fps: ${Shared.fps}  ups: ${Shared.ups}`, 10, 30)
 }
 
 export function update(fps) {

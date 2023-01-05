@@ -1,5 +1,6 @@
 import Config from './config'
 import { topRight, topLeft, leftDown, height, width } from './sprite'
+import { int } from './utils'
 
 const Barriers = [411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -147,17 +148,17 @@ export function downBarrier(sprite) {
   const x1 = x + width(sprite)
 
   const spriteSize = Config.spriteSize
-  const ySprite = Math.floor(y / spriteSize)
+  const ySprite = Math.floor(int(y) / spriteSize)
 
   while (x <= x1) {
-    const xSprite = Math.floor(x / spriteSize)
+    const xSprite = Math.floor(int(x) / spriteSize)
     const offs = ySprite * Config.hSprites + xSprite
     // TODO: should return coordinates
     if (hasBarrier(offs)) return true
     x += spriteSize
   }
 
-  const xSprite = Math.floor(x1 / spriteSize)
+  const xSprite = Math.floor(int(x1) / spriteSize)
   const offs = ySprite * Config.hSprites + xSprite
   return hasBarrier(offs)
 }
@@ -166,19 +167,19 @@ function xBarrier(topFn, sprite) {
   let [x, y] = topFn(sprite)
   const y1 = y + height(sprite)
   const spriteSize = Config.spriteSize
-  const xSprite = Math.floor(x / spriteSize)
+  const xSprite = Math.floor(int(x) / spriteSize)
+  const hSprites = Config.hSprites
 
   while (y <= y1) {
-    const ySprite = Math.floor(y / spriteSize)
-    const offs = ySprite * Config.hSprites + xSprite
-    if (hasBarrier(offs)) return spritePos(xSprite, ySprite, topFn === topLeft)
+    const ySprite = Math.floor(int(y) / spriteSize)
+    const offs = ySprite * hSprites + xSprite
+    if (hasBarrier(offs)) return spritePos(xSprite, ySprite, topFn === topRight)
     y += spriteSize
   }
 
-  const ySprite = Math.floor(y1 / spriteSize)
+  const ySprite = Math.floor(int(y1) / spriteSize)
   const offs = ySprite * Config.hSprites + xSprite
-  if (hasBarrier(offs)) return spritePos(xSprite, ySprite, topFn === topLeft)
-  return false
+  return hasBarrier(offs) ? spritePos(xSprite, ySprite, topFn === topRight) : false
 }
 
 function hasBarrier(offs) {

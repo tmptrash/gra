@@ -1,7 +1,7 @@
 import Config from './config'
 import Shared from './shared'
 import { bind } from './keyboard'
-import { Sprite, putLeftSide, draw as drawSprite, update as updateSprite } from './sprite'
+import { Sprite, putLeftSide, putRightSide,  draw as drawSprite, update as updateSprite } from './sprite'
 import { rightBarrier, leftBarrier, downBarrier } from './barriers'
 import { isArr } from './utils'
 
@@ -40,11 +40,11 @@ export function Hero() {
 
 export function draw(hero) {
   if (hero.sprite.img && hero.sprite.img.frames) {
-    // const s = hero.sprite
-    // Shared.ctx.fillStyle = 'green'
-    // Shared.ctx.fillRect(s.x, s.y, s.img.frames.width, s.img.height)
-    // Shared.ctx.fillStyle = 'red'
-    // Shared.ctx.fillRect(s.x + s.cut[0], s.y + s.cut[1], s.cut[2], s.cut[3])
+    //const s = hero.sprite
+    //Shared.ctx.fillStyle = 'green'
+    //Shared.ctx.fillRect(0.5, 0, 1, 1)
+    //Shared.ctx.fillStyle = '#3a3'
+    //Shared.ctx.fillRect(s.x + s.cut[0], s.y + s.cut[1], s.cut[2], s.cut[3])
   }
 
   drawSprite(hero.sprite)
@@ -66,8 +66,7 @@ export function update(h) {
 
   // walk: incX = Config.stepSize / (Config.stepTime / (t1 - t0))
   if (h.pressed.d || h.pressed.a) {
-    //t - h.stepTime >= Config.stepTime / div && (updateX(s, stepSize * (left ? -1 : 1)), h.stepTime = t)
-    s.x = h.stepX + ((Config.stepSize / (Config.stepTime / (t - h.stepTime))) * (left ? -1 : 1))
+    updateX(h, h.stepX + (Config.stepSize / (Config.stepTime / (t - h.stepTime))) * (left ? -1 : 1))
     !h.isJumping && (s.img = (left ? s.imgs.walkLeft : s.imgs.walkRight))
   }
 
@@ -89,11 +88,16 @@ function onJumpKeyDown(hero) {
   hero.sprite.imgs.jumpLeft.frames.frame = hero.sprite.imgs.jumpRight.frames.frame = 0
 }
 
-function updateX(sprite, incX) {
-  sprite.x += incX
-  const pos = incX > 0 ? rightBarrier(sprite) : leftBarrier(sprite)
+function updateX(hero, newX) {
+  const s = hero.sprite
+  const oldX = s.x
+  const right = newX - oldX > 0
+  s.x = newX
+  const pos = right ? rightBarrier(s) : leftBarrier(s)
   if (isArr(pos)) {
-    if (incX > 0) putLeftSide(sprite, pos[0])
-    //else putRightSide(sprite, pos[0])
+    if (right) putLeftSide(s, pos[0])
+    else putRightSide(s, pos[0])
+    hero.stepTime = performance.now()
+    hero.stepX = hero.sprite.x
   }
 }

@@ -11,7 +11,7 @@ export function Sprite(x, y, cut, imgs, onLoad = () => {}) {
     onLoad
   }
   loadImgs(sprite, typeof imgs === 'string' ? {idle: [imgs]} : imgs)
-  // TODO: it should not be here. Should be outside
+  // TODO: "idle" should not be here. Should be outside
   sprite.imgs.idle && setImg(sprite, 'idle')
   return sprite
 }
@@ -20,7 +20,6 @@ export function draw(sprite) {
   const img = sprite.img
   if (!img || !img.img || !img.frames) return
 
-  sprite.pixelated && (Shared.ctx.imageSmoothingEnabled = false)
   Shared.ctx.drawImage(
     img.img,
     img.frames.frame * img.frames.width,
@@ -32,7 +31,6 @@ export function draw(sprite) {
     img.frames.width,
     img.height
   )
-  sprite.pixelated && (Shared.ctx.imageSmoothingEnabled = true)
 }
 
 export function update(sprite) {
@@ -62,7 +60,11 @@ export function width(s) {
 }
 
 export function putLeftSide(sprite, x) {
-  sprite.x = x - sprite.cut[0] - sprite.cut[2]
+  sprite.x = x - sprite.cut[0] - sprite.cut[2] - 1
+}
+
+export function putRightSide(sprite, x) {
+  sprite.x = x - sprite.cut[0] + 1
 }
 
 export function setImg(sprite, img) {
