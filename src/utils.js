@@ -4,7 +4,7 @@ export function isArr(v) {
 
 export function int(n) {
   const i = Math.trunc(n)
-  return n - i < .502 ? i : i + 1
+  return (n - i < .502) ? i : i + 1
 }
 
 export function getMousePos(canvas, evt) {

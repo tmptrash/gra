@@ -14,5 +14,5 @@ export function draw(debug) {
   const [x0, y0] = topLeft(s)
   const [x1,  _] = topRight(s)
   const h = height(s)
-  Shared.ctx.fillText(`mouse ${debug.pos.x || 0}:${debug.pos.y || 0}  hero ${int(x0)}:${int(y0)}; ${int(x1)}:${int(y0 + h)}`, 100, 30)
+  Shared.ctx.fillText(`mouse ${debug.pos.x || 0}:${debug.pos.y || 0}  hero ${int(x0)}:${int(y0)}; ${int(x1)}:${int(y0 + h)}`, 200, 30)
 }

@@ -131,36 +131,53 @@ const Barriers = [411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 411, 41
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 /**
- * Checks if sprite toches a barrier on the nearest right side
+ * Checks if sprite touches a barrier on the nearest right side
  */
-export const rightBarrier = sprite => xBarrier(topRight, sprite)
+export function rightBarrier(sprite) {
+  return xBarrier(topRight, sprite)
+}
 
 /**
- * Checks if sprite toches a barrier on the nearest left side
+ * Checks if sprite touches a barrier on the nearest left side
  */
-export const leftBarrier = sprite => xBarrier(topLeft, sprite)
+export function leftBarrier(sprite) {
+  return xBarrier(topLeft, sprite)
+}
+
+/**
+ * Checks if sprite touches a barrier on the nearest down side
+ */
+export function topBarrier(sprite) {
+  return yBarrier(topLeft, sprite)
+}
+
+/**
+ * Checks if sprite touches a barrier on the nearest down side
+ */
+export function downBarrier(sprite) {
+  return yBarrier(leftDown, sprite)
+}
 
 /**
  * Checks if sprite toches a barrier on the nearest down side
  */
-export function downBarrier(sprite) {
-  let [x, y] = leftDown(sprite)
+function yBarrier(leftFn, sprite) {
+  let [x, y] = leftFn(sprite)
   const x1 = x + width(sprite)
-
   const spriteSize = Config.spriteSize
   const ySprite = Math.floor(int(y) / spriteSize)
+  const hSprites = Config.hSprites
 
   while (x <= x1) {
     const xSprite = Math.floor(int(x) / spriteSize)
-    const offs = ySprite * Config.hSprites + xSprite
-    // TODO: should return coordinates
-    if (hasBarrier(offs)) return true
+    const offs = ySprite * hSprites + xSprite
+    if (hasBarrier(offs)) return spritePosY(xSprite, ySprite, leftFn === leftDown)
     x += spriteSize
   }
 
   const xSprite = Math.floor(int(x1) / spriteSize)
-  const offs = ySprite * Config.hSprites + xSprite
-  return hasBarrier(offs)
+  const offs = ySprite * hSprites + xSprite
+  return hasBarrier(offs) ? spritePosY(xSprite, ySprite, leftFn === leftDown) : false
 }
 
 function xBarrier(topFn, sprite) {
@@ -173,23 +190,25 @@ function xBarrier(topFn, sprite) {
   while (y <= y1) {
     const ySprite = Math.floor(int(y) / spriteSize)
     const offs = ySprite * hSprites + xSprite
-    if (hasBarrier(offs)) return spritePos(xSprite, ySprite, topFn === topRight)
+    if (hasBarrier(offs)) return spritePosX(xSprite, ySprite, topFn === topRight)
     y += spriteSize
   }
 
   const ySprite = Math.floor(int(y1) / spriteSize)
-  const offs = ySprite * Config.hSprites + xSprite
-  return hasBarrier(offs) ? spritePos(xSprite, ySprite, topFn === topRight) : false
+  const offs = ySprite * hSprites + xSprite
+  return hasBarrier(offs) ? spritePosX(xSprite, ySprite, topFn === topRight) : false
 }
 
 function hasBarrier(offs) {
   return Barriers[offs] > 0
 }
 
-function spritePos(xSprite, ySprite, left = true) {
-  let x = xSprite * Config.spriteSize
-  let y = ySprite * Config.spriteSize
+function spritePosX(xSprite, ySprite, left = true) {
+  const spriteSize = Config.spriteSize
+  return [xSprite * spriteSize + (left ? 0 : spriteSize), ySprite * spriteSize]
+}
 
-  !left && (x += Config.spriteSize, y += Config.spriteSize)
-  return [x, y]
+function spritePosY(xSprite, ySprite, top = true) {
+  const spriteSize = Config.spriteSize
+  return [xSprite * spriteSize, ySprite * spriteSize + (top ? 0 : spriteSize)]
 }

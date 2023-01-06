@@ -1,8 +1,7 @@
 import Config from './config'
-import Shared from './shared'
 import { bind } from './keyboard'
-import { Sprite, putLeftSide, putRightSide,  draw as drawSprite, update as updateSprite } from './sprite'
-import { rightBarrier, leftBarrier, downBarrier } from './barriers'
+import { Sprite, putLeftSide, putRightSide, putUpSide, putDownSide, draw as drawSprite, update as updateSprite } from './sprite'
+import { rightBarrier, leftBarrier, topBarrier, downBarrier } from './barriers'
 import { isArr } from './utils'
 
 const RIGHT = 0
@@ -17,6 +16,7 @@ export function Hero() {
     jumpTime: 0,
     jumpY: 0,
     isJumping: false,
+    fallTime: (Config.jumpTime / 2) / Config.jumpSize,
     stepTime: performance.now(),
     stepX: 0,
     pressed: { a: false, d: false, w: false },
@@ -60,8 +60,11 @@ export function update(h) {
   if (h.isJumping) {
     const time = (t - h.jumpStartTime) / h.jumpTimeDiv
     s.img = left ? s.imgs.jumpLeft : s.imgs.jumpRight
-    if (time > h.jumpTime) h.isJumping = false, s.y = h.jumpY
-    else s.y = h.jumpY - (h.jumpV0 * time - time * time / 2)
+    if (time > h.jumpTime) updateY(h, h.jumpY), h.isJumping = false, h.jumpTime = 0
+    else updateY(h, h.jumpY - (h.jumpV0 * time - time * time / 2))
+  } else {
+    if (h.jumpTime === 0) h.jumpTime = t
+    else updateY(h, s.y + (t - h.jumpTime) / h.fallTime), h.jumpTime = t
   }
 
   // walk: incX = Config.stepSize / (Config.stepTime / (t1 - t0))
@@ -69,7 +72,7 @@ export function update(h) {
     updateX(h, h.stepX + (Config.stepSize / (Config.stepTime / (t - h.stepTime))) * (left ? -1 : 1))
     !h.isJumping && (s.img = (left ? s.imgs.walkLeft : s.imgs.walkRight))
   }
-
+  
   // idle
   if (!h.isJumping && !h.pressed.d && !h.pressed.a) {
     s.img = left ? s.imgs.idleLeft : s.imgs.idleRight
@@ -91,7 +94,7 @@ function onJumpKeyDown(hero) {
 function updateX(hero, newX) {
   const s = hero.sprite
   const oldX = s.x
-  const right = newX - oldX > 0
+  const right = hero.dir === RIGHT
   s.x = newX
   const pos = right ? rightBarrier(s) : leftBarrier(s)
   if (isArr(pos)) {
@@ -99,5 +102,18 @@ function updateX(hero, newX) {
     else putRightSide(s, pos[0])
     hero.stepTime = performance.now()
     hero.stepX = hero.sprite.x
+  }
+}
+
+function updateY(hero, newY) {
+  const s = hero.sprite
+  const oldY = s.y
+  const down = newY - oldY > 0
+  s.y = newY
+  const pos = down ? downBarrier(s) : topBarrier(s)
+  if (isArr(pos)) {
+    if (down) putUpSide(s, pos[1]), hero.jumpTime = 0
+    else putDownSide(s, pos[1])
+    hero.pressed.w = hero.isJumping = false
   }
 }

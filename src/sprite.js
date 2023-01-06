@@ -1,3 +1,4 @@
+import Config from './config'
 import Shared from './shared'
 import { Frames, update as updateFrames } from './frames'
 
@@ -39,16 +40,16 @@ export function update(sprite) {
   updateFrames(sprite.img.frames)
 }
 
+export function topLeft(s) {
+  return [s.x + s.cut[0], s.y + s.cut[1]]
+}
+
 export function topRight(s) {
   return [s.x + s.cut[0] + s.cut[2], s.y + s.cut[1]]
 }
 
 export function leftDown(s) {
   return [s.x + s.cut[0], s.y + s.cut[1] + s.cut[3]]
-}
-
-export function topLeft(s) {
-  return [s.x + s.cut[0], s.y + s.cut[1]]
 }
 
 export function height(s) {
@@ -67,6 +68,14 @@ export function putRightSide(sprite, x) {
   sprite.x = x - sprite.cut[0] + 1
 }
 
+export function putUpSide(sprite, y) {
+  sprite.y = y - sprite.cut[1] - sprite.cut[3] - 1
+}
+
+export function putDownSide(sprite, y) {
+  sprite.y = y + Config.spriteSize - sprite.cut[1] + 1
+}
+
 export function setImg(sprite, img) {
   sprite.img = sprite.imgs[img]
 }
@@ -81,6 +90,7 @@ function loadImgs(sprite, imgs) {
     }
     img.img.onload = onLoad.bind(null, sprite, img, imgs[i][1], imgs[i][2])
     img.img.src = imgs[i][0]
+    Shared.images++
   }
 }
 
@@ -88,5 +98,6 @@ function onLoad(sprite, img, frames, timeout) {
   img.width = img.img.width
   img.height = img.img.height
   img.frames = Frames(img.width / (frames || 1), frames, timeout)
+  Shared.images--
   sprite.onLoad(img)
 }

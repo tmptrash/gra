@@ -21,8 +21,8 @@ function init() {
   Shared.ctx.imageSmoothingEnabled = false
   document.body.style.zoom = (1 / window.devicePixelRatio * Config.zoom);
   Config.debug && objs.push({ draw: drawDebug, update: () => { }, o: Debug(objs) })
-
   window.addEventListener('message', e => e.data === 0 && (e.stopPropagation(), update()), true)
+  waitImages()
 }
 
 function draw() {
@@ -40,6 +40,13 @@ function update() {
   setTimeout(() => window.postMessage(0, '*'), Config.upsDelay)
 }
 
+function waitImages() {
+  if (Shared.images > 0) {
+    setTimeout(waitImages, 10)
+    return
+  }
+  update()
+  draw()
+}
+
 init()
-update()
-draw()

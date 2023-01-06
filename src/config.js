@@ -9,7 +9,7 @@ import L1BackPath from '../img/l1-back.png'
 export default {
   canvasId: 'canvas',
   frontColor: '#fff',
-  frontFont: '11px Tahoma',
+  frontFont: '16px Tahoma',
   
   debug: true,
   upsDelay: 2,
@@ -28,7 +28,7 @@ export default {
   stepSize: 100,
 
   // sprites
-  hero: [10, 195, [52, 60, 24, 64], {
+  hero: [10, 100, [52, 60, 24, 64], {
     idleLeft:  [IdleLeftPath,  3, 260],
     idleRight: [IdleRightPath, 3, 260],
     walkLeft:  [WalkLeftPath,  6, 60],
