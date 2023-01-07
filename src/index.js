@@ -28,10 +28,6 @@ function init() {
 function draw() {
   Shared.ctx.clearRect(0, 0, Config.width, Config.height)
   objs.forEach(o => o.draw(o.o))
-  //const s = objs[1].o.sprite
-  //if (rightBarrier(s)) console.log(rightBarrier(s))
-  //if (leftBarrier((s)) console.log(leftBarrier(s))
-  //if (downBarrier(s)) console.log(downBarrier(s))
   Config.useSetTimeout ? setTimeout(draw) : requestAnimationFrame(draw)
 }
 

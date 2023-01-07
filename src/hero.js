@@ -1,4 +1,5 @@
 import Config from './config'
+import Shared from './shared'
 import { bind } from './keyboard'
 import { Sprite, putLeftSide, putRightSide, putUpSide, putDownSide, draw as drawSprite, update as updateSprite } from './sprite'
 import { rightBarrier, leftBarrier, topBarrier, downBarrier } from './barriers'
@@ -39,13 +40,14 @@ export function Hero() {
 }
 
 export function draw(hero) {
-  if (hero.sprite.img && hero.sprite.img.frames) {
-    //const s = hero.sprite
-    //Shared.ctx.fillStyle = 'green'
-    //Shared.ctx.fillRect(0.5, 0, 1, 1)
-    //Shared.ctx.fillStyle = '#3a3'
-    //Shared.ctx.fillRect(s.x + s.cut[0], s.y + s.cut[1], s.cut[2], s.cut[3])
-  }
+  // const s = hero.sprite
+  // const img = s.img
+  // if (img && img.frames) {
+  //   Shared.ctx.fillStyle = 'red'
+  //   Shared.ctx.fillRect(s.x, s.y, img.frames.width, img.height)
+  //   Shared.ctx.fillStyle = '#3a3'
+  //   Shared.ctx.fillRect(s.x + s.cut[0], s.y + s.cut[1], s.cut[2], s.cut[3])
+  // }
 
   drawSprite(hero.sprite)
 }
@@ -62,9 +64,6 @@ export function update(h) {
     s.img = left ? s.imgs.jumpLeft : s.imgs.jumpRight
     if (time > h.jumpTime) updateY(h, h.jumpY), h.isJumping = false, h.jumpTime = 0
     else updateY(h, h.jumpY - (h.jumpV0 * time - time * time / 2))
-  } else {
-    if (h.jumpTime === 0) h.jumpTime = t
-    else updateY(h, s.y + (t - h.jumpTime) / h.fallTime), h.jumpTime = t
   }
 
   // walk: incX = Config.stepSize / (Config.stepTime / (t1 - t0))
@@ -78,11 +77,21 @@ export function update(h) {
     s.img = left ? s.imgs.idleLeft : s.imgs.idleRight
   }
 
+  // fall
+  if (!h.isJumping) {
+    if (h.jumpTime === 0) h.jumpTime = t
+    else updateY(h, s.y + (t - h.jumpTime) / h.fallTime), h.jumpTime = t
+  }
+
   updateSprite(s)
 }
 
 function onJumpKeyDown(hero) {
   if (hero.isJumping) return
+  hero.sprite.y++
+  const pos = downBarrier(hero.sprite)
+  hero.sprite.y--
+  if (!pos) return
   hero.pressed.w = hero.isJumping = true
   hero.jumpStartTime = performance.now()
   hero.jumpTime = 2 * hero.jumpV0
@@ -93,13 +102,11 @@ function onJumpKeyDown(hero) {
 
 function updateX(hero, newX) {
   const s = hero.sprite
-  const oldX = s.x
-  const right = hero.dir === RIGHT
+  const left = hero.dir === LEFT
   s.x = newX
-  const pos = right ? rightBarrier(s) : leftBarrier(s)
+  const pos = left ? leftBarrier(s) : rightBarrier(s)
   if (isArr(pos)) {
-    if (right) putLeftSide(s, pos[0])
-    else putRightSide(s, pos[0])
+    left ? putRightSide(s, pos[0]) : putLeftSide(s, pos[0])
     hero.stepTime = performance.now()
     hero.stepX = hero.sprite.x
   }
@@ -107,9 +114,10 @@ function updateX(hero, newX) {
 
 function updateY(hero, newY) {
   const s = hero.sprite
-  const oldY = s.y
-  const down = newY - oldY > 0
-  s.y = newY
+  let diff = newY - s.y
+  Math.abs(diff) > Config.spriteSize && (diff = Config.spriteSize * Math.sign(diff))
+  const down = diff > 0
+  s.y += diff
   const pos = down ? downBarrier(s) : topBarrier(s)
   if (isArr(pos)) {
     if (down) putUpSide(s, pos[1]), hero.jumpTime = 0
