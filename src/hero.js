@@ -1,9 +1,9 @@
 import Config from './config'
 import Shared from './shared'
 import { bind } from './keyboard'
-import { Sprite, putLeftSide, putRightSide, putUpSide, putDownSide, draw as drawSprite, update as updateSprite } from './sprite'
-import { rightBarrier, leftBarrier, topBarrier, downBarrier } from './barriers'
 import { isArr } from './utils'
+import { rightBarrier, leftBarrier, topBarrier, downBarrier } from './barriers'
+import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 
 const RIGHT = 0
 const LEFT  = 1
@@ -45,8 +45,6 @@ export function draw(hero) {
   // if (img && img.frames) {
   //   Shared.ctx.fillStyle = 'red'
   //   Shared.ctx.fillRect(s.x, s.y, img.frames.width, img.height)
-  //   Shared.ctx.fillStyle = '#3a3'
-  //   Shared.ctx.fillRect(s.x + s.cut[0], s.y + s.cut[1], s.cut[2], s.cut[3])
   // }
 
   drawSprite(hero.sprite)
@@ -83,6 +81,7 @@ export function update(h) {
     else updateY(h, s.y + (t - h.jumpTime) / h.fallTime), h.jumpTime = t
   }
 
+  updateScreen(s)
   updateSprite(s)
 }
 
@@ -102,11 +101,13 @@ function onJumpKeyDown(hero) {
 
 function updateX(hero, newX) {
   const s = hero.sprite
-  const left = hero.dir === LEFT
-  s.x = newX
+  let diff = newX - s.x
+  Math.abs(diff) > Config.spriteSize && (diff = (Config.spriteSize - 1) * Math.sign(diff))
+  const left = diff < 0
+  s.x += diff
   const pos = left ? leftBarrier(s) : rightBarrier(s)
   if (isArr(pos)) {
-    left ? putRightSide(s, pos[0]) : putLeftSide(s, pos[0])
+    s.x = left ? pos[0] + 1 : pos[0] - s.width - 1
     hero.stepTime = performance.now()
     hero.stepX = hero.sprite.x
   }
@@ -115,13 +116,29 @@ function updateX(hero, newX) {
 function updateY(hero, newY) {
   const s = hero.sprite
   let diff = newY - s.y
-  Math.abs(diff) > Config.spriteSize && (diff = Config.spriteSize * Math.sign(diff))
+  Math.abs(diff) > Config.spriteSize && (diff = (Config.spriteSize - 1) * Math.sign(diff))
   const down = diff > 0
   s.y += diff
   const pos = down ? downBarrier(s) : topBarrier(s)
   if (isArr(pos)) {
-    if (down) putUpSide(s, pos[1]), hero.jumpTime = 0
-    else putDownSide(s, pos[1])
+    if (down) s.y = pos[1] - s.height - 1, hero.jumpTime = 0
+    else s.y = pos[1] + 1
     hero.pressed.w = hero.isJumping = false
+  }
+}
+
+// TODO: refactor this function
+function updateScreen(s) {
+  if (s.x + s.width > Config.width) {
+    Shared.offsX += Config.width, s.stepX = s.x = 1
+  }
+  else if (s.x +s.width < 0) {
+    Shared.offsX -= Config.width, s.stepX = s.x = Config.width - s.width - 1
+  }
+  else if (s.y + s.height > Config.height) {
+    Shared.offsY += Config.height, s.stepY = s.y = 1
+  }
+  else if (s.y + s.height < 0) {
+    Shared.offsY -= Config.height, s.stepY = s.y = Config.height - s.height - 1
   }
 }

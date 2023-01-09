@@ -1,5 +1,5 @@
 import Shared from './shared'
-import { topLeft, topRight, height } from './sprite'
+import Config from './config'
 import { getMousePos, int } from './utils'
 
 export function Debug(objs) {
@@ -11,8 +11,13 @@ export function Debug(objs) {
 export function draw(debug) {
   // TODO: remove absolute index
   const s = debug.objs[1].o.sprite
-  const [x0, y0] = topLeft(s)
-  const [x1,  _] = topRight(s)
-  const h = height(s)
-  Shared.ctx.fillText(`mouse ${debug.pos.x || 0}:${debug.pos.y || 0}  hero ${int(x0)}:${int(y0)}; ${int(x1)}:${int(y0 + h)}`, 200, 30)
+  const x = debug.pos.x || 0
+  const y = debug.pos.y || 0
+  const hx0 = int(s.x)
+  const hy0 = int(s.y)
+  const hx1 = int(s.x + s.width)
+  const hy1 = int(s.y + s.height)
+  const scrX = Shared.offsX / Config.width
+  const scrY = Shared.offsY / Config.height
+  Shared.ctx.fillText(`mouse ${x}:${y}  hero ${hx0}:${hy0}; ${hx1}:${hy1}  scr ${scrX}:${scrY}`, 200, 30)
 }

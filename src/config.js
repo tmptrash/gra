@@ -6,6 +6,9 @@ import JumpLeftPath from '../img/jump-left-9.png'
 import JumpRightPath from '../img/jump-right-9.png'
 import L1BackPath from '../img/l1-back.png'
 
+const WIDTH  = 1184
+const HEIGHT = 800
+
 export default {
   canvasId: 'canvas',
   frontColor: '#fff',
@@ -16,8 +19,8 @@ export default {
   useSetTimeout: false,
 
   zoom: 2.5,
-  width: 1200,
-  height: 800,
+  width: WIDTH,
+  height: HEIGHT,
   spriteSize: 32,
   hSprites: null,
   vSprites: null,
@@ -28,7 +31,7 @@ export default {
   stepSize: 100,
 
   // sprites
-  hero: [10, 100, [52, 60, 24, 64], {
+  hero: [{x: 50, y: 150}, {
     idleLeft:  [IdleLeftPath,  3, 260],
     idleRight: [IdleRightPath, 3, 260],
     walkLeft:  [WalkLeftPath,  6, 60],
@@ -36,5 +39,5 @@ export default {
     jumpLeft:  [JumpLeftPath,  9, 150],
     jumpRight: [JumpRightPath, 9, 150]
   }],
-  back: [0, 0, null, L1BackPath]
+  back: [{x: 0, y: 0, width: WIDTH, height: HEIGHT}, L1BackPath]
 }

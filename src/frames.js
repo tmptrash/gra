@@ -1,5 +1,3 @@
-import Config from './config'
-
 export function Frames(width, amount = 1, timeout = 180) {
   return {
     frame: 0,

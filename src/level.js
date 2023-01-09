@@ -1,4 +1,5 @@
 // TODO: do we need this separate file?
+import Shared from './shared'
 import Config from './config'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 
@@ -11,7 +12,7 @@ export function Level() {
 }
 
 export function draw(level) {
-  drawSprite(level.sprite)
+  drawSprite(level.sprite, Shared.offsX, Shared.offsY)
 }
 
 export function update(level) {

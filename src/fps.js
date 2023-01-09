@@ -1,4 +1,3 @@
-import Config from './config'
 import Shared from './shared'
 
 export function Fps() {

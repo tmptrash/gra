@@ -3,7 +3,6 @@ import Config from './config'
 import { Hero, draw as drawHero, update as updateHero } from './hero'
 import { Fps, draw as drawFps, update as updateFps } from './fps'
 import { Level, draw as drawLevel, update as updateLevel } from './level'
-//import { rightBarrier, leftBarrier, downBarrier } from './barriers'
 import { Debug, draw as drawDebug } from './debug'
 
 const objs = [
@@ -26,6 +25,7 @@ function init() {
 }
 
 function draw() {
+  // TODO: should be removed soon
   Shared.ctx.clearRect(0, 0, Config.width, Config.height)
   objs.forEach(o => o.draw(o.o))
   Config.useSetTimeout ? setTimeout(draw) : requestAnimationFrame(draw)

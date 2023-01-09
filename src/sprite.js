@@ -1,12 +1,12 @@
-import Config from './config'
 import Shared from './shared'
 import { Frames, update as updateFrames } from './frames'
 
-export function Sprite(x, y, cut, imgs, onLoad = () => {}) {
+export function Sprite({ x, y, width = undefined, height = undefined}, imgs, onLoad = () => {}) {
   const sprite = {
     x,
     y,
-    cut,
+    width,
+    height,
     img: null,
     imgs: {},
     onLoad
@@ -17,20 +17,20 @@ export function Sprite(x, y, cut, imgs, onLoad = () => {}) {
   return sprite
 }
 
-export function draw(sprite) {
+export function draw(sprite, offsX = 0, offsY = 0) {
   const img = sprite.img
   if (!img || !img.img || !img.frames) return
 
   Shared.ctx.drawImage(
     img.img,
-    img.frames.frame * img.frames.width,
-    0,
-    img.frames.width,
-    img.height,
+    offsX + img.frames.frame * img.frames.width,
+    offsY,
+    sprite.width,
+    sprite.height,
     sprite.x,
     sprite.y,
-    img.frames.width,
-    img.height
+    sprite.width,
+    sprite.height
   )
 }
 
@@ -38,42 +38,6 @@ export function update(sprite) {
   const img = sprite.img
   if (!img || !img.img || !img.frames) return
   updateFrames(sprite.img.frames)
-}
-
-export function topLeft(s) {
-  return [s.x + s.cut[0], s.y + s.cut[1]]
-}
-
-export function topRight(s) {
-  return [s.x + s.cut[0] + s.cut[2], s.y + s.cut[1]]
-}
-
-export function leftDown(s) {
-  return [s.x + s.cut[0], s.y + s.cut[1] + s.cut[3]]
-}
-
-export function height(s) {
-  return s.cut[3]
-}
-
-export function width(s) {
-  return s.cut[2]
-}
-
-export function putLeftSide(sprite, x) {
-  sprite.x = x - sprite.cut[0] - sprite.cut[2] - 1
-}
-
-export function putRightSide(sprite, x) {
-  sprite.x = x - sprite.cut[0] + 1
-}
-
-export function putUpSide(sprite, y) {
-  sprite.y = y - sprite.cut[1] - sprite.cut[3] - 1
-}
-
-export function putDownSide(sprite, y) {
-  sprite.y = y + Config.spriteSize - sprite.cut[1] + 1
 }
 
 export function setImg(sprite, img) {
@@ -98,6 +62,8 @@ function onLoad(sprite, img, frames, timeout) {
   img.width = img.img.width
   img.height = img.img.height
   img.frames = Frames(img.width / (frames || 1), frames, timeout)
+  !sprite.width && (sprite.width = img.frames.width)
+  !sprite.height && (sprite.height = img.height)
   Shared.images--
   sprite.onLoad(img)
 }
