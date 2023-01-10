@@ -4,19 +4,22 @@ import WalkLeftPath from '../img/walk-left-6.png'
 import WalkRightPath from '../img/walk-right-6.png'
 import JumpLeftPath from '../img/jump-left-9.png'
 import JumpRightPath from '../img/jump-right-9.png'
-import L1BackPath from '../img/l1-back.png'
+import L1Path from '../img/l1.png'
+import L1BackPath from '../img/l1-back.jpg'
 
 const WIDTH  = 1184
 const HEIGHT = 800
 
 export default {
   canvasId: 'canvas',
+  heroId: 'hero',
+
   frontColor: '#fff',
   frontFont: '16px Tahoma',
   
   debug: true,
   upsDelay: 2,
-  useSetTimeout: true,
+  useSetTimeout: false,
 
   zoom: 2.5,
   width: WIDTH,
@@ -39,5 +42,6 @@ export default {
     jumpLeft:  [JumpLeftPath,  9, 150],
     jumpRight: [JumpRightPath, 9, 150]
   }],
-  back: [{x: 0, y: 0, width: WIDTH, height: HEIGHT}, L1BackPath]
+  l1: [{x: 0, y: 0, width: WIDTH, height: HEIGHT}, L1Path],
+  l1Back: [{x: 0, y: 0, width: WIDTH, height: HEIGHT}, L1BackPath]
 }

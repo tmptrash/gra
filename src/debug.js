@@ -1,16 +1,18 @@
 import Shared from './shared'
 import Config from './config'
-import { getMousePos, int } from './utils'
+import { getMousePos, int, findObjById } from './utils'
 
-export function Debug(objs) {
-  const d = { pos: {}, objs }
+export function Debug() {
+  const debug = {
+    pos: {},
+    hero: findObjById(Shared.objs, Config.heroId)
+  }
   window.addEventListener('mousemove', e => d.pos = getMousePos(Shared.ctx.canvas, e), false)
-  return d
+  return debug
 }
 
 export function draw(debug) {
-  // TODO: remove absolute index
-  const s = debug.objs[1].o.sprite
+  const s = debug.hero.sprite
   const x = debug.pos.x || 0
   const y = debug.pos.y || 0
   const hx0 = int(s.x)

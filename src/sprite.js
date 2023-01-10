@@ -12,12 +12,11 @@ export function Sprite({ x, y, width = undefined, height = undefined}, imgs, onL
     onLoad
   }
   loadImgs(sprite, typeof imgs === 'string' ? {idle: [imgs]} : imgs)
-  // TODO: "idle" should not be here. Should be outside
   sprite.imgs.idle && setImg(sprite, 'idle')
   return sprite
 }
 
-export function draw(sprite, offsX = 0, offsY = 0) {
+export function draw(sprite, offsX = 0, offsY = 0, zoom = 1) {
   const img = sprite.img
   if (!img || !img.img || !img.frames) return
 
@@ -29,8 +28,8 @@ export function draw(sprite, offsX = 0, offsY = 0) {
     sprite.height,
     sprite.x,
     sprite.y,
-    sprite.width,
-    sprite.height
+    sprite.width * zoom,
+    sprite.height * zoom
   )
 }
 

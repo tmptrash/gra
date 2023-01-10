@@ -7,10 +7,21 @@ export function int(n) {
   return (n - i < .502) ? i : i + 1
 }
 
+export function bind(handlers) {
+  for (const evt in handlers) {
+    window.addEventListener(evt, e => handlers[evt] && handlers[evt][e.key] && handlers[evt][e.key]())
+  }
+}
+
 export function getMousePos(canvas, evt) {
   const rect = canvas.getBoundingClientRect()
   return {
     x: Math.ceil(evt.clientX / document.body.style.zoom - rect.x),
     y: Math.ceil(evt.clientY / document.body.style.zoom - rect.y)
   }
+}
+
+export function findObjById(objs, id) {
+  const obj = objs.find(o => o.id === id)
+  return obj ? obj.o : null
 }

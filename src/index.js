@@ -3,12 +3,14 @@ import Config from './config'
 import { Hero, draw as drawHero, update as updateHero } from './hero'
 import { Fps, draw as drawFps, update as updateFps } from './fps'
 import { Level, draw as drawLevel, update as updateLevel } from './level'
+//import { Back, draw as drawBack, update as updateBack } from './back'
 import { Debug, draw as drawDebug } from './debug'
 
-const objs = [
+const objs = Shared.objs = [
+  //{ draw: drawBack,   update: updateBack,  o: Back()  },
   { draw: drawLevel,  update: updateLevel, o: Level() },
-  { draw: drawHero,   update: updateHero,  o: Hero()  },
-  { draw: drawFps,    update: updateFps,   o: Fps()   }
+  { draw: drawHero,   update: updateHero,  o: Hero(), id: Config.heroId },
+  { draw: drawFps,    update: updateFps,   o: Fps() }
 ]
 
 function init() {
@@ -19,7 +21,7 @@ function init() {
   Shared.ctx.font = Config.frontFont
   Shared.ctx.imageSmoothingEnabled = false
   document.body.style.zoom = (1 / window.devicePixelRatio * Config.zoom);
-  Config.debug && objs.push({ draw: drawDebug, update: () => { }, o: Debug(objs) })
+  Config.debug && objs.push({ draw: drawDebug, update: () => { }, o: Debug() })
   window.addEventListener('message', e => e.data === 0 && (e.stopPropagation(), update()), true)
   waitImages()
 }

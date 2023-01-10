@@ -1,7 +1,6 @@
 import Config from './config'
 import Shared from './shared'
-import { bind } from './keyboard'
-import { isArr } from './utils'
+import { isArr, bind } from './utils'
 import { rightBarrier, leftBarrier, topBarrier, downBarrier } from './barriers'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 

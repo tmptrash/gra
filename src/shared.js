@@ -4,5 +4,6 @@ export default {
   fps: 0,
   ups: 0,
   offsX: 0,
-  offsY: 0
+  offsY: 0,
+  objs: null
 }
