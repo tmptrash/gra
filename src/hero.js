@@ -81,7 +81,7 @@ export function update(h) {
     else updateY(h, s.y + (t - h.jumpTime) / h.fallTime), h.jumpTime = t
   }
 
-  updateScreen(s)
+  updateScreen(h)
   updateSprite(s)
 }
 
@@ -127,18 +127,11 @@ function updateY(hero, newY) {
   }
 }
 
-// TODO: refactor this function
-function updateScreen(s) {
-  if (s.x + s.width > Config.width) {
-    Shared.offsX += Config.width, s.stepX = s.x = 1
-  }
-  else if (s.x +s.width < 0) {
-    Shared.offsX -= Config.width, s.stepX = s.x = Config.width - s.width - 1
-  }
-  else if (s.y + s.height > Config.height) {
-    Shared.offsY += Config.height, s.stepY = s.y = 1
-  }
-  else if (s.y + s.height < 0) {
-    Shared.offsY -= Config.height, s.stepY = s.y = Config.height - s.height - 1
-  }
+function updateScreen(h) {
+  const s = h.sprite
+
+  if (s.x + s.width > Config.width) Shared.offsX += Config.width, h.stepX = s.x = 1, h.stepTime = performance.now()
+  else if (s.x < 0) Shared.offsX -= Config.width, h.stepX = s.x = Config.width - s.width - 1, h.stepTime = performance.now()
+  else if (s.y + s.height > Config.height) Shared.offsY += Config.height, h.stepY = s.y = 1
+  else if (s.y < 0) Shared.offsY -= Config.height, h.stepY = s.y = Config.height - s.height - 1
 }

@@ -16,7 +16,7 @@ export default {
   
   debug: true,
   upsDelay: 2,
-  useSetTimeout: false,
+  useSetTimeout: true,
 
   zoom: 2.5,
   width: WIDTH,
