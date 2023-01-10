@@ -1,7 +1,8 @@
 import Shared from './shared'
 import { Frames, update as updateFrames } from './frames'
+import { fn } from './utils'
 
-export function Sprite({ x, y, width = undefined, height = undefined}, imgs, onLoad = () => {}) {
+export function Sprite({ x, y, width = undefined, height = undefined}, imgs, onLoad = fn) {
   const sprite = {
     x,
     y,

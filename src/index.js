@@ -5,6 +5,7 @@ import { Fps, draw as drawFps, update as updateFps } from './fps'
 import { Level, draw as drawLevel, update as updateLevel } from './level'
 //import { Back, draw as drawBack, update as updateBack } from './back'
 import { Debug, draw as drawDebug } from './debug'
+import { fn } from './utils'
 
 const objs = Shared.objs = [
   //{ draw: drawBack,   update: updateBack,  o: Back()  },
@@ -13,7 +14,7 @@ const objs = Shared.objs = [
   { draw: drawFps,    update: updateFps,   o: Fps() }
 ]
 
-function init() {
+function main() {
   Shared.ctx = document.getElementById(Config.canvasId).getContext('2d')
   Shared.ctx.canvas.width = Config.width
   Shared.ctx.canvas.height = Config.height
@@ -21,7 +22,8 @@ function init() {
   Shared.ctx.font = Config.frontFont
   Shared.ctx.imageSmoothingEnabled = false
   document.body.style.zoom = (1 / window.devicePixelRatio * Config.zoom);
-  Config.debug && objs.push({ draw: drawDebug, update: () => { }, o: Debug() })
+
+  Config.debug && objs.push({ draw: drawDebug, update: fn, o: Debug() })
   window.addEventListener('message', e => e.data === 0 && (e.stopPropagation(), update()), true)
   waitImages()
 }
@@ -47,4 +49,4 @@ function waitImages() {
   draw()
 }
 
-init()
+main()

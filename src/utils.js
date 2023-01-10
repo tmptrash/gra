@@ -25,3 +25,5 @@ export function findObjById(objs, id) {
   const obj = objs.find(o => o.id === id)
   return obj ? obj.o : null
 }
+
+export function fn() {}

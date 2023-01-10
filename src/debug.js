@@ -7,7 +7,7 @@ export function Debug() {
     pos: {},
     hero: findObjById(Shared.objs, Config.heroId)
   }
-  window.addEventListener('mousemove', e => d.pos = getMousePos(Shared.ctx.canvas, e), false)
+  window.addEventListener('mousemove', e => debug.pos = getMousePos(Shared.ctx.canvas, e), false)
   return debug
 }
 
