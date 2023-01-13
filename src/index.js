@@ -29,7 +29,6 @@ function main() {
 }
 
 function draw() {
-  // TODO: should be removed soon
   Shared.ctx.clearRect(0, 0, Config.width, Config.height)
   objs.forEach(o => o.draw(o.o))
   Config.useSetTimeout ? setTimeout(draw) : requestAnimationFrame(draw)
