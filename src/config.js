@@ -1,10 +1,12 @@
+import L1Path from '../img/l1.png'
 import IdleLeftPath from '../img/idle-left-3.png'
 import IdleRightPath from '../img/idle-right-3.png'
 import WalkLeftPath from '../img/walk-left-6.png'
 import WalkRightPath from '../img/walk-right-6.png'
 import JumpLeftPath from '../img/jump-left-9.png'
 import JumpRightPath from '../img/jump-right-9.png'
-import L1Path from '../img/l1.png'
+import BugLeftPath from '../img/bug-left-2.png'
+import BugRightPath from '../img/bug-right-2.png'
 
 const WIDTH  = 1184
 const HEIGHT = 800
@@ -41,5 +43,9 @@ export default {
     jumpLeft:  [JumpLeftPath,  9, 150],
     jumpRight: [JumpRightPath, 9, 150]
   }],
-  l1: [{x: 0, y: 0, width: WIDTH, height: HEIGHT}, L1Path]
+  l1: [{x: 0, y: 0, width: WIDTH, height: HEIGHT}, L1Path],
+  bug: [{ x: 350, y: 396 }, {
+    idleLeft: [BugLeftPath, 2, 300],
+    idleRight: [BugRightPath, 2, 300]
+  }]
 }

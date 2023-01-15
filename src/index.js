@@ -4,14 +4,15 @@ import { Hero, draw as drawHero, update as updateHero } from './hero'
 import { Fps, draw as drawFps, update as updateFps } from './fps'
 import { Level, draw as drawLevel, update as updateLevel } from './level'
 //import { Back, draw as drawBack, update as updateBack } from './back'
+import { Looper, draw as drawLooper, update as updateLooper } from './looper'
 import { Debug, draw as drawDebug } from './debug'
 import { fn } from './utils'
 
 const objs = Shared.objs = [
-  //{ draw: drawBack,   update: updateBack,  o: Back()  },
-  { draw: drawLevel,  update: updateLevel, o: Level() },
-  { draw: drawHero,   update: updateHero,  o: Hero(), id: Config.heroId },
-  { draw: drawFps,    update: updateFps,   o: Fps() }
+  { draw: drawLevel,  update: updateLevel,  o: Level() },
+  { draw: drawHero,   update: updateHero,   o: Hero(), id: Config.heroId },
+  { draw: drawLooper, update: updateLooper, o: Looper(Config.bug, .05) },
+  { draw: drawFps,    update: updateFps,    o: Fps() }
 ]
 
 function main() {
