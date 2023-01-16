@@ -3,15 +3,13 @@ import Config from './config'
 import { Hero, draw as drawHero, update as updateHero } from './hero'
 import { Fps, draw as drawFps, update as updateFps } from './fps'
 import { Level, draw as drawLevel, update as updateLevel } from './level'
-import { Looper, draw as drawLooper, update as updateLooper } from './looper'
+import { updateObjs } from './screens'
 import { Debug, draw as drawDebug } from './debug'
 import { fn } from './utils'
 
 const objs = Shared.objs = [
   { draw: drawLevel,  update: updateLevel,  o: Level() },
   { draw: drawHero,   update: updateHero,   o: Hero(), id: Config.heroId },
-  { draw: drawLooper, update: updateLooper, o: Looper(Config.bugHorizontal, Config.bugSpeed) },
-  { draw: drawLooper, update: updateLooper, o: Looper(Config.bugVertical, Config.bugSpeed, false) },
   { draw: drawFps,    update: updateFps,    o: Fps() }
 ]
 
@@ -22,10 +20,11 @@ function main() {
   Shared.ctx.fillStyle = Config.frontColor
   Shared.ctx.font = Config.frontFont
   Shared.ctx.imageSmoothingEnabled = false
-  document.body.style.zoom = (1 / window.devicePixelRatio * Config.zoom);
+  document.body.style.zoom = (1 / window.devicePixelRatio * Config.zoom)
 
   Config.debug && objs.push({ draw: drawDebug, update: fn, o: Debug() })
   window.addEventListener('message', e => e.data === 0 && (e.stopPropagation(), update()), true)
+  updateObjs(null, 0)
   waitImages()
 }
 

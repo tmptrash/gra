@@ -50,12 +50,28 @@ export default {
     jumpRight: [JumpRightPath, 9, 150]
   }],
   l1: [{x: 0, y: 0, width: WIDTH, height: HEIGHT}, L1Path],
-  bugHorizontal: [{ x: 350, y: 396 }, {
-    idleLeft:  [BugLeftPath, 2, 300],
-    idleRight: [BugRightPath, 2, 300]
-  }],
-  bugVertical: [{ x: 32, y: 150 }, {
-    idleUp:   [BugUpPath, 2, 300],
-    idleDown: [BugDownPath, 2, 300]
-  }]
+  screens: {
+    0: [[
+      [{ x: 350, y: 396 }, {
+        idleLeft:  [BugLeftPath, 2, 300],
+        idleRight: [BugRightPath, 2, 300]
+      }],
+      .05,
+      true
+    ], [
+      [{ x: 32, y: 150 }, {
+        idleUp:   [BugUpPath, 2, 300],
+        idleDown: [BugDownPath, 2, 300]
+      }],
+      .05,
+      false
+    ], [
+      [{ x: 1050, y: 620 }, {
+        idleLeft: [BugLeftPath, 2, 300],
+        idleRight: [BugRightPath, 2, 300]
+      }],
+      .05,
+      true
+    ]]
+  }
 }

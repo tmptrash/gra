@@ -3,6 +3,7 @@ import Shared from './shared'
 import { isArr, bind } from './utils'
 import { rightBarrier, leftBarrier, topBarrier, downBarrier } from './barriers'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
+import { updateObjs, scrOffs } from './screens'
 
 const RIGHT = 0
 const LEFT  = 1
@@ -129,8 +130,25 @@ function updateY(hero, newY) {
 function updateScreen(h) {
   const s = h.sprite
 
-  if (s.x + s.width > Config.width) Shared.offsX += Config.width, h.stepX = s.x = 1, h.stepTime = performance.now()
-  else if (s.x < 0) Shared.offsX -= Config.width, h.stepX = s.x = Config.width - s.width - 1, h.stepTime = performance.now()
-  else if (s.y + s.height > Config.height) Shared.offsY += Config.height, h.stepY = s.y = 1
-  else if (s.y < 0) Shared.offsY -= Config.height, h.stepY = s.y = Config.height - s.height - 1
+  if (s.x + s.width > Config.width) {
+    updateObjs(scrOffs(Shared.offsX, Shared.offsY), scrOffs(Shared.offsX + Config.width, Shared.offsY))
+    Shared.offsX += Config.width
+    h.stepX = s.x = 1
+    h.stepTime = performance.now()
+  } else if (s.x < 0) {
+    updateObjs(scrOffs(Shared.offsX, Shared.offsY), scrOffs(Shared.offsX - Config.width, Shared.offsY))
+    Shared.offsX -= Config.width
+    h.stepX = s.x = Config.width - s.width - 1
+    h.stepTime = performance.now()
+  }
+  else if (s.y + s.height > Config.height) {
+    updateObjs(scrOffs(Shared.offsX, Shared.offsY), scrOffs(Shared.offsX, Shared.offsY + Config.height))
+    Shared.offsY += Config.height
+    h.stepY = s.y = 1
+  }
+  else if (s.y < 0) {
+    updateObjs(scrOffs(Shared.offsX, Shared.offsY), scrOffs(Shared.offsX, Shared.offsY - Config.height))
+    Shared.offsY -= Config.height
+    h.stepY = s.y = Config.height - s.height - 1
+  }
 }
