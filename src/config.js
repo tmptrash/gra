@@ -20,7 +20,7 @@ export default {
   heroId: 'hero',
   logoX: 336,
   logoY: 50,
-  logoTimeout: 1000,
+  logoTimeout: 3000,
 
   frontColor: '#fff',
   frontFont: '16px Tahoma',

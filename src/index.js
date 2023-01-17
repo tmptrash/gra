@@ -1,16 +1,14 @@
 import Shared from './shared'
 import Config from './config'
 import { Hero, draw as drawHero, update as updateHero } from './hero'
-import { Fps, draw as drawFps, update as updateFps } from './fps'
 import { Level, draw as drawLevel, update as updateLevel } from './level'
 import { updateObjs } from './screens'
-import { Debug, draw as drawDebug } from './debug'
+import { Debug, draw as drawDebug, update as updateDebug } from './debug'
 import { fn, logo } from './utils'
 
 const objs = Shared.objs = [
   { draw: drawLevel,  update: updateLevel,  o: Level() },
-  { draw: drawHero,   update: updateHero,   o: Hero(), id: Config.heroId },
-  { draw: drawFps,    update: updateFps,    o: Fps() }
+  { draw: drawHero,   update: updateHero,   o: Hero(), id: Config.heroId }
 ]
 
 function main() {
@@ -23,7 +21,7 @@ function main() {
   Shared.ctx.font = Config.frontFont
   Shared.ctx.imageSmoothingEnabled = false
 
-  Config.debug && objs.push({ draw: drawDebug, update: fn, o: Debug() })
+  Config.debug && objs.push({ draw: drawDebug, update: updateDebug, o: Debug() })
   window.addEventListener('message', e => e.data === 0 && (e.stopPropagation(), update()), true)
   updateObjs(null, 0)
   setTimeout(waitImages, Config.logoTimeout)
