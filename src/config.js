@@ -18,6 +18,9 @@ const HEIGHT = 800
 export default {
   canvasId: 'canvas',
   heroId: 'hero',
+  logoX: 336,
+  logoY: 50,
+  logoTimeout: 1000,
 
   frontColor: '#fff',
   frontFont: '16px Tahoma',
@@ -67,6 +70,14 @@ export default {
       false
     ], [
       [{ x: 1050, y: 620 }, {
+        idleLeft: [BugLeftPath, 2, 300],
+        idleRight: [BugRightPath, 2, 300]
+      }],
+      .05,
+      true
+    ]],
+    1: [[
+      [{ x: 420, y: 524 }, {
         idleLeft: [BugLeftPath, 2, 300],
         idleRight: [BugRightPath, 2, 300]
       }],

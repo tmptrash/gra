@@ -1,11 +1,14 @@
+import TitlePath from '../img/title.png'
 import Shared from './shared'
+import { Sprite, draw as drawSprite } from './sprite'
 
 export function Fps() {
   const fps = {
     fTime: Date.now(),
     uTime: Date.now(),
     curFps: 0,
-    curUps: 0
+    curUps: 0,
+    sprite: Sprite({ x: 2, y: 10 }, TitlePath)
   }
   return fps
 }
@@ -19,6 +22,7 @@ export function draw(fps) {
   }
   fps.curFps++
 
+  drawSprite(fps.sprite)
   Shared.ctx.fillText(`fps: ${Shared.fps}  ups: ${Shared.ups}`, 10, 30)
 }
 

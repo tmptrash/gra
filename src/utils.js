@@ -1,3 +1,7 @@
+import Config from './config'
+import LogoPath from '../img/logo.jpg'
+import { Sprite, draw as drawSprite } from './sprite'
+
 export function isArr(v) {
   return Array.isArray(v)
 }
@@ -27,3 +31,13 @@ export function findObjById(objs, id) {
 }
 
 export function fn() {}
+
+export function logo(show = true) {
+  if (show) {
+    const logo = Sprite({ x: Config.logoX, y: Config.logoY }, LogoPath, onLoadLogo)
+
+    function onLoadLogo() {
+      drawSprite(logo)
+    }
+  }
+}
