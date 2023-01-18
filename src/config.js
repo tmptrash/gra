@@ -12,7 +12,7 @@ import BugRightPath from '../img/bug-right-2.png'
 import BugUpPath from '../img/bug-up-2.png'
 import BugDownPath from '../img/bug-down-2.png'
 
-const WIDTH  = 1184
+const WIDTH  = 1024
 const HEIGHT = 800
 
 export default {
@@ -20,7 +20,7 @@ export default {
   heroId: 'hero',
   logoX: 336,
   logoY: 50,
-  logoTimeout: 3000,
+  logoTimeout: 1000,
 
   frontColor: '#fff',
   frontFont: '16px Tahoma',
@@ -69,7 +69,7 @@ export default {
       .05,
       false
     ], [
-      [{ x: 1050, y: 620 }, {
+      [{ x: 950, y: 620 }, {
         idleLeft: [BugLeftPath, 2, 300],
         idleRight: [BugRightPath, 2, 300]
       }],
@@ -77,7 +77,7 @@ export default {
       true
     ]],
     1: [[
-      [{ x: 420, y: 524 }, {
+      [{ x: 620, y: 524 }, {
         idleLeft: [BugLeftPath, 2, 300],
         idleRight: [BugRightPath, 2, 300]
       }],

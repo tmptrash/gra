@@ -12,7 +12,7 @@ export function Debug() {
     uTime: Date.now(),
     curFps: 0,
     curUps: 0,
-    sprite: Sprite({ x: 2, y: 10 }, TitlePath)
+    sprite: Sprite({ x: 1, y: 1 }, TitlePath)
   }
   window.addEventListener('mousemove', e => debug.pos = getMousePos(Shared.ctx.canvas, e), false)
   return debug
@@ -38,7 +38,7 @@ export function draw(debug) {
   debug.curFps++
 
   drawSprite(debug.sprite)
-  Shared.ctx.fillText(`fps: ${Shared.fps}  ups: ${Shared.ups}  mouse ${x}:${y}  hero ${hx0}:${hy0}; ${hx1}:${hy1}  scr ${scrX}:${scrY}`, 10, 30)
+  Shared.ctx.fillText(`fps: ${Shared.fps}  ups: ${Shared.ups}  mouse ${x}:${y}  hero ${hx0}:${hy0}; ${hx1}:${hy1}  scr ${scrX}:${scrY}`, 10, 20)
 }
 
 export function update(fps) {
