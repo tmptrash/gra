@@ -20,7 +20,7 @@ export default {
   heroId: 'hero',
   logoX: 336,
   logoY: 50,
-  logoTimeout: 1000,
+  logoTimeout: 3000,
 
   frontColor: '#fff',
   frontFont: '16px Tahoma',
@@ -44,7 +44,7 @@ export default {
   bugSpeed: 0.05,
 
   // sprites
-  hero: [{x: 50, y: 150}, {
+  hero: [{x: 90, y: 150}, {
     idleLeft:  [IdleLeftPath,  3, 260],
     idleRight: [IdleRightPath, 3, 260],
     walkLeft:  [WalkLeftPath,  6, 60],
