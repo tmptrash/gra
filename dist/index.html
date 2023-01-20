@@ -3,7 +3,49 @@
   <head>
     <meta charset="utf-8">
     <title>gra</title>
-    <link rel="stylesheet" href="./style.css"></link>
+    <style>
+      html {
+        height: 100%;
+      }
+      body {
+        background-color: black;
+        margin: 0;
+        flex-wrap: nowrap;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      body canvas {
+        image-rendering: pixelated;
+      }
+      div.header {
+        display: flex;
+        justify-content: center;
+      }
+      div.content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: nowrap;
+      }
+      div.footer {
+        display: flex;
+        justify-content: center;
+      }
+      button.play {
+        cursor: pointer;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 0 0 1px #ff9800;
+        background-color: #c25724;
+      }
+      audio {
+        width: 250px;
+        height: 20px;
+      }
+    </style>
   </head>
   <body>
     <div class="header">
