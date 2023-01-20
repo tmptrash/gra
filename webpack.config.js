@@ -13,14 +13,14 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Development',
-      template: __dirname + '/dist/index.html',
+      template: __dirname + '/src/index.html',
       inject: 'body'
     }),
   ],
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    clean: true,
+    clean: true
   },
   optimization: {
     runtimeChunk: 'single',
@@ -29,6 +29,9 @@ module.exports = {
     rules: [{
       test: /\.(png|svg|jpg|jpeg|gif)$/i,
       type: 'asset/resource'
+    }, {
+      test: /\.(mp3)$/i,
+      loader: 'file-loader'
     }]
   }
 };

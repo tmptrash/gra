@@ -4,3 +4,4 @@ package-lock.json
 
 dist/*.png
 dist/*.js
+dist/*.mp3

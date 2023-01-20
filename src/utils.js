@@ -1,5 +1,5 @@
 import Config from './config'
-import LogoPath from '../img/logo.jpg'
+import LogoPath from '../img/logo.png'
 import { Sprite, draw as drawSprite } from './sprite'
 
 export function isArr(v) {

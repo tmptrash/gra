@@ -130,25 +130,28 @@ function updateY(hero, newY) {
 function updateScreen(h) {
   const s = h.sprite
 
-  if (s.x + s.width > Config.width) {
+  if (s.x > Config.width) {
     updateObjs(scrOffs(Shared.offsX, Shared.offsY), scrOffs(Shared.offsX + Config.width, Shared.offsY))
     Shared.offsX += Config.width
     h.stepX = s.x = 1
     h.stepTime = performance.now()
-  } else if (s.x < 0) {
+  } else if (s.x + s.width < 0) {
     updateObjs(scrOffs(Shared.offsX, Shared.offsY), scrOffs(Shared.offsX - Config.width, Shared.offsY))
     Shared.offsX -= Config.width
     h.stepX = s.x = Config.width - s.width - 1
     h.stepTime = performance.now()
   }
-  else if (s.y + s.height > Config.height) {
+  else if (s.y > Config.height) {
     updateObjs(scrOffs(Shared.offsX, Shared.offsY), scrOffs(Shared.offsX, Shared.offsY + Config.height))
     Shared.offsY += Config.height
-    h.stepY = s.y = 1
+    s.y = 1
+    h.isJumping = false
+    h.jumpTime = 0
   }
-  else if (s.y < 0) {
+  else if (s.y + s.height < 0) {
     updateObjs(scrOffs(Shared.offsX, Shared.offsY), scrOffs(Shared.offsX, Shared.offsY - Config.height))
     Shared.offsY -= Config.height
-    h.stepY = s.y = Config.height - s.height - 1
+    h.jumpY = Config.height + h.jumpY
+    s.y = Config.height - 1
   }
 }
