@@ -16,6 +16,8 @@ import BugBlackRightPath from '../img/bug-black-right-5.png'
 import BugBlackBlueLeftPath from '../img/bug-black-blue-left-3.png'
 import BugBlackBlueRightPath from '../img/bug-black-blue-right-3.png'
 
+import KeyPath from '../img/key-6.png'
+
 import Song0 from '../music/Beyond The Surface.mp3'
 import Song1 from '../music/1.11.mp3'
 import Song2 from '../music/101 clouds.mp3'
@@ -76,49 +78,60 @@ export default {
   }],
   l1: [{x: 0, y: 0, width: WIDTH, height: HEIGHT}, L1Path],
   screens: {
-    0: [[
-      [{ x: 350, y: 396 }, {
-        idleLeft:  [BugLeftPath, 2, 300],
-        idleRight: [BugRightPath, 2, 300]
-      }],
-      .05,
-      true
-    ], [
-      [{ x: 32, y: 150 }, {
-        idleUp:   [BugUpPath, 2, 300],
-        idleDown: [BugDownPath, 2, 300]
-      }],
-      .05,
-      false
-    ], [
-      [{ x: 950, y: 620 }, {
-        idleLeft: [BugLeftPath, 2, 300],
-        idleRight: [BugRightPath, 2, 300]
-      }],
-      .05,
-      true
-    ], [
-      [{ x: 130, y: 361 }, {
-        idleLeft: [BugBlackBlueLeftPath, 3, 200],
-        idleRight: [BugBlackBlueRightPath, 3, 200]
-      }],
-      .05,
-      true
-    ]],
-    1: [[
-      [{ x: 620, y: 524 }, {
-        idleLeft: [BugLeftPath, 2, 300],
-        idleRight: [BugRightPath, 2, 300]
-      }],
-      .05,
-      true
-    ], [
-      [{ x: 90, y: 619 }, {
-        idleLeft: [BugBlackLeftPath, 5, 100],
-        idleRight: [BugBlackRightPath, 5, 100]
-      }],
-      .05,
-      true
-    ]]
+    loopers: {
+      0: [[
+        [{ x: 350, y: 396 }, {
+          idleLeft:  [BugLeftPath, 2, 300],
+          idleRight: [BugRightPath, 2, 300]
+        }],
+        .05,
+        true
+      ], [
+        [{ x: 32, y: 150 }, {
+          idleUp:   [BugUpPath, 2, 300],
+          idleDown: [BugDownPath, 2, 300]
+        }],
+        .05,
+        false
+      ], [
+        [{ x: 950, y: 620 }, {
+          idleLeft: [BugLeftPath, 2, 300],
+          idleRight: [BugRightPath, 2, 300]
+        }],
+        .05,
+        true
+      ], [
+        [{ x: 130, y: 361 }, {
+          idleLeft: [BugBlackBlueLeftPath, 3, 200],
+          idleRight: [BugBlackBlueRightPath, 3, 200]
+        }],
+        .05,
+        true
+      ]],
+      1: [[
+        [{ x: 620, y: 524 }, {
+          idleLeft: [BugLeftPath, 2, 300],
+          idleRight: [BugRightPath, 2, 300]
+        }],
+        .05,
+        true
+      ], [
+        [{ x: 90, y: 619 }, {
+          idleLeft: [BugBlackLeftPath, 5, 100],
+          idleRight: [BugBlackRightPath, 5, 100]
+        }],
+        .05,
+        true
+      ]]
+    },
+    objs: {
+      31: [[
+        [{ x: 830, y: 580 }, {
+          idle: [KeyPath, 7, 200],
+        }],
+        .05
+      ]
+      ]
+    }
   }
 }
