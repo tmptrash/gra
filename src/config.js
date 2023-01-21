@@ -47,7 +47,7 @@ export default {
   frontColor: '#fff',
   frontFont: '16px Tahoma',
   
-  debug: false,
+  debug: true,
   upsDelay: 2,
   useSetTimeout: false,
 
@@ -125,7 +125,7 @@ export default {
       ]]
     },
     objs: {
-      31: [[
+      39: [[
         [{ x: 830, y: 580 }, {
           idle: [KeyPath, 7, 200],
         }],
