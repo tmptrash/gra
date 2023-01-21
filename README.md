@@ -8,5 +8,6 @@ npm install
 - build: npm run build
 - run in dev mode: npm start
 
+## Screenshots
 ![logo](https://github.com/tmptrash/gra/blob/main/screenshots/logo.png)
 ![first-room](https://github.com/tmptrash/gra/blob/main/screenshots/first-room.png)
