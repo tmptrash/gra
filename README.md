@@ -1,2 +1,2 @@
-# gra
-Game experiment
+# Mary Brave
+Pure Javascript metroidvania game experiment.
