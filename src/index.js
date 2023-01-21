@@ -17,7 +17,7 @@ function main() {
   Shared.ctx = document.getElementById(Config.canvasId).getContext('2d')
   Shared.ctx.canvas.width = Config.width
   Shared.ctx.canvas.height = Config.height
-  document.body.style.zoom = (1 / window.devicePixelRatio * Config.zoom)
+  document.body.style.zoom = window.innerHeight / Config.height - .5
   logo()
   Shared.ctx.fillStyle = Config.frontColor
   Shared.ctx.font = Config.frontFont
@@ -47,7 +47,7 @@ function waitImages() {
   }
   const playBtn = document.querySelector(Config.playQuery)
   playBtn.addEventListener('click', start)
-  playBtn.style.display = ''
+  playBtn.style.visibility = ''
 }
 
 function start() {

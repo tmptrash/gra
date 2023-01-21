@@ -49,7 +49,6 @@ export default {
   upsDelay: 2,
   useSetTimeout: false,
 
-  zoom: 2.5,
   width: WIDTH,
   height: HEIGHT,
   spriteSize: 32,
