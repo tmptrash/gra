@@ -16,8 +16,19 @@ import BugBlackRightPath from '../img/bug-black-right-5.png'
 import BugBlackBlueLeftPath from '../img/bug-black-blue-left-3.png'
 import BugBlackBlueRightPath from '../img/bug-black-blue-right-3.png'
 
-import Song0 from '../music/sicar.mp3'
-import Song1 from '../music/betsaida.mp3'
+import Song0 from '../music/Arterial.mp3'
+import Song1 from '../music/1.11.mp3'
+import Song2 from '../music/101 clouds.mp3'
+import Song3 from '../music/Algo Cion.mp3'
+import Song4 from '../music/Beyond The Surface.mp3'
+import Song5 from '../music/Exact Random.mp3'
+import Song6 from '../music/Example 3.mp3'
+import Song7 from '../music/Giant Sunflowers Swaying In The Wind.mp3'
+import Song8 from '../music/Human (Mixed).mp3'
+import Song9 from '../music/Outside.mp3'
+import Song10 from '../music/PanCromatico.mp3'
+import Song11 from '../music/Under the Radar.mp3'
+import Song12 from '../music/Unfold.mp3'
 
 const WIDTH  = 1024
 const HEIGHT = 800
@@ -53,7 +64,7 @@ export default {
   bugSpeed: 0.05,
 
   // audio tracks
-  tracks: [Song0, Song1],
+  tracks: [Song0, Song1, Song2, Song3, Song4, Song5, Song6, Song7, Song8, Song9, Song10, Song11, Song12],
 
   // sprites
   hero: [{x: 90, y: 150}, {
