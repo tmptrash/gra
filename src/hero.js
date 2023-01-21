@@ -81,6 +81,9 @@ export function update(h) {
     else updateY(h, s.y + (t - h.jumpTime) / h.fallTime), h.jumpTime = t
   }
 
+  Shared.heroX = s.x + s.width / 2
+  Shared.heroY = s.y + s.height / 2
+
   updateScreen(h)
   updateSprite(s)
 }

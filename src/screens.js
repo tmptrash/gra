@@ -1,7 +1,7 @@
 import Shared from './shared'
 import Config from './config'
 import { Looper, draw as drawLooper, update as updateLooper } from './looper'
-import { Obj, draw as drawObj, update as updateObj } from './obj'
+import { Entiry, draw as drawEntity, update as updateEntity } from './entity'
 
 export function updateObjs(fromScr, toScr) {
   const objs = Shared.objs
@@ -12,9 +12,9 @@ export function updateObjs(fromScr, toScr) {
     draw: drawLooper, update: updateLooper, o: Looper(...cfg), scr: toScr
   }))
 
-  const objects = Config.screens.objs[toScr]
-  objects && objects.forEach(cfg => objs.push({
-    draw: drawObj, update: updateObj, o: Obj(...cfg), scr: toScr
+  const entities = Config.screens.entities[toScr]
+  entities && entities.forEach(cfg => objs.push({
+    draw: drawEntity, update: updateEntity, o: Entiry(...cfg, toScr), scr: toScr
   }))
 }
 

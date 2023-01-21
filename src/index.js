@@ -6,8 +6,10 @@ import { updateObjs } from './screens'
 import { Debug, draw as drawDebug, update as updateDebug } from './debug'
 import { logo } from './utils'
 import { Audio, play } from './audio'
+import { Picked, draw as drawPicked } from './picked'
 
 const audio = Audio()
+const picked = Shared.picked = Picked()
 const objs = Shared.objs = [
   { draw: drawLevel,  update: updateLevel,  o: Level() },
   { draw: drawHero,   update: updateHero,   o: Hero(), id: Config.heroId }
@@ -32,6 +34,7 @@ function main() {
 function draw() {
   Shared.ctx.clearRect(0, 0, Config.width, Config.height)
   objs.forEach(o => o.draw(o.o))
+  drawPicked(picked)
   Config.useSetTimeout ? setTimeout(draw) : requestAnimationFrame(draw)
 }
 

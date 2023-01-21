@@ -47,7 +47,7 @@ export default {
   frontColor: '#fff',
   frontFont: '16px Tahoma',
   
-  debug: true,
+  debug: false,
   upsDelay: 2,
   useSetTimeout: false,
 
@@ -61,8 +61,6 @@ export default {
   jumpSize: 250,
   stepTime: 400,
   stepSize: 100,
-
-  bugSpeed: 0.05,
 
   // audio tracks
   tracks: [Song0, Song1, Song2, Song3, Song4, Song5, Song6, Song7, Song8, Song9, Song10, Song11, Song12],
@@ -124,14 +122,12 @@ export default {
         true
       ]]
     },
-    objs: {
+    entities: {
       39: [[
         [{ x: 830, y: 580 }, {
           idle: [KeyPath, 7, 200],
-        }],
-        .05
-      ]
-      ]
+        }]
+      ]]
     }
   }
 }

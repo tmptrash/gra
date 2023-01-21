@@ -30,6 +30,10 @@ export function findObjById(objs, id) {
   return obj ? obj.o : null
 }
 
+export function findObjIdx(objs, obj) {
+  return objs.findIndex(o => o.o === obj)
+}
+
 export function fn() {}
 
 export function logo(show = true) {

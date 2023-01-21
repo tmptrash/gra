@@ -5,5 +5,8 @@ export default {
   ups: 0,
   offsX: 0,
   offsY: 0,
-  objs: null
+  heroX: 0,
+  heroY: 0,
+  objs: null,
+  picked: null
 }
