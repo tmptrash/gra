@@ -6,7 +6,7 @@ export function Audio() {
     el: document.getElementById(Config.audioId),
     idx: 0
   }
-  audio.el.addEventListener('ended', play)
+  audio.el.addEventListener('ended', play.bind(null, audio))
 
   return audio
 }
