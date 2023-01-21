@@ -17,7 +17,7 @@ function main() {
   Shared.ctx = document.getElementById(Config.canvasId).getContext('2d')
   Shared.ctx.canvas.width = Config.width
   Shared.ctx.canvas.height = Config.height
-  document.body.style.zoom = window.innerHeight / Config.height - .5
+  document.body.style.zoom = window.innerHeight * .9 / Config.height
   logo()
   Shared.ctx.fillStyle = Config.frontColor
   Shared.ctx.font = Config.frontFont
