@@ -139,7 +139,7 @@ export default {
       ]]
     },
     items: {
-      0: [[
+      39: [[
         [{ x: 830, y: 580 }, {
           idle: [KeyPath, 7, 200]
         }],
