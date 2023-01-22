@@ -21,7 +21,9 @@ export function Hero() {
     stepTime: performance.now(),
     stepX: 0,
     pressed: { a: false, d: false, w: false },
-    sprite: Sprite(...Config.hero)
+    sprite: Sprite(...Config.hero),
+    life: Config.life,
+    hit: false
   }
   bind({
     keydown: {
@@ -81,8 +83,11 @@ export function update(h) {
     else updateY(h, s.y + (t - h.jumpTime) / h.fallTime), h.jumpTime = t
   }
 
-  Shared.heroX = s.x + s.width / 2
-  Shared.heroY = s.y + s.height / 2
+  // hit
+  if (h.hit) {
+    Shared.sounds.hit.play()
+    h.hit = false
+  }
 
   updateScreen(h)
   updateSprite(s)

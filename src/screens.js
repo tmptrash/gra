@@ -13,8 +13,8 @@ export function updateObjs(fromScr, toScr) {
   }))
 
   const items = Config.screens.items[toScr]
-  items && items.forEach(cfg => !isPicked(cfg) && objs.push({
-      draw: drawEntity, update: updateEntity, o: Item(cfg, toScr), scr: toScr
+  items && items.forEach(cfg => !isPicked(cfg[0]) && objs.push({
+      draw: drawEntity, update: updateEntity, o: Item(...cfg, toScr), scr: toScr
   }))
 }
 

@@ -54,7 +54,7 @@ function loadImgs(sprite, imgs) {
     }
     img.img.onload = onLoad.bind(null, sprite, img, imgs[i][1], imgs[i][2])
     img.img.src = imgs[i][0]
-    Shared.images++
+    Shared.assets++
   }
 }
 
@@ -64,6 +64,6 @@ function onLoad(sprite, img, frames, timeout) {
   img.frames = Frames(img.width / (frames || 1), frames, timeout)
   !sprite.width && (sprite.width = img.frames.width)
   !sprite.height && (sprite.height = img.height)
-  Shared.images--
+  Shared.assets--
   sprite.onLoad(img)
 }

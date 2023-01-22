@@ -20,31 +20,37 @@ import BugBigRightPath from '../img/bug-big-right-3.png'
 
 import KeyPath from '../img/key-6.png'
 
-import Song0 from '../music/Beyond The Surface.mp3'
-import Song1 from '../music/1.11.mp3'
-import Song2 from '../music/101 clouds.mp3'
-import Song3 from '../music/Algo Cion.mp3'
-import Song4 from '../music/Arterial.mp3'
-import Song5 from '../music/Exact Random.mp3'
-import Song6 from '../music/Example 3.mp3'
-import Song7 from '../music/Giant Sunflowers Swaying In The Wind.mp3'
-import Song8 from '../music/Human (Mixed).mp3'
-import Song9 from '../music/Outside.mp3'
-import Song10 from '../music/PanCromatico.mp3'
-import Song11 from '../music/Under the Radar.mp3'
-import Song12 from '../music/Unfold.mp3'
+import Track0 from '../music/Beyond The Surface.mp3'
+import Track1 from '../music/1.11.mp3'
+import Track2 from '../music/101 clouds.mp3'
+import Track3 from '../music/Algo Cion.mp3'
+import Track4 from '../music/Arterial.mp3'
+import Track5 from '../music/Exact Random.mp3'
+import Track6 from '../music/Example 3.mp3'
+import Track7 from '../music/Giant Sunflowers Swaying In The Wind.mp3'
+import Track8 from '../music/Human (Mixed).mp3'
+import Track9 from '../music/Outside.mp3'
+import Track10 from '../music/PanCromatico.mp3'
+import Track11 from '../music/Under the Radar.mp3'
+import Track12 from '../music/Unfold.mp3'
+
+import SoundHit from '../sound/hit.mp3'
+import SoundKey from '../sound/key.mp3'
 
 const WIDTH  = 1024
 const HEIGHT = 800
+const fn = () => {}
 
 export default {
   canvasId: 'canvas',
   audioId: 'audio',
   heroId: 'hero',
   playQuery: '.play',
+  life: 3,
   logoX: 256,
   logoY: 50,
   logoTimeout: 100,
+  touchDelay: 500,
 
   frontColor: '#fff',
   frontFont: '16px Tahoma',
@@ -64,8 +70,9 @@ export default {
   stepTime: 400,
   stepSize: 100,
 
-  // audio tracks
-  tracks: [Song0, Song1, Song2, Song3, Song4, Song5, Song6, Song7, Song8, Song9, Song10, Song11, Song12],
+  // music tracks
+  music: [Track0, Track1, Track2, Track3, Track4, Track5, Track6, Track7, Track8, Track9, Track10, Track11, Track12],
+  sounds: {hit: SoundHit, key: SoundKey},
 
   // sprites
   hero: [{x: 90, y: 150}, {
@@ -132,11 +139,12 @@ export default {
       ]]
     },
     items: {
-      0: [
+      0: [[
         [{ x: 830, y: 580 }, {
-          idle: [KeyPath, 7, 200],
-        }]
-      ]
+          idle: [KeyPath, 7, 200]
+        }],
+        'key'
+      ]]
     }
   }
 }

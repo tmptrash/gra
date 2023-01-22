@@ -2,12 +2,13 @@ import Shared from './shared'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import { findObjIdx, touches } from './utils'
 
-export function Item(spriteCfg, scr) {
+export function Item(spriteCfg, sound, scr) {
   const item = {
     picked: false,
     scr,
     sprite: Sprite(...spriteCfg),
-    stepTime: performance.now()
+    stepTime: performance.now(),
+    sound: Shared.sounds[sound]
   }
 
   item.sprite.img = item.sprite.imgs.idle
@@ -26,6 +27,7 @@ export function update(item) {
     s.picked.items.push(sprite)
     const idx = findObjIdx(s.objs, item)
     idx !== -1 && s.objs.splice(idx, 1)
+    item.sound.play()
   }
 
   updateSprite(item.sprite)

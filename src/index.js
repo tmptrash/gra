@@ -5,13 +5,15 @@ import { Level, draw as drawLevel, update as updateLevel } from './level'
 import { updateObjs } from './screens'
 import { Debug, draw as drawDebug, update as updateDebug } from './debug'
 import { logo, fn, findObjById } from './utils'
-import { Audio, play } from './audio'
+import { Music, play } from './music'
 import { Picked, draw as drawPicked } from './picked'
+import { Sounds } from './sounds'
 
 const PICKED_ID = 'picked'
 const playBtn = document.querySelector(Config.playQuery)
 
-const audio = Audio()
+Shared.sounds = Sounds()
+const audio = Music()
 const objs = Shared.objs = [
   { draw: drawLevel,  update: updateLevel,  o: Level() },
   { draw: drawHero,   update: updateHero,   o: Hero(), id: Config.heroId },
@@ -31,6 +33,7 @@ function main() {
   Shared.picked = findObjById(objs, PICKED_ID)
   Shared.hero = findObjById(objs, Config.heroId)
   Config.debug && objs.push({ draw: drawDebug, update: updateDebug, o: Debug() })
+
   window.addEventListener('message', e => e.data === 0 && (e.stopPropagation(), update()), true)
   updateObjs(null, 0)
   setTimeout(waitImages, Config.logoTimeout)
@@ -48,7 +51,7 @@ function update() {
 }
 
 function waitImages() {
-  if (Shared.images > 0) {
+  if (Shared.assets > 0) {
     setTimeout(waitImages, 10)
     return
   }
