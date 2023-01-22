@@ -13,8 +13,8 @@ export function updateObjs(fromScr, toScr) {
   }))
 
   const entities = Config.screens.entities[toScr]
-  entities && entities.forEach(cfg => objs.push({
-    draw: drawEntity, update: updateEntity, o: Entiry(...cfg, toScr), scr: toScr
+  entities && entities.forEach(cfg => !isPicked(cfg) && objs.push({
+      draw: drawEntity, update: updateEntity, o: Entiry(cfg, toScr), scr: toScr
   }))
 }
 
@@ -22,4 +22,8 @@ export function scrOffs(offsX, offsY) {
   const scrX = offsX / Config.width
   const scrY = offsY / Config.height
   return scrX + scrY * (Config.hSprites * Config.spriteSize / Config.width)
+}
+
+function isPicked(entityCfg) {
+  return Shared.picked.entities.findIndex(s => s.img.img.src === entityCfg[1].idle[0]) !== -1
 }
