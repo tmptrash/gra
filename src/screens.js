@@ -1,19 +1,19 @@
 import Shared from './shared'
 import Config from './config'
-import { Looper, draw as drawLooper, update as updateLooper } from './looper'
-import { Entiry, draw as drawEntity, update as updateEntity } from './entity'
+import { Looper, draw as drawLooper, update as updateLooper } from './enemy'
+import { Entiry, draw as drawEntity, update as updateEntity } from './item'
 
 export function updateObjs(fromScr, toScr) {
   const objs = Shared.objs
   for (let i = 0; i < objs.length; i++) objs[i].scr === fromScr && (objs.splice(i, 1), i--)
   
-  const scrs = Config.screens.loopers[toScr]
+  const scrs = Config.screens.enemies[toScr]
   scrs && scrs.forEach(cfg => objs.push({
     draw: drawLooper, update: updateLooper, o: Looper(...cfg), scr: toScr
   }))
 
-  const entities = Config.screens.entities[toScr]
-  entities && entities.forEach(cfg => !isPicked(cfg) && objs.push({
+  const items = Config.screens.items[toScr]
+  items && items.forEach(cfg => !isPicked(cfg) && objs.push({
       draw: drawEntity, update: updateEntity, o: Entiry(cfg, toScr), scr: toScr
   }))
 }
@@ -24,6 +24,6 @@ export function scrOffs(offsX, offsY) {
   return scrX + scrY * (Config.hSprites * Config.spriteSize / Config.width)
 }
 
-function isPicked(entityCfg) {
-  return Shared.picked.entities.findIndex(s => s.img.img.src === entityCfg[1].idle[0]) !== -1
+function isPicked(itemCfg) {
+  return Shared.picked.items.findIndex(s => s.img.img.src === itemCfg[1].idle[0]) !== -1
 }

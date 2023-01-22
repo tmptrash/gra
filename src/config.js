@@ -15,6 +15,8 @@ import BugBlackLeftPath from '../img/bug-black-left-5.png'
 import BugBlackRightPath from '../img/bug-black-right-5.png'
 import BugBlackBlueLeftPath from '../img/bug-black-blue-left-3.png'
 import BugBlackBlueRightPath from '../img/bug-black-blue-right-3.png'
+import BugBigLeftPath from '../img/bug-big-left-3.png'
+import BugBigRightPath from '../img/bug-big-right-3.png'
 
 import KeyPath from '../img/key-6.png'
 
@@ -42,7 +44,7 @@ export default {
   playQuery: '.play',
   logoX: 256,
   logoY: 50,
-  logoTimeout: 1000,
+  logoTimeout: 100,
 
   frontColor: '#fff',
   frontFont: '16px Tahoma',
@@ -76,7 +78,7 @@ export default {
   }],
   l1: [{x: 0, y: 0, width: WIDTH, height: HEIGHT}, L1Path],
   screens: {
-    loopers: {
+    enemies: {
       0: [[
         [{ x: 350, y: 396 }, {
           idleLeft:  [BugLeftPath, 2, 300],
@@ -105,6 +107,13 @@ export default {
         }],
         .05,
         true
+      ], [
+        [{ x: 140, y: 725 }, {
+          idleLeft: [BugBigLeftPath, 3, 200],
+          idleRight: [BugBigRightPath, 3, 200]
+        }],
+        .04,
+        true
       ]],
       1: [[
         [{ x: 620, y: 524 }, {
@@ -122,7 +131,7 @@ export default {
         true
       ]]
     },
-    entities: {
+    items: {
       39: [
         [{ x: 830, y: 580 }, {
           idle: [KeyPath, 7, 200],

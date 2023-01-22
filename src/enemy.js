@@ -9,7 +9,7 @@ const UP    = -1
 const DOWN  = 1
 
 export function Looper(spriteCfg, speed, horizontal = true) {
-  const looper = {
+  const enemy = {
     speed,
     dir: horizontal ? RIGHT : DOWN,
     horizontal,
@@ -17,8 +17,8 @@ export function Looper(spriteCfg, speed, horizontal = true) {
     stepTime: performance.now()
   }
 
-  looper.sprite.img = horizontal ? looper.sprite.imgs.idleRight : looper.sprite.imgs.idleDown
-  return looper
+  enemy.sprite.img = horizontal ? enemy.sprite.imgs.idleRight : enemy.sprite.imgs.idleDown
+  return enemy
 }
 
 export function draw(l) {

@@ -5,19 +5,19 @@ import { findObjIdx } from './utils'
 import { scrOffs } from './screens'
 
 export function Entiry(spriteCfg, scr) {
-  const entity = {
+  const item = {
     picked: false,
     scr,
     sprite: Sprite(...spriteCfg),
     stepTime: performance.now()
   }
 
-  entity.sprite.img = entity.sprite.imgs.idle
-  return entity
+  item.sprite.img = item.sprite.imgs.idle
+  return item
 }
 
-export function draw(entity) {
-  drawSprite(entity.sprite)
+export function draw(item) {
+  drawSprite(item.sprite)
 }
 
 export function update(e) {
@@ -25,7 +25,7 @@ export function update(e) {
   if (e.scr === scrOffs(s.offsX, s.offsY) && near(e.sprite.x, e.sprite.y, s.heroX, s.heroY)) {
     const sprite = Sprite({ x: 0, y: 0 }, e.sprite.img.img.src)
     sprite.width = e.sprite.img.frames.width
-    s.picked.entities.push(sprite)
+    s.picked.items.push(sprite)
     const idx = findObjIdx(s.objs, e)
     idx !== -1 && s.objs.splice(idx, 1)
   }
