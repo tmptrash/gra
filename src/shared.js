@@ -8,5 +8,6 @@ export default {
   heroX: 0,
   heroY: 0,
   objs: null,
-  picked: null
+  picked: null,
+  hero: null
 }

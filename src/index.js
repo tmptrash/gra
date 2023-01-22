@@ -29,6 +29,7 @@ function main() {
   Shared.ctx.imageSmoothingEnabled = false
 
   Shared.picked = findObjById(objs, PICKED_ID)
+  Shared.hero = findObjById(objs, Config.heroId)
   Config.debug && objs.push({ draw: drawDebug, update: updateDebug, o: Debug() })
   window.addEventListener('message', e => e.data === 0 && (e.stopPropagation(), update()), true)
   updateObjs(null, 0)

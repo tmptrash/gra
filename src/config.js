@@ -132,7 +132,7 @@ export default {
       ]]
     },
     items: {
-      39: [
+      0: [
         [{ x: 830, y: 580 }, {
           idle: [KeyPath, 7, 200],
         }]

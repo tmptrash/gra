@@ -1,10 +1,8 @@
 import Shared from './shared'
-import Config from './config'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
-import { findObjIdx } from './utils'
-import { scrOffs } from './screens'
+import { findObjIdx, touches } from './utils'
 
-export function Entiry(spriteCfg, scr) {
+export function Item(spriteCfg, scr) {
   const item = {
     picked: false,
     scr,
@@ -20,19 +18,15 @@ export function draw(item) {
   drawSprite(item.sprite)
 }
 
-export function update(e) {
+export function update(item) {
   const s = Shared
-  if (e.scr === scrOffs(s.offsX, s.offsY) && near(e.sprite.x, e.sprite.y, s.heroX, s.heroY)) {
-    const sprite = Sprite({ x: 0, y: 0 }, e.sprite.img.img.src)
-    sprite.width = e.sprite.img.frames.width
+  if (touches(item.sprite, s.hero.sprite)) {
+    const sprite = Sprite({ x: 0, y: 0 }, item.sprite.img.img.src)
+    sprite.width = item.sprite.img.frames.width
     s.picked.items.push(sprite)
-    const idx = findObjIdx(s.objs, e)
+    const idx = findObjIdx(s.objs, item)
     idx !== -1 && s.objs.splice(idx, 1)
   }
 
-  updateSprite(e.sprite)
-}
-
-function near(x, y, x1, y1) {
-  return Math.abs(x - x1) < Config.spriteSize && Math.abs(y - y1) < Config.spriteSize
+  updateSprite(item.sprite)
 }

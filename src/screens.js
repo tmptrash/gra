@@ -1,7 +1,7 @@
 import Shared from './shared'
 import Config from './config'
-import { Looper, draw as drawLooper, update as updateLooper } from './enemy'
-import { Entiry, draw as drawEntity, update as updateEntity } from './item'
+import { Enemy, draw as drawEnemy, update as updateEnemy } from './enemy'
+import { Item, draw as drawEntity, update as updateEntity } from './item'
 
 export function updateObjs(fromScr, toScr) {
   const objs = Shared.objs
@@ -9,12 +9,12 @@ export function updateObjs(fromScr, toScr) {
   
   const scrs = Config.screens.enemies[toScr]
   scrs && scrs.forEach(cfg => objs.push({
-    draw: drawLooper, update: updateLooper, o: Looper(...cfg), scr: toScr
+    draw: drawEnemy, update: updateEnemy, o: Enemy(...cfg, toScr), scr: toScr
   }))
 
   const items = Config.screens.items[toScr]
   items && items.forEach(cfg => !isPicked(cfg) && objs.push({
-      draw: drawEntity, update: updateEntity, o: Entiry(cfg, toScr), scr: toScr
+      draw: drawEntity, update: updateEntity, o: Item(cfg, toScr), scr: toScr
   }))
 }
 
