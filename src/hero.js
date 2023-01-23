@@ -43,13 +43,6 @@ export function Hero() {
 }
 
 export function draw(hero) {
-  // const s = hero.sprite
-  // const img = s.img
-  // if (img && img.frames) {
-  //   Shared.ctx.fillStyle = 'red'
-  //   Shared.ctx.fillRect(s.x, s.y, img.frames.width, img.height)
-  // }
-
   drawSprite(hero.sprite)
   drawLife(hero)
 }

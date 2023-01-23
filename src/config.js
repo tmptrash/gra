@@ -75,7 +75,7 @@ export default {
   jumpSize: 250,
   stepTime: 400,
   stepSize: 100,
-  life: 3,
+  life: 4,
   touchDelay: 1000,
 
   // audio
@@ -107,16 +107,39 @@ export default {
         enemy(32,  150, {idleUp:   [BugUpPath,            2, 300], idleDown:  [BugDownPath,           2, 300]}, .05, false),
         //enemy(950, 620, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300] }),
         //enemy(130, 361, {idleLeft: [BugBlackBlueLeftPath, 3, 200], idleRight: [BugBlackBlueRightPath, 3, 200]}),
-        //enemy(140, 725, {idleLeft: [BugBigLeftPath,       3, 200], idleRight: [BugBigRightPath,       3, 200]})
+        //enemy(140, 725, {idleLeft: [BugBigLeftPath,       3, 200], idleRight: [BugBigRightPath,       3, 200]}),
+        enemy(140, 748, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath, 2, 300] })
       ],
       1: [
         enemy(620, 524, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}),
         enemy(90,  619, {idleLeft: [BugBlackLeftPath,     5, 100], idleRight: [BugBlackRightPath,     5, 100]})
+      ],
+      2: [
+        enemy(150, 236, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .06),
+        enemy(790, 396, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .06)
+      ],
+      3: [
+        enemy(300, 300, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .07)
+      ],
+      8: [
+        enemy(650, 236, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .07),
+      ],
+      9: [
+        enemy(150, 716, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .07),
+        enemy(200, 716, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .07),
+        enemy(270, 716, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .07),
+        enemy(890, 396, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .07),
       ]
     },
     items: {
       0: [
-        item(830, 580, {idle: [HeartAnimPath, 9, 100]}, 'heart', (i, pick) => {Shared.hero.life++, pick(i, false)})
+        item(80,  580, {idle: [HeartAnimPath, 9, 100]}, 'heart', (i, pick) => {Shared.hero.life++, pick(i, false)})
+      ],
+      4: [
+        item(770, 200, {idle: [HeartAnimPath, 9, 100]}, 'heart', (i, pick) => { Shared.hero.life++, pick(i, false)})
+      ],
+      8: [
+        item(400, 650, {idle: [HeartAnimPath, 9, 100]}, 'heart', (i, pick) => { Shared.hero.life++, pick(i, false)})
       ],
       39: [
         item(830, 580, {idle: [KeyPath,       7, 200]}, 'key')
