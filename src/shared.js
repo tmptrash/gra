@@ -1,6 +1,6 @@
 export default {
-  assets: 0,
   ctx: null,
+  assets: 0,
   fps: 0,
   ups: 0,
   offsX: 0,

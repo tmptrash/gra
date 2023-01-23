@@ -1,8 +1,6 @@
-import TitlePath from '../img/title.png'
 import Shared from './shared'
 import Config from './config'
 import { getMousePos, int, findObjById } from './utils'
-import { Sprite, draw as drawSprite } from './sprite'
 
 export function Debug() {
   const debug = {
@@ -11,8 +9,7 @@ export function Debug() {
     fTime: Date.now(),
     uTime: Date.now(),
     curFps: 0,
-    curUps: 0,
-    sprite: Sprite({ x: 1, y: 1 }, TitlePath)
+    curUps: 0
   }
   window.addEventListener('mousemove', e => debug.pos = getMousePos(Shared.ctx.canvas, e), false)
   return debug
@@ -37,8 +34,7 @@ export function draw(debug) {
   }
   debug.curFps++
 
-  drawSprite(debug.sprite)
-  Shared.ctx.fillText(`fps: ${Shared.fps}  ups: ${Shared.ups}  mouse ${x}:${y}  hero ${hx0}:${hy0}; ${hx1}:${hy1}  scr ${scrX}:${scrY}`, 10, 20)
+  Shared.ctx.fillText(`fps: ${Shared.fps}   ups: ${Shared.ups}   mouse ${x}:${y}   hero ${hx0}:${hy0}, ${hx1}:${hy1}   scr ${scrX}:${scrY}`, 100, 22)
 }
 
 export function update(fps) {

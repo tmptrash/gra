@@ -47,7 +47,8 @@ export default {
   audioId: 'audio',
   heroId: 'hero',
   playQuery: '.play',
-  musicVolume: .5,
+
+  musicVolume: .6,
   life: 3,
   logoX: 256,
   logoY: 50,
@@ -56,7 +57,7 @@ export default {
 
   frontColor: '#fff',
   frontFont: '16px Tahoma',
-  
+
   debug: false,
   upsDelay: 2,
   useSetTimeout: false,
@@ -89,65 +90,30 @@ export default {
   l1: [{x: 0, y: 0, width: WIDTH, height: HEIGHT}, L1Path],
   screens: {
     enemies: {
-      0: [[
-        [{ x: 350, y: 396 }, {
-          idleLeft:  [BugLeftPath, 2, 300],
-          idleRight: [BugRightPath, 2, 300]
-        }],
-        .05,
-        true
-      ], [
-        [{ x: 32, y: 150 }, {
-          idleUp:   [BugUpPath, 2, 300],
-          idleDown: [BugDownPath, 2, 300]
-        }],
-        .05,
-        false
-      ], [
-        [{ x: 950, y: 620 }, {
-          idleLeft: [BugLeftPath, 2, 300],
-          idleRight: [BugRightPath, 2, 300]
-        }],
-        .05,
-        true
-      ], [
-        [{ x: 130, y: 361 }, {
-          idleLeft: [BugBlackBlueLeftPath, 3, 200],
-          idleRight: [BugBlackBlueRightPath, 3, 200]
-        }],
-        .05,
-        true
-      ], [
-        [{ x: 140, y: 725 }, {
-          idleLeft: [BugBigLeftPath, 3, 200],
-          idleRight: [BugBigRightPath, 3, 200]
-        }],
-        .04,
-        true
-      ]],
-      1: [[
-        [{ x: 620, y: 524 }, {
-          idleLeft: [BugLeftPath, 2, 300],
-          idleRight: [BugRightPath, 2, 300]
-        }],
-        .05,
-        true
-      ], [
-        [{ x: 90, y: 619 }, {
-          idleLeft: [BugBlackLeftPath, 5, 100],
-          idleRight: [BugBlackRightPath, 5, 100]
-        }],
-        .05,
-        true
-      ]]
+      0: [
+        enemy(350, 396, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}),
+        enemy(32,  150, {idleUp:   [BugUpPath,            2, 300], idleDown:  [BugDownPath,           2, 300]}, .05, false),
+        enemy(950, 620, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300] }),
+        enemy(130, 361, {idleLeft: [BugBlackBlueLeftPath, 3, 200], idleRight: [BugBlackBlueRightPath, 3, 200]}),
+        enemy(140, 725, {idleLeft: [BugBigLeftPath,       3, 200], idleRight: [BugBigRightPath,       3, 200]})
+      ],
+      1: [
+        enemy(620, 524, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}),
+        enemy(90, 619, { idleLeft: [BugBlackLeftPath,     5, 100], idleRight: [BugBlackRightPath,     5, 100]})
+      ]
     },
     items: {
-      0: [[
-        [{ x: 830, y: 580 }, {
-          idle: [KeyPath, 7, 200]
-        }],
-        'key'
-      ]]
+      39: [
+        item(830, 580, {idle: [KeyPath, 7, 200]}, 'key')
+      ]
     }
   }
+}
+
+function enemy(x, y, imgs, speed = .05, horizontal = true) {
+  return [[{ x, y }, imgs], speed, horizontal]
+}
+
+function item(x, y, imgs, sound) {
+  return [[{ x: 830, y: 580 }, imgs], sound]
 }
