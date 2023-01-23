@@ -43,37 +43,39 @@ const WIDTH  = 1024
 const HEIGHT = 800
 
 export default {
+  // html & css
   canvasId: 'canvas',
   audioId: 'audio',
   heroId: 'hero',
   playQuery: '.play',
-
-  musicVolume: .6,
-  life: 3,
-  logoX: 256,
-  logoY: 50,
-  logoTimeout: 100,
-  touchDelay: 1000,
-
   frontColor: '#fff',
   frontFont: '16px Tahoma',
 
+  // logo
+  logoX: 256,
+  logoY: 50,
+  logoTimeout: 100,
+
+  // game related
   debug: false,
   upsDelay: 2,
   useSetTimeout: false,
-
+  musicVolume: .6,
   width: WIDTH,
   height: HEIGHT,
   spriteSize: 32,
   hSprites: null,
   vSprites: null,
 
+  // hero related
   jumpTime: 1000,
   jumpSize: 250,
   stepTime: 400,
   stepSize: 100,
+  life: 3,
+  touchDelay: 1000,
 
-  // music tracks
+  // audio
   music: [Track0, Track1, Track2, Track3, Track4, Track5, Track6, Track7, Track8, Track9, Track10, Track11, Track12],
   sounds: { hit: SoundHit, key: SoundKey, gameOver: SoundGameOver },
 
@@ -88,6 +90,8 @@ export default {
     jumpRight: [JumpRightPath, 9, 150]
   }],
   l1: [{x: 0, y: 0, width: WIDTH, height: HEIGHT}, L1Path],
+
+  // enemies and items per screen
   screens: {
     enemies: {
       0: [
