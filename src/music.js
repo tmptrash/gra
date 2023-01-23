@@ -13,6 +13,7 @@ export function Music() {
 
 export function play(music) {
   music.el.src = music.list[music.idx++]
+  music.el.volume = Config.musicVolume
   music.el.play()
   music.idx >= music.list.length && (music.idx = 0)
 }

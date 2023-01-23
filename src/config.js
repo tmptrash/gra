@@ -46,11 +46,12 @@ export default {
   audioId: 'audio',
   heroId: 'hero',
   playQuery: '.play',
+  musicVolume: .5,
   life: 3,
   logoX: 256,
   logoY: 50,
   logoTimeout: 100,
-  touchDelay: 500,
+  touchDelay: 1000,
 
   frontColor: '#fff',
   frontFont: '16px Tahoma',
@@ -139,7 +140,7 @@ export default {
       ]]
     },
     items: {
-      39: [[
+      0: [[
         [{ x: 830, y: 580 }, {
           idle: [KeyPath, 7, 200]
         }],
