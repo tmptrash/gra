@@ -5,15 +5,16 @@ import { Level, draw as drawLevel, update as updateLevel } from './level'
 import { updateObjs } from './screens'
 import { Debug, draw as drawDebug, update as updateDebug } from './debug'
 import { logo, fn, findObjById } from './utils'
-import { Music, play } from './music'
+import { Music, play, stop } from './music'
 import { Picked, draw as drawPicked } from './picked'
 import { Sounds } from './sounds'
 
 const PICKED_ID = 'picked'
 const playBtn = document.querySelector(Config.playQuery)
 
+let stopped = false
 Shared.sounds = Sounds()
-const audio = Music()
+const music = Music()
 const objs = Shared.objs = [
   { draw: drawLevel,  update: updateLevel,  o: Level() },
   { draw: drawHero,   update: updateHero,   o: Hero(), id: Config.heroId },
@@ -42,10 +43,12 @@ function main() {
 function draw() {
   Shared.ctx.clearRect(0, 0, Config.width, Config.height)
   objs.forEach(o => o.draw(o.o))
+  if (Shared.stop) drawStop()
   Config.useSetTimeout ? setTimeout(draw) : requestAnimationFrame(draw)
 }
 
 function update() {
+  if (Shared.stop) return
   objs.forEach(o => o.update(o.o))
   setTimeout(() => window.postMessage(0, '*'), Config.upsDelay)
 }
@@ -62,9 +65,20 @@ function waitImages() {
 function start() {
   playBtn.style.display = 'none'
 
-  play(audio)
+  play(music)
   update()
   draw()
+}
+
+function drawStop() {
+  Shared.ctx.fillStyle = Config.frontColor
+  Shared.ctx.font = '28px Tahoma'
+  Shared.ctx.fillText('Game Over!', Config.width / 2 - 55, Config.height / 2)
+  if (!stopped) {
+    Shared.sounds.gameOver.play()
+    stop(music)
+    stopped = true
+  }
 }
 
 main()

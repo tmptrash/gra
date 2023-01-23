@@ -1,5 +1,6 @@
 import L1Path from '../img/l1.png'
 
+import HeartPath from '../img/heart.png'
 import IdleLeftPath from '../img/idle-left-3.png'
 import IdleRightPath from '../img/idle-right-3.png'
 import WalkLeftPath from '../img/walk-left-6.png'
@@ -36,10 +37,10 @@ import Track12 from '../music/Unfold.mp3'
 
 import SoundHit from '../sound/hit.mp3'
 import SoundKey from '../sound/key.mp3'
+import SoundGameOver from '../sound/game-over.mp3'
 
 const WIDTH  = 1024
 const HEIGHT = 800
-const fn = () => {}
 
 export default {
   canvasId: 'canvas',
@@ -73,9 +74,10 @@ export default {
 
   // music tracks
   music: [Track0, Track1, Track2, Track3, Track4, Track5, Track6, Track7, Track8, Track9, Track10, Track11, Track12],
-  sounds: {hit: SoundHit, key: SoundKey},
+  sounds: { hit: SoundHit, key: SoundKey, gameOver: SoundGameOver },
 
   // sprites
+  heart: [{ x: 0, y: 0 }, HeartPath],
   hero: [{x: 90, y: 150}, {
     idleLeft:  [IdleLeftPath,  3, 260],
     idleRight: [IdleRightPath, 3, 260],

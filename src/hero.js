@@ -22,6 +22,7 @@ export function Hero() {
     stepX: 0,
     pressed: { a: false, d: false, w: false },
     sprite: Sprite(...Config.hero),
+    lifeSprite: Sprite(...Config.heart),
     life: Config.life,
     hit: false
   }
@@ -50,6 +51,7 @@ export function draw(hero) {
   // }
 
   drawSprite(hero.sprite)
+  drawLife(hero)
 }
 
 export function update(h) {
@@ -86,6 +88,7 @@ export function update(h) {
   // hit
   if (h.hit) {
     Shared.sounds.hit.play()
+    if (--h.life < 1) Shared.stop = true
     h.hit = false
   }
 
@@ -161,5 +164,14 @@ function updateScreen(h) {
     Shared.offsY -= Config.height
     h.jumpY = Config.height + h.jumpY
     s.y = Config.height - 1
+  }
+}
+
+function drawLife(hero) {
+  const s = hero.lifeSprite
+  for (let i = 0; i < hero.life; i++) {
+    s.x = 10 + i * (s.width + 4)
+    s.y = 10
+    drawSprite(s)
   }
 }

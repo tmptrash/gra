@@ -17,3 +17,7 @@ export function play(music) {
   music.el.play()
   music.idx >= music.list.length && (music.idx = 0)
 }
+
+export function stop(music) {
+  music.el.pause()
+}

@@ -8,5 +8,6 @@ export default {
   objs: null,
   picked: null,
   hero: null,
-  sounds: null
+  sounds: null,
+  stop: false
 }
