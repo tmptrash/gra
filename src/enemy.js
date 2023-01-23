@@ -51,11 +51,6 @@ export function update(e) {
   if (touches(e.sprite, Shared.hero.sprite) && (t - e.touchTime > Config.touchDelay)) {
     Shared.hero.hit = true
     e.touchTime = t
-    // const sprite = Sprite({ x: 0, y: 0 }, l.sprite.img.img.src)
-    // sprite.width = l.sprite.img.frames.width
-    // Shared.picked.items.push(sprite)
-    // const idx = findObjIdx(Shared.objs, l)
-    // idx !== -1 && Shared.objs.splice(idx, 1)
   }
 
   updateSprite(e.sprite)

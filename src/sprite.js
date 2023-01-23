@@ -10,7 +10,8 @@ export function Sprite({ x, y, width = undefined, height = undefined}, imgs, onL
     height,
     img: null,
     imgs: {},
-    onLoad
+    onLoad,
+    hidden: false
   }
   loadImgs(sprite, typeof imgs === 'string' ? {idle: [imgs]} : imgs)
   sprite.imgs.idle && setImg(sprite, 'idle')
@@ -19,7 +20,7 @@ export function Sprite({ x, y, width = undefined, height = undefined}, imgs, onL
 
 export function draw(sprite, offsX = 0, offsY = 0, zoom = 1) {
   const img = sprite.img
-  if (!img || !img.img || !img.frames) return
+  if (!img || !img.img || !img.frames || sprite.hidden) return
 
   Shared.ctx.drawImage(
     img.img,

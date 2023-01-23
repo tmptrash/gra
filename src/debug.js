@@ -34,6 +34,7 @@ export function draw(debug) {
   }
   debug.curFps++
 
+  Shared.ctx.font = Config.frontFont
   Shared.ctx.fillText(`fps: ${Shared.fps}   ups: ${Shared.ups}   mouse ${x}:${y}   hero ${hx0}:${hy0}, ${hx1}:${hy1}   scr ${scrX}:${scrY}`, 100, 22)
 }
 

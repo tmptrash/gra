@@ -1,6 +1,8 @@
+import Shared from './shared'
 import L1Path from '../img/l1.png'
 
 import HeartPath from '../img/heart.png'
+import HeartAnimPath from '../img/heart-9.png'
 import IdleLeftPath from '../img/idle-left-3.png'
 import IdleRightPath from '../img/idle-right-3.png'
 import WalkLeftPath from '../img/walk-left-6.png'
@@ -38,6 +40,7 @@ import Track12 from '../music/Unfold.mp3'
 import SoundHit from '../sound/hit.mp3'
 import SoundKey from '../sound/key.mp3'
 import SoundGameOver from '../sound/game-over.mp3'
+import SoundHeart from '../sound/heart.mp3'
 
 const WIDTH  = 1024
 const HEIGHT = 800
@@ -77,7 +80,12 @@ export default {
 
   // audio
   music: [Track0, Track1, Track2, Track3, Track4, Track5, Track6, Track7, Track8, Track9, Track10, Track11, Track12],
-  sounds: { hit: SoundHit, key: SoundKey, gameOver: SoundGameOver },
+  sounds: {
+    hit: SoundHit,
+    key: SoundKey,
+    gameOver: SoundGameOver,
+    heart: SoundHeart
+  },
 
   // sprites
   heart: [{ x: 0, y: 0 }, HeartPath],
@@ -97,18 +105,21 @@ export default {
       0: [
         enemy(350, 396, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}),
         enemy(32,  150, {idleUp:   [BugUpPath,            2, 300], idleDown:  [BugDownPath,           2, 300]}, .05, false),
-        enemy(950, 620, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300] }),
-        enemy(130, 361, {idleLeft: [BugBlackBlueLeftPath, 3, 200], idleRight: [BugBlackBlueRightPath, 3, 200]}),
-        enemy(140, 725, {idleLeft: [BugBigLeftPath,       3, 200], idleRight: [BugBigRightPath,       3, 200]})
+        //enemy(950, 620, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300] }),
+        //enemy(130, 361, {idleLeft: [BugBlackBlueLeftPath, 3, 200], idleRight: [BugBlackBlueRightPath, 3, 200]}),
+        //enemy(140, 725, {idleLeft: [BugBigLeftPath,       3, 200], idleRight: [BugBigRightPath,       3, 200]})
       ],
       1: [
         enemy(620, 524, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}),
-        enemy(90, 619, { idleLeft: [BugBlackLeftPath,     5, 100], idleRight: [BugBlackRightPath,     5, 100]})
+        enemy(90,  619, {idleLeft: [BugBlackLeftPath,     5, 100], idleRight: [BugBlackRightPath,     5, 100]})
       ]
     },
     items: {
+      0: [
+        item(830, 580, {idle: [HeartAnimPath, 9, 100]}, 'heart', (i, pick) => {Shared.hero.life++, pick(i, false)})
+      ],
       39: [
-        item(830, 580, {idle: [KeyPath, 7, 200]}, 'key')
+        item(830, 580, {idle: [KeyPath,       7, 200]}, 'key')
       ]
     }
   }
@@ -118,6 +129,6 @@ function enemy(x, y, imgs, speed = .05, horizontal = true) {
   return [[{ x, y }, imgs], speed, horizontal]
 }
 
-function item(x, y, imgs, sound) {
-  return [[{ x: 830, y: 580 }, imgs], sound]
+function item(x, y, imgs, sound, pickFn = null) {
+  return [[{ x, y }, imgs], sound, pickFn]
 }

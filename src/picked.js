@@ -14,7 +14,7 @@ export function draw(picked) {
   picked.items.forEach(s => {
     s.y = 10
     s.x = x
-    x -= s.width + 2
+    !s.hidden && (x -= s.width + 2)
     drawSprite(s)
   })
 }
