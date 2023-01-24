@@ -2,6 +2,7 @@ import Shared from './shared'
 import L1Path from '../img/l1.png'
 
 import HeartPath from '../img/heart.png'
+import GunAnimPath from '../img/gun-9.png'
 import HeartAnimPath from '../img/heart-9.png'
 import IdleLeftPath from '../img/idle-left-3.png'
 import IdleRightPath from '../img/idle-right-3.png'
@@ -39,6 +40,7 @@ import Track12 from '../music/Unfold.mp3'
 
 import SoundHit from '../sound/hit.mp3'
 import SoundKey from '../sound/key.mp3'
+import SoundGun from '../sound/gun.mp3'
 import SoundGameOver from '../sound/game-over.mp3'
 import SoundHeart from '../sound/heart.mp3'
 
@@ -84,7 +86,8 @@ export default {
     hit: SoundHit,
     key: SoundKey,
     gameOver: SoundGameOver,
-    heart: SoundHeart
+    heart: SoundHeart,
+    gun: SoundGun
   },
 
   // sprites
@@ -133,9 +136,10 @@ export default {
       ]
     },
     items: {
-      /*0: [
-        item(80,  580, {idle: [HeartAnimPath, 9, 100]}, 'heart', (i, pick) => {Shared.hero.life++, pick(i, false)})
-      ],*/
+      0: [
+        item(80,  580, {idle: [GunAnimPath,   9, 150]}, 'gun',   (i, pick) => {Shared.hero.gun = true, pick(i)}),
+        item(830, 580, {idle: [KeyPath,       7, 200] }, 'key')
+      ],
       4: [
         item(770, 200, {idle: [HeartAnimPath, 9, 100]}, 'heart', (i, pick) => { Shared.hero.life++, pick(i, false)})
       ],
