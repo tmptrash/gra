@@ -89,7 +89,7 @@ export default {
 
   // sprites
   heart: [{ x: 0, y: 0 }, HeartPath],
-  hero: [{x: 90, y: 150}, {
+  hero: [{x: 150, y: 90}, {
     idleLeft:  [IdleLeftPath,  3, 260],
     idleRight: [IdleRightPath, 3, 260],
     walkLeft:  [WalkLeftPath,  6, 60],
