@@ -12,6 +12,9 @@ Builds the game into `dist` folder (to run just drop `index.html` to the Chrome 
 ### `npm start`
 Runs a game in development mode. It reacts to any change in js and html in real time
 
+## Try it out
+http://js-gra.netlify.app
+
 ## Screenshots
 ![logo](https://github.com/tmptrash/gra/blob/main/screenshots/logo.png)
 ![first-room](https://github.com/tmptrash/gra/blob/main/screenshots/first-room.png)
