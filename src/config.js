@@ -150,12 +150,11 @@ export default {
       ]
     },
     items: {
-      0: [
-        item(80,  580, {idle: [GunAnimPath,   9,  150]}, 'gun',   (i, pick) => {Shared.hero.gun = true, pick(i)}),
-        item(830, 580, {idle: [KeyPath,       7,  200] }, 'key')
-      ],
       4: [
         item(770, 200, {idle: [HeartAnimPath, 9,  100]}, 'heart', (i, pick) => { Shared.hero.life++, pick(i, false)})
+      ],
+      5: [
+        item(958, 288, {idle: [GunAnimPath,   9,  150]}, 'gun', (i, pick) => { Shared.hero.gun = true, pick(i) })
       ],
       8: [
         item(300, 260, {idle: [HeartAnimPath, 9,  100]}, 'heart', (i, pick) => { Shared.hero.life++, pick(i, false)})
