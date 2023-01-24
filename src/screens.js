@@ -13,7 +13,7 @@ export function updateObjs(fromScr, toScr) {
   }))
 
   const items = Config.screens.items[toScr]
-  items && items.forEach(cfg => !isPicked(cfg[0]) && objs.push({
+  items && items.forEach(cfg => !isPicked(cfg[0], toScr) && objs.push({
       draw: drawEntity, update: updateEntity, o: Item(...cfg, toScr), scr: toScr
   }))
 }
@@ -24,6 +24,8 @@ export function scrOffs(offsX, offsY) {
   return scrX + scrY * (Config.hSprites * Config.spriteSize / Config.width)
 }
 
-function isPicked(itemCfg) {
-  return Shared.picked.items.findIndex(s => s.img.img.src === itemCfg[1].idle[0]) !== -1
+function isPicked(itemCfg, scr) {
+  return Shared.picked.items.findIndex(i => {
+    return i.sprite.img.img.src === itemCfg[1].idle[0] && i.scr === scr
+  }) !== -1
 }

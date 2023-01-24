@@ -9,7 +9,8 @@ export function Item(spriteCfg, sound, pickFn, scr) {
     sprite: Sprite(...spriteCfg),
     stepTime: performance.now(),
     sound: Shared.sounds[sound],
-    pickFn
+    pickFn,
+    hidden: false
   }
 
   item.sprite.img = item.sprite.imgs.idle
@@ -26,10 +27,8 @@ export function update(i) {
 }
 
 function pick(item, show = true) {
-  const sprite = Sprite({ x: 0, y: 0 }, item.sprite.img.img.src)
-  sprite.width = item.sprite.img.frames.width
-  sprite.hidden = !show
-  Shared.picked.items.push(sprite)
+  item.hidden = !show
+  Shared.picked.items.push(item)
   const idx = findObjIdx(Shared.objs, item)
   idx !== -1 && Shared.objs.splice(idx, 1)
   item.sound.play()

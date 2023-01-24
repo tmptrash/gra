@@ -10,8 +10,7 @@ export function Sprite({ x, y, width = undefined, height = undefined}, imgs, onL
     height,
     img: null,
     imgs: {},
-    onLoad,
-    hidden: false
+    onLoad
   }
   loadImgs(sprite, typeof imgs === 'string' ? {idle: [imgs]} : imgs)
   sprite.imgs.idle && setImg(sprite, 'idle')

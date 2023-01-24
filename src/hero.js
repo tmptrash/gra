@@ -24,7 +24,8 @@ export function Hero() {
     sprite: Sprite(...Config.hero),
     lifeSprite: Sprite(...Config.heart),
     life: Config.life,
-    hit: false
+    hit: false,
+    gun: false
   }
   bind({
     keydown: {
@@ -56,7 +57,7 @@ export function update(h) {
   h.pressed.w && onJumpKeyDown(h)
   if (h.isJumping) {
     const time = (t - h.jumpStartTime) / h.jumpTimeDiv
-    s.img = left ? s.imgs.jumpLeft : s.imgs.jumpRight
+    s.img = s.imgs[`jump${h.gun ? 'Gun' : ''}${left ? 'Left' : 'Right'}`]
     if (time > h.jumpTime) updateY(h, h.jumpY), h.isJumping = false, h.jumpTime = 0
     else updateY(h, h.jumpY - (h.jumpV0 * time - time * time / 2))
   }
@@ -64,12 +65,12 @@ export function update(h) {
   // walk: incX = Config.stepSize / (Config.stepTime / (t1 - t0))
   if (h.pressed.d || h.pressed.a) {
     updateX(h, h.stepX + (Config.stepSize / (Config.stepTime / (t - h.stepTime))) * (left ? -1 : 1))
-    !h.isJumping && (s.img = (left ? s.imgs.walkLeft : s.imgs.walkRight))
+    !h.isJumping && (s.img = s.imgs[`walk${h.gun ? 'Gun' : ''}${left ? 'Left' : 'Right'}`])
   }
   
   // idle
   if (!h.isJumping && !h.pressed.d && !h.pressed.a) {
-    s.img = left ? s.imgs.idleLeft : s.imgs.idleRight
+    s.img = s.imgs[`idle${h.gun ? 'Gun' : ''}${left ? 'Left' : 'Right'}`]
   }
 
   // fall

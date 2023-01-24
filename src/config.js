@@ -5,11 +5,18 @@ import HeartPath from '../img/heart.png'
 import GunAnimPath from '../img/gun-9.png'
 import HeartAnimPath from '../img/heart-9.png'
 import IdleLeftPath from '../img/idle-left-3.png'
+import IdleGunLeftPath from '../img/idle-gun-left-3.png'
 import IdleRightPath from '../img/idle-right-3.png'
+import IdleGunRightPath from '../img/idle-gun-right-3.png'
+
 import WalkLeftPath from '../img/walk-left-6.png'
+import WalkGunLeftPath from '../img/walk-gun-left-6.png'
 import WalkRightPath from '../img/walk-right-6.png'
+import WalkGunRightPath from '../img/walk-gun-right-6.png'
 import JumpLeftPath from '../img/jump-left-9.png'
+import JumpGunLeftPath from '../img/jump-gun-left-9.png'
 import JumpRightPath from '../img/jump-right-9.png'
+import JumpGunRightPath from '../img/jump-gun-right-9.png'
 
 import BugLeftPath from '../img/bug-left-2.png'
 import BugRightPath from '../img/bug-right-2.png'
@@ -62,7 +69,7 @@ export default {
   logoTimeout: 100,
 
   // game related
-  debug: false,
+  debug: true,
   upsDelay: 2,
   useSetTimeout: false,
   musicVolume: .6,
@@ -93,12 +100,19 @@ export default {
   // sprites
   heart: [{ x: 0, y: 0 }, HeartPath],
   hero: [{x: 150, y: 90}, {
-    idleLeft:  [IdleLeftPath,  3, 260],
-    idleRight: [IdleRightPath, 3, 260],
-    walkLeft:  [WalkLeftPath,  6, 60],
-    walkRight: [WalkRightPath, 6, 60],
-    jumpLeft:  [JumpLeftPath,  9, 150],
-    jumpRight: [JumpRightPath, 9, 150]
+    idleLeft:     [IdleLeftPath,     3, 260],
+    idleRight:    [IdleRightPath,    3, 260],
+    walkLeft:     [WalkLeftPath,     6, 60 ],
+    walkRight:    [WalkRightPath,    6, 60 ],
+    jumpLeft:     [JumpLeftPath,     9, 150],
+    jumpRight:    [JumpRightPath,    9, 150],
+
+    idleGunLeft:  [IdleGunLeftPath,  3, 260],
+    idleGunRight: [IdleGunRightPath, 3, 260],
+    walkGunLeft:  [WalkGunLeftPath,  6, 60 ],
+    walkGunRight: [WalkGunRightPath, 6, 60 ],
+    jumpGunLeft:  [JumpGunLeftPath,  9, 150],
+    jumpGunRight: [JumpGunRightPath, 9, 150]
   }],
   l1: [{x: 0, y: 0, width: WIDTH, height: HEIGHT}, L1Path],
 
@@ -137,17 +151,17 @@ export default {
     },
     items: {
       0: [
-        item(80,  580, {idle: [GunAnimPath,   9, 150]}, 'gun',   (i, pick) => {Shared.hero.gun = true, pick(i)}),
-        item(830, 580, {idle: [KeyPath,       7, 200] }, 'key')
+        item(80,  580, {idle: [GunAnimPath,   9,  150]}, 'gun',   (i, pick) => {Shared.hero.gun = true, pick(i)}),
+        item(830, 580, {idle: [KeyPath,       7,  200] }, 'key')
       ],
       4: [
-        item(770, 200, {idle: [HeartAnimPath, 9, 100]}, 'heart', (i, pick) => { Shared.hero.life++, pick(i, false)})
+        item(770, 200, {idle: [HeartAnimPath, 9,  100]}, 'heart', (i, pick) => { Shared.hero.life++, pick(i, false)})
       ],
       8: [
-        item(300, 260, {idle: [HeartAnimPath, 9, 100]}, 'heart', (i, pick) => { Shared.hero.life++, pick(i, false)})
+        item(300, 260, {idle: [HeartAnimPath, 9,  100]}, 'heart', (i, pick) => { Shared.hero.life++, pick(i, false)})
       ],
       39: [
-        item(830, 580, {idle: [KeyPath,       7, 200]}, 'key')
+        item(830, 580, {idle: [KeyPath,       7,  200]}, 'key')
       ]
     }
   }

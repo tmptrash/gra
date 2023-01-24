@@ -11,10 +11,14 @@ export function Picked() {
 
 export function draw(picked) {
   let x = Config.width - 2
-  picked.items.forEach(s => {
-    !s.hidden && (x -= s.width + 5)
-    s.x = x
-    s.y = 10
-    drawSprite(s)
+  picked.items.forEach(i => {
+    i.sprite.img.frames.frame = 0
+    i.sprite.width = i.sprite.img.frames.width
+    if (!i.hidden) {
+      x -= (i.sprite.width + 5)
+      i.sprite.x = x
+      i.sprite.y = 10
+      drawSprite(i.sprite)
+    }
   })
 }
