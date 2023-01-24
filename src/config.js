@@ -123,7 +123,7 @@ export default {
       ],
       8: [
         enemy(650, 236, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .07),
-        enemy(300, 364, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .07),
+        enemy(270, 364, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .07),
       ],
       9: [
         enemy(150, 716, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .07),
