@@ -47,6 +47,10 @@ export function logo(show = true) {
 }
 
 export function touches(s, s1) {
-  if (s.x + s.width < s1.x || s1.x + s1.width < s.x || s.y + s.height < s1.y || s1.y + s1.height < s.y) return false
-  return true
+  return (
+    s.x <= (s1.x + s1.width)  &&
+    (s.x + s.width) >= s1.x   &&
+    s.y <= (s1.y + s1.height) &&
+    (s.y + s.height) >= s1.y
+  )
 }
