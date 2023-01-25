@@ -21,7 +21,10 @@ export function draw(bullet) {
 }
 
 export function update(b) {
-  if (b.hidden) return
+  if (b.hidden) {
+    b.time = 0
+    return
+  }
 
   const h = Shared.hero
   if (b.time === 0) {

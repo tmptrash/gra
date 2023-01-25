@@ -36,8 +36,8 @@ function main() {
   Shared.picked = findObjById(objs, PICKED_ID)
   Shared.hero = findObjById(objs, Config.heroId)
   Shared.bullet = findObjById(objs, Config.bulletId)
-  Config.debug && objs.push({ draw: drawDebug, update: updateDebug, o: Debug() })
 
+  Config.debug && objs.push({ draw: drawDebug, update: updateDebug, o: Debug() })
   window.addEventListener('message', e => e.data === 0 && (e.stopPropagation(), update()), true)
   updateObjs(null, 0)
   setTimeout(waitAssets, Config.logoTimeout)
