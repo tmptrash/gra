@@ -31,7 +31,7 @@ export function Hero() {
       a: () => (hero.pressed.a = true, hero.stepTime = performance.now(), hero.stepX = hero.sprite.x, hero.dir = LEFT ),
       d: () => (hero.pressed.d = true, hero.stepTime = performance.now(), hero.stepX = hero.sprite.x, hero.dir = RIGHT),
       w: onJumpKeyDown.bind(null, hero),
-      ' ': () => (hero.fire = true)
+      ' ': () => (hero.gun && hero.bullets > 0 && (hero.fire = true))
     },
     keyup: {
       a: () => (hero.pressed.a = false, hero.pressed.d && (hero.dir = RIGHT)),
@@ -87,7 +87,7 @@ export function update(h) {
   }
 
   // fire
-  if (h.fire && h.gun && h.bullets > 0) {
+  if (h.fire) {
     Shared.bullet.hidden = false
     h.fire = false
     h.bullets--
