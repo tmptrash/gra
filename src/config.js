@@ -45,6 +45,11 @@ import Track10 from '../music/PanCromatico.mp3'
 import Track11 from '../music/Under the Radar.mp3'
 import Track12 from '../music/Unfold.mp3'
 
+import Cave0 from '../music/cave0.mp3'
+import Cave1 from '../music/cave1.mp3'
+import Cave2 from '../music/cave2.mp3'
+import Cave3 from '../music/cave3.mp3'
+
 import SoundHit from '../sound/hit.mp3'
 import SoundKey from '../sound/key.mp3'
 import SoundGun from '../sound/gun.mp3'
@@ -94,7 +99,7 @@ export default {
   bulletYOffs: 4,
 
   // audio
-  music: [Track0, Track1, Track2, Track3, Track4, Track5, Track6, Track7, Track8, Track9, Track10, Track11, Track12],
+  music: [Cave0, Cave1, Cave2, Cave3], //[Track0, Track1, Track2, Track3, Track4, Track5, Track6, Track7, Track8, Track9, Track10, Track11, Track12],
   sounds: {
     hit: SoundHit,
     key: SoundKey,
