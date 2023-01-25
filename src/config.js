@@ -68,7 +68,7 @@ export default Config = {
   heroId: 'hero',
   bulletId: 'bullet',
   playQuery: '.play',
-  frontColor: '#aaa',
+  frontColor: '#ccc',
   frontFont: '16px Calibri',
   bulletsFont: 'bold 14px Calibri, sans-serif',
 
