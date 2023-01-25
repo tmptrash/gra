@@ -3,7 +3,7 @@ import Config from './config'
 import Shared from './shared'
 import { RIGHT, LEFT } from './utils'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
-
+import { leftBarrier, rightBarrier } from './barriers'
 
 export function Bullet() {
   const bullet = {
@@ -20,31 +20,31 @@ export function draw(bullet) {
   !bullet.hidden && drawSprite(bullet.sprite)
 }
 
-export function update(bullet) {
-  if (bullet.hidden) return
+export function update(b) {
+  if (b.hidden) return
 
   const h = Shared.hero
-  if (bullet.time === 0) {
-    bullet.time = performance.now()
+  if (b.time === 0) {
+    b.time = performance.now()
     if (h.dir === LEFT) {
-      bullet.sprite.x = h.sprite.x - 1
-      bullet.sprite.y = h.sprite.y + h.sprite.height / 2 + Config.bulletYOffs
+      b.sprite.x = h.sprite.x - 1
+      b.sprite.y = h.sprite.y + h.sprite.height / 2 + Config.bulletYOffs
     } else {
-      bullet.sprite.x = h.sprite.x + h.sprite.width + 1
-      bullet.sprite.y = h.sprite.y + h.sprite.height / 2 + Config.bulletYOffs
+      b.sprite.x = h.sprite.x + h.sprite.width + 1
+      b.sprite.y = h.sprite.y + h.sprite.height / 2 + Config.bulletYOffs
     }
-    bullet.dir = h.dir
+    b.dir = h.dir
     Config.sounds.fire.play()
   } else {
+    const d = b.dir
     const t = performance.now()
-    bullet.sprite.x += (((t - bullet.time) * Config.bulletSpeed) * bullet.dir)
-    bullet.time = t
-    // TODO: add barriers check here
-    if (bullet.sprite.x < 0 || bullet.sprite.x > Config.width) {
-      bullet.time = 0
-      bullet.hidden = true
+    b.sprite.x += (((t - b.time) * Config.bulletSpeed) * d)
+    b.time = t
+    if ((d === LEFT ? leftBarrier(b.sprite) : rightBarrier(b.sprite)) || b.sprite.x < 0 || b.sprite.x > Config.width) {
+      b.time = 0
+      b.hidden = true
     }
   }
 
-  updateSprite(bullet.sprite)
+  updateSprite(b.sprite)
 }
