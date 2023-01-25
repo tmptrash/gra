@@ -158,12 +158,19 @@ export default Config = {
       8: [
         enemy(650, 217, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .1),
         enemy(270, 345, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .1),
+        enemy(350, 729, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .2)
       ],
       9: [
         enemy(150, 697, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .1),
         enemy(200, 697, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .1),
         enemy(270, 697, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .1),
         enemy(890, 377, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .1),
+      ],
+      16: [
+        enemy(800, 729, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .2),
+      ],
+      17: [
+        enemy(150, 729, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .2),
       ]
     },
     items: {
