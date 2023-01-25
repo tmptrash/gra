@@ -78,7 +78,7 @@ export default Config = {
   logoTimeout: 100,
 
   // game related
-  debug: false,
+  debug: true,
   upsDelay: 2,
   useSetTimeout: false,
   musicVolume: .6,
