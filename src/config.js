@@ -78,7 +78,7 @@ export default Config = {
   logoTimeout: 100,
 
   // game related
-  debug: true,
+  debug: false,
   upsDelay: 2,
   useSetTimeout: false,
   musicVolume: .6,
@@ -168,8 +168,8 @@ export default Config = {
     },
     items: {
       0: [
-        item(100, 200, {idle: [GunAnimPath, 9, 150] }, 'gun', (i, pick) => { Shared.hero.gun = true, pick(i) }),
-        item(200, 300, {idle: [BulletsPath, 9, 150] }, 'bullets', (i, pick) => { Shared.hero.bullets += Config.bulletsAmount, pick(i, false) })
+        item(100, 200, {idle: [GunAnimPath,   9, 150]}, 'gun', (i, pick) => { Shared.hero.gun = true, pick(i) }),
+        item(200, 300, {idle: [BulletsPath,   9, 150]}, 'bullets', (i, pick) => { Shared.hero.bullets += Config.bulletsAmount, pick(i, false) })
       ],
       4: [
         item(770, 200, {idle: [HeartAnimPath, 9,  100]}, 'heart', (i, pick) => { Shared.hero.life++, pick(i, false)})
@@ -178,7 +178,11 @@ export default Config = {
         item(958, 288, {idle: [GunAnimPath,   9,  150]}, 'gun', (i, pick) => { Shared.hero.gun = true, pick(i) })
       ],
       8: [
-        item(330, 260, {idle: [HeartAnimPath, 9,  100]}, 'heart', (i, pick) => { Shared.hero.life++, pick(i, false)})
+        item(330, 260, {idle: [HeartAnimPath, 9,  100]}, 'heart', (i, pick) => { Shared.hero.life++, pick(i, false)}),
+        item(350, 650, {idle: [BulletsPath,   9,  150]}, 'bullets', (i, pick) => { Shared.hero.bullets += Config.bulletsAmount, pick(i, false) })
+      ],
+      23: [
+        item(820, 100, {idle: [BulletsPath,   9,  150]}, 'bullets', (i, pick) => { Shared.hero.bullets += Config.bulletsAmount, pick(i, false) })
       ],
       39: [
         item(830, 580, {idle: [KeyPath,       7,  200]}, 'key')

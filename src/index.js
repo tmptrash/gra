@@ -40,7 +40,6 @@ function main() {
 
   Config.debug && objs.push({ draw: drawDebug, update: updateDebug, o: Debug() })
   window.addEventListener('message', e => e.data === 0 && (e.stopPropagation(), update()), true)
-  document.addEventListener("visibilitychange", () => {!(paused = document.hidden) && (update(), draw())})
   updateObjs(null, 0)
   setTimeout(waitAssets, Config.logoTimeout)
 }
@@ -71,6 +70,7 @@ function waitAssets() {
 function start() {
   playBtn.style.display = 'none'
 
+  document.addEventListener("visibilitychange", () => { !(paused = document.hidden) && (update(), draw()) })
   play(music)
   update()
   draw()
