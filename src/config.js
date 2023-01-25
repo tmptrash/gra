@@ -70,6 +70,7 @@ export default Config = {
   playQuery: '.play',
   frontColor: '#fff',
   frontFont: '16px Tahoma',
+  bulletsFont: '12px Tahoma',
 
   // logo
   logoX: 256,
@@ -97,7 +98,7 @@ export default Config = {
 
   bulletSpeed: .8,
   bulletYOffs: 4,
-  bullets: 10,
+  bulletsAmount: 10,
 
   // audio
   music: [Cave0], //[Track0, Track1, Track2, Track3, Track4, Track5, Track6, Track7, Track8, Track9, Track10, Track11, Track12],
@@ -114,6 +115,7 @@ export default Config = {
 
   // sprites
   heart: [{ x: 0, y: 0 }, HeartPath],
+  bullets: [{ x: 0, y: 0 }, {idle: [BulletsPath, 9, 150]}],
   hero: [{x: 150, y: 90}, {
     idleLeft:     [IdleLeftPath,     3, 260],
     idleRight:    [IdleRightPath,    3, 260],
@@ -167,7 +169,7 @@ export default Config = {
     items: {
       0: [
         item(100, 200, {idle: [GunAnimPath, 9, 150] }, 'gun', (i, pick) => { Shared.hero.gun = true, pick(i) }),
-        item(200, 300, {idle: [BulletsPath, 9, 150] }, 'bullets', (i, pick) => { Shared.hero.bullets += Config.bullets, pick(i) })
+        item(200, 300, {idle: [BulletsPath, 9, 150] }, 'bullets', (i, pick) => { Shared.hero.bullets += Config.bulletsAmount, pick(i, false) })
       ],
       4: [
         item(770, 200, {idle: [HeartAnimPath, 9,  100]}, 'heart', (i, pick) => { Shared.hero.life++, pick(i, false)})

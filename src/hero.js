@@ -19,6 +19,7 @@ export function Hero() {
     stepX: 0,
     pressed: { a: false, d: false, w: false },
     sprite: Sprite(...Config.hero),
+    bulletsSprite: Sprite(...Config.bullets),
     lifeSprite: Sprite(...Config.heart),
     life: Config.life,
     bullets: 0,
@@ -46,6 +47,7 @@ export function Hero() {
 export function draw(hero) {
   drawSprite(hero.sprite)
   drawLife(hero)
+  drawBullets(hero)
 }
 
 export function update(h) {
@@ -175,4 +177,18 @@ function drawLife(hero) {
     s.y = 10
     drawSprite(s)
   }
+}
+
+function drawBullets(hero) {
+  if (hero.bullets <= 0) return
+
+  const s = hero.bulletsSprite
+  s.x = 10
+  s.y = 26
+  s.img.frames.frame = 0
+  s.width = s.img.frames.width
+  drawSprite(s)
+
+  Shared.ctx.font = Config.bulletsFont
+  Shared.ctx.fillText(`${hero.bullets}`, 32, 41)
 }
