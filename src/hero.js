@@ -1,12 +1,9 @@
 import Config from './config'
 import Shared from './shared'
-import { isArr, bind } from './utils'
+import { isArr, bind, LEFT, RIGHT } from './utils'
 import { rightBarrier, leftBarrier, topBarrier, downBarrier } from './barriers'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import { updateObjs, scrOffs } from './screens'
-
-const RIGHT = 0
-const LEFT  = 1
 
 export function Hero() {
   const hero = {
@@ -25,13 +22,15 @@ export function Hero() {
     lifeSprite: Sprite(...Config.heart),
     life: Config.life,
     hit: false,
-    gun: false
+    gun: false,
+    fire: false
   }
   bind({
     keydown: {
       a: () => (hero.pressed.a = true, hero.stepTime = performance.now(), hero.stepX = hero.sprite.x, hero.dir = LEFT ),
       d: () => (hero.pressed.d = true, hero.stepTime = performance.now(), hero.stepX = hero.sprite.x, hero.dir = RIGHT),
-      w: onJumpKeyDown.bind(null, hero)
+      w: onJumpKeyDown.bind(null, hero),
+      ' ': () => (hero.fire = true)
     },
     keyup: {
       a: () => (hero.pressed.a = false, hero.pressed.d && (hero.dir = RIGHT)),
@@ -84,6 +83,12 @@ export function update(h) {
     Shared.sounds.hit.play()
     if (--h.life < 1) Shared.stop = true
     h.hit = false
+  }
+
+  // fire
+  if (h.fire && h.gun) {
+    Shared.bullet.hidden = false
+    h.fire = false
   }
 
   updateScreen(h)

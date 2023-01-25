@@ -23,7 +23,6 @@ export function draw(item) {
 
 export function update(i) {
   if (touches(i.sprite, Shared.hero.sprite)) {
-    console.log(i.sprite, Shared.hero.sprite)
     i.pickFn ? i.pickFn(i, pick) : pick(i)
   }
   updateSprite(i.sprite)

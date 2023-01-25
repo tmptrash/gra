@@ -50,6 +50,7 @@ import SoundKey from '../sound/key.mp3'
 import SoundGun from '../sound/gun.mp3'
 import SoundGameOver from '../sound/game-over.mp3'
 import SoundHeart from '../sound/heart.mp3'
+import SoundFire from '../sound/fire.mp3'
 
 const WIDTH  = 1024
 const HEIGHT = 800
@@ -59,6 +60,7 @@ export default {
   canvasId: 'canvas',
   audioId: 'audio',
   heroId: 'hero',
+  bulletId: 'bullet',
   playQuery: '.play',
   frontColor: '#fff',
   frontFont: '16px Tahoma',
@@ -87,6 +89,9 @@ export default {
   life: 4,
   touchDelay: 1000,
 
+  bulletSpeed: .8,
+  bulletYOffs: 4,
+
   // audio
   music: [Track0, Track1, Track2, Track3, Track4, Track5, Track6, Track7, Track8, Track9, Track10, Track11, Track12],
   sounds: {
@@ -94,7 +99,8 @@ export default {
     key: SoundKey,
     gameOver: SoundGameOver,
     heart: SoundHeart,
-    gun: SoundGun
+    gun: SoundGun,
+    fire: SoundFire
   },
 
   // sprites
@@ -150,6 +156,9 @@ export default {
       ]
     },
     items: {
+      0: [
+        item(60, 200, {idle: [GunAnimPath, 9, 150] }, 'gun', (i, pick) => { Shared.hero.gun = true, pick(i) })
+      ],
       4: [
         item(770, 200, {idle: [HeartAnimPath, 9,  100]}, 'heart', (i, pick) => { Shared.hero.life++, pick(i, false)})
       ],

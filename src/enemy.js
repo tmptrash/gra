@@ -2,11 +2,9 @@ import Config from './config'
 import Shared from './shared'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import { rightBarrier, leftBarrier, topBarrier, downBarrier, xyBarrier } from './barriers'
-import { touches } from './utils'
+import { touches, LEFT, RIGHT } from './utils'
 
 const STEP_TIME = 17
-const RIGHT = 1
-const LEFT  = -1
 const UP    = -1
 const DOWN  = 1
 
