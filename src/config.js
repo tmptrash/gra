@@ -69,8 +69,9 @@ export default Config = {
   bulletId: 'bullet',
   playQuery: '.play',
   frontColor: '#fff',
-  frontFont: '16px Tahoma',
-  bulletsFont: '12px Tahoma',
+  frontFont: '16px Calibri',
+  bulletsFont: 'bold 14px Calibri, sans-serif',
+  bulletsColor: '#ccc',
 
   // logo
   logoX: 256,
