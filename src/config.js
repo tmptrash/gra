@@ -3,6 +3,7 @@ import L1Path from '../img/l1.png'
 
 import HeartPath from '../img/heart.png'
 import GunAnimPath from '../img/gun-9.png'
+import BulletsPath from '../img/bullets-9.png'
 import HeartAnimPath from '../img/heart-9.png'
 import IdleLeftPath from '../img/idle-left-3.png'
 import IdleGunLeftPath from '../img/idle-gun-left-3.png'
@@ -50,6 +51,7 @@ import Cave0 from '../music/cave0.mp3'
 import SoundHit from '../sound/hit.mp3'
 import SoundKey from '../sound/key.mp3'
 import SoundGun from '../sound/gun.mp3'
+import SoundBullets from '../sound/bullets.mp3'
 import SoundGameOver from '../sound/game-over.mp3'
 import SoundHeart from '../sound/heart.mp3'
 import SoundFire from '../sound/fire.mp3'
@@ -57,8 +59,9 @@ import SoundBugDie from '../sound/bug-die.mp3'
 
 const WIDTH  = 1024
 const HEIGHT = 800
+let Config = null
 
-export default {
+export default Config = {
   // html & css
   canvasId: 'canvas',
   audioId: 'audio',
@@ -94,6 +97,7 @@ export default {
 
   bulletSpeed: .8,
   bulletYOffs: 4,
+  bullets: 10,
 
   // audio
   music: [Cave0], //[Track0, Track1, Track2, Track3, Track4, Track5, Track6, Track7, Track8, Track9, Track10, Track11, Track12],
@@ -103,6 +107,7 @@ export default {
     gameOver: SoundGameOver,
     heart: SoundHeart,
     gun: SoundGun,
+    bullets: SoundBullets,
     fire: SoundFire,
     bugDie: SoundBugDie
   },
@@ -161,7 +166,8 @@ export default {
     },
     items: {
       0: [
-        item(100, 200, {idle: [GunAnimPath, 9, 150] }, 'gun', (i, pick) => { Shared.hero.gun = true, pick(i) })
+        item(100, 200, {idle: [GunAnimPath, 9, 150] }, 'gun', (i, pick) => { Shared.hero.gun = true, pick(i) }),
+        item(200, 300, {idle: [BulletsPath, 9, 150] }, 'bullets', (i, pick) => { Shared.hero.bullets += Config.bullets, pick(i) })
       ],
       4: [
         item(770, 200, {idle: [HeartAnimPath, 9,  100]}, 'heart', (i, pick) => { Shared.hero.life++, pick(i, false)})

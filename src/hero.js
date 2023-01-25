@@ -21,6 +21,7 @@ export function Hero() {
     sprite: Sprite(...Config.hero),
     lifeSprite: Sprite(...Config.heart),
     life: Config.life,
+    bullets: 0,
     hit: false,
     gun: false,
     fire: false
@@ -86,9 +87,10 @@ export function update(h) {
   }
 
   // fire
-  if (h.fire && h.gun) {
+  if (h.fire && h.gun && h.bullets > 0) {
     Shared.bullet.hidden = false
     h.fire = false
+    h.bullets--
   }
 
   updateScreen(h)
