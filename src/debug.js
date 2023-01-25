@@ -6,8 +6,8 @@ export function Debug() {
   const debug = {
     pos: {},
     hero: findObjById(Shared.objs, Config.heroId),
-    fTime: Date.now(),
-    uTime: Date.now(),
+    fTime: performance.now(),
+    uTime: performance.now(),
     curFps: 0,
     curUps: 0
   }
@@ -25,9 +25,10 @@ export function draw(debug) {
   const hy1 = int(s.y + s.height)
   const scrX = Shared.offsX / Config.width
   const scrY = Shared.offsY / Config.height
-  const t = Date.now()
+  const t = performance.now()
 
   if (t - debug.fTime > 500) {
+    console.log(debug.curFps)
     Shared.fps = debug.curFps * 2
     debug.curFps = 0
     debug.fTime = t
@@ -39,7 +40,7 @@ export function draw(debug) {
 }
 
 export function update(fps) {
-  const t = Date.now()
+  const t = performance.now()
   if (t - fps.uTime > 1000) {
     Shared.ups = fps.curUps
     fps.curUps = 0
