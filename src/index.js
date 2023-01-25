@@ -14,6 +14,7 @@ const PICKED_ID = 'picked'
 const playBtn = document.querySelector(Config.playQuery)
 
 let stopped = false
+let paused = false
 const music = Music()
 const objs = Shared.objs = [
   { draw: drawLevel,  update: updateLevel,  o: Level() },
@@ -39,11 +40,13 @@ function main() {
 
   Config.debug && objs.push({ draw: drawDebug, update: updateDebug, o: Debug() })
   window.addEventListener('message', e => e.data === 0 && (e.stopPropagation(), update()), true)
+  document.addEventListener("visibilitychange", () => {!(paused = document.hidden) && (update(), draw())})
   updateObjs(null, 0)
   setTimeout(waitAssets, Config.logoTimeout)
 }
 
 function draw() {
+  if (paused) return
   Shared.ctx.clearRect(0, 0, Config.width, Config.height)
   objs.forEach(o => o.draw(o.o))
   if (Shared.stop) drawStop()
@@ -51,7 +54,7 @@ function draw() {
 }
 
 function update() {
-  if (Shared.stop) return
+  if (Shared.stop || paused) return
   objs.forEach(o => o.update(o.o))
   setTimeout(() => window.postMessage(0, '*'), Config.upsDelay)
 }
