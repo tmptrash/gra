@@ -190,6 +190,5 @@ function drawBullets(hero) {
   drawSprite(s)
 
   Shared.ctx.font = Config.bulletsFont
-  Shared.ctx.fillStyle = Config.bulletsColor
   Shared.ctx.fillText(`${hero.bullets}`, 32, 41)
 }

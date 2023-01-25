@@ -71,7 +71,6 @@ export default Config = {
   frontColor: '#fff',
   frontFont: '16px Calibri',
   bulletsFont: 'bold 14px Calibri, sans-serif',
-  bulletsColor: '#ccc',
 
   // logo
   logoX: 256,
