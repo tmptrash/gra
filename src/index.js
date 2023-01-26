@@ -12,6 +12,7 @@ import { Sounds } from './sounds'
 
 const PICKED_ID = 'picked'
 const playBtn = document.querySelector(Config.playQuery)
+const doc = document
 
 let stopped = false
 let paused = false
@@ -24,10 +25,10 @@ const objs = Shared.objs = [
 ]
 
 function main() {
-  Shared.ctx = document.getElementById(Config.canvasId).getContext('2d')
+  Shared.ctx = doc.getElementById(Config.canvasId).getContext('2d')
   Shared.ctx.canvas.width = Config.width
   Shared.ctx.canvas.height = Config.height
-  document.body.style.zoom = window.innerHeight * .9 / Config.height
+  doc.body.style.zoom = window.innerHeight * .9 / Config.height
   logo()
   Shared.ctx.fillStyle = Config.frontColor
   Shared.ctx.font = Config.frontFont
@@ -69,8 +70,6 @@ function waitAssets() {
 
 function start() {
   playBtn.style.display = 'none'
-
-  document.addEventListener("visibilitychange", () => { !(paused = document.hidden) && (update(), draw()) })
   play(music)
   update()
   draw()
@@ -78,7 +77,7 @@ function start() {
 
 function drawStop() {
   Shared.ctx.fillStyle = Config.frontColor
-  Shared.ctx.font = '28px Tahoma'
+  Shared.ctx.font = Config.fontGameOver
   Shared.ctx.fillText('Game Over!', Config.width / 2 - 55, Config.height / 2)
   if (!stopped) {
     Shared.sounds.gameOver.play()

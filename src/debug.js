@@ -1,11 +1,12 @@
 import Shared from './shared'
 import Config from './config'
-import { getMousePos, int, findObjById } from './utils'
+import { getMousePos, int } from './utils'
+
+const CHECK_EVERY = 1000
 
 export function Debug() {
   const debug = {
     pos: {},
-    hero: findObjById(Shared.objs, Config.heroId),
     fTime: performance.now(),
     uTime: performance.now(),
     curFps: 0,
@@ -16,7 +17,7 @@ export function Debug() {
 }
 
 export function draw(debug) {
-  const s = debug.hero.sprite
+  const s = Shared.hero && Shared.hero.sprite || {}
   const x = debug.pos.x || 0
   const y = debug.pos.y || 0
   const hx0 = int(s.x)
@@ -27,8 +28,8 @@ export function draw(debug) {
   const scrY = Shared.offsY / Config.height
   const t = performance.now()
 
-  if (t - debug.fTime > 500) {
-    Shared.fps = debug.curFps * 2
+  if (t - debug.fTime > CHECK_EVERY) {
+    Shared.fps = debug.curFps
     debug.curFps = 0
     debug.fTime = t
   }
@@ -40,7 +41,7 @@ export function draw(debug) {
 
 export function update(fps) {
   const t = performance.now()
-  if (t - fps.uTime > 1000) {
+  if (t - fps.uTime > CHECK_EVERY) {
     Shared.ups = fps.curUps
     fps.curUps = 0
     fps.uTime = t

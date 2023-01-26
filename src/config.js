@@ -69,7 +69,9 @@ export default Config = {
   bulletId: 'bullet',
   playQuery: '.play',
   frontColor: '#ccc',
-  frontFont: '16px Cambria',
+  frontFont: '16px Cambria, serif',
+  fontGameOver: '28px Tahoma',
+
   bulletsFont: 'bold 11px Cambria, serif',
 
   // logo
@@ -78,15 +80,15 @@ export default Config = {
   logoTimeout: 100,
 
   // game related
-  debug: false,
+  debug: true,
   upsDelay: 2,
   useSetTimeout: false,
   musicVolume: .6,
   width: WIDTH,
   height: HEIGHT,
   spriteSize: 32,
-  hSprites: null,
-  vSprites: null,
+  hSprites: 256,
+  vSprites: 125,
 
   // hero related
   jumpTime: 1000,
