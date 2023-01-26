@@ -17,4 +17,4 @@ http://js-gra.netlify.app
 
 ## Screenshots
 ![logo](https://github.com/tmptrash/gra/blob/main/screenshots/logo.png)
-![first-room](https://github.com/tmptrash/gra/blob/main/screenshots/first-room.png)
+![first-room](https://github.com/tmptrash/gra/blob/main/screenshots/room.png)
