@@ -221,6 +221,9 @@ export default Config = {
         //item(100, 200, {idle: [GunAnimPath,   9,  150]}, 'gun', (i, pick) => { Shared.hero.gun = true, pick(i) }),
         //item(200, 300, {idle: [BulletsPath,   9,  150]}, 'bullets', (i, pick) => { Shared.hero.bullets += Config.bulletsAmount, pick(i, false) })
       ],
+      2: [
+        item(128, 700, {idle: [HeartAnimPath, 9,  100]}, 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)})
+      ],
       4: [
         item(770, 200, {idle: [HeartAnimPath, 9,  100]}, 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)})
       ],
@@ -230,6 +233,9 @@ export default Config = {
       8: [
         item(330, 260, {idle: [HeartAnimPath, 9,  100]}, 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}),
         item(350, 650, {idle: [BulletsPath,   9,  150]}, 'bullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) })
+      ],
+      10: [
+        item(550, 128, {idle: [BulletsPath,   9,  150]}, 'bullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) })
       ],
       13: [
         item(800, 600, {idle: [HeartAnimPath, 9,  100]}, 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)})
