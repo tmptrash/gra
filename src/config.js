@@ -78,7 +78,7 @@ export default Config = {
   logoTimeout: 100,
 
   // game related
-  debug: false,
+  debug: true,
   upsDelay: 2,
   useSetTimeout: false,
   musicVolume: .6,
@@ -141,11 +141,11 @@ export default Config = {
         enemy(350, 377, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}),
         enemy(32,  150, {idleUp:   [BugUpPath,      2, 300], idleDown:  [BugDownPath,     2, 300]}, .08, false),
         enemy(950, 601, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}),
-        enemy(140, 729, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300] })
+        enemy(140, 729, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]})
       ],
       1: [
         enemy(620, 505, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}),
-        enemy(90,  599, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]})
+        enemy(200, 599, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]})
       ],
       2: [
         enemy(150, 281, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .09),
@@ -192,9 +192,18 @@ export default Config = {
       17: [
         enemy(150, 729, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .2),
       ],
+      18: [
+        enemy(800, 723, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}, .29),
+        enemy(192, 627, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}, .29),
+        enemy(352, 691, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}, .29)
+      ],
       21: [
         enemy(250, 727, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}, .29),
         enemy(500, 727, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}, .29)
+      ],
+      25: [
+        enemy(768, 599, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}, .29),
+        enemy(200, 727, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}, .29)
       ],
       29: [
         enemy(500, 147, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}, .3),
@@ -222,6 +231,9 @@ export default Config = {
       ],
       13: [
         item(800, 600, {idle: [HeartAnimPath, 9,  100]}, 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)})
+      ],
+      18: [
+        item(700, 128, {idle: [HeartAnimPath, 9,  100]}, 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)})
       ],
       21: [
         item(530, 100, {idle: [BulletsPath,   9,  150]}, 'bullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) })
