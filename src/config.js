@@ -199,6 +199,10 @@ export default Config = {
         enemy(192, 627, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}, .29),
         enemy(352, 691, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}, .29)
       ],
+      19: [
+        enemy(384, 727, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}, .29),
+        enemy(640, 727, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}, .29)
+      ],
       21: [
         enemy(250, 727, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}, .29),
         enemy(500, 727, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}, .29)
@@ -236,6 +240,9 @@ export default Config = {
       ],
       10: [
         item(550, 128, {idle: [BulletsPath,   9,  150]}, 'bullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) })
+      ],
+      11: [
+        item(832, 224, {idle: [HeartAnimPath, 9,  100]}, 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}),
       ],
       13: [
         item(800, 600, {idle: [HeartAnimPath, 9,  100]}, 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)})
