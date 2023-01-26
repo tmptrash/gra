@@ -23,8 +23,8 @@ import BugLeftPath from '../img/bug-left-2.png'
 import BugRightPath from '../img/bug-right-2.png'
 import BugUpPath from '../img/bug-up-2.png'
 import BugDownPath from '../img/bug-down-2.png'
-import BugBlackLeftPath from '../img/bug-black-left-5.png'
-import BugBlackRightPath from '../img/bug-black-right-5.png'
+import BugBlkLeftPath from '../img/bug-black-left-5.png'
+import BugBlkRightPath from '../img/bug-black-right-5.png'
 import BugBlackBlueLeftPath from '../img/bug-black-blue-left-3.png'
 import BugBlackBlueRightPath from '../img/bug-black-blue-right-3.png'
 import BugBigLeftPath from '../img/bug-big-left-3.png'
@@ -78,7 +78,7 @@ export default Config = {
   logoTimeout: 100,
 
   // game related
-  debug: false,
+  debug: true,
   upsDelay: 2,
   useSetTimeout: false,
   musicVolume: .6,
@@ -133,44 +133,54 @@ export default Config = {
   }],
   l1: [{x: 0, y: 0, width: WIDTH, height: HEIGHT}, L1Path],
 
+  // enemy(130, 361, {idleLeft: [BugBlackBlueLeftPath, 3, 200], idleRight: [BugBlackBlueRightPath, 3, 200]}),
+  // enemy(140, 725, {idleLeft: [BugBigLeftPath,       3, 200], idleRight: [BugBigRightPath,       3, 200]}),
   // enemies and items per screen
   screens: {
     enemies: {
       0: [
-        enemy(350, 377, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}),
-        enemy(32,  150, {idleUp:   [BugUpPath,            2, 300], idleDown:  [BugDownPath,           2, 300]}, .08, false),
-        enemy(950, 601, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}),
-        //enemy(130, 361, {idleLeft: [BugBlackBlueLeftPath, 3, 200], idleRight: [BugBlackBlueRightPath, 3, 200]}),
-        //enemy(140, 725, {idleLeft: [BugBigLeftPath,       3, 200], idleRight: [BugBigRightPath,       3, 200]}),
-        enemy(140, 729, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath, 2, 300] })
+        enemy(350, 377, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}),
+        enemy(32,  150, {idleUp:   [BugUpPath,      2, 300], idleDown:  [BugDownPath,     2, 300]}, .08, false),
+        enemy(950, 601, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}),
+        enemy(140, 729, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300] })
       ],
       1: [
-        enemy(620, 505, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}),
-        enemy(90,  599, {idleLeft: [BugBlackLeftPath,     5, 100], idleRight: [BugBlackRightPath,     5, 100]})
+        enemy(620, 505, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}),
+        enemy(90,  599, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]})
       ],
       2: [
-        enemy(150, 249, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .09),
-        enemy(790, 377, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .09)
+        enemy(150, 281, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .09),
+        enemy(790, 377, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .09)
       ],
       3: [
-        enemy(300, 281, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .1)
+        enemy(300, 281, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .1)
+      ],
+      4: [
+        enemy(500, 313, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .2),
+        enemy(860, 313, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .2)
       ],
       8: [
-        enemy(650, 217, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .1),
-        enemy(270, 345, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .1),
-        enemy(350, 729, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .2)
+        enemy(650, 217, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .1),
+        enemy(270, 345, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .1),
+        enemy(350, 729, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .2)
       ],
       9: [
-        enemy(150, 697, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .1),
-        enemy(200, 697, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .1),
-        enemy(270, 697, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .1),
-        enemy(890, 377, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .1),
+        enemy(150, 697, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .2),
+        enemy(200, 697, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .1),
+        enemy(270, 697, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .2),
+        enemy(890, 377, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .1),
+      ],
+      10: [
+        enemy(150, 727, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}, 0.2)
+      ],
+      13: [
+        enemy(150, 183, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]})
       ],
       16: [
-        enemy(800, 729, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .2),
+        enemy(800, 729, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .2),
       ],
       17: [
-        enemy(150, 729, {idleLeft: [BugLeftPath,          2, 300], idleRight: [BugRightPath,          2, 300]}, .2),
+        enemy(150, 729, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .2),
       ]
     },
     items: {

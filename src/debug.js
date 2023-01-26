@@ -28,7 +28,6 @@ export function draw(debug) {
   const t = performance.now()
 
   if (t - debug.fTime > 500) {
-    console.log(debug.curFps)
     Shared.fps = debug.curFps * 2
     debug.curFps = 0
     debug.fTime = t
