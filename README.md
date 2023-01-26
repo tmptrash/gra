@@ -1,5 +1,5 @@
 # Mary Brave v0.1
-Pure Javascript metroidvania game experiment. It just an attempt to write something interesting and test WEB stack. Fight enemies, find the key and open the door to complete the game.
+Pure Javascript [Metroidvania](https://en.wikipedia.org/wiki/Metroidvania) game experiment. It just an attempt to write something interesting in JavaScript. Fight enemies, pick items, find the key and open the door to complete the game. Enjoy!
 
 ## Available scripts
 
@@ -12,7 +12,7 @@ Builds the game into `dist` folder (to run just drop `index.html` to the Chrome 
 ### `npm start`
 Runs a game in development mode. It reacts to any change in js and html in real time
 
-## Try it out
+## Try it for free
 http://js-gra.netlify.app
 
 ## Screenshots
