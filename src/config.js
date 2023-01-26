@@ -72,7 +72,7 @@ export default Config = {
   frontFont: '16px Cambria, serif',
   fontGameOver: '28px Tahoma',
 
-  bulletsFont: 'bold 11px Cambria, serif',
+  bulletsFont: 'bold 13px Cambria, serif',
 
   // logo
   logoX: 256,
@@ -218,8 +218,8 @@ export default Config = {
     },
     items: {
       0: [
-        //item(100, 200, {idle: [GunAnimPath,   9, 150]}, 'gun', (i, pick) => { Shared.hero.gun = true, pick(i) }),
-        //item(200, 300, {idle: [BulletsPath,   9, 150]}, 'bullets', (i, pick) => { Shared.hero.bullets += Config.bulletsAmount, pick(i, false) })
+        //item(100, 200, {idle: [GunAnimPath,   9,  150]}, 'gun', (i, pick) => { Shared.hero.gun = true, pick(i) }),
+        //item(200, 300, {idle: [BulletsPath,   9,  150]}, 'bullets', (i, pick) => { Shared.hero.bullets += Config.bulletsAmount, pick(i, false) })
       ],
       4: [
         item(770, 200, {idle: [HeartAnimPath, 9,  100]}, 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)})
