@@ -154,15 +154,13 @@ function updateScreen(h) {
     Shared.offsX -= Config.width
     h.stepX = s.x = Config.width - s.width - 1
     h.stepTime = performance.now()
-  }
-  else if (s.y > Config.height) {
+  } else if (s.y > Config.height) {
     updateObjs(scrOffs(Shared.offsX, Shared.offsY), scrOffs(Shared.offsX, Shared.offsY + Config.height))
     Shared.offsY += Config.height
     s.y = 1
     h.isJumping = false
     h.jumpTime = 0
-  }
-  else if (s.y + s.height < 0) {
+  } else if (s.y + s.height < 0) {
     updateObjs(scrOffs(Shared.offsX, Shared.offsY), scrOffs(Shared.offsX, Shared.offsY - Config.height))
     Shared.offsY -= Config.height
     h.jumpY = Config.height + h.jumpY
