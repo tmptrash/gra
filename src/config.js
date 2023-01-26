@@ -25,8 +25,8 @@ import BugUpPath from '../img/bug-up-2.png'
 import BugDownPath from '../img/bug-down-2.png'
 import BugBlkLeftPath from '../img/bug-black-left-5.png'
 import BugBlkRightPath from '../img/bug-black-right-5.png'
-import BugBlackBlueLeftPath from '../img/bug-black-blue-left-3.png'
-import BugBlackBlueRightPath from '../img/bug-black-blue-right-3.png'
+import BugBlueLeftPath from '../img/bug-black-blue-left-3.png'
+import BugBlueRightPath from '../img/bug-black-blue-right-3.png'
 import BugBigLeftPath from '../img/bug-big-left-3.png'
 import BugBigRightPath from '../img/bug-big-right-3.png'
 
@@ -133,7 +133,6 @@ export default Config = {
   }],
   l1: [{x: 0, y: 0, width: WIDTH, height: HEIGHT}, L1Path],
 
-  // enemy(130, 361, {idleLeft: [BugBlackBlueLeftPath, 3, 200], idleRight: [BugBlackBlueRightPath, 3, 200]}),
   // enemy(140, 725, {idleLeft: [BugBigLeftPath,       3, 200], idleRight: [BugBigRightPath,       3, 200]}),
   // enemies and items per screen
   screens: {
@@ -196,6 +195,10 @@ export default Config = {
       21: [
         enemy(250, 727, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}, .29),
         enemy(500, 727, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}, .29)
+      ],
+      29: [
+        enemy(544, 147, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}, .3),
+        enemy(780, 211, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}, .3),
       ]
     },
     items: {
