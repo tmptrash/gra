@@ -25,7 +25,8 @@ export function Hero() {
     bullets: 0,
     hit: false,
     gun: false,
-    fire: false
+    fire: false,
+    key: false
   }
   bind({
     keydown: {
@@ -84,7 +85,7 @@ export function update(h) {
   // hit
   if (h.hit) {
     Shared.sounds.hit.play()
-    if (--h.life < 1) Shared.stop = true
+    if (--h.life < 1) Shared.stop = Config.gameOverId
     h.hit = false
   }
 

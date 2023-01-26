@@ -8,20 +8,20 @@ import { Debug, draw as drawDebug, update as updateDebug } from './debug'
 import { logo, fn, findObjById } from './utils'
 import { Music, play, stop } from './music'
 import { Picked, draw as drawPicked } from './picked'
+import { Door, draw as drawDoor, update as updateDoor } from './door'
 import { Sounds } from './sounds'
+
+let stopped = false
 
 const PICKED_ID = 'picked'
 const playBtn = document.querySelector(Config.playQuery)
 const doc = document
-
-let stopped = false
-let paused = false
-const music = Music()
 const objs = Shared.objs = [
   { draw: drawLevel,  update: updateLevel,  o: Level() },
-  { draw: drawHero,   update: updateHero,   o: Hero(), id: Config.heroId },
+  { draw: drawHero,   update: updateHero,   o: Hero(),   id: Config.heroId },
   { draw: drawBullet, update: updateBullet, o: Bullet(), id: Config.bulletId },
-  { draw: drawPicked, update: fn,           o: Picked(), id: PICKED_ID }
+  { draw: drawPicked, update: fn,           o: Picked(), id: PICKED_ID },
+  { draw: drawDoor,   update: updateDoor,   o: Door() }
 ]
 
 function main() {
@@ -34,6 +34,7 @@ function main() {
   Shared.ctx.font = Config.frontFont
   Shared.ctx.imageSmoothingEnabled = false
 
+  Shared.music = Music()
   Shared.sounds = Sounds()
   Shared.picked = findObjById(objs, PICKED_ID)
   Shared.hero = findObjById(objs, Config.heroId)
@@ -46,7 +47,6 @@ function main() {
 }
 
 function draw() {
-  if (paused) return
   Shared.ctx.clearRect(0, 0, Config.width, Config.height)
   objs.forEach(o => o.draw(o.o))
   if (Shared.stop) drawStop()
@@ -54,7 +54,6 @@ function draw() {
 }
 
 function update() {
-  if (Shared.stop || paused) return
   objs.forEach(o => o.update(o.o))
   setTimeout(() => window.postMessage(0, '*'), Config.upsDelay)
 }
@@ -70,7 +69,7 @@ function waitAssets() {
 
 function start() {
   playBtn.style.display = 'none'
-  play(music)
+  play(Shared.music)
   update()
   draw()
 }
@@ -78,10 +77,15 @@ function start() {
 function drawStop() {
   Shared.ctx.fillStyle = Config.frontColor
   Shared.ctx.font = Config.fontGameOver
-  Shared.ctx.fillText('Game Over!', Config.width / 2 - 55, Config.height / 2)
+  if (Shared.stop === Config.gameOverId) {
+    Shared.ctx.fillText('Game Over!', Config.width / 2 - 55, Config.height / 2)
+  } else if (Shared.stop === Config.gameCompletedId) {
+    Shared.ctx.fillText('You win!', Config.width / 2 - 45, Config.height / 2)
+  }
+
   if (!stopped) {
     Shared.sounds.gameOver.play()
-    stop(music)
+    stop(Shared.music)
     stopped = true
   }
 }

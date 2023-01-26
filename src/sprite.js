@@ -2,7 +2,7 @@ import Shared from './shared'
 import { Frames, update as updateFrames } from './frames'
 import { fn } from './utils'
 
-export function Sprite({ x, y, width = undefined, height = undefined}, imgs, onLoad = fn) {
+export function Sprite({ x, y, width = undefined, height = undefined, run = true}, imgs, onLoad = fn) {
   const sprite = {
     x,
     y,
@@ -10,7 +10,8 @@ export function Sprite({ x, y, width = undefined, height = undefined}, imgs, onL
     height,
     img: null,
     imgs: {},
-    onLoad
+    onLoad,
+    run
   }
   loadImgs(sprite, typeof imgs === 'string' ? {idle: [imgs]} : imgs)
   sprite.imgs.idle && setImg(sprite, 'idle')
@@ -61,7 +62,7 @@ function loadImgs(sprite, imgs) {
 function onLoad(sprite, img, frames, timeout) {
   img.width = img.img.width
   img.height = img.img.height
-  img.frames = Frames(img.width / (frames || 1), frames, timeout)
+  img.frames = Frames(img.width / (frames || 1), frames, timeout, sprite.run)
   !sprite.width && (sprite.width = img.frames.width)
   !sprite.height && (sprite.height = img.height)
   Shared.assets--

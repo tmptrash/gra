@@ -5,11 +5,13 @@ import HeartPath from '../img/heart.png'
 import GunAnimPath from '../img/gun-9.png'
 import BulletsPath from '../img/bullets-9.png'
 import HeartAnimPath from '../img/heart-9.png'
+import DoorOpenPath from '../img/door-open-5.png'
+import KeyPath from '../img/key-6.png'
+
 import IdleLeftPath from '../img/idle-left-3.png'
 import IdleGunLeftPath from '../img/idle-gun-left-3.png'
 import IdleRightPath from '../img/idle-right-3.png'
 import IdleGunRightPath from '../img/idle-gun-right-3.png'
-
 import WalkLeftPath from '../img/walk-left-6.png'
 import WalkGunLeftPath from '../img/walk-gun-left-6.png'
 import WalkRightPath from '../img/walk-right-6.png'
@@ -29,8 +31,6 @@ import BugBlueLeftPath from '../img/bug-black-blue-left-3.png'
 import BugBlueRightPath from '../img/bug-black-blue-right-3.png'
 import BugBigLeftPath from '../img/bug-big-left-3.png'
 import BugBigRightPath from '../img/bug-big-right-3.png'
-
-import KeyPath from '../img/key-6.png'
 
 import Track0 from '../music/Beyond The Surface.mp3'
 import Track1 from '../music/1.11.mp3'
@@ -62,7 +62,7 @@ const HEIGHT = 800
 let Config = null
 
 export default Config = {
-  // html & css
+  // html & css & ids
   canvasId: 'canvas',
   audioId: 'audio',
   heroId: 'hero',
@@ -71,8 +71,10 @@ export default Config = {
   frontColor: '#ccc',
   frontFont: '16px Cambria, serif',
   fontGameOver: '28px Tahoma',
-
   bulletsFont: 'bold 13px Cambria, serif',
+  gameOverId: 'game-over',
+  gameCompletedId: 'completed',
+  doorScr: 24,
 
   // logo
   logoX: 256,
@@ -117,8 +119,9 @@ export default Config = {
 
   // sprites
   heart: [{ x: 0, y: 0 }, HeartPath],
+  door: [{ x: 864, y: 32, run: false }, {idle: [DoorOpenPath, 5, 300]}],
   bullets: [{ x: 0, y: 0 }, {idle: [BulletsPath, 9, 150]}],
-  hero: [{x: 150, y: 90}, {
+  hero: [{x: 200, y: 90}, {
     idleLeft:     [IdleLeftPath,     3, 260],
     idleRight:    [IdleRightPath,    3, 260],
     walkLeft:     [WalkLeftPath,     6, 60 ],
@@ -257,7 +260,7 @@ export default Config = {
         item(820, 100, {idle: [BulletsPath,   9,  150]}, 'bullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) })
       ],
       39: [
-        item(830, 580, {idle: [KeyPath,       7,  200]}, 'key')
+        item(830, 580, {idle: [KeyPath,       7,  200]}, 'key',     (i, pick) => {Shared.hero.key = true, pick(i) })
       ]
     }
   }
