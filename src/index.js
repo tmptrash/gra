@@ -8,7 +8,6 @@ import { Debug, draw as drawDebug, update as updateDebug } from './debug'
 import { logo, fn, findObjById } from './utils'
 import { Music, play, stop } from './music'
 import { Picked, draw as drawPicked } from './picked'
-import { Door, draw as drawDoor, update as updateDoor } from './door'
 import { Sounds } from './sounds'
 
 let stopped = false
@@ -19,7 +18,6 @@ const doc = document
 // Order is important!
 const objs = Shared.objs = [
   { draw: drawLevel,  update: updateLevel,  o: Level() },
-  { draw: drawDoor,   update: updateDoor,   o: Door() },
   { draw: drawHero,   update: updateHero,   o: Hero(),   id: Config.heroId },
   { draw: drawBullet, update: updateBullet, o: Bullet(), id: Config.bulletId },
   { draw: drawPicked, update: fn,           o: Picked(), id: PICKED_ID }

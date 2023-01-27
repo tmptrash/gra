@@ -8,10 +8,8 @@ const STEP_TIME = 17
 const UP    = -1
 const DOWN  = 1
 
-export function Enemy(spriteCfg, speed, horizontal, scr, id) {
+export function Enemy(spriteCfg, speed, horizontal) {
   const enemy = {
-    id,
-    scr,
     speed,
     dir: horizontal ? RIGHT : DOWN,
     horizontal,

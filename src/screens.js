@@ -1,21 +1,19 @@
 import Shared from './shared'
 import Config from './config'
-import { Enemy, draw as drawEnemy, update as updateEnemy } from './enemy'
-import { Item, draw as drawEntity, update as updateEntity } from './item'
+import { create } from './creator'
 
 export function updateObjs(fromScr, toScr) {
   const objs = Shared.objs
   for (let i = 0; i < objs.length; i++) objs[i].scr === fromScr && (objs.splice(i, 1), i--)
   
-  const scrs = Config.screens.enemies[toScr]
-  scrs && scrs.forEach(cfg => objs.push({
-    draw: drawEnemy, update: updateEnemy, o: Enemy(...cfg, toScr), scr: toScr
-  }))
+  const enemies = Config.screens.enemies[toScr]
+  enemies && enemies.forEach(cfg => objs.push(create('Enemy', cfg, toScr)))
 
   const items = Config.screens.items[toScr]
-  items && items.forEach(cfg => !isPicked(cfg[0], toScr) && objs.push({
-      draw: drawEntity, update: updateEntity, o: Item(...cfg, toScr), scr: toScr
-  }))
+  items && items.forEach(cfg => !isPicked(cfg[0], toScr) && objs.push(create('Item', cfg, toScr)))
+
+  const scripts = Config.screens.scripts[toScr]
+  scripts && scripts.forEach(cfg => objs.push(create(cfg[0], cfg[1])))
 }
 
 export function scrOffs(offsX, offsY) {

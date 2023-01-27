@@ -1,4 +1,5 @@
 import Shared from './shared'
+
 import L1Path from '../img/l1.png'
 
 import HeartPath from '../img/heart.png'
@@ -134,133 +135,130 @@ export default Config = {
   screens: {
     enemies: {
       0: [
-        enemy(350, 377, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}),
-        enemy(32,  150, {idleUp:   [BugUpPath,      2, 300], idleDown:  [BugDownPath,     2, 300]}, .08, false),
-        enemy(950, 601, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}),
-        enemy(140, 729, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]})
+        [[{x: 350, y: 377}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .08, true],
+        [[{x: 32,  y: 150}, {idleUp:   [BugUpPath,      2, 300], idleDown:  [BugDownPath,     2, 300]}], .08, false],
+        [[{x: 950, y: 601}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .08, true],
+        [[{x: 140, y: 729}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .08, true]
       ],
       1: [
-        enemy(620, 505, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}),
-        enemy(200, 599, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]})
+        [[{x: 620, y: 505}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .08, true],
+        [[{x: 200, y: 599}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .08, true]
       ],
       2: [
-        enemy(150, 281, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .09),
-        enemy(790, 377, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .09)
+        [[{x: 150, y: 281}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .09, true],
+        [[{x: 790, y: 377}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .09, true]
       ],
       3: [
-        enemy(300, 281, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .1)
+        [[{x: 300, y: 281}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .1,  true]
       ],
       4: [
-        enemy(500, 313, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .2),
-        enemy(860, 313, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .2)
+        [[{x: 500, y: 313}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .2,  true],
+        [[{x: 860, y: 313}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .2,  true]
       ],
       8: [
-        enemy(650, 217, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .1),
-        enemy(270, 345, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .1),
-        enemy(350, 729, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .2)
+        [[{x: 650, y: 217}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .1,  true],
+        [[{x: 270, y: 345}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .1,  true],
+        [[{x: 350, y: 729}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .2,  true]
       ],
       9: [
-        enemy(150, 697, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .2),
-        enemy(200, 697, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .1),
-        enemy(270, 697, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .2),
-        enemy(890, 377, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .1),
+        [[{x: 150, y: 697}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .2,  true],
+        [[{x: 200, y: 697}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .1,  true],
+        [[{x: 270, y: 697}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .2,  true],
+        [[{x: 890, y: 377}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .1,  true],
       ],
       10: [
-        enemy(150, 727, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}, .2)
+        [[{x: 150, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .2,  true]
       ],
       11: [
-        enemy(150, 727, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}, .25),
-        enemy(450, 727, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}, .25)
+        [[{x: 150, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .2,  true],
+        [[{x: 450, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .25, true]
       ],
       12: [
-        enemy(150, 727, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}, .27),
-        enemy(650, 727, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}, .27),
-        enemy(350, 727, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}, .27)
+        [[{x: 150, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .27, true],
+        [[{x: 650, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .27, true],
+        [[{x: 350, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .27, true]
       ],
       13: [
-        enemy(150, 183, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}, .27),
-        enemy(350, 727, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}, .27),
-        enemy(550, 727, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}, .27)
+        [[{x: 150, y: 183}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .27, true],
+        [[{x: 350, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .27, true],
+        [[{x: 550, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .27, true]
       ],
       16: [
-        enemy(800, 729, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .2),
+        [[{x: 800, y: 729}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .2,  true],
       ],
       17: [
-        enemy(150, 729, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}, .2),
+        [[{x: 150, y: 729}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .2,  true],
       ],
       18: [
-        enemy(800, 723, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}, .29),
-        enemy(192, 627, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}, .29),
-        enemy(352, 691, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}, .29)
+        [[{x: 800, y: 723}, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}], .29, true],
+        [[{x: 192, y: 627}, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}], .29, true],
+        [[{x: 352, y: 691}, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}], .29, true]
       ],
       19: [
-        enemy(384, 727, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}, .29),
-        enemy(640, 727, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}, .29)
+        [[{x: 384, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .29, true],
+        [[{x: 640, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .29, true]
       ],
       21: [
-        enemy(250, 727, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}, .29),
-        enemy(500, 727, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}, .29)
+        [[{x: 250, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .29, true],
+        [[{x: 500, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .29, true]
       ],
       25: [
-        enemy(768, 599, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}, .29),
-        enemy(200, 727, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}, .29)
+        [[{x: 768, y: 599}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .29, true],
+        [[{x: 200, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .29, true]
       ],
       29: [
-        enemy(500, 147, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}, .3),
-        enemy(200, 243, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}, .3),
+        [[{x: 500, y: 147}, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}], .3,  true],
+        [[{x: 200, y: 243}, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}], .3,  true],
       ],
       30: [
-        enemy(150, 211, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}, .33),
-        enemy(780, 307, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}, .33),
+        [[{x: 150, y: 211}, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}], .33, true],
+        [[{x: 780, y: 307}, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}], .33, true],
       ]
     },
     items: {
       0: [
-        item(100, 200, {idle: [GunAnimPath,   9,  150]}, 'gun', (i, pick) => { Shared.hero.gun = true, pick(i) }),
-        item(200, 300, {idle: [BulletsPath,   9,  150]}, 'bullets', (i, pick) => { Shared.hero.bullets += Config.bulletsAmount, pick(i, false) })
+        [[{x: 100, y: 200}, {idle: [GunAnimPath,   9,  150]}], 'gun',     (i, pick) => {Shared.hero.gun = true, pick(i)}],
+        [[{x: 200, y: 300}, {idle: [BulletsPath,   9,  150]}], 'bullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false)}]
       ],
       2: [
-        item(128, 700, {idle: [HeartAnimPath, 9,  100]}, 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)})
+        [[{x: 128, y: 700}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
       ],
       4: [
-        item(770, 200, {idle: [HeartAnimPath, 9,  100]}, 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)})
+        [[{x: 770, y: 200}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
       ],
       5: [
-        item(958, 288, {idle: [GunAnimPath,   9,  150]}, 'gun',     (i, pick) => {Shared.hero.gun = true, pick(i)})
+        [[{x: 958, y: 288}, {idle: [GunAnimPath,   9,  150]}], 'gun',     (i, pick) => {Shared.hero.gun = true, pick(i)}]
       ],
       8: [
-        item(330, 260, {idle: [HeartAnimPath, 9,  100]}, 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}),
-        item(350, 650, {idle: [BulletsPath,   9,  150]}, 'bullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) })
+        [[{x: 330, y: 260}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}],
+        [[{x: 350, y: 650}, {idle: [BulletsPath,   9,  150]}], 'bullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) }]
       ],
       10: [
-        item(550, 128, {idle: [BulletsPath,   9,  150]}, 'bullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) })
+        [[{x: 550, y: 128}, {idle: [BulletsPath,   9,  150]}], 'bullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) }]
       ],
       11: [
-        item(832, 224, {idle: [HeartAnimPath, 9,  100]}, 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}),
+        [[{x: 832, y: 224}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}],
       ],
       13: [
-        item(800, 600, {idle: [HeartAnimPath, 9,  100]}, 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)})
+        [[{x: 800, y: 600}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
       ],
       18: [
-        item(700, 128, {idle: [HeartAnimPath, 9,  100]}, 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)})
+        [[{x: 700, y: 128}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
       ],
       21: [
-        item(530, 100, {idle: [BulletsPath,   9,  150]}, 'bullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) })
+        [[{x: 530, y: 100}, {idle: [BulletsPath,   9,  150]}], 'bullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) }]
       ],
       23: [
-        item(820, 100, {idle: [BulletsPath,   9,  150]}, 'bullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) })
+        [[{x: 820, y: 100}, {idle: [BulletsPath,   9,  150]}], 'bullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) }]
       ],
       39: [
-        item(830, 580, {idle: [KeyPath,       7,  200]}, 'key',     (i, pick) => {Shared.hero.key = true, pick(i) })
+        [[{x: 830, y: 580}, {idle: [KeyPath,       7,  200]}], 'key',     (i, pick) => {Shared.hero.key = true, pick(i) }]
+      ]
+    },
+    scripts: {
+      0: [
+        ['Door']
       ]
     }
   }
-}
-
-function enemy(x, y, imgs, speed = .08, horizontal = true) {
-  return [[{ x, y }, imgs], speed, horizontal]
-}
-
-function item(x, y, imgs, sound, pickFn = null) {
-  return [[{ x, y }, imgs], sound, pickFn]
 }
