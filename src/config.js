@@ -37,6 +37,7 @@ import Cave0 from '../music/cave0.mp3'
 import SoundHit from '../sound/hit.mp3'
 import SoundKey from '../sound/key.mp3'
 import SoundGun from '../sound/gun.mp3'
+import SoundWin from '../sound/win.mp3'
 import SoundBullets from '../sound/bullets.mp3'
 import SoundGameOver from '../sound/game-over.mp3'
 import SoundHeart from '../sound/heart.mp3'
@@ -98,6 +99,7 @@ export default Config = {
     gameOver: SoundGameOver,
     heart: SoundHeart,
     gun: SoundGun,
+    win: SoundWin,
     bullets: SoundBullets,
     fire: SoundFire,
     bugDie: SoundBugDie

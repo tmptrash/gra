@@ -86,7 +86,8 @@ function drawStop() {
   }
 
   if (!stopped) {
-    Shared.sounds.gameOver.play()
+    if (Shared.stop === Config.gameOverId) Shared.sounds.gameOver.play()
+    else if(Shared.stop === Config.gameCompletedId) Shared.sounds.win.play()
     stop(Shared.music)
     stopped = true
   }
