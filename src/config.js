@@ -62,7 +62,6 @@ export default Config = {
   bulletsFont: 'bold 13px Cambria, serif',
   gameOverId: 'game-over',
   gameCompletedId: 'completed',
-  doorScr: 24,
 
   // logo
   logoX: 256,
@@ -256,7 +255,7 @@ export default Config = {
       ]
     },
     scripts: {
-      0: [
+      24: [
         ['Door']
       ]
     }
