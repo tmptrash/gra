@@ -55,6 +55,7 @@ function draw() {
 }
 
 function update() {
+  if (Shared.stop) return
   objs.forEach(o => o.update(o.o))
   setTimeout(() => window.postMessage(0, '*'), Config.upsDelay)
 }
