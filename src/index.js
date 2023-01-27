@@ -16,12 +16,13 @@ let stopped = false
 const PICKED_ID = 'picked'
 const playBtn = document.querySelector(Config.playQuery)
 const doc = document
+// Order is important!
 const objs = Shared.objs = [
   { draw: drawLevel,  update: updateLevel,  o: Level() },
+  { draw: drawDoor,   update: updateDoor,   o: Door() },
   { draw: drawHero,   update: updateHero,   o: Hero(),   id: Config.heroId },
   { draw: drawBullet, update: updateBullet, o: Bullet(), id: Config.bulletId },
-  { draw: drawPicked, update: fn,           o: Picked(), id: PICKED_ID },
-  { draw: drawDoor,   update: updateDoor,   o: Door() }
+  { draw: drawPicked, update: fn,           o: Picked(), id: PICKED_ID }
 ]
 
 function main() {
