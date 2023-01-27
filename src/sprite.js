@@ -1,5 +1,5 @@
 import Shared from './shared'
-import { Frames, update as updateFrames } from './frames'
+import { Frames, update as updateFrames, stop as stopFrames } from './frames'
 import { fn } from './utils'
 
 export function Sprite({ x, y, width = undefined, height = undefined, run = true}, imgs, onLoad = fn) {
@@ -43,6 +43,12 @@ export function update(sprite) {
 
 export function setImg(sprite, img) {
   sprite.img = sprite.imgs[img]
+}
+
+export function stop(sprite) {
+  sprite.run = false
+  sprite.width = sprite.img.frames.width
+  stopFrames(sprite.img.frames)
 }
 
 function loadImgs(sprite, imgs) {

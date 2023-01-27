@@ -1,5 +1,5 @@
 import Config from './config'
-import { draw as drawSprite } from './sprite'
+import { draw as drawSprite, stop } from './sprite'
 
 export function Picked() {
   const picked = {
@@ -12,8 +12,7 @@ export function Picked() {
 export function draw(picked) {
   let x = Config.width - 2
   picked.items.forEach(i => {
-    i.sprite.img.frames.frame = 0
-    i.sprite.width = i.sprite.img.frames.width
+    stop(i.sprite)
     if (!i.hidden) {
       x -= (i.sprite.width + 5)
       i.sprite.x = x

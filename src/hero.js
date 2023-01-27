@@ -2,7 +2,7 @@ import Config from './config'
 import Shared from './shared'
 import { isArr, bind, LEFT, RIGHT } from './utils'
 import { rightBarrier, leftBarrier, topBarrier, downBarrier } from './barriers'
-import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
+import { Sprite, draw as drawSprite, update as updateSprite, stop } from './sprite'
 import { updateObjs, scrOffs } from './screens'
 
 export function Hero() {
@@ -172,8 +172,8 @@ function updateScreen(h) {
 function drawLife(hero) {
   const s = hero.lifeSprite
   for (let i = 0; i < hero.life; i++) {
-    s.x = 10 + i * (s.width + 4)
-    s.y = 10
+    s.x = Config.lifePos[0] + i * (s.width + 4)
+    s.y = Config.lifePos[1]
     drawSprite(s)
   }
 }
@@ -182,12 +182,11 @@ function drawBullets(hero) {
   if (hero.bullets <= 0) return
 
   const s = hero.bulletsSprite
-  s.x = 10
-  s.y = 26
-  s.img.frames.frame = 0
-  s.width = s.img.frames.width
+  s.x = Config.bulletsPos[0]
+  s.y = Config.bulletsPos[1]
+  stop(s)
   drawSprite(s)
 
   Shared.ctx.font = Config.bulletsFont
-  Shared.ctx.fillText(`${hero.bullets}`, 31, 44)
+  Shared.ctx.fillText(`${hero.bullets}`, ...Config.bulletsAmountPos)
 }

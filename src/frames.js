@@ -17,3 +17,8 @@ export function update(frames) {
     frames.time = t
   }
 }
+
+export function stop(frames) {
+  frames.frame = 0
+  frames.run = false
+}

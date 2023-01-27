@@ -85,11 +85,14 @@ export default Config = {
   stepTime: 400,
   stepSize: 100,
   life: 4,
+  lifePos: [10, 10],
   touchDelay: 1000,
 
+  bulletsPos: [10, 26],
   bulletSpeed: .8,
   bulletYOffs: 4,
   bulletsAmount: 10,
+  bulletsAmountPos: [31, 44],
 
   // audio
   music: [Cave0], //[Track0, Track1, Track2, Track3, Track4, Track5, Track6, Track7, Track8, Track9, Track10, Track11, Track12],
@@ -213,8 +216,8 @@ export default Config = {
     },
     items: {
       0: [
-        //item(100, 200, {idle: [GunAnimPath,   9,  150]}, 'gun', (i, pick) => { Shared.hero.gun = true, pick(i) }),
-        //item(200, 300, {idle: [BulletsPath,   9,  150]}, 'bullets', (i, pick) => { Shared.hero.bullets += Config.bulletsAmount, pick(i, false) })
+        item(100, 200, {idle: [GunAnimPath,   9,  150]}, 'gun', (i, pick) => { Shared.hero.gun = true, pick(i) }),
+        item(200, 300, {idle: [BulletsPath,   9,  150]}, 'bullets', (i, pick) => { Shared.hero.bullets += Config.bulletsAmount, pick(i, false) })
       ],
       2: [
         item(128, 700, {idle: [HeartAnimPath, 9,  100]}, 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)})
