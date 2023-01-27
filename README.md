@@ -1,5 +1,5 @@
 # Mary Brave v0.1
-No frameworks and engines. Just pure Javascript [Metroidvania](https://en.wikipedia.org/wiki/Metroidvania) game experiment. Fight the monsters of the underworld, collect items, find the key and open the door to complete the level.
+Pure Javascript (no frameworks/engines) [Metroidvania](https://en.wikipedia.org/wiki/Metroidvania) game experiment. Fight the monsters of the underworld, collect items, find the key and open the door to complete the level.
 
 P.S. It just an attempt to write something interesting in JavaScript.
 P.S.S I open for collaboration with other game devs and designers :)
