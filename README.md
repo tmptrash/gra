@@ -1,5 +1,9 @@
 # Mary Brave v0.1
-Pure Javascript [Metroidvania](https://en.wikipedia.org/wiki/Metroidvania) game experiment. It just an attempt to write something interesting in JavaScript. Fight enemies, pick items, find the key and open the door to complete the game. Enjoy!
+No frameworks and engines. Just pure Javascript [Metroidvania](https://en.wikipedia.org/wiki/Metroidvania) game experiment. Fight enemies, pick items, find the key and open the door to complete the level.
+
+P.S. It just an attempt to write something interesting in JavaScript.
+
+Enjoy!
 
 ## Available scripts
 
