@@ -17,7 +17,7 @@ export function Enemy(spriteCfg, speed, horizontal, scr, id) {
     horizontal,
     sprite: Sprite(...spriteCfg),
     stepTime: performance.now(),
-    touchTime: performance.now()
+    touchTime: 0
   }
 
   enemy.sprite.img = horizontal ? enemy.sprite.imgs.idleRight : enemy.sprite.imgs.idleDown
