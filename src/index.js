@@ -68,6 +68,8 @@ function waitAssets() {
 }
 
 function start() {
+  // TODO: remove in production
+  on(window, 'keyup', onPrompt)
   playBtn.style.display = 'none'
   off(playBtn, 'click', start)
   play(Shared.music)
@@ -90,6 +92,17 @@ function drawStop() {
     stop(Shared.music)
     stopped = true
   }
+}
+
+function onPrompt(e) {
+  if (e.key !== '+' && e.key !== '=') return
+  const v = prompt('Type room coordinates (like 1,2)')
+  const offs = v.split(',')
+  const x = Shared.offsX
+  const y = Shared.offsY
+  Shared.offsX = Config.width * offs[0].trim()
+  Shared.offsY = Config.height * offs[1].trim()
+  updateObjs(roomOffs(x, y), roomOffs(Shared.offsX, Shared.offsY))
 }
 
 main()
