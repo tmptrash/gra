@@ -265,6 +265,42 @@ export default Config = {
       33: [
         [[{x: 400, y: 695}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .35, true],
         [[{x: 200, y: 691}, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}], .33, true]
+      ],
+      34: [
+        [[{x: 400, y: 693}, {idleLeft: [BugBigLeftPath, 3, 200], idleRight: [BugBigRightPath, 3, 200]}], .4,  true],
+        [[{x: 600, y: 693}, {idleLeft: [BugBigLeftPath, 3, 200], idleRight: [BugBigRightPath, 3, 200]}], .5,  true],
+        [[{x: 200, y: 693}, {idleLeft: [BugBigLeftPath, 3, 200], idleRight: [BugBigRightPath, 3, 200]}], .5,  true],
+        [[{x: 750, y: 693}, {idleLeft: [BugBigLeftPath, 3, 200], idleRight: [BugBigRightPath, 3, 200]}], .4,  true]
+      ],
+      35: [
+        [[{x: 400, y: 693}, {idleLeft: [BugBigLeftPath, 3, 200], idleRight: [BugBigRightPath, 3, 200]}], .4,  true],
+        [[{x: 600, y: 693}, {idleLeft: [BugBigLeftPath, 3, 200], idleRight: [BugBigRightPath, 3, 200]}], .5,  true],
+        [[{x: 350, y: 661}, {idleLeft: [BugBigLeftPath, 3, 200], idleRight: [BugBigRightPath, 3, 200]}], .5,  true],
+        [[{x: 750, y: 693}, {idleLeft: [BugBigLeftPath, 3, 200], idleRight: [BugBigRightPath, 3, 200]}], .4,  true]
+      ],
+      36: [
+        [[{x: 400, y: 693}, {idleLeft: [BugBigLeftPath, 3, 200], idleRight: [BugBigRightPath, 3, 200]}], .4,  true],
+        [[{x: 300, y: 693}, {idleLeft: [BugBigLeftPath, 3, 200], idleRight: [BugBigRightPath, 3, 200]}], .5,  true],
+        [[{x: 200, y: 693}, {idleLeft: [BugBigLeftPath, 3, 200], idleRight: [BugBigRightPath, 3, 200]}], .5,  true],
+        [[{x: 250, y: 693}, {idleLeft: [BugBigLeftPath, 3, 200], idleRight: [BugBigRightPath, 3, 200]}], .4,  true]
+      ],
+      37: [
+        [[{x: 600, y: 693}, {idleLeft: [BugBigLeftPath, 3, 200], idleRight: [BugBigRightPath, 3, 200]}], .5,  true],
+        [[{x: 250, y: 629}, {idleLeft: [BugBigLeftPath, 3, 200], idleRight: [BugBigRightPath, 3, 200]}], .5,  true]
+      ],
+      38: [
+        [[{x: 700, y: 693}, {idleLeft: [BugBigLeftPath, 3, 200], idleRight: [BugBigRightPath, 3, 200]}], .5,  true],
+        [[{x: 500, y: 693}, {idleLeft: [BugBigLeftPath, 3, 200], idleRight: [BugBigRightPath, 3, 200]}], .5,  true],
+        [[{x: 800, y: 693}, {idleLeft: [BugBigLeftPath, 3, 200], idleRight: [BugBigRightPath, 3, 200]}], .5,  true],
+        [[{x: 300, y: 437}, {idleLeft: [BugBigLeftPath, 3, 200], idleRight: [BugBigRightPath, 3, 200]}], .5,  true],
+        [[{x: 650, y: 437}, {idleLeft: [BugBigLeftPath, 3, 200], idleRight: [BugBigRightPath, 3, 200]}], .5,  true],
+        [[{x: 850, y: 437}, {idleLeft: [BugBigLeftPath, 3, 200], idleRight: [BugBigRightPath, 3, 200]}], .5,  true]
+      ],
+      39: [
+        [[{x: 200, y: 693}, {idleLeft: [BugBigLeftPath, 3, 200], idleRight: [BugBigRightPath, 3, 200]}], .5,  true],
+        [[{x: 400, y: 693}, {idleLeft: [BugBigLeftPath, 3, 200], idleRight: [BugBigRightPath, 3, 200]}], .5,  true],
+        [[{x: 600, y: 693}, {idleLeft: [BugBigLeftPath, 3, 200], idleRight: [BugBigRightPath, 3, 200]}], .5,  true],
+        [[{x: 750, y: 661}, {idleLeft: [BugBigLeftPath, 3, 200], idleRight: [BugBigRightPath, 3, 200]}], .5,  true]
       ]
     },
     items: {
@@ -285,7 +321,7 @@ export default Config = {
         [[{x: 880, y: 600}, {idle: [BulletsPath,   9,  150]}], 'bullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) }]
       ],
       8: [
-        [[{x: 330, y: 260}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}],
+        [[{x: 80,  y: 230}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}],
         [[{x: 350, y: 650}, {idle: [BulletsPath,   9,  150]}], 'bullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) }]
       ],
       10: [
@@ -319,7 +355,8 @@ export default Config = {
         [[{x: 880, y: 704}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
       ],
       39: [
-        [[{x: 830, y: 580}, {idle: [KeyPath,       7,  200]}], 'key',     (i, pick) => {Shared.hero.key = true, pick(i) }]
+        [[{x: 830, y: 580}, {idle: [KeyPath,       7,  200]}], 'key',     (i, pick) => {Shared.hero.key = true, pick(i) }],
+        [[{x: 576, y: 160}, {idle: [BulletsPath,   9,  150]}], 'bullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) }]
       ]
     },
     scripts: {
