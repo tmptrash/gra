@@ -131,8 +131,8 @@ export default Config = {
   l1: [{x: 0, y: 0, width: WIDTH, height: HEIGHT}, L1Path],
 
   // enemy(140, 725, {idleLeft: [BugBigLeftPath,       3, 200], idleRight: [BugBigRightPath,       3, 200]}),
-  // enemies, items and scripts per screen
-  screens: {
+  // enemies, items and scripts per room
+  rooms: {
     enemies: {
       0: [
         [[{x: 350, y: 377}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .08, true],
@@ -257,7 +257,7 @@ export default Config = {
     },
     scripts: {
       24: [
-        ['Door']
+        ['Door', {pos: 1}]
       ]
     }
   },

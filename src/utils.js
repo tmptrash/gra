@@ -4,6 +4,8 @@ import { Sprite, draw as drawSprite } from './sprite'
 
 export const RIGHT =  1
 export const LEFT  = -1
+export const UP    = -1
+export const DOWN  = 1
 
 export function isArr(v) {
   return Array.isArray(v)

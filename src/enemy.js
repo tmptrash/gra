@@ -2,11 +2,9 @@ import Config from './config'
 import Shared from './shared'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import { rightBarrier, leftBarrier, topBarrier, downBarrier, xyBarrier } from './barriers'
-import { touches, findObjIdx, LEFT, RIGHT } from './utils'
+import { touches, findObjIdx, LEFT, RIGHT, UP, DOWN } from './utils'
 
-const STEP_TIME = 17
-const UP    = -1
-const DOWN  = 1
+const STEP_EVERY = 17
 
 export function Enemy(spriteCfg, speed, horizontal) {
   const enemy = {
@@ -28,50 +26,51 @@ export function draw(e) {
 
 export function update(e) {
   const t = performance.now()
+  const s = e.sprite
 
   if (e.horizontal) {
-    t - e.stepTime > STEP_TIME && (e.sprite.x += (e.speed * e.dir))
+    t - e.stepTime > STEP_EVERY && (s.x += (e.speed * e.dir))
 
-    if (e.dir === RIGHT && (rightBarrier(e.sprite) || !barrierRightBelow(e.sprite) || e.sprite.x + e.sprite.width > Config.width))
-      e.dir = LEFT, e.sprite.img = e.sprite.imgs.idleLeft
-    else if (e.dir === LEFT && (leftBarrier(e.sprite) || !barrierLeftBelow(e.sprite) || e.sprite.x < 0))
-      e.dir = RIGHT, e.sprite.img = e.sprite.imgs.idleRight
+    if (e.dir === RIGHT && (rightBarrier(s) || !right(s) || s.x + s.width > Config.width))
+      e.dir = LEFT, s.img = s.imgs.idleLeft
+    else if (e.dir === LEFT && (leftBarrier(s) || !left(s) || s.x < 0))
+      e.dir = RIGHT, s.img = s.imgs.idleRight
   } else {
-    t - e.stepTime > STEP_TIME && (e.sprite.y += (e.speed * e.dir))
+    t - e.stepTime > STEP_EVERY && (s.y += (e.speed * e.dir))
 
-    if (e.dir === DOWN && (downBarrier(e.sprite) || !barrierBelowLeft(e.sprite) || e.sprite.y + e.sprite.height > Config.height))
-      e.dir = UP, e.sprite.img = e.sprite.imgs.idleUp
-    else if (e.dir === UP && (topBarrier(e.sprite) || !barrierAboveLeft(e.sprite) || e.sprite.y < 0))
-      e.dir = DOWN, e.sprite.img = e.sprite.imgs.idleDown
+    if (e.dir === DOWN && (downBarrier(s) || !down(s) || s.y + s.height > Config.height))
+      e.dir = UP, s.img = s.imgs.idleUp
+    else if (e.dir === UP && (topBarrier(s) || !up(s) || s.y < 0))
+      e.dir = DOWN, s.img = s.imgs.idleDown
   }
 
-  if (touches(e.sprite, Shared.hero.sprite) && (t - e.touchTime > Config.touchDelay)) {
+  if (touches(s, Shared.hero.sprite) && (t - e.touchTime > Config.touchDelay)) {
     Shared.hero.hit = true
     e.touchTime = t
   }
 
-  if (!Shared.bullet.hidden && touches(e.sprite, Shared.bullet.sprite)) {
+  if (!Shared.bullet.hidden && touches(s, Shared.bullet.sprite)) {
     const idx = findObjIdx(Shared.objs, e)
     idx !== -1 && Shared.objs.splice(idx, 1)
     Shared.sounds.bugDie.play()
     Shared.bullet.hidden = true
   }
 
-  updateSprite(e.sprite)
+  updateSprite(s)
 }
 
-function barrierRightBelow(sprite) {
+function right(sprite) {
   return xyBarrier(sprite.x + sprite.width, sprite.y + sprite.height + 1)
 }
 
-function barrierLeftBelow(sprite) {
+function left(sprite) {
   return xyBarrier(sprite.x, sprite.y + sprite.height + 1)
 }
 
-function barrierBelowLeft(sprite) {
+function down(sprite) {
   return xyBarrier(sprite.x - 1, sprite.y + sprite.height)
 }
 
-function barrierAboveLeft(sprite) {
+function up(sprite) {
   return xyBarrier(sprite.x - 1, sprite.y)
 }

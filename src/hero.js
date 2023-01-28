@@ -3,7 +3,7 @@ import Shared from './shared'
 import { isArr, bind, LEFT, RIGHT } from './utils'
 import { rightBarrier, leftBarrier, topBarrier, downBarrier } from './barriers'
 import { Sprite, draw as drawSprite, update as updateSprite, stop } from './sprite'
-import { updateObjs, scrOffs } from './screens'
+import { updateObjs, scrOffs } from './rooms'
 
 export function Hero() {
   const hero = {

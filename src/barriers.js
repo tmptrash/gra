@@ -38,9 +38,9 @@ export function xyBarrier(x, y) {
   return barrier(ySprite * Config.hSprites + xSprite)
 }
 
-function yBarrier(top, sprite) {
+function yBarrier(up, sprite) {
   let x = sprite.x
-  const y = top ? sprite.y : sprite.y + sprite.height
+  const y = up ? sprite.y : sprite.y + sprite.height
   const x1 = x + sprite.width
   const spriteSize = Config.spriteSize
   const ySprite = Math.floor((int(y) + Shared.offsY) / spriteSize)
@@ -49,13 +49,13 @@ function yBarrier(top, sprite) {
   while (x <= x1) {
     const xSprite = Math.floor((int(x) + Shared.offsX) / spriteSize)
     const offs = ySprite * hSprites + xSprite
-    if (barrier(offs)) return getSpritePosY(xSprite, ySprite, !top)
+    if (barrier(offs)) return getSpritePosY(xSprite, ySprite, !up)
     x += spriteSize
   }
 
   const xSprite = Math.floor((int(x1) + Shared.offsX) / spriteSize)
   const offs = ySprite * hSprites + xSprite
-  return barrier(offs) ? getSpritePosY(xSprite, ySprite, !top) : false
+  return barrier(offs) ? getSpritePosY(xSprite, ySprite, !up) : false
 }
 
 function xBarrier(right, sprite) {
@@ -87,7 +87,7 @@ function getSpritePosX(xSprite, ySprite, left = true) {
   return [xSprite * spriteSize + (left ? 0 : spriteSize) - Shared.offsX, ySprite * spriteSize - Shared.offsY]
 }
 
-function getSpritePosY(xSprite, ySprite, top = true) {
+function getSpritePosY(xSprite, ySprite, up = true) {
   const spriteSize = Config.spriteSize
-  return [xSprite * spriteSize - Shared.offsX, ySprite * spriteSize + (top ? 0 : spriteSize) - Shared.offsY]
+  return [xSprite * spriteSize - Shared.offsX, ySprite * spriteSize + (up ? 0 : spriteSize) - Shared.offsY]
 }

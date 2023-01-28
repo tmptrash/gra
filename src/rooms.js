@@ -6,14 +6,16 @@ export function updateObjs(fromScr, toScr) {
   const objs = Shared.objs
   for (let i = 0; i < objs.length; i++) objs[i].scr === fromScr && (objs.splice(i, 1), i--)
   
-  const enemies = Config.screens.enemies[toScr]
+  const enemies = Config.rooms.enemies[toScr]
   enemies && enemies.forEach(cfg => objs.push(create('Enemy', cfg, toScr)))
 
-  const items = Config.screens.items[toScr]
+  const items = Config.rooms.items[toScr]
   items && items.forEach(cfg => !isPicked(cfg[0], toScr) && objs.push(create('Item', cfg, toScr)))
 
-  const scripts = Config.screens.scripts[toScr]
-  scripts && scripts.forEach(cfg => objs.push(create(cfg[0], cfg[1])))
+  const scripts = Config.rooms.scripts[toScr]
+  scripts && scripts.forEach(cfg => {
+    cfg[1].pos && objs.splice(cfg[1].pos, 0, create(cfg[0], cfg[1])) || objs.push(create(cfg[0], cfg[1]))
+  })
 }
 
 export function scrOffs(offsX, offsY) {
