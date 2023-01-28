@@ -27,7 +27,7 @@ function main() {
   Shared.ctx = doc.getElementById(Config.canvasId).getContext('2d')
   Shared.ctx.canvas.width = Config.width
   Shared.ctx.canvas.height = Config.height
-  doc.body.style.zoom = window.innerHeight * .9 / Config.height
+  resize()
   logo()
   Shared.ctx.fillStyle = Config.frontColor
   Shared.ctx.font = Config.frontFont
@@ -41,6 +41,7 @@ function main() {
 
   Config.debug && objs.push({ draw: drawDebug, update: updateDebug, o: Debug() })
   on(window, 'message', e => e.data === 0 && (e.stopPropagation(), update()), true)
+  on(window, 'resize', resize)
   updateObjs(null, roomOffs(Shared.offsX, Shared.offsY))
   setTimeout(waitAssets, Config.logoTimeout)
 }
@@ -70,6 +71,7 @@ function waitAssets() {
 function start() {
   // TODO: remove in production
   on(window, 'keyup', onPrompt)
+
   playBtn.style.display = 'none'
   off(playBtn, 'click', start)
   play(Shared.music)
@@ -103,6 +105,10 @@ function onPrompt(e) {
   Shared.offsX = Config.width * offs[0].trim()
   Shared.offsY = Config.height * offs[1].trim()
   updateObjs(roomOffs(x, y), roomOffs(Shared.offsX, Shared.offsY))
+}
+
+function resize() {
+  doc.body.style.zoom = window.innerHeight * .9 / Config.height
 }
 
 main()
