@@ -6,6 +6,9 @@ P.S.S I open for collaboration with other game devs and designers :)
 
 Enjoy!
 
+## Requirements
+Chrome + fullscreen
+
 ## Available scripts
 
 ### `npm install`
