@@ -28,19 +28,15 @@ export function Hero() {
     fire: false,
     key: false
   }
-  bind({
-    keydown: {
-      a: () => (hero.pressed.a = true, hero.stepTime = performance.now(), hero.stepX = hero.sprite.x, hero.dir = LEFT ),
-      d: () => (hero.pressed.d = true, hero.stepTime = performance.now(), hero.stepX = hero.sprite.x, hero.dir = RIGHT),
-      w: onJumpKeyDown.bind(null, hero),
-      ' ': () => (hero.gun && hero.bullets > 0 && (hero.fire = true))
-    },
-    keyup: {
-      a: () => (hero.pressed.a = false, hero.pressed.d && (hero.dir = RIGHT)),
-      d: () => (hero.pressed.d = false, hero.pressed.a && (hero.dir = LEFT)),
-      w: () => hero.pressed.w = false
-    }
-  })
+  const keyCfg = { keydown: {}, keyup: {} }
+  keyCfg.keydown[Config.leftKey]  = () => (hero.pressed.a = true, hero.stepTime = performance.now(), hero.stepX = hero.sprite.x, hero.dir = LEFT)
+  keyCfg.keydown[Config.rightKey] = () => (hero.pressed.d = true, hero.stepTime = performance.now(), hero.stepX = hero.sprite.x, hero.dir = RIGHT),
+  keyCfg.keydown[Config.jumpKey]  = onJumpKeyDown.bind(null, hero),
+  keyCfg.keydown[Config.fireKey]  = () => (hero.gun && hero.bullets > 0 && (hero.fire = true))
+  keyCfg.keyup[Config.leftKey]    = () => (hero.pressed.a = false, hero.pressed.d && (hero.dir = RIGHT)),
+  keyCfg.keyup[Config.rightKey]   = () => (hero.pressed.d = false, hero.pressed.a && (hero.dir = LEFT)),
+  keyCfg.keyup[Config.jumpKey]    = () => hero.pressed.w = false
+  bind(keyCfg)
 
   return hero
 }

@@ -72,6 +72,7 @@ function waitAssets() {
 function start() {
   // TODO: remove in production
   on(window, 'keyup', onPrompt)
+  on(window, 'keydown', e => console.log(e.code))
 
   playBtn.style.display = 'none'
   off(playBtn, 'click', start)

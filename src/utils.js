@@ -18,7 +18,7 @@ export function int(n) {
 
 export function bind(handlers) {
   for (const evt in handlers) {
-    on(window, evt, e => handlers[evt] && handlers[evt][e.key] && handlers[evt][e.key]())
+    on(window, evt, e => handlers[evt] && handlers[evt][e.code] && handlers[evt][e.code]())
   }
 }
 

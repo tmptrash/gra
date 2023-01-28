@@ -87,6 +87,11 @@ export default Config = {
   life: 4,
   lifePos: [10, 10],
   touchDelay: 1000,
+  // developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_code_values
+  leftKey: 'KeyA',
+  rightKey: 'KeyD',
+  jumpKey: 'KeyW',
+  fireKey: 'Space',
 
   // bullet
   bulletsPos: [10, 26],
