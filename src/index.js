@@ -5,7 +5,7 @@ import { Bullet, draw as drawBullet, update as updateBullet } from './bullet'
 import { Level, draw as drawLevel, update as updateLevel } from './level'
 import { updateObjs } from './screens'
 import { Debug, draw as drawDebug, update as updateDebug } from './debug'
-import { logo, fn, findObjById } from './utils'
+import { logo, fn, on, off, findObjById } from './utils'
 import { Music, play, stop } from './music'
 import { Picked, draw as drawPicked } from './picked'
 import { Sounds } from './sounds'
@@ -15,7 +15,7 @@ let stopped = false
 const PICKED_ID = 'picked'
 const playBtn = document.querySelector(Config.playQuery)
 const doc = document
-// Order is important!
+// Static items. Order is important!
 const objs = Shared.objs = [
   { draw: drawLevel,  update: updateLevel,  o: Level() },
   { draw: drawHero,   update: updateHero,   o: Hero(),   id: Config.heroId },
@@ -40,7 +40,7 @@ function main() {
   Shared.bullet = findObjById(objs, Config.bulletId)
 
   Config.debug && objs.push({ draw: drawDebug, update: updateDebug, o: Debug() })
-  window.addEventListener('message', e => e.data === 0 && (e.stopPropagation(), update()), true)
+  on(window, 'message', e => e.data === 0 && (e.stopPropagation(), update()), true)
   updateObjs(null, 0)
   setTimeout(waitAssets, Config.logoTimeout)
 }
@@ -63,12 +63,13 @@ function waitAssets() {
     setTimeout(waitAssets, 10)
     return
   }
-  playBtn.addEventListener('click', start)
+  on(playBtn, 'click', start)
   playBtn.style.visibility = ''
 }
 
 function start() {
   playBtn.style.display = 'none'
+  off(playBtn, 'click', start)
   play(Shared.music)
   update()
   draw()

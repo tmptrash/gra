@@ -1,6 +1,6 @@
 import Shared from './shared'
 import Config from './config'
-import { getMousePos, int } from './utils'
+import { getMousePos, int, on } from './utils'
 
 const CHECK_EVERY = 1000
 
@@ -12,7 +12,7 @@ export function Debug() {
     curFps: 0,
     curUps: 0
   }
-  window.addEventListener('mousemove', e => debug.pos = getMousePos(Shared.ctx.canvas, e), false)
+  on(window, 'mousemove', e => debug.pos = getMousePos(Shared.ctx.canvas, e), false)
   return debug
 }
 

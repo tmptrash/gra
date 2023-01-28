@@ -1,4 +1,5 @@
 import Config from './config'
+import { on } from './utils'
 
 export function Music() {
   const music = {
@@ -6,7 +7,7 @@ export function Music() {
     el: document.getElementById(Config.audioId),
     idx: 0
   }
-  music.el.addEventListener('ended', play.bind(null, music))
+  on(music.el, 'ended', play.bind(null, music))
 
   return music
 }

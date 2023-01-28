@@ -16,8 +16,16 @@ export function int(n) {
 
 export function bind(handlers) {
   for (const evt in handlers) {
-    window.addEventListener(evt, e => handlers[evt] && handlers[evt][e.key] && handlers[evt][e.key]())
+    on(window, evt, e => handlers[evt] && handlers[evt][e.key] && handlers[evt][e.key]())
   }
+}
+
+export function on(el, event, handler) {
+  el.addEventListener(event, handler)
+}
+
+export function off(el, event, handler) {
+  el.removeEventListener(event, handler)
 }
 
 export function getMousePos(canvas, evt) {
