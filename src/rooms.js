@@ -2,19 +2,20 @@ import Shared from './shared'
 import Config from './config'
 import { create } from './creator'
 
-export function updateObjs(fromScr, toScr) {
+export function updateObjs(fromRoom, toRoom) {
   const objs = Shared.objs
-  for (let i = 0; i < objs.length; i++) objs[i].room === fromScr && (objs.splice(i, 1), i--)
+  for (let i = 0; i < objs.length; i++) objs[i].room === fromRoom && (objs.splice(i, 1), i--)
   
-  const enemies = Config.rooms.enemies[toScr]
-  enemies && enemies.forEach(cfg => objs.push(create('Enemy', cfg, toScr)))
+  const enemies = Config.rooms.enemies[toRoom]
+  enemies && enemies.forEach(cfg => objs.push(create('Enemy', cfg, toRoom)))
 
-  const items = Config.rooms.items[toScr]
-  items && items.forEach(cfg => !isPicked(cfg[0], toScr) && objs.push(create('Item', cfg, toScr)))
+  const items = Config.rooms.items[toRoom]
+  items && items.forEach(cfg => !isPicked(cfg[0], toRoom) && objs.push(create('Item', cfg, toRoom)))
 
-  const scripts = Config.rooms.scripts[toScr]
+  const scripts = Config.rooms.scripts[toRoom]
   scripts && scripts.forEach(cfg => {
-    cfg[1].pos && objs.splice(cfg[1].pos, 0, create(cfg[0], cfg[1])) || objs.push(create(cfg[0], cfg[1]))
+    if (cfg[1].pos) objs.splice(cfg[1].pos, 0, create(cfg[0], cfg[1], toRoom))
+    else objs.push(create(cfg[0], cfg[1], toRoom))
   })
 }
 
