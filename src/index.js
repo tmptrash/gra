@@ -3,7 +3,7 @@ import Config from './config'
 import { Hero, draw as drawHero, update as updateHero } from './hero'
 import { Bullet, draw as drawBullet, update as updateBullet } from './bullet'
 import { Level, draw as drawLevel, update as updateLevel } from './level'
-import { updateObjs } from './rooms'
+import { updateObjs, roomOffs } from './rooms'
 import { Debug, draw as drawDebug, update as updateDebug } from './debug'
 import { logo, fn, on, off, findObjById } from './utils'
 import { Music, play, stop } from './music'
@@ -41,7 +41,7 @@ function main() {
 
   Config.debug && objs.push({ draw: drawDebug, update: updateDebug, o: Debug() })
   on(window, 'message', e => e.data === 0 && (e.stopPropagation(), update()), true)
-  updateObjs(null, 0)
+  updateObjs(null, roomOffs(Shared.offsX, Shared.offsY))
   setTimeout(waitAssets, Config.logoTimeout)
 }
 

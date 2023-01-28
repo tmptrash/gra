@@ -1,7 +1,7 @@
 {
   "name": "gra",
   "version": "1.0.0",
-  "description": "Simple JS game",
+  "description": "'Mary Brave' is a pure JavaScript game without frameworks and engines. Kill enemies, find the key and open the door to complete the level.",
   "private": true,
   "directories": {
     "doc": "docs"

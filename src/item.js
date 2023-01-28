@@ -2,10 +2,10 @@ import Shared from './shared'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import { findObjIdx, touches } from './utils'
 
-export function Item(spriteCfg, sound, pickFn, scr) {
+export function Item(spriteCfg, sound, pickFn, room) {
   const item = {
     picked: false,
-    scr,
+    room,
     sprite: Sprite(...spriteCfg),
     stepTime: performance.now(),
     sound: Shared.sounds[sound],

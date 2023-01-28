@@ -24,8 +24,8 @@ export function draw(debug) {
   const hy0 = int(s.y)
   const hx1 = int(s.x + s.width)
   const hy1 = int(s.y + s.height)
-  const scrX = Shared.offsX / Config.width
-  const scrY = Shared.offsY / Config.height
+  const roomX = Shared.offsX / Config.width
+  const roomY = Shared.offsY / Config.height
   const t = performance.now()
 
   if (t - debug.fTime > CHECK_EVERY) {
@@ -36,7 +36,7 @@ export function draw(debug) {
   debug.curFps++
 
   Shared.ctx.font = Config.frontFont
-  Shared.ctx.fillText(`fps: ${Shared.fps}   ups: ${Shared.ups}   mouse ${x}:${y}   hero ${hx0}:${hy0}, ${hx1}:${hy1}   scr ${scrX}:${scrY}`, 200, 22)
+  Shared.ctx.fillText(`fps: ${Shared.fps}   ups: ${Shared.ups}   mouse ${x}:${y}   hero ${hx0}:${hy0}, ${hx1}:${hy1}   room ${roomX}:${roomY}`, 200, 22)
 }
 
 export function update(fps) {

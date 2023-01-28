@@ -4,7 +4,7 @@ import { create } from './creator'
 
 export function updateObjs(fromScr, toScr) {
   const objs = Shared.objs
-  for (let i = 0; i < objs.length; i++) objs[i].scr === fromScr && (objs.splice(i, 1), i--)
+  for (let i = 0; i < objs.length; i++) objs[i].room === fromScr && (objs.splice(i, 1), i--)
   
   const enemies = Config.rooms.enemies[toScr]
   enemies && enemies.forEach(cfg => objs.push(create('Enemy', cfg, toScr)))
@@ -18,14 +18,14 @@ export function updateObjs(fromScr, toScr) {
   })
 }
 
-export function scrOffs(offsX, offsY) {
-  const scrX = offsX / Config.width
-  const scrY = offsY / Config.height
-  return scrX + scrY * (Config.hSprites * Config.spriteSize / Config.width)
+export function roomOffs(offsX, offsY) {
+  const roomX = offsX / Config.width
+  const roomY = offsY / Config.height
+  return roomX + roomY * (Config.hSprites * Config.spriteSize / Config.width)
 }
 
-function isPicked(itemCfg, scr) {
+function isPicked(itemCfg, room) {
   return Shared.picked.items.findIndex(i => {
-    return i.sprite.img.img.src === itemCfg[1].idle[0] && i.scr === scr
+    return i.sprite.img.img.src === itemCfg[1].idle[0] && i.room === room
   }) !== -1
 }
