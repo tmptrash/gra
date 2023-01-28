@@ -27,8 +27,6 @@ function main() {
   Shared.ctx = doc.getElementById(Config.canvasId).getContext('2d')
   Shared.ctx.canvas.width = Config.width
   Shared.ctx.canvas.height = Config.height
-  resize()
-  logo()
   Shared.ctx.fillStyle = Config.frontColor
   Shared.ctx.font = Config.frontFont
   Shared.ctx.imageSmoothingEnabled = false
@@ -40,6 +38,9 @@ function main() {
   Shared.bullet = findObjById(objs, Config.bulletId)
 
   Config.debug && objs.push({ draw: drawDebug, update: updateDebug, o: Debug() })
+
+  resize()
+  logo()
   on(window, 'message', e => e.data === 0 && (e.stopPropagation(), update()), true)
   on(window, 'resize', resize)
   updateObjs(null, roomOffs(Shared.offsX, Shared.offsY))
