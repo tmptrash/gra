@@ -130,8 +130,7 @@ export default Config = {
   }],
   l1: [{x: 0, y: 0, width: WIDTH, height: HEIGHT}, L1Path],
 
-  // enemy(140, 725, {idleLeft: [BugBigLeftPath,       3, 200], idleRight: [BugBigRightPath,       3, 200]}),
-  // enemies, items and scripts per room
+  // enemies, items and scripts per rooms
   rooms: {
     enemies: {
       0: [
@@ -164,7 +163,7 @@ export default Config = {
         [[{x: 150, y: 697}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .2,  true],
         [[{x: 200, y: 697}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .1,  true],
         [[{x: 270, y: 697}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .2,  true],
-        [[{x: 890, y: 377}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .1,  true],
+        [[{x: 890, y: 377}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .1,  true]
       ],
       10: [
         [[{x: 150, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .2,  true]
@@ -202,17 +201,30 @@ export default Config = {
         [[{x: 250, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .29, true],
         [[{x: 500, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .29, true]
       ],
+      24: [
+        [[{x: 400, y: 725}, {idleLeft: [BugBigLeftPath, 3, 200], idleRight: [BugBigRightPath, 3, 200]}], .33, true],
+        [[{x: 600, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .35, true],
+        [[{x: 100, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .3,  true]
+      ],
       25: [
         [[{x: 768, y: 599}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .29, true],
         [[{x: 200, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .29, true]
       ],
       29: [
         [[{x: 500, y: 147}, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}], .3,  true],
-        [[{x: 200, y: 243}, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}], .3,  true],
+        [[{x: 200, y: 243}, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}], .3,  true]
       ],
       30: [
         [[{x: 150, y: 211}, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}], .33, true],
-        [[{x: 780, y: 307}, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}], .33, true],
+        [[{x: 780, y: 307}, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}], .33, true]
+      ],
+      32: [
+        [[{x: 400, y: 695}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .35, true],
+        [[{x: 250, y: 627}, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}], .34, true]
+      ],
+      33: [
+        [[{x: 400, y: 695}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .35, true],
+        [[{x: 200, y: 691}, {idleLeft: [BugBlueLeftPath,3, 200], idleRight: [BugBlueRightPath,3, 200]}], .33, true]
       ]
     },
     items: {
@@ -250,6 +262,9 @@ export default Config = {
       ],
       23: [
         [[{x: 820, y: 100}, {idle: [BulletsPath,   9,  150]}], 'bullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) }]
+      ],
+      25: [
+        [[{x: 880, y: 704}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
       ],
       39: [
         [[{x: 830, y: 580}, {idle: [KeyPath,       7,  200]}], 'key',     (i, pick) => {Shared.hero.key = true, pick(i) }]
