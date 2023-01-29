@@ -32,6 +32,9 @@ import BugBlueLeftPath from '../img/bug-black-blue-left-3.png'
 import BugBlueRightPath from '../img/bug-black-blue-right-3.png'
 import BugBigLeftPath from '../img/bug-big-left-3.png'
 import BugBigRightPath from '../img/bug-big-right-3.png'
+// drops
+import DropPath from '../img/drop-1.png'
+import DropDownPath from '../img/drop-down-12.png'
 // music
 import Cave0 from '../music/cave0.mp3'
 // sounds
@@ -44,6 +47,10 @@ import SoundGameOver from '../sound/game-over.mp3'
 import SoundHeart from '../sound/heart.mp3'
 import SoundFire from '../sound/fire.mp3'
 import SoundBugDie from '../sound/bug-die.mp3'
+import SoundDrop1 from '../sound/drop1.mp3'
+import SoundDrop2 from '../sound/drop2.mp3'
+import SoundDrop3 from '../sound/drop3.mp3'
+import SoundDrop4 from '../sound/drop4.mp3'
 
 const WIDTH  = 1024
 const HEIGHT = 800
@@ -78,6 +85,7 @@ export default Config = {
   spriteSize: 32,
   hSprites: 256,
   vSprites: 125,
+  objTick: 2,
 
   // hero related
   jumpTime: 1000,
@@ -111,7 +119,11 @@ export default Config = {
     win: SoundWin,
     bullets: SoundBullets,
     fire: SoundFire,
-    bugDie: SoundBugDie
+    bugDie: SoundBugDie,
+    drop1: SoundDrop1,
+    drop2: SoundDrop2,
+    drop3: SoundDrop3,
+    drop4: SoundDrop4
   },
 
   // sprites
@@ -365,6 +377,11 @@ export default Config = {
       ]
     },
     scripts: {
+      0: [
+        ['Drop', {pos: 1, sound: 'drop1', speed:  1, delay: 2000, sprite1: [{x: 151, y: 121}, DropPath], sprite2: [{x: 151, y: 121}, {idle: [DropDownPath, 12, 80]}]}],
+        ['Drop', {pos: 1, sound: 'drop2', speed: .7, delay: 3500, sprite1: [{x: 977, y: 278}, DropPath], sprite2: [{x: 632, y: 160}, {idle: [DropDownPath, 12, 80]}]}],
+        ['Drop', {pos: 1, sound: 'drop3', speed: .9, delay: 4000, sprite1: [{x: 632, y: 120}, DropPath], sprite2: [{x: 632, y: 120}, {idle: [DropDownPath, 12, 80]}]}]
+      ],
       24: [
         ['Door', {pos: 1}]
       ]
