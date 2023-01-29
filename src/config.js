@@ -378,9 +378,52 @@ export default Config = {
     },
     scripts: {
       0: [
-        ['Drop', {pos: 1, sound: 'drop1', speed:  1, delay: 2000, sprite1: [{x: 151, y: 121}, DropPath], sprite2: [{x: 151, y: 121}, {idle: [DropDownPath, 12, 80]}]}],
-        ['Drop', {pos: 1, sound: 'drop2', speed: .7, delay: 3500, sprite1: [{x: 977, y: 278}, DropPath], sprite2: [{x: 632, y: 160}, {idle: [DropDownPath, 12, 80]}]}],
-        ['Drop', {pos: 1, sound: 'drop3', speed: .9, delay: 4000, sprite1: [{x: 632, y: 120}, DropPath], sprite2: [{x: 632, y: 120}, {idle: [DropDownPath, 12, 80]}]}]
+        ['Drop', {sprite1: [{x: 151, y: 121}, DropPath], sprite2: [{x: 151, y: 121}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed:  1, delay: 2000}],
+        ['Drop', {sprite1: [{x: 977, y: 278}, DropPath], sprite2: [{x: 632, y: 160}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: .7, delay: 3500}],
+        ['Drop', {sprite1: [{x: 632, y: 120}, DropPath], sprite2: [{x: 632, y: 120}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed: .9, delay: 4000}]
+      ],
+      1: [
+        ['Drop', {sprite1: [{x: 112, y: 159}, DropPath], sprite2: [{x: 112, y: 159}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed:  1, delay: 2000}]
+      ],
+      2: [
+        ['Drop', {sprite1: [{x: 541, y:  64}, DropPath], sprite2: [{x: 112, y: 159}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed:  1, delay: 2000}]
+      ],
+      3: [
+        ['Drop', {sprite1: [{x:   7, y:  64}, DropPath], sprite2: [{x:   7, y:  64}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop4', speed:  1, delay: 3000}],
+        ['Drop', {sprite1: [{x: 631, y:  64}, DropPath], sprite2: [{x: 631, y:  64}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed: .8, delay: 2500}]
+      ],
+      4: [
+        ['Drop', {sprite1: [{x:  43, y: 224}, DropPath], sprite2: [{x:  43, y: 224}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed:  1, delay: 1000}],
+        ['Drop', {sprite1: [{x: 998, y: 448}, DropPath], sprite2: [{x: 998, y: 448}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed: .8, delay: 2500}]
+      ],
+      5: [
+        ['Drop', {sprite1: [{x: 125, y: 448}, DropPath], sprite2: [{x: 125, y: 448}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed:  1, delay: 1000}],
+        ['Drop', {sprite1: [{x:1007, y: 128}, DropPath], sprite2: [{x:1007, y: 128}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed:  2, delay:  500}]
+      ],
+      6: [
+        ['Drop', {sprite1: [{x: 654, y:  64}, DropPath], sprite2: [{x: 654, y:  64}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed: .5, delay: 1000}],
+        ['Drop', {sprite1: [{x: 525, y: 128}, DropPath], sprite2: [{x: 525, y: 128}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop4', speed:  3, delay:  200}],
+        ['Drop', {sprite1: [{x: 108, y: 479}, DropPath], sprite2: [{x: 108, y: 479}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed:  4, delay:  100}]
+      ],
+      7: [
+        ['Drop', {sprite1: [{x: 605, y: 288}, DropPath], sprite2: [{x: 605, y: 288}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed: .5, delay: 2000}]
+      ],
+      8: [
+        ['Drop', {sprite1: [{x: 422, y:  64}, DropPath], sprite2: [{x: 422, y:  64}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed:  1, delay:  500}],
+        ['Drop', {sprite1: [{x:  84, y: 128}, DropPath], sprite2: [{x:  84, y: 128}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  1, delay:  200}],
+        ['Drop', {sprite1: [{x: 510, y: 544}, DropPath], sprite2: [{x: 510, y: 544}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed:  1, delay: 1000}]
+      ],
+      10: [
+        ['Drop', {sprite1: [{x: 590, y: 288}, DropPath], sprite2: [{x: 590, y: 288}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed: .9, delay: 1000}],
+        ['Drop', {sprite1: [{x: 985, y: 512}, DropPath], sprite2: [{x: 985, y: 512}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed:  1, delay: 1000}]
+      ],
+      13: [
+        ['Drop', {sprite1: [{x:  46, y: 288}, DropPath], sprite2: [{x:  46, y: 288}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop4', speed: .8, delay: 4000}],
+        ['Drop', {sprite1: [{x: 384, y: 288}, DropPath], sprite2: [{x: 384, y: 288}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed:  1, delay: 1000}]
+      ],
+      14: [
+        ['Drop', {sprite1: [{x: 528, y: 448}, DropPath], sprite2: [{x: 528, y: 448}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed: .5, delay: 2000}],
+        ['Drop', {sprite1: [{x: 333, y: 640}, DropPath], sprite2: [{x: 333, y: 640}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed:  1, delay: 1000}]
       ],
       24: [
         ['Door', {pos: 1}]
