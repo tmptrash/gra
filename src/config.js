@@ -240,6 +240,11 @@ export default Config = {
         [[{x: 384, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .29, true],
         [[{x: 640, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .29, true]
       ],
+      20: [
+        [[{x: 384, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .29, true],
+        [[{x: 640, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .29, true],
+        [[{x: 900, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .29, true]
+      ],
       21: [
         [[{x: 250, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .29, true],
         [[{x: 500, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .29, true]
@@ -359,8 +364,14 @@ export default Config = {
       18: [
         [[{x: 700, y: 128}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
       ],
+      20: [
+        [[{x: 860, y: 138}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
+      ],
       21: [
         [[{x: 530, y: 100}, {idle: [BulletsPath,   9,  150]}], 'bullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) }]
+      ],
+      22: [
+        [[{x: 288, y: 168}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
       ],
       23: [
         [[{x: 820, y: 100}, {idle: [BulletsPath,   9,  150]}], 'bullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) }]
@@ -378,9 +389,9 @@ export default Config = {
     },
     scripts: {
       0: [
-        ['Drop', {sprite1: [{x: 151, y: 121}, DropPath], sprite2: [{x: 151, y: 121}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed:  1, delay: 2000}],
-        ['Drop', {sprite1: [{x: 977, y: 278}, DropPath], sprite2: [{x: 632, y: 160}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: .7, delay: 3500}],
-        ['Drop', {sprite1: [{x: 632, y: 120}, DropPath], sprite2: [{x: 632, y: 120}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed: .9, delay: 4000}]
+        ['Drop', {sprite1: [{x: 151, y:  64}, DropPath], sprite2: [{x: 151, y:  64}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed:  1, delay: 2000}],
+        ['Drop', {sprite1: [{x: 940, y: 128}, DropPath], sprite2: [{x: 940, y: 128}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: .7, delay: 3500}],
+        ['Drop', {sprite1: [{x: 632, y:  64}, DropPath], sprite2: [{x: 632, y:  64}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed: .9, delay: 4000}]
       ],
       1: [
         ['Drop', {sprite1: [{x: 112, y: 159}, DropPath], sprite2: [{x: 112, y: 159}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed:  1, delay: 2000}]
@@ -424,6 +435,22 @@ export default Config = {
       14: [
         ['Drop', {sprite1: [{x: 528, y: 448}, DropPath], sprite2: [{x: 528, y: 448}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed: .5, delay: 2000}],
         ['Drop', {sprite1: [{x: 333, y: 640}, DropPath], sprite2: [{x: 333, y: 640}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed:  1, delay: 1000}]
+      ],
+      17: [
+        ['Drop', {sprite1: [{x: 271, y:  32}, DropPath], sprite2: [{x: 271, y:  32}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed: .5, delay: 2000}],
+        ['Drop', {sprite1: [{x: 108, y: 256}, DropPath], sprite2: [{x: 108, y: 256}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed:  1, delay: 1000}]
+      ],
+      19: [
+        ['Drop', {sprite1: [{x: 397, y: 416}, DropPath], sprite2: [{x: 397, y: 416}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  1, delay: 2000}],
+        ['Drop', {sprite1: [{x: 688, y: 544}, DropPath], sprite2: [{x: 688, y: 544}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed:  1, delay: 1000}]
+      ],
+      20: [
+        ['Drop', {sprite1: [{x: 161, y:  32}, DropPath], sprite2: [{x: 161, y:  32}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  1, delay: 2000}]
+      ],
+      22: [
+        ['Drop', {sprite1: [{x: 471, y: 544}, DropPath], sprite2: [{x: 471, y: 544}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  1, delay: 2000}],
+        ['Drop', {sprite1: [{x: 600, y: 544}, DropPath], sprite2: [{x: 600, y: 544}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed:  1, delay: 1000}],
+        ['Drop', {sprite1: [{x: 800, y: 544}, DropPath], sprite2: [{x: 800, y: 544}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: .7, delay: 3000}]
       ],
       24: [
         ['Door', {pos: 1}]
