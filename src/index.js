@@ -41,23 +41,25 @@ function main() {
 
   resize()
   logo()
-  on(window, 'message', e => e.data === 0 && (e.stopPropagation(), update()), true)
   on(window, 'resize', resize)
   updateObjs(null, roomOffs(Shared.offsX, Shared.offsY))
   setTimeout(waitAssets, Config.logoTimeout)
 }
 
-function draw() {
+function animate() {
   Shared.ctx.clearRect(0, 0, Config.width, Config.height)
+  draw()
+  update()
+  Config.useSetTimeout ? setTimeout(animate) : requestAnimationFrame(animate)
+}
+
+function draw() {
   objs.forEach(o => o.draw(o.o))
-  if (Shared.stop) drawStop()
-  Config.useSetTimeout ? setTimeout(draw) : requestAnimationFrame(draw)
+  Shared.stop && drawStop()
 }
 
 function update() {
-  if (Shared.stop) return
-  objs.forEach(o => o.update(o.o))
-  setTimeout(() => window.postMessage(0, '*'), Config.upsDelay)
+  !Shared.stop && objs.forEach(o => o.update(o.o))
 }
 
 function waitAssets() {
@@ -76,8 +78,7 @@ function start() {
   playBtn.style.display = 'none'
   off(playBtn, 'click', start)
   play(Shared.music)
-  update()
-  draw()
+  animate()
 }
 
 function drawStop() {

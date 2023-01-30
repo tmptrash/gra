@@ -1,27 +1,27 @@
 import Config from './config'
 import Shared from './shared'
-import { isArr, bind, LEFT, RIGHT } from './utils'
+import { bind, LEFT, RIGHT } from './utils'
 import { rightBarrier, leftBarrier, topBarrier, downBarrier } from './barriers'
 import { Sprite, draw as drawSprite, update as updateSprite, stop } from './sprite'
 import { updateObjs, roomOffs } from './rooms'
 
 export function Hero() {
   const hero = {
+    t: 0,
     dir: RIGHT,
     jumpV0: Math.sqrt(Config.jumpSize / 2) * 2,
     jumpTimeDiv: 0,
     jumpStartTime: 0,
     jumpTime: 0,
     jumpY: 0,
+    jumpBarrier: false,
     isJumping: false,
     fallTime: (Config.jumpTime / 2) / Config.jumpSize,
-    stepTime: performance.now(),
-    stepX: 0,
     pressed: { a: false, d: false, w: false },
     sprite: Sprite(...Config.hero),
     bulletsSprite: Sprite(...Config.bullets),
     lifeSprite: Sprite(...Config.heart),
-    life: Config.life,
+    life: Config.startLifes,
     bullets: 0,
     hit: false,
     gun: false,
@@ -29,8 +29,8 @@ export function Hero() {
     key: false
   }
   const keyCfg = { keydown: {}, keyup: {} }
-  keyCfg.keydown[Config.leftKey]  = () => (hero.pressed.a = true, hero.stepTime = performance.now(), hero.stepX = hero.sprite.x, hero.dir = LEFT)
-  keyCfg.keydown[Config.rightKey] = () => (hero.pressed.d = true, hero.stepTime = performance.now(), hero.stepX = hero.sprite.x, hero.dir = RIGHT),
+  keyCfg.keydown[Config.leftKey]  = () => (hero.pressed.a = true, hero.dir = LEFT)
+  keyCfg.keydown[Config.rightKey] = () => (hero.pressed.d = true, hero.dir = RIGHT),
   keyCfg.keydown[Config.jumpKey]  = onJumpKeyDown.bind(null, hero),
   keyCfg.keydown[Config.fireKey]  = () => (hero.gun && hero.bullets > 0 && (hero.fire = true))
   keyCfg.keyup[Config.leftKey]    = () => (hero.pressed.a = false, hero.pressed.d && (hero.dir = RIGHT)),
@@ -51,22 +51,22 @@ export function update(h) {
   const t = performance.now()
   const s = h.sprite
   const left = h.dir === LEFT
+  h.t === 0 && (h.t = t)
 
   // jump: v0 = sqrt(Config.jumpSize / 2) * 2, tmax = 2 * v0, y = v0 * t - t * t / 2
   h.pressed.w && onJumpKeyDown(h)
   if (h.isJumping) {
     const time = (t - h.jumpStartTime) / h.jumpTimeDiv
     s.img = s.imgs[`jump${h.gun ? 'Gun' : ''}${left ? 'Left' : 'Right'}`]
-    if (time > h.jumpTime) updateY(h, h.jumpY), h.isJumping = false, h.jumpTime = 0
-    else updateY(h, h.jumpY - (h.jumpV0 * time - time * time / 2))
+    updateY(h, h.jumpY - (h.jumpV0 * time - time * time / 2))
   }
 
-  // walk: incX = Config.stepSize / (Config.stepTime / (t1 - t0))
+  // walk: x += (t - h.t) * Config.stepSpeed * h.dir
   if (h.pressed.d || h.pressed.a) {
-    updateX(h, h.stepX + (Config.stepSize / (Config.stepTime / (t - h.stepTime))) * (left ? -1 : 1))
+    updateX(h, s.x + (t - h.t) * Config.stepSpeed * h.dir)
     !h.isJumping && (s.img = s.imgs[`walk${h.gun ? 'Gun' : ''}${left ? 'Left' : 'Right'}`])
   }
-  
+
   // idle
   if (!h.isJumping && !h.pressed.d && !h.pressed.a) {
     s.img = s.imgs[`idle${h.gun ? 'Gun' : ''}${left ? 'Left' : 'Right'}`]
@@ -74,8 +74,7 @@ export function update(h) {
 
   // fall
   if (!h.isJumping) {
-    if (h.jumpTime === 0) h.jumpTime = t
-    else updateY(h, s.y + (t - h.jumpTime) / h.fallTime), h.jumpTime = t
+    updateY(h, s.y + (t - h.t) / h.fallTime)
   }
 
   // hit
@@ -94,6 +93,7 @@ export function update(h) {
 
   updateScreen(h)
   updateSprite(s)
+  h.t = t
 }
 
 function onJumpKeyDown(hero) {
@@ -117,24 +117,31 @@ function updateX(hero, newX) {
   const left = diff < 0
   s.x += diff
   const pos = left ? leftBarrier(s) : rightBarrier(s)
-  if (isArr(pos)) {
+  if (pos) {
     s.x = left ? pos[0] + 1 : pos[0] - s.width - 1
-    hero.stepTime = performance.now()
-    hero.stepX = hero.sprite.x
   }
 }
 
-function updateY(hero, newY) {
-  const s = hero.sprite
+function updateY(h, newY) {
+  const s = h.sprite
   let diff = newY - s.y
   Math.abs(diff) > Config.spriteSize && (diff = (Config.spriteSize - 1) * Math.sign(diff))
   const down = diff > 0
   s.y += diff
   const pos = down ? downBarrier(s) : topBarrier(s)
-  if (isArr(pos)) {
-    if (down) s.y = pos[1] - s.height - 1, hero.jumpTime = 0
+  if (pos) {
+    if (down) s.y = pos[1] - s.height - 1//, h.jumpTime = 0
     else s.y = pos[1] + 1
-    hero.pressed.w = hero.isJumping = false
+    //h.pressed.w = h.isJumping = false
+    if (h.isJumping) {
+      if (!down) {
+        if (!h.jumpBarrier) {
+          h.jumpStartTime -= ((Config.jumpTime / 2 - (performance.now() - h.jumpStartTime)) * 2)
+          h.jumpBarrier = true
+        }
+      }
+      else h.pressed.w = h.isJumping = h.jumpBarrier = false
+    }
   }
 }
 
@@ -144,13 +151,11 @@ function updateScreen(h) {
   if (s.x > Config.width) {
     updateObjs(roomOffs(Shared.offsX, Shared.offsY), roomOffs(Shared.offsX + Config.width, Shared.offsY))
     Shared.offsX += Config.width
-    h.stepX = s.x = 1
-    h.stepTime = performance.now()
+    s.x = 1
   } else if (s.x + s.width < 0) {
     updateObjs(roomOffs(Shared.offsX, Shared.offsY), roomOffs(Shared.offsX - Config.width, Shared.offsY))
     Shared.offsX -= Config.width
-    h.stepX = s.x = Config.width - s.width - 1
-    h.stepTime = performance.now()
+    s.x = Config.width - s.width - 1
   } else if (s.y > Config.height) {
     updateObjs(roomOffs(Shared.offsX, Shared.offsY), roomOffs(Shared.offsX, Shared.offsY + Config.height))
     Shared.offsY += Config.height
