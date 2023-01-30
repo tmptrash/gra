@@ -48,7 +48,7 @@ export function update(e) {
       e.dir = DOWN, s.img = s.imgs.idleDown
   }
 
-  if (touches(s, Shared.hero.sprite) && (t - e.touchTime > Config.touchDelay)) {
+  if (touches(s, Shared.hero.sprite, Config.intersectionOffs) && (t - e.touchTime > Config.touchDelay)) {
     Shared.hero.hit = true
     e.touchTime = t
   }

@@ -59,11 +59,11 @@ export function logo(show = true) {
   }
 }
 
-export function touches(s, s1) {
+export function touches(s, s1, offs = 0) {
   return (
-    s.x <= (s1.x + s1.width)  &&
-    (s.x + s.width) >= s1.x   &&
-    s.y <= (s1.y + s1.height) &&
-    (s.y + s.height) >= s1.y
+    s.x + offs <= (s1.x + s1.width - offs)  &&
+    (s.x + s.width - offs) >= s1.x + offs   &&
+    s.y + offs <= (s1.y + s1.height - offs) &&
+    (s.y + s.height - offs) >= s1.y + offs
   )
 }

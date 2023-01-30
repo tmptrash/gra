@@ -86,6 +86,7 @@ export default Config = {
   hSprites: 256,
   vSprites: 125,
   objTick: 2,
+  intersectionOffs: 3,
 
   // hero related
   jumpTime: 1000,
