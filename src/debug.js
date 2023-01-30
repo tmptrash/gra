@@ -8,9 +8,7 @@ export function Debug() {
   const debug = {
     pos: {},
     fTime: performance.now(),
-    uTime: performance.now(),
-    curFps: 0,
-    curUps: 0
+    curFps: 0
   }
   on(window, 'mousemove', e => debug.pos = getMousePos(Shared.ctx.canvas, e), false)
   return debug
@@ -36,16 +34,5 @@ export function draw(debug) {
   debug.curFps++
 
   Shared.ctx.font = Config.frontFont
-  Shared.ctx.fillText(`fps: ${Shared.fps}   ups: ${Shared.ups}   mouse ${x}:${y}   hero ${hx0}:${hy0}, ${hx1}:${hy1}   room ${roomX}:${roomY}`, 200, 22)
-}
-
-export function update(fps) {
-  const t = performance.now()
-  if (t - fps.uTime > CHECK_EVERY) {
-    Shared.ups = fps.curUps
-    fps.curUps = 0
-    fps.uTime = t
-  }
-
-  fps.curUps++
+  Shared.ctx.fillText(`fps: ${Shared.fps}   mouse ${x}:${y}   hero ${hx0}:${hy0}, ${hx1}:${hy1}   room ${roomX}:${roomY}`, 300, 22)
 }

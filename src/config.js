@@ -84,8 +84,7 @@ export default Config = {
   spriteSize: 32,
   hSprites: 256,
   vSprites: 125,
-  // TODO: remove this 
-  objTick: 1,
+  objTick: 17,
   intersectionOffs: 5,
 
   // hero related
@@ -151,36 +150,36 @@ export default Config = {
   rooms: {
     enemies: {
       0: [
-        [[{x: 350, y: 377}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .5, true],
-        [[{x: 32,  y: 150}, {idleUp:   [BugUpPath,      2, 300], idleDown:  [BugDownPath,     2, 300]}], .5, false],
-        [[{x: 950, y: 601}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .5, true],
-        [[{x: 140, y: 729}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .5, true]
+        [[{x: 350, y: 377}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .5,  true],
+        [[{x: 32,  y: 150}, {idleUp:   [BugUpPath,      2, 300], idleDown:  [BugDownPath,     2, 300]}], .5,  false],
+        [[{x: 950, y: 601}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .5,  true],
+        [[{x: 140, y: 729}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .5,  true]
       ],
       1: [
-        [[{x: 620, y: 505}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .8, true],
-        [[{x: 200, y: 599}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .8, true]
+        [[{x: 620, y: 505}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .8,  true],
+        [[{x: 200, y: 599}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], .8,  true]
       ],
       2: [
-        [[{x: 150, y: 281}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .9, true],
-        [[{x: 790, y: 377}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .9, true]
+        [[{x: 150, y: 281}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .9,  true],
+        [[{x: 790, y: 377}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], .9,  true]
       ],
       3: [
-        [[{x: 300, y: 281}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], 1,  true],
-        [[{x: 150, y: 631}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], 2,  true],
-        [[{x: 700, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], 2,  true]
+        [[{x: 300, y: 281}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], 1,   true],
+        [[{x: 150, y: 631}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], 2,   true],
+        [[{x: 700, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], 2,   true]
       ],
       4: [
-        [[{x: 500, y: 313}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], 2,  true],
-        [[{x: 860, y: 313}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], 2,  true],
-        [[{x: 600, y: 631}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], 2,  true]
+        [[{x: 500, y: 313}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], 2,   true],
+        [[{x: 860, y: 313}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], 2,   true],
+        [[{x: 600, y: 631}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], 2,   true]
       ],
       5: [
-        [[{x: 500, y: 473}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], 2,  true],
-        [[{x: 900, y: 569}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], 1,  true]
+        [[{x: 500, y: 473}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], 2,   true],
+        [[{x: 900, y: 569}, {idleLeft: [BugLeftPath,    2, 300], idleRight: [BugRightPath,    2, 300]}], 1,   true]
       ],
       6: [
-        [[{x: 200, y: 375}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], 2,  true],
-        [[{x: 980, y: 599}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], 2,  true]
+        [[{x: 200, y: 375}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], 2,   true],
+        [[{x: 980, y: 599}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], 2,   true]
       ],
       7:[
         [[{x: 800, y: 695}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], 5,   true]
@@ -452,8 +451,37 @@ export default Config = {
         ['Drop', {sprite1: [{x: 600, y: 544}, DropPath], sprite2: [{x: 600, y: 544}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed: 10, delay: 1000}],
         ['Drop', {sprite1: [{x: 800, y: 544}, DropPath], sprite2: [{x: 800, y: 544}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed:  7, delay: 3000}]
       ],
+      23: [
+        ['Drop', {sprite1: [{x: 272, y: 640}, DropPath], sprite2: [{x: 272, y: 640}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 10, delay: 2000}],
+        ['Drop', {sprite1: [{x: 552, y:  32}, DropPath], sprite2: [{x: 552, y:  32}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed: 10, delay: 1000}]
+      ],
       24: [
+        ['Drop', {sprite1: [{x: 432, y: 416}, DropPath], sprite2: [{x: 432, y: 416}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 10, delay: 2000}],
+        ['Drop', {sprite1: [{x: 627, y: 416}, DropPath], sprite2: [{x: 627, y: 416}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed: 10, delay: 1000}],
         ['Door', {pos: 1}]
+      ],
+      27: [
+        ['Drop', {sprite1: [{x: 300, y: 320}, DropPath], sprite2: [{x: 300, y: 320}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  8, delay: 2000}],
+        ['Drop', {sprite1: [{x: 908, y:  96}, DropPath], sprite2: [{x: 908, y:  96}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed:  7, delay: 1000}]
+      ],
+      32: [
+        ['Drop', {sprite1: [{x: 642, y: 576}, DropPath], sprite2: [{x: 642, y: 576}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed:  8, delay: 2000}]
+      ],
+      34: [
+        ['Drop', {sprite1: [{x: 400, y: 256}, DropPath], sprite2: [{x: 400, y: 256}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed:  8, delay: 2000}]
+      ],
+      35: [
+        ['Drop', {sprite1: [{x: 627, y: 608}, DropPath], sprite2: [{x: 627, y: 608}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  8, delay: 2000}]
+      ],
+      38: [
+        ['Drop', {sprite1: [{x: 400, y: 576}, DropPath], sprite2: [{x: 400, y: 576}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed:  8, delay: 2000}],
+        ['Drop', {sprite1: [{x: 627, y: 576}, DropPath], sprite2: [{x: 627, y: 576}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  8, delay: 1000}],
+        ['Drop', {sprite1: [{x: 800, y: 576}, DropPath], sprite2: [{x: 800, y: 576}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed:  8, delay: 3000}]
+      ],
+      39: [
+        ['Drop', {sprite1: [{x: 544, y: 544}, DropPath], sprite2: [{x: 544, y: 544}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed:  8, delay: 2000}],
+        ['Drop', {sprite1: [{x: 769, y: 447}, DropPath], sprite2: [{x: 769, y: 447}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  8, delay: 1000}],
+        ['Drop', {sprite1: [{x: 621, y: 319}, DropPath], sprite2: [{x: 621, y: 319}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed:  8, delay: 3000}]
       ]
     }
   },

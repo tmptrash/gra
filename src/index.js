@@ -37,7 +37,7 @@ function main() {
   Shared.hero = findObjById(objs, Config.heroId)
   Shared.bullet = findObjById(objs, Config.bulletId)
 
-  Config.debug && objs.push({ draw: drawDebug, update: updateDebug, o: Debug() })
+  Config.debug && objs.push({ draw: drawDebug, update: fn, o: Debug() })
 
   resize()
   logo()
