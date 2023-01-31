@@ -186,6 +186,7 @@ function drawBullets(hero) {
   stop(s)
   drawSprite(s)
 
+  Shared.ctx.fillStyle = Config.frontColor
   Shared.ctx.font = Config.bulletsFont
   Shared.ctx.fillText(`${hero.bullets}`, ...Config.bulletsAmountPos)
 }

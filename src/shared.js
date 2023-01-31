@@ -9,5 +9,6 @@ export default {
   hero: null,
   bullet: null,
   sounds: null,
-  stop: false
+  stop: false,
+  showed: {}
 }
