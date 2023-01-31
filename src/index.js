@@ -118,6 +118,7 @@ function loadAssets() {
   for (let i = 0; i < Config.hSprites * Config.vSprites; i++) {
     updateObjs(null, i, [])
   }
+  Shared.showed = {}
 }
 
 main()
