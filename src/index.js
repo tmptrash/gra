@@ -42,7 +42,6 @@ function main() {
   resize()
   logo()
   on(window, 'resize', resize)
-  loadAssets()
   updateObjs(null, roomOffs(Shared.offsX, Shared.offsY))
   setTimeout(waitAssets, Config.logoTimeout)
 }
@@ -112,13 +111,6 @@ function onPrompt(e) {
 
 function resize() {
   doc.body.style.zoom = window.innerHeight * .9 / Config.height
-}
-
-function loadAssets() {
-  for (let i = 0; i < Config.hSprites * Config.vSprites; i++) {
-    updateObjs(null, i, [])
-  }
-  Shared.showed = {}
 }
 
 main()
