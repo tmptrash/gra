@@ -1,4 +1,5 @@
 import Config from './config'
+import Shared from './shared'
 import LogoPath from '../img/logo.png'
 import { Sprite, draw as drawSprite } from './sprite'
 
@@ -66,4 +67,9 @@ export function touches(s, s1, offs = 0) {
     s.y + offs <= (s1.y + s1.height - offs) &&
     (s.y + s.height - offs) >= s1.y + offs
   )
+}
+
+export function delObj(obj) {
+  const idx = findObjIdx(Shared.objs, obj)
+  idx !== -1 && Shared.objs.splice(idx, 1)
 }

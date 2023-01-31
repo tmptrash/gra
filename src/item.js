@@ -1,6 +1,6 @@
 import Shared from './shared'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
-import { findObjIdx, touches } from './utils'
+import { delObj, touches } from './utils'
 
 export function Item(spriteCfg, sound, pickFn, room) {
   const item = {
@@ -31,7 +31,6 @@ export function update(i) {
 function pick(item, show = true) {
   item.hidden = !show
   Shared.picked.items.push(item)
-  const idx = findObjIdx(Shared.objs, item)
-  idx !== -1 && Shared.objs.splice(idx, 1)
+  delObj(item)
   item.sound.play()
 }

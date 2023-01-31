@@ -89,6 +89,8 @@ export default Config = {
   vSprites: 125,
   objTick: 17,
   intersectionOffs: 5,
+  textDist: 5,
+  textSpeed: .009,
 
   // hero related
   jumpTime: 1000,
@@ -394,10 +396,10 @@ export default Config = {
         ['Drop', {sprite1: [{x: 151, y:  64}, DropPath], sprite2: [{x: 151, y:  64}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed: 10, delay: 2000}],
         ['Drop', {sprite1: [{x: 940, y: 128}, DropPath], sprite2: [{x: 940, y: 128}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed:  7, delay: 3500}],
         ['Drop', {sprite1: [{x: 632, y:  64}, DropPath], sprite2: [{x: 632, y:  64}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  9, delay: 4000}],
-        ['Text', {text: ['Welcome Mary Brave!',           419, 300, 5, .009,     0, 5000, true], id: id()}],
-        ['Text', {text: ['a - left, d - right, w - jump', 386, 300, 5, .009,  5500, 5000, true], id: id()}],
-        ['Text', {text: ['Find a key and open the door',  380, 300, 5, .009, 11000, 5000, true], id: id()}],
-        ['Text', {text: ['Good luck!',                    467, 300, 5, .009, 16500, 5000, true], id: id()}]
+        ['Text', {text: ['Welcome Mary Brave!',           419, 300,     0, 5000, true], id: id()}],
+        ['Text', {text: ['a - left, d - right, w - jump', 386, 300,  5500, 5000, true], id: id()}],
+        ['Text', {text: ['Find a key and open the door',  380, 300, 11000, 5000, true], id: id()}],
+        ['Text', {text: ['Good luck!',                    467, 300, 16500, 5000, true], id: id()}]
       ],
       1: [
         ['Drop', {sprite1: [{x: 112, y: 159}, DropPath], sprite2: [{x: 112, y: 159}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 10, delay: 2000}]

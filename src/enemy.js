@@ -2,7 +2,7 @@ import Config from './config'
 import Shared from './shared'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import { rightBarrier, leftBarrier, topBarrier, downBarrier, xyBarrier } from './barriers'
-import { touches, findObjIdx, LEFT, RIGHT, UP, DOWN } from './utils'
+import { touches, delObj, LEFT, RIGHT, UP, DOWN } from './utils'
 
 export function Enemy(spriteCfg, speed, horizontal) {
   const enemy = {
@@ -54,8 +54,7 @@ export function update(e) {
   }
 
   if (!Shared.bullet.hidden && touches(s, Shared.bullet.sprite)) {
-    const idx = findObjIdx(Shared.objs, e)
-    idx !== -1 && Shared.objs.splice(idx, 1)
+    delObj(e)
     Shared.sounds.bugDie.play()
     Shared.bullet.hidden = true
   }

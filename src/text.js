@@ -1,14 +1,12 @@
 import Config from './config'
 import Shared from './shared'
-import { UP, findObjIdx } from './utils'
+import { UP, delObj } from './utils'
 
-export function Text(msg, x, y, deviation, speed, after, delay, once, id) {
+export function Text(msg, x, y, after, delay, once, id) {
   const text = {
     msg,
     x,
     y,
-    deviation,
-    speed,
     after,
     delay,
     once,
@@ -39,20 +37,14 @@ export function update(t) {
   t.t === 0 && (t.t = t.startT = time)
   // self destroy after delay
   if (time - (t.startT + t.after) > t.delay) {
-    const idx = findObjIdx(Shared.objs, t)
-    idx !== -1 && Shared.objs.splice(idx, 1)
-
+    delObj(t)
     return
   }
 
-  if (t.curY < t.y - t.deviation) t.dir *= -1, t.curY = t.y - t.deviation
-  else if (t.curY > t.y + t.deviation) t.dir *= -1, t.curY = t.y + t.deviation
-  let diff = (time - t.t) * t.speed * t.dir
-  diff > t.deviation && (diff = t.deviation)
+  if (t.curY < t.y - Config.textDist) t.dir *= -1, t.curY = t.y - Config.textDist
+  else if (t.curY > t.y + Config.textDist) t.dir *= -1, t.curY = t.y + Config.textDist
+  let diff = (time - t.t) * Config.textSpeed * t.dir
+  diff > Config.textDist && (diff = Config.textDist)
   t.curY += diff
   t.t = time
-}
-
-function showed() {
-
 }
