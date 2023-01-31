@@ -35,7 +35,7 @@ export function Hero() {
   keyCfg.keydown[Config.fireKey]  = () => (hero.gun && hero.bullets > 0 && (hero.fire = true))
   keyCfg.keyup[Config.leftKey]    = () => (hero.pressed.a = false, hero.pressed.d && (hero.dir = RIGHT)),
   keyCfg.keyup[Config.rightKey]   = () => (hero.pressed.d = false, hero.pressed.a && (hero.dir = LEFT)),
-  keyCfg.keyup[Config.jumpKey]    = () => hero.pressed.w = false
+  keyCfg.keyup[Config.jumpKey]    = () => (hero.pressed.w = false, console.log(hero.pressed.w))
   bind(keyCfg)
 
   return hero
@@ -96,17 +96,22 @@ export function update(h) {
 }
 
 function onJumpKeyDown(hero) {
-  if (hero.isJumping || hero.pressed.w) return
+  if (hero.isJumping) {
+    hero.pressed.w = true
+    return
+  }
   hero.sprite.y++
   const pos = downBarrier(hero.sprite)
   hero.sprite.y--
-  if (!pos) return
-  hero.pressed.w = hero.isJumping = true
-  hero.jumpStartTime = performance.now()
-  hero.jumpTime = 2 * hero.jumpV0
-  hero.jumpTimeDiv = Config.jumpTime / hero.jumpTime
-  hero.jumpY = hero.sprite.y
-  hero.sprite.imgs.jumpLeft.frames.frame = hero.sprite.imgs.jumpRight.frames.frame = 0
+  if (pos && !hero.pressed.w) {
+    hero.isJumping = true
+    hero.jumpStartTime = performance.now()
+    hero.jumpTime = 2 * hero.jumpV0
+    hero.jumpTimeDiv = Config.jumpTime / hero.jumpTime
+    hero.jumpY = hero.sprite.y
+    hero.sprite.imgs.jumpLeft.frames.frame = hero.sprite.imgs.jumpRight.frames.frame = 0
+  }
+  hero.pressed.w = true
 }
 
 function updateX(hero, newX) {
