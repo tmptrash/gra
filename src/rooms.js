@@ -2,8 +2,8 @@ import Shared from './shared'
 import Config from './config'
 import { create } from './creator'
 
-export function updateObjs(fromRoom, toRoom) {
-  const objs = Shared.objs
+export function updateObjs(fromRoom, toRoom, objects = null) {
+  const objs = objects || Shared.objs
   for (let i = 0; i < objs.length; i++) objs[i].room === fromRoom && (objs.splice(i, 1), i--)
   
   const enemies = Config.rooms.enemies[toRoom]
