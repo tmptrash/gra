@@ -35,7 +35,7 @@ export function Hero() {
   keyCfg.keydown[Config.fireKey]  = () => (hero.gun && hero.bullets > 0 && (hero.fire = true))
   keyCfg.keyup[Config.leftKey]    = () => (hero.pressed.a = false, hero.pressed.d && (hero.dir = RIGHT)),
   keyCfg.keyup[Config.rightKey]   = () => (hero.pressed.d = false, hero.pressed.a && (hero.dir = LEFT)),
-  keyCfg.keyup[Config.jumpKey]    = () => (hero.pressed.w = false, console.log(hero.pressed.w))
+  keyCfg.keyup[Config.jumpKey]    = () => (hero.pressed.w = false)
   bind(keyCfg)
 
   return hero
