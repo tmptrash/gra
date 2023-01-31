@@ -54,7 +54,6 @@ export function update(h) {
   h.t === 0 && (h.t = t)
 
   // jump: v0 = sqrt(Config.jumpSize / 2) * 2, tmax = 2 * v0, y = v0 * t - t * t / 2
-  h.pressed.w && onJumpKeyDown(h)
   if (h.isJumping) {
     const time = (t - h.jumpStartTime) / h.jumpTimeDiv
     s.img = s.imgs[`jump${h.gun ? 'Gun' : ''}${left ? 'Left' : 'Right'}`]
@@ -97,7 +96,7 @@ export function update(h) {
 }
 
 function onJumpKeyDown(hero) {
-  if (hero.isJumping) return
+  if (hero.isJumping || hero.pressed.w) return
   hero.sprite.y++
   const pos = downBarrier(hero.sprite)
   hero.sprite.y--
@@ -130,9 +129,8 @@ function updateY(h, newY) {
   s.y += diff
   const pos = down ? downBarrier(s) : topBarrier(s)
   if (pos) {
-    if (down) s.y = pos[1] - s.height - 1//, h.jumpTime = 0
+    if (down) s.y = pos[1] - s.height - 1
     else s.y = pos[1] + 1
-    //h.pressed.w = h.isJumping = false
     if (h.isJumping) {
       if (!down) {
         if (!h.jumpBarrier) {
@@ -140,7 +138,7 @@ function updateY(h, newY) {
           h.jumpBarrier = true
         }
       }
-      else h.pressed.w = h.isJumping = h.jumpBarrier = false
+      else h.isJumping = h.jumpBarrier = false
     }
   }
 }
