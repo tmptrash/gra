@@ -1,6 +1,7 @@
 import Shared from './shared'
 import { Frames, update as updateFrames, stop as stopFrames } from './frames'
 import { fn } from './utils'
+import { ASSETS } from './assets'
 
 export function Sprite({ x, y, width = null, height = null, run = true}, imgs, onLoad = fn) {
   const sprite = {
@@ -56,12 +57,18 @@ function loadImgs(sprite, imgs) {
     const img = sprite.imgs[i] = {
       width: 0,
       height: 0,
-      img: new Image(),
+      img: null,
       frames: null
     }
-    img.img.onload = onLoad.bind(null, sprite, img, imgs[i][1], imgs[i][2])
-    img.img.src = imgs[i][0]
-    Shared.assets++
+    if (ASSETS[imgs[i][0]]) {
+      img.img = ASSETS[imgs[i][0]]
+      onLoad(sprite, img, imgs[i][1], imgs[i][2])
+    } else {
+      img.img = new Image()
+      img.img.onload = onLoad.bind(null, sprite, img, imgs[i][1], imgs[i][2])
+      img.img.src = imgs[i][0]
+      Shared.assets++
+    }
   }
 }
 

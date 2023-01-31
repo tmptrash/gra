@@ -9,19 +9,13 @@ import { logo, fn, on, off, findObjById } from './utils'
 import { Music, play, stop } from './music'
 import { Picked, draw as drawPicked } from './picked'
 import { Sounds } from './sounds'
+import { loadAssets } from './assets'
 
 let stopped = false
 
 const PICKED_ID = 'picked'
 const playBtn = document.querySelector(Config.playQuery)
 const doc = document
-// Static items. Order is important!
-const objs = Shared.objs = [
-  { draw: drawLevel,  update: updateLevel,  o: Level() },
-  { draw: drawHero,   update: updateHero,   o: Hero(),   id: Config.heroId },
-  { draw: drawBullet, update: updateBullet, o: Bullet(), id: Config.bulletId },
-  { draw: drawPicked, update: fn,           o: Picked(), id: PICKED_ID }
-]
 
 function main() {
   Shared.ctx = doc.getElementById(Config.canvasId).getContext('2d')
@@ -31,18 +25,10 @@ function main() {
   Shared.ctx.font = Config.frontFont
   Shared.ctx.imageSmoothingEnabled = false
 
-  Shared.music = Music()
-  Shared.sounds = Sounds()
-  Shared.picked = findObjById(objs, PICKED_ID)
-  Shared.hero = findObjById(objs, Config.heroId)
-  Shared.bullet = findObjById(objs, Config.bulletId)
-
-  Config.debug && objs.push({ draw: drawDebug, update: fn, o: Debug() })
-
   resize()
   logo()
   on(window, 'resize', resize)
-  updateObjs(null, roomOffs(Shared.offsX, Shared.offsY))
+  loadAssets()
   setTimeout(waitAssets, Config.logoTimeout)
 }
 
@@ -54,12 +40,12 @@ function animate() {
 }
 
 function draw() {
-  objs.forEach(o => o.draw(o.o))
+  Shared.objs.forEach(o => o.draw(o.o))
   Shared.stop && drawStop()
 }
 
 function update() {
-  !Shared.stop && objs.forEach(o => o.update(o.o))
+  !Shared.stop && Shared.objs.forEach(o => o.update(o.o))
 }
 
 function waitAssets() {
@@ -67,6 +53,9 @@ function waitAssets() {
     setTimeout(waitAssets, 10)
     return
   }
+
+  createObjs()
+  updateObjs(null, roomOffs(Shared.offsX, Shared.offsY))
   on(playBtn, 'click', start)
   playBtn.style.visibility = ''
 }
@@ -111,6 +100,23 @@ function onPrompt(e) {
 
 function resize() {
   doc.body.style.zoom = window.innerHeight * .9 / Config.height
+}
+
+function createObjs() {
+  // Static items. Order is important!
+  const objs = Shared.objs = [
+    { draw: drawLevel,  update: updateLevel,  o: Level() },
+    { draw: drawHero,   update: updateHero,   o: Hero(),   id: Config.heroId },
+    { draw: drawBullet, update: updateBullet, o: Bullet(), id: Config.bulletId },
+    { draw: drawPicked, update: fn,           o: Picked(), id: PICKED_ID }
+  ]
+
+  Config.debug && objs.push({ draw: drawDebug, update: fn, o: Debug() })
+  Shared.music = Music()
+  Shared.sounds = Sounds()
+  Shared.picked = findObjById(objs, PICKED_ID)
+  Shared.hero = findObjById(objs, Config.heroId)
+  Shared.bullet = findObjById(objs, Config.bulletId)
 }
 
 main()
