@@ -1,8 +1,10 @@
+import Config from './config'
 import Shared from './shared'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
-import { delObj, touches } from './utils'
+import { delObj, touches, msg } from './utils'
+import { create } from './creator'
 
-export function Item(spriteCfg, sound, pickFn, room) {
+export function Item(spriteCfg, sound, msg, pickFn, room) {
   const item = {
     picked: false,
     room,
@@ -10,7 +12,8 @@ export function Item(spriteCfg, sound, pickFn, room) {
     stepTime: performance.now(),
     sound: Shared.sounds[sound],
     pickFn,
-    hidden: false
+    hidden: false,
+    msg
   }
 
   item.sprite.img = item.sprite.imgs.idle
@@ -32,5 +35,6 @@ function pick(item, show = true) {
   item.hidden = !show
   Shared.picked.items.push(item)
   delObj(item)
+  Shared.objs.push(create('Text', {text: [msg(item.msg), 430, 300, 0, 3000, false, 0], id: 0}, item.room))
   item.sound.play()
 }

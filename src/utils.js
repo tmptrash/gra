@@ -73,3 +73,12 @@ export function delObj(obj) {
   const idx = findObjIdx(Shared.objs, obj)
   idx !== -1 && Shared.objs.splice(idx, 1)
 }
+
+export function msg(msgId) {
+  const msg = Config.msgs[msgId]
+  if (msg) {
+    return typeof msg === 'function' ? msg() : msg
+  }
+
+  return ''
+}

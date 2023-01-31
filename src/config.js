@@ -331,64 +331,64 @@ export default Config = {
     },
     items: {
       0: [
-        //[[{x: 100, y: 200}, {idle: [GunAnimPath,   9,  150]}], 'gun',     (i, pick) => {Shared.hero.gun = true, pick(i)}],
-        //[[{x: 200, y: 300}, {idle: [BulletsPath,   9,  150]}], 'bullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false)}]
+        [[{x: 100, y: 200}, {idle: [GunAnimPath,   9,  150]}], 'gun',     'foundGun',     (i, pick) => {Shared.hero.gun = true, pick(i)}],
+        [[{x: 200, y: 300}, {idle: [BulletsPath,   9,  150]}], 'bullets', 'foundBullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false)}]
       ],
       2: [
-        [[{x: 128, y: 700}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
+        [[{x: 128, y: 700}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
       ],
       4: [
-        [[{x: 770, y: 200}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
+        [[{x: 770, y: 200}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
       ],
       5: [
-        [[{x: 958, y: 288}, {idle: [GunAnimPath,   9,  150]}], 'gun',     (i, pick) => {Shared.hero.gun = true, pick(i)}]
+        [[{x: 958, y: 288}, {idle: [GunAnimPath,   9,  150]}], 'gun',     'foundGun',     (i, pick) => {Shared.hero.gun = true, pick(i)}]
       ],
       7: [
-        [[{x: 880, y: 600}, {idle: [BulletsPath,   9,  150]}], 'bullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) }]
+        [[{x: 880, y: 600}, {idle: [BulletsPath,   9,  150]}], 'bullets', 'foundBullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) }]
       ],
       8: [
-        [[{x: 80,  y: 230}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}],
-        [[{x: 350, y: 650}, {idle: [BulletsPath,   9,  150]}], 'bullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) }]
+        [[{x: 80,  y: 230}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',   (i, pick) => {Shared.hero.life++, pick(i, false)}],
+        [[{x: 350, y: 650}, {idle: [BulletsPath,   9,  150]}], 'bullets', 'foundBullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) }]
       ],
       10: [
-        [[{x: 550, y: 128}, {idle: [BulletsPath,   9,  150]}], 'bullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) }]
+        [[{x: 550, y: 128}, {idle: [BulletsPath,   9,  150]}], 'bullets', 'foundBullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) }]
       ],
       11: [
-        [[{x: 832, y: 224}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}],
+        [[{x: 832, y: 224}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',   (i, pick) => {Shared.hero.life++, pick(i, false)}],
       ],
       13: [
-        [[{x: 800, y: 600}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
+        [[{x: 800, y: 600}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
       ],
       14: [
-        [[{x: 900, y: 600}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
+        [[{x: 900, y: 600}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
       ],
       15: [
-        [[{x: 900, y: 600}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
+        [[{x: 900, y: 600}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
       ],
       18: [
-        [[{x: 700, y: 128}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
+        [[{x: 700, y: 128}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
       ],
       20: [
-        [[{x: 860, y: 138}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
+        [[{x: 860, y: 138}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
       ],
       21: [
-        [[{x: 530, y: 100}, {idle: [BulletsPath,   9,  150]}], 'bullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) }]
+        [[{x: 530, y: 100}, {idle: [BulletsPath,   9,  150]}], 'bullets', 'foundBullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) }]
       ],
       22: [
-        [[{x: 288, y: 168}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
+        [[{x: 288, y: 168}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
       ],
       23: [
-        [[{x: 820, y: 100}, {idle: [BulletsPath,   9,  150]}], 'bullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) }]
+        [[{x: 820, y: 100}, {idle: [BulletsPath,   9,  150]}], 'bullets', 'foundBullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) }]
       ],
       25: [
-        [[{x: 880, y: 704}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
+        [[{x: 880, y: 704}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
       ],
       29: [
-        [[{x: 880, y: 704}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
+        [[{x: 880, y: 704}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
       ],
       39: [
-        [[{x: 830, y: 580}, {idle: [KeyPath,       7,  200]}], 'key',     (i, pick) => {Shared.hero.key = true, pick(i) }],
-        [[{x: 576, y: 160}, {idle: [BulletsPath,   9,  150]}], 'bullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) }]
+        [[{x: 830, y: 580}, {idle: [KeyPath,       7,  200]}], 'key',     'foundKey',     (i, pick) => {Shared.hero.key = true, pick(i) }],
+        [[{x: 576, y: 160}, {idle: [BulletsPath,   9,  150]}], 'bullets', 'foundBullets', (i, pick) => {Shared.hero.bullets += Config.bulletsAmount, pick(i, false) }]
       ]
     },
     scripts: {
@@ -493,6 +493,14 @@ export default Config = {
         ['Drop', {sprite1: [{x: 621, y: 319}, DropPath], sprite2: [{x: 621, y: 319}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed:  8, delay: 3000}]
       ]
     }
+  },
+  msgs: {
+    gameOver: 'Game Over!',
+    youWin: 'You win!',
+    foundBullets: () => `You found ${Config.bulletsAmount} bullets`,
+    foundHeart: 'You found one life',
+    foundGun: 'You found a gun',
+    foundKey: 'You found a key'
   },
   // TODO: pack this to binary array
   barriers: [435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435,
