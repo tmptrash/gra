@@ -10,7 +10,7 @@ export function create(ctor, cfg, room) {
     case 'Item' : return { draw: drawItem,  update: updateItem,  o: Item(...cfg, room), room }
     case 'Enemy': return { draw: drawEnemy, update: updateEnemy, o: Enemy(...cfg), room }
     case 'Drop' : return { draw: drawDrop,  update: updateDrop,  o: Drop(cfg), room }
-    case 'Text' : return { draw: drawText,  update: updateText,  o: Text(...cfg.text), room, id: cfg.id }
+    case 'Text' : return { draw: drawText,  update: updateText,  o: Text(...cfg.text, cfg.id), room, id: cfg.id }
   }
 
   return null

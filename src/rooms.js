@@ -14,8 +14,11 @@ export function updateObjs(fromRoom, toRoom) {
 
   const scripts = Config.rooms.scripts[toRoom]
   scripts && scripts.forEach(cfg => {
-    if (cfg[1].pos) objs.splice(cfg[1].pos, 0, create(cfg[0], cfg[1], toRoom))
-    else objs.push(create(cfg[0], cfg[1], toRoom))
+    const s = create(cfg[0], cfg[1], toRoom)
+    if (s.o) {
+      if (cfg[1].pos) objs.splice(cfg[1].pos, 0, s)
+      else objs.push(s)
+    }
   })
 }
 
