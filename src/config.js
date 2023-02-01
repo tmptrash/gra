@@ -1,6 +1,8 @@
 import Shared from './shared'
 
 import L1Path from '../img/l1.png'
+import StalactiteUp1Path from '../img/stalactite-up-1.png'
+import StalactiteDown1Path from '../img/stalactite-down-1.png'
 // items
 import HeartPath from '../img/heart.png'
 import GunAnimPath from '../img/gun-9.png'
@@ -399,7 +401,9 @@ export default Config = {
         ['Text', {text: ['Welcome Mary Brave!',           419, 300,     0, 5000, true], id: id()}],
         ['Text', {text: ['a - left, d - right, w - jump', 386, 300,  5500, 5000, true], id: id()}],
         ['Text', {text: ['Find a key and open the door',  380, 300, 11000, 5000, true], id: id()}],
-        ['Text', {text: ['Good luck!',                    467, 300, 16500, 5000, true], id: id()}]
+        ['Text', {text: ['Good luck!',                    467, 300, 16500, 5000, true], id: id()}],
+        ['Sprite', {sprite: [{x: 150, y:  64}, StalactiteUp1Path]}],
+        ['Sprite', {sprite: [{x: 150, y: 274}, StalactiteDown1Path]}]
       ],
       1: [
         ['Drop', {sprite1: [{x: 112, y: 159}, DropPath], sprite2: [{x: 112, y: 159}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 10, delay: 2000}]

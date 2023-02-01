@@ -35,6 +35,6 @@ function pick(item, show = true) {
   item.hidden = !show
   Shared.picked.items.push(item)
   delObj(item)
-  Shared.objs.push(create('Text', {text: [msg(item.msg), 430, 300, 0, 3000, false, 0], id: 0}, item.room))
+  Shared.objs.push(create('Text', {text: [msg(item.msg), 437, 300, 0, 3000, false, 0], id: 0}, item.room))
   item.sound.play()
 }
