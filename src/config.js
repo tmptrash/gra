@@ -396,32 +396,36 @@ export default Config = {
     },
     scripts: {
       0: [
-        ['Drop', {sprite1: [{x: 173, y: 164}, DropPath], sprite2: [{x: 151, y:  64}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed: 10, delay: 2000}],
-        ['Drop', {sprite1: [{x: 619, y: 172}, DropPath], sprite2: [{x: 632, y:  64}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  9, delay: 4000}],
-        ['Text', {text: ['Welcome Mary Brave!',           419, 300,     0, 5000, true], id: id()}],
-        ['Text', {text: ['a - left, d - right, w - jump', 386, 300,  5500, 5000, true], id: id()}],
-        ['Text', {text: ['Find a key and open the door',  380, 300, 11000, 5000, true], id: id()}],
-        ['Text', {text: ['Good luck!',                    467, 300, 16500, 5000, true], id: id()}],
+        ['Drop',   {sprite1: [{x: 173, y: 164}, DropPath], sprite2: [{x: 151, y:  64}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed: 10, delay: 2000}],
+        ['Drop',   {sprite1: [{x: 619, y: 172}, DropPath], sprite2: [{x: 632, y:  64}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  9, delay: 4000}],
+        ['Text',   {text: ['Welcome Mary Brave!',           419, 300,     0, 5000, true], id: id()}],
+        ['Text',   {text: ['a - left, d - right, w - jump', 386, 300,  5500, 5000, true], id: id()}],
+        ['Text',   {text: ['Find a key and open the door',  380, 300, 11000, 5000, true], id: id()}],
+        ['Text',   {text: ['Good luck!',                    467, 300, 16500, 5000, true], id: id()}],
         ['Sprite', {sprite: [{x: 150, y:  64}, StalactiteUp1Path]}],
         ['Sprite', {sprite: [{x: 580, y:  64}, StalactiteUp2Path]}]
       ],
       1: [
-        ['Drop', {sprite1: [{x: 112, y: 159}, DropPath], sprite2: [{x: 112, y: 159}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 10, delay: 2000}]
+        ['Drop',   {sprite1: [{x: 112, y: 159}, DropPath], sprite2: [{x: 112, y: 159}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 10, delay: 2000}],
+        ['Sprite', {sprite:  [{x:  75, y: 530}, StalactiteDown1Path]}]
       ],
       2: [
-        ['Drop', {sprite1: [{x: 541, y:  64}, DropPath], sprite2: [{x: 112, y: 159}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 10, delay: 2000}]
+        ['Drop',   {sprite1: [{x: 537, y: 140}, DropPath], sprite2: [{x: 537, y: 140}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 10, delay: 2000}],
+        ['Sprite', {sprite:  [{x: 500, y:  64}, StalactiteUp1Path]}]
       ],
       3: [
-        ['Drop', {sprite1: [{x:   7, y:  64}, DropPath], sprite2: [{x:   7, y:  64}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop4', speed: 10, delay: 3000}],
-        ['Drop', {sprite1: [{x: 631, y:  64}, DropPath], sprite2: [{x: 631, y:  64}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  8, delay: 2500}]
+        ['Drop',   {sprite1: [{x:   7, y:  64}, DropPath], sprite2: [{x:   7, y:  64}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop4', speed: 10, delay: 3000}],
+        ['Drop',   {sprite1: [{x: 631, y:  64}, DropPath], sprite2: [{x: 631, y:  64}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  8, delay: 2500}]
       ],
       4: [
-        ['Drop', {sprite1: [{x:  43, y: 224}, DropPath], sprite2: [{x:  43, y: 224}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed: 10, delay: 1000}],
-        ['Drop', {sprite1: [{x: 998, y: 448}, DropPath], sprite2: [{x: 998, y: 448}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  8, delay: 2500}]
+        ['Drop',   {sprite1: [{x: 739, y: 170}, DropPath], sprite2: [{x: 739, y: 170}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed: 10, delay: 1000}],
+        ['Drop',   {sprite1: [{x: 998, y: 448}, DropPath], sprite2: [{x: 998, y: 448}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  8, delay: 2500}],
+        ['Sprite', {sprite:  [{x: 700, y:  64}, StalactiteUp2Path]}]
       ],
       5: [
-        ['Drop', {sprite1: [{x: 125, y: 448}, DropPath], sprite2: [{x: 125, y: 448}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed: 10, delay: 1000}],
-        ['Drop', {sprite1: [{x:1007, y: 128}, DropPath], sprite2: [{x:1007, y: 128}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 20, delay:  500}]
+        ['Drop',   {sprite1: [{x: 120, y: 535}, DropPath], sprite2: [{x: 120, y: 535}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed: 10, delay: 1000}],
+        ['Drop',   {sprite1: [{x:1007, y: 128}, DropPath], sprite2: [{x:1007, y: 128}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 20, delay:  500}],
+        ['Sprite', {sprite:  [{x:  69, y: 448}, StalactiteUp1Path]}]
       ],
       6: [
         ['Drop', {sprite1: [{x: 654, y:  64}, DropPath], sprite2: [{x: 654, y:  64}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  5, delay: 1000}],
