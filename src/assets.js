@@ -1,6 +1,9 @@
 import Shared from './shared'
 
 import L1Path from '../img/l1.png'
+import StalactiteUp1Path from '../img/stalactite-up-1.png'
+import StalactiteUp2Path from '../img/stalactite-up-2.png'
+import StalactiteDown1Path from '../img/stalactite-down-1.png'
 // items
 import HeartPath from '../img/heart.png'
 import HeartAnimPath from '../img/heart-9.png'
@@ -43,6 +46,8 @@ import SoundHit from '../sound/hit.mp3'
 import SoundKey from '../sound/key.mp3'
 import SoundGun from '../sound/gun.mp3'
 import SoundWin from '../sound/win.mp3'
+import SoundLending from '../sound/lending.mp3'
+import SoundSteps from '../sound/steps.mp3'
 import SoundBullets from '../sound/bullets.mp3'
 import SoundGameOver from '../sound/game-over.mp3'
 import SoundHeart from '../sound/heart.mp3'
@@ -55,6 +60,9 @@ import SoundDrop4 from '../sound/drop4.mp3'
 
 const ASSETS_ARR = [
   L1Path,
+  StalactiteUp1Path,
+  StalactiteUp2Path,
+  StalactiteDown1Path,
   HeartPath,
   HeartAnimPath,
   GunAnimPath,
@@ -91,6 +99,8 @@ const ASSETS_ARR = [
   SoundKey,
   SoundGun,
   SoundWin,
+  SoundLending,
+  SoundSteps,
   SoundBullets,
   SoundGameOver,
   SoundHeart,
