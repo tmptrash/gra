@@ -114,7 +114,7 @@ const ASSETS_ARR = [
 
 export const ASSETS = {}
 
-export function loadAssets() {
+export function preloadAssets(cb) {
   for (let i = 0; i < ASSETS_ARR.length; i++) {
     const asset = ASSETS_ARR[i]
 
@@ -131,4 +131,13 @@ export function loadAssets() {
       ASSETS[asset].src = asset
     }
   }
+  waitAssets(cb)
+}
+
+function waitAssets(cb) {
+  if (Shared.assets > 0) {
+    setTimeout(waitAssets.bind(null, cb), 10)
+    return
+  }
+  cb()
 }

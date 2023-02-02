@@ -81,7 +81,6 @@ export default Config = {
   // logo
   logoX: 256,
   logoY: 50,
-  logoTimeout: 100,
 
   // game related
   debug: false,

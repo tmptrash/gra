@@ -9,7 +9,7 @@ import { logo, fn, on, off, findObjById } from './utils'
 import { Music, play, stop } from './music'
 import { Picked, draw as drawPicked } from './picked'
 import { Sounds } from './sounds'
-import { loadAssets } from './assets'
+import { preloadAssets } from './assets'
 
 let stopped = false
 
@@ -28,8 +28,7 @@ function main() {
   resize()
   logo()
   on(window, 'resize', resize)
-  loadAssets()
-  setTimeout(waitAssets, Config.logoTimeout)
+  preloadAssets(onAssets)
 }
 
 function animate() {
@@ -48,12 +47,7 @@ function update() {
   !Shared.stop && Shared.objs.forEach(o => o.update(o.o))
 }
 
-function waitAssets() {
-  if (Shared.assets > 0) {
-    setTimeout(waitAssets, 10)
-    return
-  }
-
+function onAssets() {
   createObjs()
   updateObjs(null, roomOffs(Shared.offsX, Shared.offsY))
   on(playBtn, 'click', start)
