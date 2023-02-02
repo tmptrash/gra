@@ -26,7 +26,8 @@ export function Hero() {
     hit: false,
     gun: false,
     fire: false,
-    key: false
+    key: false,
+    lendBefore: false
   }
   const keyCfg = { keydown: {}, keyup: {} }
   keyCfg.keydown[Config.leftKey]  = () => (hero.pressed.a = true, hero.dir = LEFT)
@@ -142,10 +143,11 @@ function updateY(h, newY) {
           h.jumpStartTime -= ((Config.jumpTime / 2 - (performance.now() - h.jumpStartTime)) * 2)
           h.jumpBarrier = true
         }
-      }
-      else h.isJumping = h.jumpBarrier = false
+      } else h.isJumping = h.jumpBarrier = false
     }
+    !h.lendBefore && down && Config.sounds.lending.play()
   }
+  h.lendBefore = !!pos
 }
 
 function updateScreen(h) {
