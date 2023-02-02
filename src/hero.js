@@ -64,7 +64,10 @@ export function update(h) {
   // walk: x += (t - h.t) * Config.stepSpeed * h.dir
   if (h.pressed.d || h.pressed.a) {
     updateX(h, s.x + (t - h.t) * Config.stepSpeed * h.dir)
-    !h.isJumping && (s.img = s.imgs[`walk${h.gun ? 'Gun' : ''}${left ? 'Left' : 'Right'}`])
+    if (!h.isJumping) {
+      s.img = s.imgs[`walk${h.gun ? 'Gun' : ''}${left ? 'Left' : 'Right'}`]
+      h.lendBefore && Config.sounds.steps.play()
+    }
   }
 
   // idle
