@@ -16,7 +16,7 @@ export function draw(picked) {
     if (!i.hidden) {
       x -= (i.sprite.width + 5)
       i.sprite.x = x
-      i.sprite.y = 10
+      i.sprite.y = Config.pickedY
       drawSprite(i.sprite)
     }
   })

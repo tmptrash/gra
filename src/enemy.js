@@ -4,6 +4,8 @@ import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import { rightBarrier, leftBarrier, topBarrier, downBarrier, xyBarrier } from './barriers'
 import { touches, delObj, LEFT, RIGHT, UP, DOWN } from './utils'
 
+const CHECK_PERIOD = 500
+
 export function Enemy(spriteCfg, speed, horizontal) {
   const enemy = {
     speed,
@@ -11,6 +13,7 @@ export function Enemy(spriteCfg, speed, horizontal) {
     horizontal,
     sprite: Sprite(...spriteCfg),
     stepTime: performance.now(),
+    speedTime: performance.now(),
     touchTime: 0
   }
 
@@ -28,7 +31,7 @@ export function update(e) {
 
   if (e.horizontal) {
     if (t - e.stepTime > Config.objTick) {
-      s.x += (e.speed * e.dir)
+      s.x += (e.speed * Shared.speed * e.dir)
       e.stepTime = performance.now()
     }
 
@@ -38,7 +41,7 @@ export function update(e) {
       e.dir = RIGHT, s.img = s.imgs.idleRight
   } else {
     if (t - e.stepTime > Config.objTick) {
-      s.y += (e.speed * e.dir)
+      s.y += (e.speed * Shared.speed * e.dir)
       e.stepTime = performance.now()
     }
 
@@ -57,6 +60,12 @@ export function update(e) {
     delObj(e)
     Shared.sounds.bugDie.play()
     Shared.bullet.hidden = true
+  }
+
+  // update frames speed
+  if (t - e.speedTime > CHECK_PERIOD) {
+    s.img.frames.speed = Shared.speed
+    e.speedTime = t
   }
 
   updateSprite(s)

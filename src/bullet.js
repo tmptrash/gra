@@ -1,4 +1,4 @@
-import BulletPath from '../img/bullet.png'
+import BulletPath from '../img/bullet-1.png'
 import Config from './config'
 import Shared from './shared'
 import { RIGHT, LEFT } from './utils'

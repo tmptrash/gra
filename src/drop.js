@@ -38,7 +38,7 @@ export function update(drop) {
 
   // drop
   if (!drop.delayTime && t - drop.time > Config.objTick) {
-    s1.y += (drop.speed * ((((t - drop.startTime) / 1000) ** 2 / 2) * 3))
+    s1.y += (drop.speed * Shared.speed * ((((t - drop.startTime) / 1000) ** 2 / 2) * 3))
     const pos = downBarrier(s1)
     if (pos || s1.y > Config.height) {
       drop.sound.play()

@@ -10,5 +10,6 @@ export default {
   bullet: null,
   sounds: null,
   stop: false,
-  showed: {}
+  showed: {},
+  speed: 1
 }

@@ -5,12 +5,13 @@ import StalactiteUp1Path from '../img/stalactite-up-1.png'
 import StalactiteUp2Path from '../img/stalactite-up-2.png'
 import StalactiteDown1Path from '../img/stalactite-down-1.png'
 // items
-import HeartPath from '../img/heart.png'
+import HeartPath from '../img/heart-1.png'
 import GunAnimPath from '../img/gun-9.png'
 import BulletsPath from '../img/bullets-9.png'
 import HeartAnimPath from '../img/heart-9.png'
 import DoorOpenPath from '../img/door-open-5.png'
 import KeyPath from '../img/key-6.png'
+import Mashroom9Path from '../img/mashroom-9.png'
 // hero
 import IdleLeftPath from '../img/idle-left-3.png'
 import IdleGunLeftPath from '../img/idle-gun-left-3.png'
@@ -47,6 +48,8 @@ import SoundGun from '../sound/gun.mp3'
 import SoundWin from '../sound/win.mp3'
 import SoundLending from '../sound/lending.mp3'
 import SoundSteps from '../sound/steps.mp3'
+import SoundBite from '../sound/bite.mp3'
+import SoundBreath from '../sound/breath.mp3'
 import SoundBullets from '../sound/bullets.mp3'
 import SoundGameOver from '../sound/game-over.mp3'
 import SoundHeart from '../sound/heart.mp3'
@@ -95,6 +98,8 @@ export default Config = {
   intersectionOffs: 5,
   textDist: 5,
   textSpeed: .009,
+  mashroomDelay: 1000 * 60 * 3,
+  mashroomPlayPeriod: 2000,
 
   // hero related
   jumpTime: 1000,
@@ -102,6 +107,7 @@ export default Config = {
   stepSpeed: .31,
   startLifes: 4,
   lifePos: [10, 10],
+  pickedY: 6,
   touchDelay: 1000,
   // all keys: tinyurl.com/5n8deccv
   leftKey: 'KeyA',
@@ -125,6 +131,8 @@ export default Config = {
     heart: SoundHeart,
     gun: SoundGun,
     win: SoundWin,
+    mashroom: SoundBite,
+    breath: SoundBreath,
     lending: SoundLending,
     steps: SoundSteps,
     bullets: SoundBullets,
@@ -252,7 +260,7 @@ export default Config = {
       ],
       20: [
         [[{x: 384, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], 2.9, true],
-        [[{x: 640, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], 2.9, true],
+        [[{x: 600, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], 2.9, true],
         [[{x: 900, y: 727}, {idleLeft: [BugBlkLeftPath, 5, 100], idleRight: [BugBlkRightPath, 5, 100]}], 2.9, true]
       ],
       21: [
@@ -372,7 +380,7 @@ export default Config = {
         [[{x: 900, y: 600}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
       ],
       18: [
-        [[{x: 700, y: 128}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
+        [[{x: 700, y: 128}, {idle: [Mashroom9Path, 9,  100]}], 'mashroom','foundMashroom',onMashroom]
       ],
       20: [
         [[{x: 860, y: 138}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',   (i, pick) => {Shared.hero.life++, pick(i, false)}]
@@ -525,12 +533,13 @@ export default Config = {
     }
   },
   msgs: {
-    gameOver: 'Game Over!',
-    youWin: 'You win!',
+    gameOver:      'Game Over!',
+    youWin:        'You win!',
     foundBullets: () => `You found ${Config.bulletsAmount} bullets`,
-    foundHeart: 'You found one life',
-    foundGun: 'You found a gun',
-    foundKey: 'You found a key'
+    foundHeart:    'You found one life',
+    foundGun:      'You found a gun',
+    foundKey:      'You found a key',
+    foundMashroom: 'You found slow mashroom'
   },
   // TODO: pack this to binary array
   barriers: [435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435,
@@ -662,4 +671,21 @@ export default Config = {
 
 function id() {
   return ++uniqueId
+}
+
+// TODO: How to move these code into separate module?
+function onMashroom(i ,pick) {
+  Shared.speed = .15
+  pick(i, true)
+  const int = setInterval(() => {
+    Shared.stop && clearInterval(int)
+    Config.sounds.breath.play()
+    Config.sounds.heart.play()
+  }, Config.mashroomPlayPeriod)
+  setTimeout(() => {
+    clearInterval(int)
+    Shared.speed = 1
+    const idx = Shared.picked.items.findIndex(i => i.msg === 'foundMashroom')
+    idx !== -1 && Shared.picked.items.splice(idx, 1)
+  }, Config.mashroomDelay)
 }
