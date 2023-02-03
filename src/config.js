@@ -1,4 +1,3 @@
-import Shared from './shared'
 import { id, pickMashroom, pickLife, pickBullets, pickGun, pickKey } from './funcs'
 
 import L1Path from '../img/l1.png'
@@ -108,7 +107,7 @@ export default Config = {
   startLifes: 4,
   lifePos: [10, 10],
   pickedY: 6,
-  touchDelay: 1000,
+  touchDelay: 1500,
   // all keys: tinyurl.com/5n8deccv
   leftKey: 'KeyA',
   rightKey: 'KeyD',
