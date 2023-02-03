@@ -676,7 +676,7 @@ function id() {
 // TODO: How to move these code into separate module?
 function onMashroom(i ,pick) {
   const el = document.getElementById(Config.canvasId)
-  el.style.filter ='sepia(1)'
+  el.style.animation ='colorRotate 3s linear infinite'
   Shared.speed = .15
   pick(i, true)
   Config.sounds.breath.play()
