@@ -379,7 +379,7 @@ export default Config = {
         [[{x: 900, y: 600}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',    pickLife]
       ],
       18: [
-        [[{x: 695, y: 128}, {idle: [Mashroom9Path, 9,  100]}], 'mashroom','foundMashroom', pickMashroom]
+        [[{x: 690, y: 128}, {idle: [Mashroom9Path, 9,  100]}], 'mashroom','foundMashroom', pickMashroom]
       ],
       20: [
         [[{x: 860, y: 138}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',    pickLife]
