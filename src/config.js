@@ -690,6 +690,6 @@ function onMashroom(i ,pick) {
     Shared.speed = 1
     const idx = Shared.picked.items.findIndex(i => i.msg === 'foundMashroom')
     idx !== -1 && (Shared.picked.items[idx].hidden = true)
-    el.style.filter ='none'
+    el.style.animation ='none'
   }, Config.mashroomDelay)
 }
