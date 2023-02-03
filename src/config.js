@@ -98,7 +98,7 @@ export default Config = {
   intersectionOffs: 5,
   textDist: 5,
   textSpeed: .009,
-  mashroomDelay: 1000 * 60 * 5,
+  mashroomDelay: 1000 * 60 * 3,
   mashroomPlayPeriod: 2000,
 
   // hero related
@@ -675,8 +675,11 @@ function id() {
 
 // TODO: How to move these code into separate module?
 function onMashroom(i ,pick) {
+  const el = document.getElementById(Config.canvasId)
+  el.style.filter ='blur(2px)'
   Shared.speed = .15
   pick(i, true)
+  Config.sounds.breath.play()
   const int = setInterval(() => {
     Shared.stop && clearInterval(int)
     Config.sounds.breath.play()
@@ -687,5 +690,6 @@ function onMashroom(i ,pick) {
     Shared.speed = 1
     const idx = Shared.picked.items.findIndex(i => i.msg === 'foundMashroom')
     idx !== -1 && (Shared.picked.items[idx].hidden = true)
+    el.style.filter ='none'
   }, Config.mashroomDelay)
 }
