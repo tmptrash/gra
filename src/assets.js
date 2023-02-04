@@ -44,6 +44,7 @@ import DropDownPath from '../img/drop-down-12.png'
 import Cave0 from '../music/cave0.mp3'
 // sounds
 import SoundHit from '../sound/hit.mp3'
+import SoundHitMashroom from '../sound/hit-mashroom.mp3'
 import SoundKey from '../sound/key.mp3'
 import SoundGun from '../sound/gun.mp3'
 import SoundWin from '../sound/win.mp3'
@@ -106,6 +107,7 @@ const ASSETS_ARR = [
   SoundLending,
   SoundSteps,
   SoundBite,
+  SoundHitMashroom,
   SoundBreath,
   SoundBullets,
   SoundGameOver,

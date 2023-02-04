@@ -82,9 +82,14 @@ export function update(h) {
 
   // hit
   if (h.hit) {
-    Shared.sounds.hit.play()
-    if (--h.life < 1) Shared.stop = Config.gameOverId
-    h.hit = false
+    if (underMashroom()) {
+      Shared.sounds.hitMashroom.play()
+      h.hit = false
+    } else {
+      Shared.sounds.hit.play()
+      if (--h.life < 1) Shared.stop = Config.gameOverId
+      h.hit = false
+    }
   }
 
   // fire
@@ -199,4 +204,8 @@ function drawBullets(hero) {
   Shared.ctx.fillStyle = Config.frontColor
   Shared.ctx.font = Config.bulletsFont
   Shared.ctx.fillText(`${hero.bullets}`, ...Config.bulletsAmountPos)
+}
+
+function underMashroom() {
+  return Shared.picked.items.findIndex(i => i.msg === 'foundMashroom') !== -1
 }

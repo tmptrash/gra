@@ -49,6 +49,7 @@ import SoundWin from '../sound/win.mp3'
 import SoundLending from '../sound/lending.mp3'
 import SoundSteps from '../sound/steps.mp3'
 import SoundBite from '../sound/bite.mp3'
+import SoundHitMashroom from '../sound/hit-mashroom.mp3'
 import SoundBreath from '../sound/breath.mp3'
 import SoundBullets from '../sound/bullets.mp3'
 import SoundGameOver from '../sound/game-over.mp3'
@@ -125,6 +126,7 @@ export default Config = {
   music: [Cave0],
   sounds: {
     hit: SoundHit,
+    hitMashroom: SoundHitMashroom,
     key: SoundKey,
     gameOver: SoundGameOver,
     heart: SoundHeart,
