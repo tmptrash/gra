@@ -98,7 +98,7 @@ export default Config = {
   intersectionOffs: 5,
   textDist: 5,
   textSpeed: .009,
-  mashroomDelay: 1000 * 60 * 3,
+  mashroomDelay: 1000 * 60 * 2,
   mashroomPlayPeriod: 2000,
 
   // hero related
