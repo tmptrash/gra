@@ -207,5 +207,5 @@ function drawBullets(hero) {
 }
 
 function underMashroom() {
-  return Shared.picked.items.findIndex(i => i.msg === 'foundMashroom') !== -1
+  return Shared.picked.items.findIndex(i => i.msg === 'foundMashroom' && !i.hidden) !== -1
 }
