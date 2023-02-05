@@ -1,4 +1,4 @@
-import { id, pickMashroom, pickLife, pickBullets, pickGun, pickKey } from './funcs'
+import { id, pickMushroom, pickLife, pickBullets, pickGun, pickKey } from './funcs'
 
 import L1Path from '../img/l1.png'
 import StalactiteUp1Path from '../img/stalactite-up-1.png'
@@ -11,7 +11,7 @@ import GunAnimPath from '../img/gun-9.png'
 import BulletsPath from '../img/bullets-9.png'
 import DoorOpenPath from '../img/door-open-5.png'
 import KeyPath from '../img/key-6.png'
-import Mashroom9Path from '../img/mashroom-9.png'
+import Mushroom9Path from '../img/mushroom-9.png'
 // hero
 import IdleLeftPath from '../img/idle-left-3.png'
 import IdleGunLeftPath from '../img/idle-gun-left-3.png'
@@ -49,7 +49,7 @@ import SoundWin from '../sound/win.mp3'
 import SoundLending from '../sound/lending.mp3'
 import SoundSteps from '../sound/steps.mp3'
 import SoundBite from '../sound/bite.mp3'
-import SoundHitMashroom from '../sound/hit-mashroom.mp3'
+import SoundHitMushroom from '../sound/hit-mushroom.mp3'
 import SoundBreath from '../sound/breath.mp3'
 import SoundBullets from '../sound/bullets.mp3'
 import SoundGameOver from '../sound/game-over.mp3'
@@ -98,8 +98,8 @@ export default Config = {
   intersectionOffs: 5,
   textDist: 5,
   textSpeed: .009,
-  mashroomDelay: 1000 * 60 * 2,
-  mashroomPlayPeriod: 2000,
+  mushroomDelay: 1000 * 60 * 2,
+  mushroomPlayPeriod: 2000,
 
   // hero related
   jumpTime: 1000,
@@ -126,13 +126,13 @@ export default Config = {
   music: [Cave0],
   sounds: {
     hit: SoundHit,
-    hitMashroom: SoundHitMashroom,
+    hitMushroom: SoundHitMushroom,
     key: SoundKey,
     gameOver: SoundGameOver,
     heart: SoundHeart,
     gun: SoundGun,
     win: SoundWin,
-    mashroom: SoundBite,
+    mushroom: SoundBite,
     breath: SoundBreath,
     lending: SoundLending,
     steps: SoundSteps,
@@ -381,7 +381,7 @@ export default Config = {
         [[{x: 900, y: 600}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',    pickLife]
       ],
       18: [
-        [[{x: 690, y: 128}, {idle: [Mashroom9Path, 9,  100]}], 'mashroom','foundMashroom', pickMashroom]
+        [[{x: 650, y: 128}, {idle: [Mushroom9Path, 9,  100]}], 'mushroom','foundMushroom', pickMushroom]
       ],
       20: [
         [[{x: 860, y: 138}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',    pickLife]
@@ -540,7 +540,7 @@ export default Config = {
     foundHeart:    'You found one life',
     foundGun:      'You found a gun',
     foundKey:      'You found a key',
-    foundMashroom: 'You found slow mashroom'
+    foundMushroom: 'You found slow mushroom'
   },
   // TODO: pack this to binary array
   barriers: [435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435,

@@ -82,8 +82,8 @@ export function update(h) {
 
   // hit
   if (h.hit) {
-    if (underMashroom()) {
-      Shared.sounds.hitMashroom.play()
+    if (underMushroom()) {
+      Shared.sounds.hitMushroom.play()
       h.hit = false
     } else {
       Shared.sounds.hit.play()
@@ -206,6 +206,6 @@ function drawBullets(hero) {
   Shared.ctx.fillText(`${hero.bullets}`, ...Config.bulletsAmountPos)
 }
 
-function underMashroom() {
-  return Shared.picked.items.findIndex(i => i.msg === 'foundMashroom' && !i.hidden) !== -1
+function underMushroom() {
+  return Shared.picked.items.findIndex(i => i.msg === 'foundMushroom' && !i.hidden) !== -1
 }

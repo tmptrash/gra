@@ -11,7 +11,7 @@ import GunAnimPath from '../img/gun-9.png'
 import BulletsPath from '../img/bullets-9.png'
 import DoorOpenPath from '../img/door-open-5.png'
 import KeyPath from '../img/key-6.png'
-import Mashroom9Path from '../img/mashroom-9.png'
+import Mushroom9Path from '../img/mushroom-9.png'
 import BulletPath from '../img/bullet-1.png'
 // hero
 import IdleLeftPath from '../img/idle-left-3.png'
@@ -44,7 +44,7 @@ import DropDownPath from '../img/drop-down-12.png'
 import Cave0 from '../music/cave0.mp3'
 // sounds
 import SoundHit from '../sound/hit.mp3'
-import SoundHitMashroom from '../sound/hit-mashroom.mp3'
+import SoundHitMushroom from '../sound/hit-mushroom.mp3'
 import SoundKey from '../sound/key.mp3'
 import SoundGun from '../sound/gun.mp3'
 import SoundWin from '../sound/win.mp3'
@@ -73,7 +73,7 @@ const ASSETS_ARR = [
   BulletsPath,
   DoorOpenPath,
   KeyPath,
-  Mashroom9Path,
+  Mushroom9Path,
   BulletPath,
   IdleLeftPath,
   IdleGunLeftPath,
@@ -107,7 +107,7 @@ const ASSETS_ARR = [
   SoundLending,
   SoundSteps,
   SoundBite,
-  SoundHitMashroom,
+  SoundHitMushroom,
   SoundBreath,
   SoundBullets,
   SoundGameOver,

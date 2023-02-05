@@ -7,7 +7,7 @@ export function id() {
   return ++uniqueId
 }
 
-export function pickMashroom(i, pick) {
+export function pickMushroom(i, pick) {
   const el = document.getElementById(Config.canvasId)
   el.style.animation ='colorRotate 2s linear infinite'
   Shared.speed = .15
@@ -17,14 +17,14 @@ export function pickMashroom(i, pick) {
     Shared.stop && clearInterval(int)
     Config.sounds.breath.play()
     Config.sounds.heart.play()
-  }, Config.mashroomPlayPeriod)
+  }, Config.mushroomPlayPeriod)
   setTimeout(() => {
     clearInterval(int)
     Shared.speed = 1
-    const idx = Shared.picked.items.findIndex(i => i.msg === 'foundMashroom')
+    const idx = Shared.picked.items.findIndex(i => i.msg === 'foundMushroom')
     idx !== -1 && (Shared.picked.items[idx].hidden = true)
     el.style.animation ='none'
-  }, Config.mashroomDelay)
+  }, Config.mushroomDelay)
 }
 
 export function pickLife(i, pick) {
