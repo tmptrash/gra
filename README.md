@@ -1,8 +1,13 @@
 # Mary Brave v0.1-beta
-Pure Javascript (no frameworks/engines) [Metroidvania](https://en.wikipedia.org/wiki/Metroidvania) game experiment. Fight the monsters of the underworld, collect items, find the key and open the door to complete the level.
+Pure Javascript (no frameworks/engines) [Metroidvania](https://en.wikipedia.org/wiki/Metroidvania) game experiment.
 
 P.S. It just an attempt to write something interesting in JavaScript.\
 P.S.S I open for collaboration with other game devs and designers :)
+
+## Game Description
+Embark on an epic journey through a mysterious underground cave as the daring, red-haired heroine. Your mission is to uncover the secrets of the labyrinth and unlock the hidden door using a mysterious key. But beware, danger lurks at every turn. The cave is filled with venomous insects, deadly predators, and other fiendish foes.
+
+Arm yourself with a trusty gun and limited ammo as you navigate the treacherous twists and turns of the cavern. And keep an eye out for special mushrooms that will give you temporary immunity from harm and allow you to move more swiftly through the shadows. With quick reflexes and cunning strategies, you just might unravel the secrets of the underground world and claim your prize..
 
 Enjoy!
 

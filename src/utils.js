@@ -31,11 +31,11 @@ export function off(el, event, handler) {
   el.removeEventListener(event, handler)
 }
 
-export function getMousePos(canvas, evt) {
+export function getMousePos(canvas, { clientX, clientY }) {
   const rect = canvas.getBoundingClientRect()
   return {
-    x: Math.ceil(evt.clientX / document.body.style.zoom - rect.x),
-    y: Math.ceil(evt.clientY / document.body.style.zoom - rect.y)
+    x: Math.ceil(clientX / document.body.style.zoom - rect.x),
+    y: Math.ceil(clientY / document.body.style.zoom - rect.y)
   }
 }
 
