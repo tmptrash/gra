@@ -7,7 +7,7 @@ P.S.S I open for collaboration with other game devs and designers :)
 ## Game Description
 Embark on an epic journey through a mysterious underground cave as the daring, red-haired heroine. Your mission is to uncover the secrets of the labyrinth and unlock the hidden door using a mysterious key. But beware, danger lurks at every turn. The cave is filled with venomous insects, deadly predators, and other fiendish foes.
 
-Arm yourself with a trusty gun and limited ammo as you navigate the treacherous twists and turns of the cavern. And keep an eye out for special mushrooms that will give you temporary immunity from harm and allow you to move more swiftly through the shadows. With quick reflexes and cunning strategies, you just might unravel the secrets of the underground world and claim your prize..
+Arm yourself with a gun and limited ammo as you navigate the treacherous twists and turns of the cavern. And keep an eye out for special mushrooms that will give you temporary immunity from harm and allow you to move more swiftly through the shadows. With quick reflexes and cunning strategies, you just might unravel the secrets of the underground world and claim your prize.
 
 Enjoy!
 
