@@ -5,7 +5,6 @@ import StalactiteUp1Path from '../img/stalactite-up-1.png'
 import StalactiteUp2Path from '../img/stalactite-up-2.png'
 import StalactiteDown1Path from '../img/stalactite-down-1.png'
 // items
-import HeartPath from '../img/heart-1.png'
 import HeartAnimPath from '../img/heart-9.png'
 import GunAnimPath from '../img/gun-9.png'
 import BulletsPath from '../img/bullets-9.png'
@@ -67,7 +66,6 @@ const ASSETS_ARR = [
   StalactiteUp1Path,
   StalactiteUp2Path,
   StalactiteDown1Path,
-  HeartPath,
   HeartAnimPath,
   GunAnimPath,
   BulletsPath,

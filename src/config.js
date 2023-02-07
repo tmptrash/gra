@@ -5,7 +5,6 @@ import StalactiteUp1Path from '../img/stalactite-up-1.png'
 import StalactiteUp2Path from '../img/stalactite-up-2.png'
 import StalactiteDown1Path from '../img/stalactite-down-1.png'
 // items
-import HeartPath from '../img/heart-1.png'
 import HeartAnimPath from '../img/heart-9.png'
 import GunAnimPath from '../img/gun-9.png'
 import BulletsPath from '../img/bullets-9.png'
@@ -146,7 +145,7 @@ export default Config = {
   },
 
   // sprites
-  heart: [{ x: 0, y: 0 }, HeartPath],
+  heart: [{ x: 0, y: 0 }, {idle: [HeartAnimPath, 9, 100]}],
   door: [{ x: 864, y: 32, run: false }, {idle: [DoorOpenPath, 5, 300]}],
   bullets: [{ x: 0, y: 0 }, {idle: [BulletsPath, 9, 150]}],
   hero: [{x: 200, y: 90}, {

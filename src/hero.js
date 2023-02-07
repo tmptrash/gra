@@ -38,6 +38,7 @@ export function Hero() {
   keyCfg.keyup[Config.rightKey]   = () => (hero.pressed.d = false, hero.pressed.a && (hero.dir = LEFT)),
   keyCfg.keyup[Config.jumpKey]    = () => (hero.pressed.w = false)
   bind(keyCfg)
+  stop(hero.lifeSprite)
 
   return hero
 }
