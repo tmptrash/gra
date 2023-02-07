@@ -2,7 +2,7 @@ import Config from './config'
 import Shared from './shared'
 import { bind, LEFT, RIGHT } from './utils'
 import { rightBarrier, leftBarrier, topBarrier, downBarrier } from './barriers'
-import { Sprite, draw as drawSprite, update as updateSprite, stop } from './sprite'
+import { Sprite, draw as drawSprite, update as updateSprite, stop, setImg } from './sprite'
 import { updateObjs, roomOffs } from './rooms'
 
 export function Hero() {
@@ -24,6 +24,7 @@ export function Hero() {
     life: Config.startLifes,
     bullets: 0,
     hit: false,
+    hitTime: performance.now(),
     gun: false,
     fire: false,
     key: false,
@@ -52,13 +53,12 @@ export function draw(hero) {
 export function update(h) {
   const t = performance.now()
   const s = h.sprite
-  const left = h.dir === LEFT
   h.t === 0 && (h.t = t)
 
   // jump: v0 = sqrt(Config.jumpSize / 2) * 2, tmax = 2 * v0, y = v0 * t - t * t / 2
   if (h.isJumping) {
     const time = (t - h.jumpStartTime) / h.jumpTimeDiv
-    s.img = s.imgs[`jump${h.gun ? 'Gun' : ''}${left ? 'Left' : 'Right'}`]
+    s.img = s.imgs[`jump${h.gun ? 'Gun' : ''}${side(h)}`]
     updateY(h, h.jumpY - (h.jumpV0 * time - time * time / 2))
   }
 
@@ -66,14 +66,14 @@ export function update(h) {
   if (h.pressed.d || h.pressed.a) {
     updateX(h, s.x + (t - h.t) * Config.stepSpeed * h.dir)
     if (!h.isJumping) {
-      s.img = s.imgs[`walk${h.gun ? 'Gun' : ''}${left ? 'Left' : 'Right'}`]
+      s.img = s.imgs[`walk${h.gun ? 'Gun' : ''}${side(h)}`]
       h.lendBefore && Config.sounds.steps.play()
     }
   }
 
   // idle
   if (!h.isJumping && !h.pressed.d && !h.pressed.a) {
-    s.img = s.imgs[`idle${h.gun ? 'Gun' : ''}${left ? 'Left' : 'Right'}`]
+    s.img = s.imgs[`idle${h.gun ? 'Gun' : ''}${side(h)}`]
   }
 
   // fall
@@ -90,8 +90,12 @@ export function update(h) {
       Shared.sounds.hit.play()
       if (--h.life < 1) Shared.stop = Config.gameOverId
       h.hit = false
+      h.hitTime = t
     }
   }
+
+  // hit flashing
+  h.hitTime && t - h.hitTime < 150 ? setImg(h.sprite, `idleHit${side(h)}`) : h.hitTime = 0
 
   // fire
   if (h.fire) {
@@ -209,4 +213,8 @@ function drawBullets(hero) {
 
 function underMushroom() {
   return Shared.picked.items.findIndex(i => i.msg === 'foundMushroom' && !i.hidden) !== -1
+}
+
+function side(hero) {
+  return hero.dir === LEFT ? 'Left' : 'Right'
 }

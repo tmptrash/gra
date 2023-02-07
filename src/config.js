@@ -13,6 +13,8 @@ import KeyPath from '../img/key-6.png'
 import Mushroom9Path from '../img/mushroom-9.png'
 // hero
 import IdleLeftPath from '../img/idle-left-3.png'
+import IdleHitLeftPath from '../img/idle-hit-left-1.png'
+import IdleHitRightPath from '../img/idle-hit-right-1.png'
 import IdleGunLeftPath from '../img/idle-gun-left-3.png'
 import IdleRightPath from '../img/idle-right-3.png'
 import IdleGunRightPath from '../img/idle-gun-right-3.png'
@@ -161,7 +163,10 @@ export default Config = {
     walkGunLeft:  [WalkGunLeftPath,  6, 60 ],
     walkGunRight: [WalkGunRightPath, 6, 60 ],
     jumpGunLeft:  [JumpGunLeftPath,  9, 150],
-    jumpGunRight: [JumpGunRightPath, 9, 150]
+    jumpGunRight: [JumpGunRightPath, 9, 150],
+
+    idleHitLeft:  [IdleHitLeftPath,  1, 100],
+    idleHitRight: [IdleHitRightPath, 1, 100]
   }],
   l1: [{x: 0, y: 0, width: WIDTH, height: HEIGHT}, L1Path],
 
