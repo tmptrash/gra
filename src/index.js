@@ -15,6 +15,7 @@ let stopped = false
 
 const PICKED_ID = 'picked'
 const playBtn = document.querySelector(Config.playQuery)
+const spinner = document.querySelector(Config.spinnerQuery)
 const doc = document
 
 function main() {
@@ -51,7 +52,8 @@ function onAssets() {
   createObjs()
   updateObjs(null, roomOffs(Shared.offsX, Shared.offsY))
   on(playBtn, 'click', start)
-  playBtn.style.visibility = ''
+  playBtn.style.display = ''
+  spinner.style.display = 'none'
 }
 
 function start() {

@@ -73,6 +73,7 @@ export default Config = {
   heroId: 'hero',
   bulletId: 'bullet',
   playQuery: '.play',
+  spinnerQuery: '.spin',
   frontColor: '#ccc',
   textColor: '#fff',
   textFont: '20px Cambria, serif',

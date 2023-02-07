@@ -9,7 +9,7 @@ export function id() {
 
 export function pickMushroom(i, pick) {
   const el = document.getElementById(Config.canvasId)
-  el.style.animation ='colorRotate 2s linear infinite'
+  el.style.animation ='mushroomEffect 2s linear infinite'
   Shared.speed = .15
   pick(i, true)
   Config.sounds.breath.play()

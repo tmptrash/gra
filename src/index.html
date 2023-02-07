@@ -4,11 +4,6 @@
     <meta charset="utf-8">
     <title>gra</title>
     <style>
-      @keyframes colorRotate {
-        100% {
-          -webkit-filter: hue-rotate(360deg);
-        }
-      }
       html {
         height: 100%;
       }
@@ -50,6 +45,33 @@
         width: 250px;
         height: 20px;
       }
+      /* spinner */
+      .spin {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(255, 255, 255, .3);
+        border-radius: 50%;
+        border-top-color: #fff;
+        animation: spin 1s ease-in-out infinite;
+        -webkit-animation: spinner 1s ease-in-out infinite;
+      }
+      @keyframes spinner {
+        to {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+      @-webkit-keyframes spinner {
+        to {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+      /* mushroom effect */
+      @keyframes mushroomEffect {
+        100% {
+          -webkit-filter: hue-rotate(360deg);
+        }
+      }
     </style>
   </head>
   <body>
@@ -60,7 +82,8 @@
       <canvas id="canvas"></canvas>
     </div>
     <div class="footer">
-      <button class="play" style="visibility: hidden">Play</button>
+      <button class="play" style="display: none">Play</button>
+      <div class="spin"></div>
     </div>
   </body>
 </html>
