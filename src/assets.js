@@ -14,6 +14,8 @@ import Mushroom9Path from '../img/mushroom-9.png'
 import BulletPath from '../img/bullet-1.png'
 // hero
 import IdleLeftPath from '../img/idle-left-3.png'
+import IdleHitLeftPath from '../img/idle-hit-left-1.png'
+import IdleHitRightPath from '../img/idle-hit-right-1.png'
 import IdleGunLeftPath from '../img/idle-gun-left-3.png'
 import IdleRightPath from '../img/idle-right-3.png'
 import IdleGunRightPath from '../img/idle-gun-right-3.png'
@@ -74,6 +76,8 @@ const ASSETS_ARR = [
   Mushroom9Path,
   BulletPath,
   IdleLeftPath,
+  IdleHitLeftPath,
+  IdleHitRightPath,
   IdleGunLeftPath,
   IdleRightPath,
   IdleGunRightPath,
