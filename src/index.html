@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>gra</title>
+    <title>Mary Brave!</title>
     <style>
       html {
         height: 100%;
@@ -16,13 +16,15 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
       }
       body canvas {
         image-rendering: pixelated;
       }
       div.header {
         display: flex;
-        justify-content: center;
+        justify-content: end;
+        width: 1024px;
       }
       div.content {
         display: flex;
@@ -56,6 +58,13 @@
         animation: spin 1s ease-in-out infinite;
         -webkit-animation: spinner 1s ease-in-out infinite;
       }
+      /* volume */
+      .vol {
+        color: #ccc;
+        font-family: monospace;
+        margin-top: -3px;
+      }
+
       @keyframes spinner {
         to {
           -webkit-transform: rotate(360deg);
@@ -72,11 +81,48 @@
           -webkit-filter: hue-rotate(360deg);
         }
       }
+      /* input type="range" */
+      input[type="range"] {
+        -webkit-appearance: none;
+        appearance: none;
+        background: transparent;
+        cursor: pointer;
+        width: 10rem;
+        margin-bottom: 8px;
+      }
+
+      /* Removes default focus */
+      input[type="range"]:focus {
+        outline: none;
+      }
+
+      /***** Chrome, Safari, Opera and Edge Chromium styles *****/
+      /* slider track */
+      input[type="range"]::-webkit-slider-runnable-track {
+        background-color: #6f6f6f;
+        border-radius: 0.5rem;
+        height: 0.4rem;  
+      }
+
+      /* slider thumb */
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none; /* Override default look */
+        appearance: none;
+        margin-top: -4px; /* Centers thumb on the track */
+
+        /*custom styles*/
+        background-color: #fc673df7;
+        height: .9rem;
+        width: .9rem;
+        border-radius: 5px;
+      }
     </style>
   </head>
   <body>
     <div class="header">
+      <div class="vol" style="display: none">vol:</div>
       <audio id="audio" controls style="display: none"></audio>
+      <input type="range" min="0" max="100" value="50" style="display: none">
     </div>
     <div class="content">
       <canvas id="canvas"></canvas>

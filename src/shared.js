@@ -11,5 +11,6 @@ export default {
   sounds: null,
   stop: false,
   showed: {},
-  speed: 1
+  speed: 1,
+  volume: .5
 }

@@ -11,6 +11,7 @@ import BulletsPath from '../img/bullets-9.png'
 import DoorOpenPath from '../img/door-open-5.png'
 import KeyPath from '../img/key-6.png'
 import Mushroom9Path from '../img/mushroom-9.png'
+import Mushroom1Path from '../img/mushroom-1.png'
 // hero
 import IdleLeftPath from '../img/idle-left-3.png'
 import IdleHitLeftPath from '../img/idle-hit-left-1.png'
@@ -74,6 +75,8 @@ export default Config = {
   bulletId: 'bullet',
   playQuery: '.play',
   spinnerQuery: '.spin',
+  volumeQuery: 'input[type=range]',
+  volumeLabelQuery: '.vol',
   frontColor: '#ccc',
   textColor: '#fff',
   textFont: '20px Cambria, serif',
@@ -353,6 +356,8 @@ export default Config = {
       0: [
         //[[{x: 100, y: 200}, {idle: [GunAnimPath,   9,  150]}], 'gun',     'foundGun',     pickGun],
         //[[{x: 200, y: 300}, {idle: [BulletsPath,   9,  150]}], 'bullets', 'foundBullets', pickBullets]
+        //[[{x: 400, y: 300}, {idle: [Mushroom1Path, 1,  100]}], 'mushroom', 'foundMushroom', pickMushroom],
+        //[[{x: 450, y: 300}, {idle: [Mushroom9Path, 9,  100]}], 'mushroom','foundMushroom', pickMushroom]
       ],
       2: [
         [[{x: 128, y: 700}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',    pickLife]
