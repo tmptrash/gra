@@ -1,5 +1,3 @@
-import { id, pickMushroom, pickLife, pickBullets, pickGun, pickKey } from './funcs'
-
 import L1Path from '../img/l1.png'
 import StalactiteUp1Path from '../img/stalactite-up-1.png'
 import StalactiteUp2Path from '../img/stalactite-up-2.png'
@@ -11,7 +9,7 @@ import BulletsPath from '../img/bullets-9.png'
 import DoorOpenPath from '../img/door-open-5.png'
 import KeyPath from '../img/key-6.png'
 import Mushroom9Path from '../img/mushroom-9.png'
-import Mushroom1Path from '../img/mushroom-1.png'
+import Mushroom29Path from '../img/mushroom2-9.png'
 // hero
 import IdleLeftPath from '../img/idle-left-3.png'
 import IdleHitLeftPath from '../img/idle-hit-left-1.png'
@@ -66,6 +64,11 @@ import SoundDrop4 from '../sound/drop4.mp3'
 const WIDTH  = 1024
 const HEIGHT = 800
 let Config = null
+let uniqueId = 0
+
+function id() {
+  return ++uniqueId
+}
 
 export default Config = {
   // html & css & ids
@@ -103,7 +106,7 @@ export default Config = {
   intersectionOffs: 5,
   textDist: 5,
   textSpeed: .009,
-  mushroomDelay: 1000 * 60 * 2,
+  mushroomDelay: 1000 * 60 * 1,
   mushroomPlayPeriod: 2000,
 
   // hero related
@@ -354,66 +357,69 @@ export default Config = {
     },
     items: {
       0: [
-        //[[{x: 100, y: 200}, {idle: [GunAnimPath,   9,  150]}], 'gun',     'foundGun',     pickGun],
-        //[[{x: 200, y: 300}, {idle: [BulletsPath,   9,  150]}], 'bullets', 'foundBullets', pickBullets]
-        //[[{x: 400, y: 300}, {idle: [Mushroom1Path, 1,  100]}], 'mushroom', 'foundMushroom', pickMushroom],
-        //[[{x: 450, y: 300}, {idle: [Mushroom9Path, 9,  100]}], 'mushroom','foundMushroom', pickMushroom]
+        //[[{x: 100, y: 200}, {idle: [GunAnimPath,   9,  150]}], 'gun',      'foundGun',     pickGun],
+        //[[{x: 200, y: 300}, {idle: [BulletsPath,   9,  150]}], 'bullets',  'foundBullets', pickBullets]
+        //[[{x: 400, y: 300}, {idle: [Mushroom1Path, 1,  100]}], 'mushroom', 'foundTeleMushroom', pickTeleMushroom],
+        //[[{x: 450, y: 300}, {idle: [Mushroom9Path, 9,  100]}], 'mushroom', 'foundBraveMushroom', pickMushroom]
       ],
       2: [
-        [[{x: 128, y: 700}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',    pickLife]
+        [[{x: 128, y: 700}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']
       ],
       4: [
-        [[{x: 770, y: 200}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',    pickLife]
+        [[{x: 770, y: 200}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']
       ],
       5: [
-        [[{x: 958, y: 288}, {idle: [GunAnimPath,   9,  150]}], 'gun',     'foundGun',      pickGun]
+        [[{x: 958, y: 288}, {idle: [GunAnimPath,   9,  150]}], 'gun',     'foundGun']
       ],
       7: [
-        [[{x: 880, y: 600}, {idle: [BulletsPath,   9,  150]}], 'bullets', 'foundBullets',  pickBullets]
+        [[{x: 880, y: 600}, {idle: [BulletsPath,   9,  150]}], 'bullets', 'foundBullets']
       ],
       8: [
-        [[{x: 80,  y: 230}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',    pickLife],
-        [[{x: 350, y: 650}, {idle: [BulletsPath,   9,  150]}], 'bullets', 'foundBullets',  pickBullets]
+        [[{x: 80,  y: 230}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart'],
+        [[{x: 350, y: 650}, {idle: [BulletsPath,   9,  150]}], 'bullets', 'foundBullets']
       ],
       10: [
-        [[{x: 550, y: 128}, {idle: [BulletsPath,   9,  150]}], 'bullets', 'foundBullets',  pickBullets]
+        [[{x: 550, y: 128}, {idle: [BulletsPath,   9,  150]}], 'bullets', 'foundBullets']
       ],
       11: [
-        [[{x: 832, y: 224}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',    pickLife],
+        [[{x: 832, y: 224}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart'],
       ],
       13: [
-        [[{x: 800, y: 600}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',    pickLife]
+        [[{x: 800, y: 600}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']
       ],
       14: [
-        [[{x: 900, y: 600}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',    pickLife]
+        [[{x: 900, y: 600}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']
       ],
       15: [
-        [[{x: 900, y: 600}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',    pickLife]
+        [[{x: 900, y: 600}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']
+      ],
+      16: [
+        [[{x: 192, y:  96}, {idle: [Mushroom29Path,9,  100]}], 'mushroom', 'foundPortMushroom']
       ],
       18: [
-        [[{x: 650, y: 128}, {idle: [Mushroom9Path, 9,  100]}], 'mushroom','foundMushroom', pickMushroom]
+        [[{x: 650, y: 128}, {idle: [Mushroom9Path, 9,  100]}], 'mushroom','foundBraveMushroom']
       ],
       20: [
-        [[{x: 860, y: 138}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',    pickLife]
+        [[{x: 860, y: 138}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']
       ],
       21: [
-        [[{x: 530, y: 100}, {idle: [BulletsPath,   9,  150]}], 'bullets', 'foundBullets',  pickBullets]
+        [[{x: 530, y: 100}, {idle: [BulletsPath,   9,  150]}], 'bullets', 'foundBullets']
       ],
       22: [
-        [[{x: 288, y: 168}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',    pickLife]
+        [[{x: 288, y: 168}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']
       ],
       23: [
-        [[{x: 820, y: 100}, {idle: [BulletsPath,   9,  150]}], 'bullets', 'foundBullets',  pickBullets]
+        [[{x: 820, y: 100}, {idle: [BulletsPath,   9,  150]}], 'bullets', 'foundBullets']
       ],
       25: [
-        [[{x: 880, y: 704}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',    pickLife]
+        [[{x: 880, y: 704}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']
       ],
       29: [
-        [[{x: 880, y: 704}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart',    pickLife]
+        [[{x: 880, y: 704}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']
       ],
       39: [
-        [[{x: 830, y: 580}, {idle: [KeyPath,       7,  200]}], 'key',     'foundKey',      pickKey],
-        [[{x: 576, y: 160}, {idle: [BulletsPath,   9,  150]}], 'bullets', 'foundBullets',  pickBullets]
+        [[{x: 830, y: 580}, {idle: [KeyPath,       7,  200]}], 'key',     'foundKey'],
+        [[{x: 576, y: 160}, {idle: [BulletsPath,   9,  150]}], 'bullets', 'foundBullets']
       ]
     },
     scripts: {
@@ -544,13 +550,15 @@ export default Config = {
     }
   },
   msgs: {
-    gameOver:      'Game Over!',
-    youWin:        'You win!',
+    gameOver:           'Game Over!',
+    youWin:             'You win!',
     foundBullets: () => `You found ${Config.bulletsAmount} bullets`,
-    foundHeart:    'You found one life',
-    foundGun:      'You found a gun',
-    foundKey:      'You found a key',
-    foundMushroom: 'You found slow mushroom'
+    foundHeart:         'You found one life',
+    foundGun:           'You found a gun',
+    foundKey:           'You found a key',
+    foundBraveMushroom: 'You found brave mushroom',
+    foundTeleMushroom:  'You found tele mushroom',
+    foundPortMushroom:  'You found teleport mushroom'
   },
   // TODO: pack this to binary array
   barriers: [435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435,

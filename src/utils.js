@@ -82,3 +82,12 @@ export function msg(msgId) {
 
   return ''
 }
+
+export function repeat(timeout, every, timeoutCb, everyCb) {
+  const int = setInterval(everyCb, every)
+  setTimeout(() => {
+    clearInterval(int)
+    timeoutCb()
+  }, timeout)
+  return int
+}

@@ -212,7 +212,7 @@ function drawBullets(hero) {
 }
 
 function underMushroom() {
-  return Shared.picked.items.findIndex(i => i.msg === 'foundMushroom' && !i.hidden) !== -1
+  return Shared.picked.items.findIndex(i => i.msg === 'foundBraveMushroom' && !i.hidden) !== -1
 }
 
 function side(hero) {
