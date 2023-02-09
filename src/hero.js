@@ -178,8 +178,6 @@ function updateScreen(h) {
     updateObjs(roomOffs(Shared.offsX, Shared.offsY), roomOffs(Shared.offsX, Shared.offsY + Config.height))
     Shared.offsY += Config.height
     s.y = 1
-    h.isJumping = false
-    h.jumpTime = 0
   } else if (s.y + s.height < 0) {
     updateObjs(roomOffs(Shared.offsX, Shared.offsY), roomOffs(Shared.offsX, Shared.offsY - Config.height))
     Shared.offsY -= Config.height
