@@ -1,7 +1,7 @@
 import Config from './config'
 import Shared from './shared'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
-import { delObj, touches, msg } from './utils'
+import { delObj, touches, msg, repeat } from './utils'
 import { create } from './creator'
 import { updateObjs, roomOffs } from './rooms'
 
