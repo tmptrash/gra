@@ -397,7 +397,7 @@ export default Config = {
         [[{x: 192, y:  96}, {idle: [Mushroom29Path,9,  100]}], 'mushroom', 'foundPortMushroom']
       ],
       18: [
-        [[{x: 650, y: 128}, {idle: [Mushroom9Path, 9,  100]}], 'mushroom','foundBraveMushroom']
+        [[{x: 655, y: 140}, {idle: [Mushroom9Path, 9,  100]}], 'mushroom','foundBraveMushroom']
       ],
       20: [
         [[{x: 860, y: 138}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']
@@ -426,10 +426,11 @@ export default Config = {
       0: [
         ['Drop',   {sprite1: [{x: 173, y: 164}, DropPath], sprite2: [{x: 151, y:  64}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed: 10, delay: 2000}],
         ['Drop',   {sprite1: [{x: 619, y: 172}, DropPath], sprite2: [{x: 632, y:  64}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  9, delay: 4000}],
-        ['Text',   {text: ['Welcome Mary Brave!',           419, 300,     0, 5000, true], id: id()}],
-        ['Text',   {text: ['a - left, d - right, w - jump', 386, 300,  5500, 5000, true], id: id()}],
-        ['Text',   {text: ['Find a key and open the door',  380, 300, 11000, 5000, true], id: id()}],
-        ['Text',   {text: ['Good luck!',                    467, 300, 16500, 5000, true], id: id()}],
+        ['Text',   {text: ['Welcome Mary Brave!',           419, 300,     0, 3000, true], id: id()}],
+        ['Text',   {text: ['a - left, d - right, w - jump', 386, 300,  3500, 4000, true], id: id()}],
+        ['Text',   {text: ['Find a key and open the door',  380, 300,  8000, 3000, true], id: id()}],
+        ['Text',   {text: ['And don\'t touch these bugs',   380, 300, 11500, 4000, true], id: id()}],
+        ['Text',   {text: ['Good luck!',                    467, 300, 16000, 4000, true], id: id()}],
         ['Sprite', {sprite: [{x: 150, y:  64}, StalactiteUp1Path]}],
         ['Sprite', {sprite: [{x: 580, y:  64}, StalactiteUp2Path]}]
       ],
