@@ -67,6 +67,7 @@ function pickBraveMushroom(i) {
   })
 }
 
+// TODO:
 function pickTeleMushroom(i) {
   pick(i, false)
   const int = repeat(Config.mushroomDelay, Config.mushroomPlayPeriod, () => {

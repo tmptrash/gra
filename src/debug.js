@@ -1,6 +1,7 @@
 import Shared from './shared'
 import Config from './config'
 import { getMousePos, int, on } from './utils'
+import { roomOffs } from './rooms'
 
 const CHECK_EVERY = 1000
 
@@ -34,5 +35,5 @@ export function draw(debug) {
   debug.curFps++
 
   Shared.ctx.font = Config.frontFont
-  Shared.ctx.fillText(`fps: ${Shared.fps}   mouse ${x}:${y}   hero ${hx0}:${hy0}, ${hx1}:${hy1}   room ${roomX}:${roomY}`, 300, 20)
+  Shared.ctx.fillText(`fps: ${Shared.fps}   mouse ${x}:${y}   hero ${hx0}:${hy0}, ${hx1}:${hy1}   room ${roomX}:${roomY}, ${roomOffs(Shared.offsX, Shared.offsY)}`, 300, 20)
 }
