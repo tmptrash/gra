@@ -12,13 +12,14 @@ export function Music() {
   }
   on(music.el, 'ended', play.bind(null, music))
   on(music.vol, 'change', onVolume.bind(null, music))
+  Shared.volume = Config.musicVolume
 
   return music
 }
 
 export function play(music) {
   music.el.src = music.list[music.idx++]
-  music.el.volume = Config.musicVolume
+  music.el.volume = Shared.volume
   music.el.play()
   music.idx >= music.list.length && (music.idx = 0)
   music.vol.style.display = ''
