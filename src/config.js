@@ -94,7 +94,7 @@ export default Config = {
   logoY: 50,
 
   // game related
-  debug: true,
+  debug: false,
   useSetTimeout: false,
   musicVolume: .6,
   width: WIDTH,
