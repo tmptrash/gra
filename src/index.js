@@ -5,7 +5,7 @@ import { Bullet, draw as drawBullet, update as updateBullet } from './bullet'
 import { Level, draw as drawLevel, update as updateLevel } from './level'
 import { updateObjs, roomOffs } from './rooms'
 import { Debug, draw as drawDebug } from './debug'
-import { logo, fn, on, off, findObjById } from './utils'
+import { logo, fn, on, off, findObjById, isMobile } from './utils'
 import { Music, play, stop } from './music'
 import { Picked, draw as drawPicked } from './picked'
 import { Sounds } from './sounds'
@@ -26,6 +26,8 @@ function main() {
   Shared.ctx.font = Config.frontFont
   Shared.ctx.imageSmoothingEnabled = false
 
+  if (!checkDesktop()) return
+  spinner.style.display = ''
   resize()
   logo()
   on(window, 'resize', resize)
@@ -46,6 +48,15 @@ function draw() {
 
 function update() {
   !Shared.stop && Shared.objs.forEach(o => o.update(o.o))
+}
+
+function checkDesktop() {
+  if (isMobile()) {
+    Shared.ctx.font = Config.fontGameOver
+    Shared.ctx.fillText('We support only Chrome under desktop for this game. Sorry :(', 120, 300)
+    return false
+  }
+  return true
 }
 
 function onAssets() {
