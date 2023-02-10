@@ -38,9 +38,10 @@ import BugBlueLeftPath from '../img/bug-black-blue-left-3.png'
 import BugBlueRightPath from '../img/bug-black-blue-right-3.png'
 import BugBigLeftPath from '../img/bug-big-left-3.png'
 import BugBigRightPath from '../img/bug-big-right-3.png'
-// drops
+// scripts
 import DropPath from '../img/drop-1.png'
 import DropDownPath from '../img/drop-down-12.png'
+import PortalPath from '../img/portal-9.png'
 // music
 import Cave0 from '../music/cave0.mp3'
 // sounds
@@ -101,6 +102,7 @@ const ASSETS_ARR = [
   BugBigRightPath,
   DropPath,
   DropDownPath,
+  PortalPath,
   Cave0,
   SoundHit,
   SoundKey,

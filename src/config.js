@@ -9,7 +9,6 @@ import BulletsPath from '../img/bullets-9.png'
 import DoorOpenPath from '../img/door-open-5.png'
 import KeyPath from '../img/key-6.png'
 import Mushroom9Path from '../img/mushroom-9.png'
-import Mushroom29Path from '../img/mushroom2-9.png'
 // hero
 import IdleLeftPath from '../img/idle-left-3.png'
 import IdleHitLeftPath from '../img/idle-hit-left-1.png'
@@ -36,9 +35,10 @@ import BugBlueLeftPath from '../img/bug-black-blue-left-3.png'
 import BugBlueRightPath from '../img/bug-black-blue-right-3.png'
 import BugBigLeftPath from '../img/bug-big-left-3.png'
 import BugBigRightPath from '../img/bug-big-right-3.png'
-// drops
+// scripts
 import DropPath from '../img/drop-1.png'
 import DropDownPath from '../img/drop-down-12.png'
+import PortalPath from '../img/portal-9.png'
 // music
 import Cave0 from '../music/cave0.mp3'
 // sounds
@@ -359,7 +359,7 @@ export default Config = {
         //[[{x: 100, y: 200}, {idle: [GunAnimPath,   9,  150]}], 'gun',      'foundGun',     pickGun],
         //[[{x: 200, y: 300}, {idle: [BulletsPath,   9,  150]}], 'bullets',  'foundBullets', pickBullets]
         //[[{x: 400, y: 300}, {idle: [Mushroom1Path, 1,  100]}], 'mushroom', 'foundTeleMushroom', pickTeleMushroom],
-        //[[{x: 450, y: 300}, {idle: [Mushroom1Path, 1,  100]}], 'mushroom', 'foundBraveMushroom']
+        //[[{x: 600, y: 200}, {idle: [PortalPath,    9,  111]}], 'portal', 'foundBraveMushroom']
       ],
       2: [
         [[{x: 128, y: 700}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']
@@ -391,9 +391,6 @@ export default Config = {
       ],
       15: [
         [[{x: 900, y: 600}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']
-      ],
-      16: [
-        [[{x: 192, y:  96}, {idle: [Mushroom29Path,9,  100]}], 'mushroom', 'foundPortMushroom']
       ],
       18: [
         [[{x: 655, y: 140}, {idle: [Mushroom9Path, 9,  100]}], 'mushroom','foundBraveMushroom']
@@ -489,7 +486,8 @@ export default Config = {
         ['Drop',   {sprite1: [{x: 219, y: 567}, DropPath], sprite2: [{x: 219, y: 567}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed:  5, delay: 2000}],
         ['Drop',   {sprite1: [{x: 658, y: 140}, DropPath], sprite2: [{x: 658, y: 140}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 10, delay: 1000}],
         ['Sprite', {sprite:  [{x: 168, y: 480}, StalactiteUp1Path]}],
-        ['Sprite', {sprite:  [{x: 618, y:  32}, StalactiteUp2Path]}]
+        ['Sprite', {sprite:  [{x: 618, y:  32}, StalactiteUp2Path]}],
+        ['Portal', {sprite:  [{x: 300, y:  96}, {idle: [PortalPath, 9, 80]}], pos: 1}]
       ],
       17: [
         ['Drop',   {sprite1: [{x: 271, y:  32}, DropPath], sprite2: [{x: 271, y:  32}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed:  5, delay: 2000}],
@@ -558,7 +556,7 @@ export default Config = {
     foundKey:           'You found a key',
     foundBraveMushroom: 'You found brave mushroom',
     foundTeleMushroom:  'You found tele mushroom',
-    foundPortMushroom:  'You found teleport mushroom'
+    foundTeleport:      'You found teleport'
   },
   // TODO: pack this to binary array
     barriers: [435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435,

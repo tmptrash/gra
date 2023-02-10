@@ -8,7 +8,6 @@ import { updateObjs, roomOffs } from './rooms'
 const pickFns = {
   'foundBraveMushroom': pickBraveMushroom,
   'foundTeleMushroom': pickTeleMushroom,
-  'foundPortMushroom': pickPortMushroom,
   'foundHeart': pickHeart,
   'foundGun': pickGun,
   'foundBullets': pickBullets,
@@ -78,18 +77,6 @@ function pickTeleMushroom(i) {
     //Config.sounds.breath.play()
     //Config.sounds.heart.play()
   })
-}
-
-function pickPortMushroom(i) {
-  pick(i, false)
-  const x = Shared.offsX
-  const y = Shared.offsY
-  Shared.offsX = Config.width * 6
-  Shared.offsY = 0
-  Shared.hero.sprite.x = 10
-  Shared.hero.sprite.y = 100
-  updateObjs(roomOffs(x, y), roomOffs(Shared.offsX, Shared.offsY))
-  Shared.objs.push(create('Text', {text: [msg(i.msg), 424, 300, 0, 3000, false, 0], id: 0}, i.room))
 }
 
 function pickHeart(i) {
