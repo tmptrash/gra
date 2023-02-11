@@ -3,17 +3,16 @@ import Config from './config'
 import { Hero, draw as drawHero, update as updateHero } from './hero'
 import { Bullet, draw as drawBullet, update as updateBullet } from './bullet'
 import { Level, draw as drawLevel, update as updateLevel } from './level'
-import { updateObjs, roomOffs } from './rooms'
+import { updateObjs, room } from './rooms'
 import { Debug, draw as drawDebug } from './debug'
-import { logo, fn, on, off, findObjById, isMobile } from './utils'
+import { logo, fn, on, off, findObjById, findObjByDrawFn, isMobile, show, hide, text } from './utils'
 import { Music, play, stop } from './music'
 import { Picked, draw as drawPicked } from './picked'
 import { Sounds } from './sounds'
-import { preloadAssets } from './assets'
+import { preload } from './assets'
 
 let stopped = false
 
-const PICKED_ID = 'picked'
 const playBtn = document.querySelector(Config.playQuery)
 const spinner = document.querySelector(Config.spinnerQuery)
 const doc = document
@@ -27,11 +26,11 @@ function main() {
   Shared.ctx.imageSmoothingEnabled = false
 
   if (!checkDesktop()) return
-  spinner.style.display = ''
+  show(spinner)
   resize()
   logo()
   on(window, 'resize', resize)
-  preloadAssets(onAssets)
+  preload(onAssets)
 }
 
 function animate() {
@@ -51,39 +50,37 @@ function update() {
 }
 
 function checkDesktop() {
-  if (isMobile()) {
+  const isDesktop = !isMobile()
+  if (!isDesktop) {
     Shared.ctx.font = Config.fontGameOver
-    Shared.ctx.fillText('We support only Chrome under desktop for this game. Sorry :(', 120, 300)
-    return false
+    Shared.ctx.fillText(Config.msgs.noMobileSupport, 120, 300)
   }
-  return true
+  return isDesktop
 }
 
 function onAssets() {
   createObjs()
-  updateObjs(null, roomOffs(Shared.offsX, Shared.offsY))
+  updateObjs(null, room())
   on(playBtn, 'click', start)
-  playBtn.style.display = ''
-  spinner.style.display = 'none'
+  show(playBtn)
+  hide(spinner)
 }
 
 function start() {
   // TODO: remove in production
   on(window, 'keyup', onPrompt)
 
-  playBtn.style.display = 'none'
+  hide(playBtn)
   off(playBtn, 'click', start)
   play(Shared.music)
   animate()
 }
 
 function drawStop() {
-  Shared.ctx.fillStyle = Config.frontColor
-  Shared.ctx.font = Config.fontGameOver
   if (Shared.stop === Config.gameOverId) {
-    Shared.ctx.fillText('Game Over!', Config.width / 2 - 55, Config.height / 2)
+    text(Config.msgs.gameOver, Config.width / 2 - 55, Config.height / 2, Config.fontGameOver)
   } else if (Shared.stop === Config.gameCompletedId) {
-    Shared.ctx.fillText('You win!', Config.width / 2 - 45, Config.height / 2)
+    text(Config.msgs.youWin, Config.width / 2 - 45, Config.height / 2, Config.fontGameOver)
   }
 
   if (!stopped) {
@@ -102,7 +99,7 @@ function onPrompt(e) {
   const y = Shared.offsY
   Shared.offsX = Config.width * offs[0].trim()
   Shared.offsY = Config.height * offs[1].trim()
-  updateObjs(roomOffs(x, y), roomOffs(Shared.offsX, Shared.offsY))
+  updateObjs(room(x, y), room())
 }
 
 function resize() {
@@ -115,15 +112,15 @@ function createObjs() {
     { draw: drawLevel,  update: updateLevel,  o: Level() },
     { draw: drawHero,   update: updateHero,   o: Hero(),   id: Config.heroId },
     { draw: drawBullet, update: updateBullet, o: Bullet(), id: Config.bulletId },
-    { draw: drawPicked, update: fn,           o: Picked(), id: PICKED_ID }
+    { draw: drawPicked, update: fn,           o: Picked() }
   ]
 
   Config.debug && objs.push({ draw: drawDebug, update: fn, o: Debug() })
   Shared.music = Music()
   Shared.sounds = Sounds()
-  Shared.picked = findObjById(objs, PICKED_ID)
-  Shared.hero = findObjById(objs, Config.heroId)
-  Shared.bullet = findObjById(objs, Config.bulletId)
+  Shared.picked = findObjByDrawFn(drawPicked)
+  Shared.hero = findObjById(Config.heroId)
+  Shared.bullet = findObjById(Config.bulletId)
 }
 
 main()

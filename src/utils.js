@@ -31,7 +31,7 @@ export function off(el, event, handler) {
   el.removeEventListener(event, handler)
 }
 
-export function getMousePos(canvas, { clientX, clientY }) {
+export function mousePos(canvas, { clientX, clientY }) {
   const rect = canvas.getBoundingClientRect()
   return {
     x: Math.ceil(clientX / document.body.style.zoom - rect.x),
@@ -39,13 +39,23 @@ export function getMousePos(canvas, { clientX, clientY }) {
   }
 }
 
-export function findObjById(objs, id) {
-  const obj = objs.find(o => o.id === id)
+export function findObjById(id) {
+  const obj = Shared.objs.find(o => o.id === id)
   return obj ? obj.o : null
 }
 
-export function findObjIdx(objs, obj) {
-  return objs.findIndex(o => o.o === obj)
+export function findObjByDrawFn(drawFn) {
+  const obj = Shared.objs.find(o => o.draw === drawFn)
+  return obj ? obj.o : null
+}
+
+export function delObj(obj) {
+  const idx = findObjIdx(obj)
+  idx !== -1 && Shared.objs.splice(idx, 1)
+}
+
+export function findObjIdx(obj) {
+  return Shared.objs.findIndex(o => o.o === obj)
 }
 
 export function fn() {}
@@ -69,11 +79,6 @@ export function touches(s, s1, offs = 0) {
   )
 }
 
-export function delObj(obj) {
-  const idx = findObjIdx(Shared.objs, obj)
-  idx !== -1 && Shared.objs.splice(idx, 1)
-}
-
 export function msg(msgId) {
   const msg = Config.msgs[msgId]
   if (msg) {
@@ -90,6 +95,20 @@ export function repeat(timeout, every, timeoutCb, everyCb) {
     timeoutCb()
   }, timeout)
   return int
+}
+
+export function show(el) {
+  el.style.display = ''
+}
+
+export function hide(el) {
+  el.style.display = 'none'
+}
+
+export function text(t, x, y, font, style = '#ccc') {
+  Shared.ctx.fillStyle = style
+  Shared.ctx.font = font
+  Shared.ctx.fillText(t, x, y)
 }
 
 export function isMobile() {

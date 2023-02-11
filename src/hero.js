@@ -3,7 +3,7 @@ import Shared from './shared'
 import { bind, LEFT, RIGHT } from './utils'
 import { rightBarrier, leftBarrier, topBarrier, downBarrier } from './barriers'
 import { Sprite, draw as drawSprite, update as updateSprite, stop, setImg } from './sprite'
-import { updateObjs, roomOffs } from './rooms'
+import { updateObjs, room } from './rooms'
 
 export function Hero() {
   const hero = {
@@ -167,19 +167,19 @@ function updateScreen(h) {
   const s = h.sprite
 
   if (s.x > Config.width) {
-    updateObjs(roomOffs(Shared.offsX, Shared.offsY), roomOffs(Shared.offsX + Config.width, Shared.offsY))
+    updateObjs(room(), room(Shared.offsX + Config.width))
     Shared.offsX += Config.width
     s.x = 1
   } else if (s.x + s.width < 0) {
-    updateObjs(roomOffs(Shared.offsX, Shared.offsY), roomOffs(Shared.offsX - Config.width, Shared.offsY))
+    updateObjs(room(), room(Shared.offsX - Config.width))
     Shared.offsX -= Config.width
     s.x = Config.width - s.width - 1
   } else if (s.y > Config.height) {
-    updateObjs(roomOffs(Shared.offsX, Shared.offsY), roomOffs(Shared.offsX, Shared.offsY + Config.height))
+    updateObjs(room(), room(Shared.offsX, Shared.offsY + Config.height))
     Shared.offsY += Config.height
     s.y = 1
   } else if (s.y + s.height < 0) {
-    updateObjs(roomOffs(Shared.offsX, Shared.offsY), roomOffs(Shared.offsX, Shared.offsY - Config.height))
+    updateObjs(room(), room(Shared.offsX, Shared.offsY - Config.height))
     Shared.offsY -= Config.height
     h.jumpY = Config.height + h.jumpY
     s.y = Config.height - 1

@@ -2,8 +2,8 @@ import Shared from './shared'
 import Config from './config'
 import { create } from './creator'
 
-export function updateObjs(fromRoom, toRoom, objects = null) {
-  const objs = objects || Shared.objs
+export function updateObjs(fromRoom, toRoom) {
+  const objs = Shared.objs
   for (let i = 0; i < objs.length; i++) objs[i].room === fromRoom && (objs.splice(i, 1), i--)
   
   const enemies = Config.rooms.enemies[toRoom]
@@ -22,7 +22,7 @@ export function updateObjs(fromRoom, toRoom, objects = null) {
   })
 }
 
-export function roomOffs(offsX, offsY) {
+export function room(offsX = Shared.offsX, offsY = Shared.offsY) {
   const roomX = offsX / Config.width
   const roomY = offsY / Config.height
   return roomX + roomY * (Config.hSprites * Config.spriteSize / Config.width)

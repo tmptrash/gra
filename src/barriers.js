@@ -31,11 +31,24 @@ export function downBarrier(sprite) {
   return yBarrier(false, sprite)
 }
 
-export function xyBarrier(x, y) {
+function xBarrier(right, sprite) {
+  let y = sprite.y
+  const x = right ? sprite.x + sprite.width : sprite.x
+  const y1 = sprite.y + sprite.height
   const spriteSize = Config.spriteSize
   const xSprite = Math.floor((int(x) + Shared.offsX) / spriteSize)
-  const ySprite = Math.floor((int(y) + Shared.offsY) / spriteSize)
-  return barrier(ySprite * Config.hSprites + xSprite)
+  const hSprites = Config.hSprites
+
+  while (y <= y1) {
+    const ySprite = Math.floor((int(y) + Shared.offsY) / spriteSize)
+    const offs = ySprite * hSprites + xSprite
+    if (barrier(offs)) return getSpritePosX(xSprite, ySprite, right)
+    y += spriteSize
+  }
+
+  const ySprite = Math.floor((int(y1) + Shared.offsY) / spriteSize)
+  const offs = ySprite * hSprites + xSprite
+  return barrier(offs) ? getSpritePosX(xSprite, ySprite, right) : false
 }
 
 function yBarrier(up, sprite) {
@@ -58,24 +71,11 @@ function yBarrier(up, sprite) {
   return barrier(offs) ? getSpritePosY(xSprite, ySprite, !up) : false
 }
 
-function xBarrier(right, sprite) {
-  let y = sprite.y
-  const x = right ? sprite.x + sprite.width : sprite.x
-  const y1 = sprite.y + sprite.height
+export function xyBarrier(x, y) {
   const spriteSize = Config.spriteSize
   const xSprite = Math.floor((int(x) + Shared.offsX) / spriteSize)
-  const hSprites = Config.hSprites
-
-  while (y <= y1) {
-    const ySprite = Math.floor((int(y) + Shared.offsY) / spriteSize)
-    const offs = ySprite * hSprites + xSprite
-    if (barrier(offs)) return getSpritePosX(xSprite, ySprite, right)
-    y += spriteSize
-  }
-
-  const ySprite = Math.floor((int(y1) + Shared.offsY) / spriteSize)
-  const offs = ySprite * hSprites + xSprite
-  return barrier(offs) ? getSpritePosX(xSprite, ySprite, right) : false
+  const ySprite = Math.floor((int(y) + Shared.offsY) / spriteSize)
+  return barrier(ySprite * Config.hSprites + xSprite)
 }
 
 function barrier(offs) {

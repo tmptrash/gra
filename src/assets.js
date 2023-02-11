@@ -126,29 +126,27 @@ const ASSETS_ARR = [
 
 export const ASSETS = {}
 
-export function preloadAssets(cb) {
+export function preload(cb) {
+  const onLoad = () => Shared.assets--
   for (let i = 0; i < ASSETS_ARR.length; i++) {
     const asset = ASSETS_ARR[i]
 
     if (asset.endsWith('.mp3')) {
       ASSETS[asset] = new Audio()
-      Shared.assets++
-      ASSETS[asset].oncanplaythrough = () => Shared.assets--
-      ASSETS[asset].src = asset
-    }
-    else if (asset.endsWith('.png')) {
+      ASSETS[asset].oncanplaythrough = onLoad
+    } else if (asset.endsWith('.png')) {
       ASSETS[asset] = new Image()
-      Shared.assets++
-      ASSETS[asset].onload = () => Shared.assets--
-      ASSETS[asset].src = asset
+      ASSETS[asset].onload = onLoad
     }
+    Shared.assets++
+    ASSETS[asset].src = asset
   }
-  waitAssets(cb)
+  wait(cb)
 }
 
-function waitAssets(cb) {
+function wait(cb) {
   if (Shared.assets > 0) {
-    setTimeout(waitAssets.bind(null, cb), 10)
+    setTimeout(wait.bind(null, cb), 30)
     return
   }
   cb()
