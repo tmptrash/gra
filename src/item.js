@@ -3,7 +3,6 @@ import Shared from './shared'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import { delObj, touches, msg, repeat } from './utils'
 import { create } from './creator'
-import { updateObjs, roomOffs } from './rooms'
 
 const pickFns = {
   'foundBraveMushroom': pickBraveMushroom,

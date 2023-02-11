@@ -3,7 +3,7 @@ export default {
   assets: 0,
   fps: 0,
   offsX: 0,
-  offsY: 800 * 2,
+  offsY: 0,
   objs: null,
   picked: null,
   hero: null,
