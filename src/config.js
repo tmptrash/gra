@@ -115,6 +115,7 @@ export default Config = {
   stepSpeed: .31,
   startLifes: 4,
   lifePos: [10, 10],
+  timerPos: [500, 20],
   pickedY: 6,
   touchDelay: 1500,
   // all keys: tinyurl.com/5n8deccv
@@ -356,9 +357,9 @@ export default Config = {
     },
     items: {
       0: [
-        //[[{x: 100, y: 200}, {idle: [GunAnimPath,   9,  150]}], 'gun',      'foundGun',     pickGun],
-        //[[{x: 200, y: 300}, {idle: [BulletsPath,   9,  150]}], 'bullets',  'foundBullets', pickBullets]
-        //[[{x: 400, y: 300}, {idle: [Mushroom1Path, 1,  100]}], 'mushroom', 'foundTeleMushroom', pickTeleMushroom],
+        [[{x: 100, y: 200}, {idle: [GunAnimPath,   9,  150]}], 'gun',      'foundGun'],
+        [[{x: 200, y: 300}, {idle: [BulletsPath,   9,  150]}], 'bullets',  'foundBullets']
+        //[[{x: 400, y: 300}, {idle: [Mushroom1Path, 1,  100]}], 'mushroom', 'foundTeleMushroom'],
         //[[{x: 600, y: 200}, {idle: [PortalPath,    9,  111]}], 'portal', 'foundBraveMushroom']
       ],
       2: [

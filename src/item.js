@@ -49,15 +49,19 @@ function pick(item, show = true) {
 
 function pickBraveMushroom(i) {
   const el = document.getElementById(Config.canvasId)
+  const timer = create('Timer', [Config.mushroomDelay, ...Config.timerPos])
   el.style.animation ='mushroomEffect 2s linear infinite'
   Shared.speed = .15
   pick(i, true)
   Config.sounds.breath.play()
+  Shared.objs.push(timer)
+
   const int = repeat(Config.mushroomDelay, Config.mushroomPlayPeriod, () => {
     Shared.speed = 1
     const idx = Shared.picked.items.findIndex(i => i.msg === 'foundBraveMushroom')
     idx !== -1 && (Shared.picked.items[idx].hidden = true)
     el.style.animation ='none'
+    delObj(timer)
   }, () => {
     Shared.stop && clearInterval(int)
     Config.sounds.breath.play()
