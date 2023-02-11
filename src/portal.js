@@ -5,10 +5,9 @@ import { touches } from './utils'
 import { roomOffs, updateObjs } from './rooms'
 import { create } from './creator'
 
-export function Portal(spriteCfg, room) {
+export function Portal(spriteCfg) {
   const portal = {
-    sprite: Sprite(...spriteCfg),
-    room
+    sprite: Sprite(...spriteCfg)
   }
 
   return portal
@@ -24,10 +23,11 @@ export function update(p) {
     const y = Shared.offsY
     Shared.offsX = Config.width * 6
     Shared.offsY = 0
+    const room = roomOffs(Shared.offsX, Shared.offsY)
     Shared.hero.sprite.x = 10
     Shared.hero.sprite.y = 100
     updateObjs(roomOffs(x, y), roomOffs(Shared.offsX, Shared.offsY))
-    Shared.objs.push(create('Text', {text: [Config.msgs.foundTeleport, 450, 300, 0, 3000, false, 0], id: 0}, p.room))
+    Shared.objs.push(create('Text', {text: [Config.msgs.foundTeleport, 450, 300, 0, 3000, false, 0], id: 0}, room))
     return
   }
   updateSprite(p.sprite)
