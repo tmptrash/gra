@@ -5,11 +5,13 @@ import { Bullet, draw as drawBullet, update as updateBullet } from './bullet'
 import { Level, draw as drawLevel, update as updateLevel } from './level'
 import { updateObjs, room } from './rooms'
 import { Debug, draw as drawDebug } from './debug'
-import { logo, fn, on, off, findObjById, findObjByDrawFn, isMobile, show, hide, text } from './utils'
+import { logo, fn, on, off, findObjById, findObjByDrawFn, isMobile, show, hide, text, delObj } from './utils'
 import { Music, play, stop } from './music'
 import { Picked, draw as drawPicked } from './picked'
+import { Timer, draw as drawTimer } from './timer'
 import { Sounds } from './sounds'
 import { preload } from './assets'
+import { draw as drawText } from './text'
 
 let stopped = false
 
@@ -46,7 +48,11 @@ function draw() {
 }
 
 function update() {
-  !Shared.stop && Shared.objs.forEach(o => o.update(o.o))
+  if (!Shared.stop) Shared.objs.forEach(o => o.update(o.o))
+  else {
+    !stopped && removeTexts()
+    stopped = true
+  }
 }
 
 function checkDesktop() {
@@ -67,9 +73,6 @@ function onAssets() {
 }
 
 function start() {
-  // TODO: remove in production
-  on(window, 'keyup', onPrompt)
-
   hide(playBtn)
   off(playBtn, 'click', start)
   play(Shared.music)
@@ -87,19 +90,7 @@ function drawStop() {
     if (Shared.stop === Config.gameOverId) Shared.sounds.gameOver.play()
     else if(Shared.stop === Config.gameCompletedId) Shared.sounds.win.play()
     stop(Shared.music)
-    stopped = true
   }
-}
-
-function onPrompt(e) {
-  if (e.key !== '+' && e.key !== '=') return
-  const v = prompt('Type room coordinates (like 1,2)')
-  const offs = v.split(',')
-  const x = Shared.offsX
-  const y = Shared.offsY
-  Shared.offsX = Config.width * offs[0].trim()
-  Shared.offsY = Config.height * offs[1].trim()
-  updateObjs(room(x, y), room())
 }
 
 function resize() {
@@ -108,19 +99,28 @@ function resize() {
 
 function createObjs() {
   // Static items. Order is important!
-  const objs = Shared.objs = [
+  Shared.objs = [
     { draw: drawLevel,  update: updateLevel,  o: Level() },
+    { draw: drawTimer,  update: fn,           o: Timer() },
     { draw: drawHero,   update: updateHero,   o: Hero(),   id: Config.heroId },
     { draw: drawBullet, update: updateBullet, o: Bullet(), id: Config.bulletId },
     { draw: drawPicked, update: fn,           o: Picked() }
   ]
+  Config.debug && Shared.objs.push({ draw: drawDebug, update: fn, o: Debug() })
 
-  Config.debug && objs.push({ draw: drawDebug, update: fn, o: Debug() })
-  Shared.music = Music()
+  Shared.music  = Music()
   Shared.sounds = Sounds()
   Shared.picked = findObjByDrawFn(drawPicked)
-  Shared.hero = findObjById(Config.heroId)
+  Shared.hero   = findObjById(Config.heroId)
   Shared.bullet = findObjById(Config.bulletId)
+}
+
+function removeTexts() {
+  while (true) {
+    const o = findObjByDrawFn(drawText)
+    if (!o) return
+    else delObj(o)
+  }
 }
 
 main()

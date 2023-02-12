@@ -4,7 +4,7 @@ import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import { downBarrier } from './barriers'
 
 export function Drop(cfg) {
-  const drop = {
+  return {
     speed: cfg.speed,
     sound: Shared.sounds[cfg.sound],
     sprite1: Sprite(...cfg.sprite1),
@@ -16,8 +16,6 @@ export function Drop(cfg) {
     delayTime: performance.now(),
     startTime: 0
   }
-
-  return drop
 }
 
 export function draw(drop) {

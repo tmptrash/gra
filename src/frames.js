@@ -1,5 +1,3 @@
-import Shared from './shared'
-
 export function Frames(width, amount = 1, timeout = 180, run = true, speed = 1) {
   return {
     frame: 0,

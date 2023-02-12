@@ -6,11 +6,9 @@ import { room, updateObjs } from './rooms'
 import { create } from './creator'
 
 export function Portal(spriteCfg) {
-  const portal = {
+  return {
     sprite: Sprite(...spriteCfg)
   }
-
-  return portal
 }
 
 export function draw(portal) {

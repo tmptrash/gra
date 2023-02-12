@@ -115,7 +115,7 @@ export default Config = {
   stepSpeed: .31,
   startLifes: 4,
   lifePos: [10, 10],
-  timerPos: [500, 20],
+  countdownPos: [800, 20],
   pickedY: 6,
   touchDelay: 1500,
   // all keys: tinyurl.com/5n8deccv

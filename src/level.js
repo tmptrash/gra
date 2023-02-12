@@ -3,11 +3,9 @@ import Config from './config'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 
 export function Level() {
-  const level = {
+  return {
     sprite: Sprite(...Config.l1, onLevelLoad)
   }
-
-  return level
 }
 
 export function draw(level) {

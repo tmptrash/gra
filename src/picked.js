@@ -2,11 +2,9 @@ import Config from './config'
 import { draw as drawSprite, stop } from './sprite'
 
 export function Picked() {
-  const picked = {
+  return {
     items: []
   }
-
-  return picked
 }
 
 export function draw(picked) {

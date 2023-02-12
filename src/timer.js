@@ -1,22 +1,21 @@
-import Shared from './shared'
 import Config from './config'
+import Shared from './shared'
+import { text } from './utils'
 
-export function Timer(delay, x, y) {
-  const timer = {
-    t: performance.now(),
-    delay,
-    x,
-    y
+export function Timer() {
+  return {
+    t: 0,
+    x: Config.width / 2 - 30,
+    y: 20,
+    font: Config.frontFont,
+    col: Config.textColor,
+    val: 0
   }
-
-  return timer
 }
 
-export function draw(timer) {
-  const t = (timer.delay - (performance.now() - timer.t)) / 1000
-  if (t > 0) {
-    Shared.ctx.fillStyle = Config.frontColor
-    Shared.ctx.font = Config.frontFont
-    Shared.ctx.fillText(t.toFixed(), timer.x, timer.y)
-  }
+export function draw(t) {
+  !t.t && (t.t = performance.now())
+  const secs = ((performance.now() - t.t) / 1000).toFixed()
+  if (Shared.stop) t.val = t.val || secs
+  else text(`timer: ${t.val || secs}s`, t.x, t.y, t.font, t.col)
 }

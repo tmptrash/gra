@@ -6,14 +6,12 @@ import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import { leftBarrier, rightBarrier } from './barriers'
 
 export function Bullet() {
-  const bullet = {
+  return {
     sprite: Sprite({ x: 0, y: 0 }, BulletPath),
     time: 0,
     hidden: true,
     dir: RIGHT
   }
-
-  return bullet
 }
 
 export function draw(bullet) {

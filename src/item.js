@@ -49,7 +49,7 @@ function pick(item, show = true) {
 
 function pickBraveMushroom(i) {
   const el = document.getElementById(Config.canvasId)
-  const timer = create('Timer', [Config.mushroomDelay, ...Config.timerPos])
+  const timer = create('Countdown', [Config.mushroomDelay, ...Config.countdownPos])
   el.style.animation ='mushroomEffect 2s linear infinite'
   Shared.speed = .15
   pick(i, true)

@@ -4,11 +4,9 @@ import { Sprite, draw as drawSprite, update as updateSprite} from './sprite'
 import { touches } from './utils' 
 
 export function Door() {
-  const door = {
+  return {
     sprite: Sprite(...Config.door)
   }
-
-  return door
 }
 
 export function draw(d) {
