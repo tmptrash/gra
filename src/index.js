@@ -5,7 +5,7 @@ import { Bullet, draw as drawBullet, update as updateBullet } from './bullet'
 import { Level, draw as drawLevel, update as updateLevel } from './level'
 import { updateObjs, room } from './rooms'
 import { Debug, draw as drawDebug } from './debug'
-import { logo, fn, on, off, findObjById, findObjByDrawFn, isMobile, show, hide, text, delObj } from './utils'
+import { logo, fn, on, off, findObjById, findObjByDrawFn, isMobile, show, hide, text, delObj, checkDesktop, resize, score } from './utils'
 import { Music, play, stop } from './music'
 import { Picked, draw as drawPicked } from './picked'
 import { Timer, draw as drawTimer } from './timer'
@@ -17,10 +17,9 @@ let stopped = false
 
 const playBtn = document.querySelector(Config.playQuery)
 const spinner = document.querySelector(Config.spinnerQuery)
-const doc = document
 
 function main() {
-  Shared.ctx = doc.getElementById(Config.canvasId).getContext('2d')
+  Shared.ctx = document.getElementById(Config.canvasId).getContext('2d')
   Shared.ctx.canvas.width = Config.width
   Shared.ctx.canvas.height = Config.height
   Shared.ctx.fillStyle = Config.frontColor
@@ -49,19 +48,7 @@ function draw() {
 
 function update() {
   if (!Shared.stop) Shared.objs.forEach(o => o.update(o.o))
-  else {
-    !stopped && removeTexts()
-    stopped = true
-  }
-}
-
-function checkDesktop() {
-  const isDesktop = !isMobile()
-  if (!isDesktop) {
-    Shared.ctx.font = Config.fontGameOver
-    Shared.ctx.fillText(Config.msgs.noMobileSupport, 120, 300)
-  }
-  return isDesktop
+  else !stopped && removeObjs(), stopped = true
 }
 
 function onAssets() {
@@ -81,9 +68,11 @@ function start() {
 
 function drawStop() {
   if (Shared.stop === Config.gameOverId) {
-    text(Config.msgs.gameOver, Config.width / 2 - 55, Config.height / 2, Config.fontGameOver)
+    text(Config.msgs.gameOver, Config.width / 2 - 80, Config.height / 2, Config.fontGameOver, Config.textColor)
   } else if (Shared.stop === Config.gameCompletedId) {
-    text(Config.msgs.youWin, Config.width / 2 - 45, Config.height / 2, Config.fontGameOver)
+    text(Config.msgs.youWin, Config.width / 2 - 80, Config.height / 2, Config.fontGameOver, Config.textColor)
+    text(Config.msgs.score(score()), Config.width / 2 - 60, Config.height / 2 + 30, Config.textFont, Config.textColor)
+    text(Config.msgs.time(Shared.timer.val), Config.width / 2 - 55, Config.height / 2 + 60, Config.textFont, Config.textColor)
   }
 
   if (!stopped) {
@@ -91,10 +80,6 @@ function drawStop() {
     else if(Shared.stop === Config.gameCompletedId) Shared.sounds.win.play()
     stop(Shared.music)
   }
-}
-
-function resize() {
-  doc.body.style.zoom = window.innerHeight * .9 / Config.height
 }
 
 function createObjs() {
@@ -113,11 +98,12 @@ function createObjs() {
   Shared.picked = findObjByDrawFn(drawPicked)
   Shared.hero   = findObjById(Config.heroId)
   Shared.bullet = findObjById(Config.bulletId)
+  Shared.timer  = findObjByDrawFn(drawTimer)
 }
 
-function removeTexts() {
+function removeObjs() {
   while (true) {
-    const o = findObjByDrawFn(drawText)
+    const o = findObjByDrawFn(drawText) || findObjById(Config.heroId)
     if (!o) return
     else delObj(o)
   }

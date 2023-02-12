@@ -80,9 +80,9 @@ export function touches(s, s1, offs = 0) {
 }
 
 export function msg(msgId) {
-  const msg = Config.msgs[msgId]
-  if (msg) {
-    return typeof msg === 'function' ? msg() : msg
+  const m = Config.msgs[msgId]
+  if (m) {
+    return typeof m === 'function' ? m() : m
   }
 
   return ''
@@ -109,6 +109,28 @@ export function text(t, x, y, font, style = '#ccc') {
   Shared.ctx.fillStyle = style
   Shared.ctx.font = font
   Shared.ctx.fillText(t, x, y)
+}
+
+export function checkDesktop() {
+  const isDesktop = !isMobile()
+  if (!isDesktop) {
+    Shared.ctx.font = Config.fontGameOver
+    Shared.ctx.fillText(Config.msgs.noMobileSupport, 120, 300)
+  }
+  return isDesktop
+}
+
+export function resize() {
+  document.body.style.zoom = window.innerHeight * .9 / Config.height
+}
+
+export function score() {
+  let s = 0
+  s += Shared.hero.life
+  s += Shared.hero.bullets
+  s += Shared.picked.items.length
+
+  return s
 }
 
 export function isMobile() {

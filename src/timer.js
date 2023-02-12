@@ -17,5 +17,5 @@ export function draw(t) {
   !t.t && (t.t = performance.now())
   const secs = ((performance.now() - t.t) / 1000).toFixed()
   if (Shared.stop) t.val = t.val || secs
-  else text(`timer: ${t.val || secs}s`, t.x, t.y, t.font, t.col)
+  else text(`time: ${t.val || secs}s`, t.x, t.y, t.font, t.col)
 }

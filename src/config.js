@@ -84,7 +84,7 @@ export default Config = {
   textColor: '#fff',
   textFont: '20px Cambria, serif',
   frontFont: '16px Cambria, serif',
-  fontGameOver: '28px Tahoma',
+  fontGameOver: '42px Tahoma',
   bulletsFont: 'bold 13px Cambria, serif',
   gameOverId: 'game-over',
   gameCompletedId: 'completed',
@@ -358,7 +358,8 @@ export default Config = {
     items: {
       0: [
         //[[{x: 100, y: 200}, {idle: [GunAnimPath,   9,  150]}], 'gun',      'foundGun'],
-        //[[{x: 200, y: 300}, {idle: [BulletsPath,   9,  150]}], 'bullets',  'foundBullets']
+        //[[{x: 200, y: 300}, {idle: [BulletsPath,   9,  150]}], 'bullets',  'foundBullets'],
+        //[[{x: 830, y: 580}, {idle: [KeyPath,       7,  200]}], 'key',     'foundKey']
         //[[{x: 400, y: 300}, {idle: [Mushroom1Path, 1,  100]}], 'mushroom', 'foundTeleMushroom'],
         //[[{x: 600, y: 200}, {idle: [PortalPath,    9,  111]}], 'portal', 'foundBraveMushroom']
       ],
@@ -558,7 +559,9 @@ export default Config = {
     foundBraveMushroom: 'You found brave mushroom',
     foundTeleMushroom:  'You found tele mushroom',
     foundTeleport:      'You found teleport',
-    noMobileSupport:    'We support only Chrome under desktop for this game. Sorry :('
+    noMobileSupport:    'We support only Chrome under desktop for this game. Sorry :(',
+    score:         s => `Your Score: ${s}`,
+    time:          t => `Your time: ${t}`
   },
   // TODO: pack this to binary array
     barriers: [435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435, 435,
