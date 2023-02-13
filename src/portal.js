@@ -1,7 +1,7 @@
 import Shared from './shared'
 import Config from './config'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
-import { touches } from './utils'
+import { touch } from './utils'
 import { room, updateObjs } from './rooms'
 import { create } from './creator'
 
@@ -16,7 +16,7 @@ export function draw(portal) {
 }
 
 export function update(p) {
-  if (touches(Shared.hero.sprite, p.sprite, 50)) {
+  if (touch(Shared.hero.sprite, p.sprite, 50)) {
     const x = Shared.offsX
     const y = Shared.offsY
     Shared.offsX = Config.width * 6

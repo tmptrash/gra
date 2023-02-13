@@ -1,7 +1,7 @@
 import Config from './config'
 import Shared from './shared'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
-import { delObj, touches, msg, repeat } from './utils'
+import { delObj, touch, msg, repeat } from './utils'
 import { create } from './creator'
 
 const pickFns = {
@@ -33,7 +33,7 @@ export function draw(item) {
 }
 
 export function update(i) {
-  if (touches(i.sprite, Shared.hero.sprite)) {
+  if (touch(i.sprite, Shared.hero.sprite)) {
     pickFns[i.msg] ? pickFns[i.msg](i) : pick(i)
   }
   updateSprite(i.sprite)

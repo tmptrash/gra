@@ -78,10 +78,6 @@ export function xyBarrier(x, y) {
   return barrier(ySprite * Config.hSprites + xSprite)
 }
 
-function barrier(offs) {
-  return Barriers[offs] > 0
-}
-
 function getSpritePosX(xSprite, ySprite, left = true) {
   const spriteSize = Config.spriteSize
   return [xSprite * spriteSize + (left ? 0 : spriteSize) - Shared.offsX, ySprite * spriteSize - Shared.offsY]
@@ -90,4 +86,8 @@ function getSpritePosX(xSprite, ySprite, left = true) {
 function getSpritePosY(xSprite, ySprite, up = true) {
   const spriteSize = Config.spriteSize
   return [xSprite * spriteSize - Shared.offsX, ySprite * spriteSize + (up ? 0 : spriteSize) - Shared.offsY]
+}
+
+function barrier(offs) {
+  return Barriers[Math.floor(offs / 64)].toString(2)[offs % 64] === '1'
 }

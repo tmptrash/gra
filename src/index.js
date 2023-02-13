@@ -5,7 +5,7 @@ import { Bullet, draw as drawBullet, update as updateBullet } from './bullet'
 import { Level, draw as drawLevel, update as updateLevel } from './level'
 import { updateObjs, room } from './rooms'
 import { Debug, draw as drawDebug } from './debug'
-import { logo, fn, on, off, findObjById, findObjByDrawFn, isMobile, show, hide, text, delObj, checkDesktop, resize, score } from './utils'
+import { logo, fn, on, off, findObjById, findObjByFn, show, hide, text, delObj, checkDesktop, resize, score } from './utils'
 import { Music, play, stop } from './music'
 import { Picked, draw as drawPicked } from './picked'
 import { Timer, draw as drawTimer } from './timer'
@@ -67,17 +67,21 @@ function start() {
 }
 
 function drawStop() {
-  if (Shared.stop === Config.gameOverId) {
-    text(Config.msgs.gameOver, Config.width / 2 - 80, Config.height / 2, Config.fontGameOver, Config.textColor)
-  } else if (Shared.stop === Config.gameCompletedId) {
-    text(Config.msgs.youWin, Config.width / 2 - 80, Config.height / 2, Config.fontGameOver, Config.textColor)
-    text(Config.msgs.score(score()), Config.width / 2 - 60, Config.height / 2 + 30, Config.textFont, Config.textColor)
-    text(Config.msgs.time(Shared.timer.val), Config.width / 2 - 55, Config.height / 2 + 60, Config.textFont, Config.textColor)
+  const cfg = Config
+  const w = cfg.width
+  const h = cfg.height
+
+  if (Shared.stop === cfg.gameOverId) {
+    text(cfg.msgs.gameOver, w / 2 - 80, h / 2, cfg.fontGameOver, cfg.textColor)
+  } else if (Shared.stop === cfg.gameCompletedId) {
+    text(cfg.msgs.youWin, w / 2 - 80, h / 2, cfg.fontGameOver, cfg.textColor)
+    text(cfg.msgs.score(score()), w / 2 - 60, h / 2 + 30, cfg.textFont, cfg.textColor)
+    text(cfg.msgs.time(Shared.timer.val), w / 2 - 60, h / 2 + 60, cfg.textFont, cfg.textColor)
   }
 
   if (!stopped) {
-    if (Shared.stop === Config.gameOverId) Shared.sounds.gameOver.play()
-    else if(Shared.stop === Config.gameCompletedId) Shared.sounds.win.play()
+    if (Shared.stop === cfg.gameOverId) Shared.sounds.gameOver.play()
+    else if(Shared.stop === cfg.gameCompletedId) Shared.sounds.win.play()
     stop(Shared.music)
   }
 }
@@ -95,15 +99,15 @@ function createObjs() {
 
   Shared.music  = Music()
   Shared.sounds = Sounds()
-  Shared.picked = findObjByDrawFn(drawPicked)
+  Shared.picked = findObjByFn(drawPicked)
   Shared.hero   = findObjById(Config.heroId)
   Shared.bullet = findObjById(Config.bulletId)
-  Shared.timer  = findObjByDrawFn(drawTimer)
+  Shared.timer  = findObjByFn(drawTimer)
 }
 
 function removeObjs() {
   while (true) {
-    const o = findObjByDrawFn(drawText) || findObjById(Config.heroId)
+    const o = findObjByFn(drawText) || findObjById(Config.heroId)
     if (!o) return
     else delObj(o)
   }

@@ -1,7 +1,7 @@
 import Config from './config'
 import Shared from './shared'
 import { Sprite, draw as drawSprite, update as updateSprite} from './sprite'
-import { touches } from './utils' 
+import { touch } from './utils' 
 
 export function Door() {
   return {
@@ -19,7 +19,7 @@ export function draw(d) {
 
 export function update(d) {
   if (Shared.stop) return
-  if (Shared.hero.key && touches(d.sprite, Shared.hero.sprite)) {
+  if (Shared.hero.key && touch(d.sprite, Shared.hero.sprite)) {
     d.sprite.img.frames.run = true
   }
   updateSprite(d.sprite)

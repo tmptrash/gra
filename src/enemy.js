@@ -2,7 +2,7 @@ import Config from './config'
 import Shared from './shared'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import { rightBarrier, leftBarrier, topBarrier, downBarrier, xyBarrier } from './barriers'
-import { touches, delObj, LEFT, RIGHT, UP, DOWN } from './utils'
+import { touch, delObj, LEFT, RIGHT, UP, DOWN } from './utils'
 
 const CHECK_PERIOD = 500
 
@@ -51,12 +51,12 @@ export function update(e) {
       e.dir = DOWN, s.img = s.imgs.idleDown
   }
 
-  if (touches(s, Shared.hero.sprite, Config.intersectionOffs) && (t - e.touchTime > Config.touchDelay)) {
+  if (touch(s, Shared.hero.sprite, Config.intersectionOffs) && (t - e.touchTime > Config.touchDelay)) {
     Shared.hero.hit = true
     e.touchTime = t
   }
 
-  if (!Shared.bullet.hidden && touches(s, Shared.bullet.sprite)) {
+  if (!Shared.bullet.hidden && touch(s, Shared.bullet.sprite)) {
     delObj(e)
     Shared.sounds.bugDie.play()
     Shared.bullet.hidden = true
