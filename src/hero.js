@@ -16,6 +16,7 @@ export function Hero() {
     jumpY: 0,
     jumpBarrier: false,
     isJumping: false,
+    coyoteTime: 0,
     fallTime: (Config.jumpTime / 2) / Config.jumpSize,
     pressed: { a: false, d: false, w: false },
     sprite: Sprite(...Config.hero),
@@ -109,23 +110,23 @@ export function update(h) {
   h.t = t
 }
 
-function onJumpKeyDown(hero) {
-  if (hero.isJumping) {
-    hero.pressed.w = true
+function onJumpKeyDown(h) {
+  if (h.isJumping) {
+    h.pressed.w = true
     return
   }
-  hero.sprite.y++
-  const pos = downBarrier(hero.sprite)
-  hero.sprite.y--
-  if (pos && !hero.pressed.w) {
-    hero.isJumping = true
-    hero.jumpStartTime = performance.now()
-    hero.jumpTime = 2 * hero.jumpV0
-    hero.jumpTimeDiv = Config.jumpTime / hero.jumpTime
-    hero.jumpY = hero.sprite.y
-    hero.sprite.imgs.jumpLeft.frames.frame = hero.sprite.imgs.jumpRight.frames.frame = 0
+  h.sprite.y++
+  const pos = downBarrier(h.sprite)
+  h.sprite.y--
+  if (!h.pressed.w && (pos || (!pos && performance.now() - h.coyoteTime < Config.coyoteDelay))) {
+    h.isJumping = true
+    h.jumpStartTime = performance.now()
+    h.jumpTime = 2 * h.jumpV0
+    h.jumpTimeDiv = Config.jumpTime / h.jumpTime
+    h.jumpY = h.sprite.y
+    h.sprite.imgs.jumpLeft.frames.frame = h.sprite.imgs.jumpRight.frames.frame = 0
   }
-  hero.pressed.w = true
+  h.pressed.w = true
 }
 
 function updateX(hero, newX) {
@@ -148,7 +149,7 @@ function updateY(h, newY) {
   s.y += diff
   const pos = down ? downBarrier(s) : topBarrier(s)
   if (pos) {
-    if (down) s.y = pos[1] - s.height - 1
+    if (down) s.y = pos[1] - s.height - 1, h.coyoteTime = performance.now()
     else s.y = pos[1] + 1
     if (h.isJumping) {
       if (!down) {

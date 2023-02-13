@@ -76,7 +76,7 @@ function drawStop() {
   } else if (Shared.stop === cfg.gameCompletedId) {
     text(cfg.msgs.youWin, w / 2 - 80, h / 2, cfg.fontGameOver, cfg.textColor)
     text(cfg.msgs.score(score()), w / 2 - 60, h / 2 + 30, cfg.textFont, cfg.textColor)
-    text(cfg.msgs.time(Shared.timer.val), w / 2 - 60, h / 2 + 60, cfg.textFont, cfg.textColor)
+    text(cfg.msgs.yourTime(Shared.timer.val), w / 2 - 60, h / 2 + 60, cfg.textFont, cfg.textColor)
   }
 
   if (!stopped) {
