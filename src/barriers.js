@@ -89,5 +89,5 @@ function getSpritePosY(xSprite, ySprite, up = true) {
 }
 
 function barrier(offs) {
-  return Barriers[Math.floor(offs / 64)].toString(2)[offs % 64] === '1'
+  return Barriers[Math.floor(offs / 64)].toString(2).padStart(64, '0')[offs % 64] === '1'
 }
