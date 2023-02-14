@@ -65,7 +65,6 @@ export function update(h) {
     const time = (t - h.jumpStartTime) / h.jumpTimeDiv
     const newY = h.jumpY - (h.jumpV0 * time - time * time / 2)
     s.img = s.imgs[`jump${h.gun ? 'Gun' : ''}${side(h)}`]
-    h.fallSpeed = newY - s.y
     updateY(h, newY)
   }
 
@@ -167,7 +166,10 @@ function updateY(h, newY) {
       } else h.isJumping = h.jumpBarrier = false
     }
     !h.lendBefore && down && Config.sounds.lending.play()
-  } else if (h.isJumping && h.jumpY < newY) h.isJumping = h.jumpBarrier = false
+  } else {
+    if (h.isJumping && h.jumpY < newY) h.isJumping = h.jumpBarrier = false
+    if (h.isJumping) h.fallSpeed = diff
+  }
   h.lendBefore = !!pos
 }
 
