@@ -5,11 +5,13 @@ import { rightBarrier, leftBarrier, topBarrier, downBarrier } from './barriers'
 import { Sprite, draw as drawSprite, update as updateSprite, stop, setImg } from './sprite'
 import { updateObjs, room } from './rooms'
 
+const V0 = Math.sqrt(Config.jumpSize / 2) * 2
+
 export function Hero() {
   const hero = {
     t: 0,
     dir: RIGHT,
-    jumpV0: Math.sqrt(Config.jumpSize / 2) * 2,
+    jumpV0: V0,
     jumpTimeDiv: 0,
     jumpStartTime: 0,
     jumpTime: 0,
@@ -38,7 +40,7 @@ export function Hero() {
   keyCfg.keydown[Config.fireKey]  = () => (hero.gun && hero.bullets > 0 && (hero.fire = true))
   keyCfg.keyup[Config.leftKey]    = () => (hero.pressed.a = false, hero.pressed.d && (hero.dir = RIGHT)),
   keyCfg.keyup[Config.rightKey]   = () => (hero.pressed.d = false, hero.pressed.a && (hero.dir = LEFT)),
-  keyCfg.keyup[Config.jumpKey]    = () => (hero.pressed.w = false)
+  keyCfg.keyup[Config.jumpKey]    = () => hero.pressed.w = false
   bind(keyCfg)
   stop(hero.lifeSprite)
 
@@ -58,6 +60,8 @@ export function update(h) {
 
   // jump: v0 = sqrt(Config.jumpSize / 2) * 2, tmax = 2 * v0, y = v0 * t - t * t / 2
   if (h.isJumping) {
+    // this is how we track if user press jump key longer to jump higher
+    if (!h.pressed.w) h.jumpV0 -= (V0 / Shared.fps)
     const time = (t - h.jumpStartTime) / h.jumpTimeDiv
     s.img = s.imgs[`jump${h.gun ? 'Gun' : ''}${side(h)}`]
     updateY(h, h.jumpY - (h.jumpV0 * time - time * time / 2))
@@ -121,6 +125,7 @@ function onJumpKeyDown(h) {
   if (!h.pressed.w && (pos || (!pos && performance.now() - h.coyoteTime < Config.coyoteDelay))) {
     h.isJumping = true
     h.jumpStartTime = performance.now()
+    h.jumpV0 = V0
     h.jumpTime = 2 * h.jumpV0
     h.jumpTimeDiv = Config.jumpTime / h.jumpTime
     h.jumpY = h.sprite.y

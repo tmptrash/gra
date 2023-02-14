@@ -9,6 +9,7 @@ import { logo, fn, on, off, findObjById, findObjByFn, show, hide, text, delObj, 
 import { Music, play, stop } from './music'
 import { Picked, draw as drawPicked } from './picked'
 import { Timer, draw as drawTimer } from './timer'
+//import { Effect, draw as drawEffect } from './effect'
 import { Sounds } from './sounds'
 import { preload } from './assets'
 import { draw as drawText } from './text'
@@ -19,7 +20,7 @@ const playBtn = document.querySelector(Config.playQuery)
 const spinner = document.querySelector(Config.spinnerQuery)
 
 function main() {
-  Shared.ctx = document.getElementById(Config.canvasId).getContext('2d')
+  Shared.ctx = document.getElementById(Config.canvasId).getContext('2d', { willReadFrequently: true })
   Shared.ctx.canvas.width = Config.width
   Shared.ctx.canvas.height = Config.height
   Shared.ctx.fillStyle = Config.frontColor
@@ -90,12 +91,13 @@ function createObjs() {
   // Static items. Order is important!
   Shared.objs = [
     { draw: drawLevel,  update: updateLevel,  o: Level() },
+    { draw: drawDebug,  update: fn,           o: Debug() },
     { draw: drawTimer,  update: fn,           o: Timer() },
     { draw: drawHero,   update: updateHero,   o: Hero(),   id: Config.heroId },
     { draw: drawBullet, update: updateBullet, o: Bullet(), id: Config.bulletId },
-    { draw: drawPicked, update: fn,           o: Picked() }
+    { draw: drawPicked, update: fn,           o: Picked() },
+    //{ draw: drawEffect, update: fn,           o: Effect() }
   ]
-  Config.debug && Shared.objs.push({ draw: drawDebug, update: fn, o: Debug() })
 
   Shared.music  = Music()
   Shared.sounds = Sounds()

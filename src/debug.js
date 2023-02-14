@@ -34,5 +34,5 @@ export function draw(debug) {
   }
   debug.curFps++
 
-  text(`fps: ${Shared.fps}   mouse ${x}:${y}   hero ${hx0}:${hy0}, ${hx1}:${hy1}   room ${roomX}:${roomY}, ${room()}`, 300, 20, Config.frontFont)
+  Config.debug && text(`fps: ${Shared.fps}   mouse ${x}:${y}   hero ${hx0}:${hy0}, ${hx1}:${hy1}   room ${roomX}:${roomY}, ${room()}`, 300, 20, Config.frontFont)
 }
