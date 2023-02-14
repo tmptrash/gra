@@ -163,12 +163,12 @@ function updateY(h, newY) {
           h.jumpStartTime -= ((Config.jumpTime / 2 - (performance.now() - h.jumpStartTime)) * 2)
           h.jumpBarrier = true
         }
-      } else h.isJumping = h.jumpBarrier = false
+      } else h.isJumping = h.jumpBarrier = false, h.fallSpeed = Config.fallSpeed
     }
     !h.lendBefore && down && Config.sounds.lending.play()
   } else {
     if (h.isJumping && h.jumpY < newY) h.isJumping = h.jumpBarrier = false
-    if (h.isJumping) h.fallSpeed = Math.abs(diff)
+    if (h.isJumping) h.fallSpeed = diff < 0 ? Config.fallSpeed : diff
   }
   h.lendBefore = !!pos
 }
