@@ -19,7 +19,7 @@ export function Hero() {
     jumpBarrier: false,
     isJumping: false,
     coyoteTime: 0,
-    fallTime: (Config.jumpTime / 2) / Config.jumpSize,
+    fallSpeed: 20,
     pressed: { a: false, d: false, w: false },
     sprite: Sprite(...Config.hero),
     bulletsSprite: Sprite(...Config.bullets),
@@ -63,8 +63,10 @@ export function update(h) {
     // this is how we track if user press jump key longer to jump higher
     if (!h.pressed.w) h.jumpV0 -= (V0 / Shared.fps)
     const time = (t - h.jumpStartTime) / h.jumpTimeDiv
+    const newY = h.jumpY - (h.jumpV0 * time - time * time / 2)
     s.img = s.imgs[`jump${h.gun ? 'Gun' : ''}${side(h)}`]
-    updateY(h, h.jumpY - (h.jumpV0 * time - time * time / 2))
+    h.fallSpeed = newY - s.y
+    updateY(h, newY)
   }
 
   // walk: x += (t - h.t) * Config.stepSpeed * h.dir
@@ -83,7 +85,7 @@ export function update(h) {
 
   // fall
   if (!h.isJumping) {
-    updateY(h, s.y + (t - h.t) / h.fallTime)
+    updateY(h, s.y + h.fallSpeed)
   }
 
   // hit
