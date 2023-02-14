@@ -119,7 +119,7 @@ export default Config = {
   pickedY: 6,
   touchDelay: 1500,
   coyoteDelay: 80,
-  fallSpeed: 17,
+  fallSpeed: 15,
   // all keys: tinyurl.com/5n8deccv
   leftKey: 'KeyA',
   rightKey: 'KeyD',
