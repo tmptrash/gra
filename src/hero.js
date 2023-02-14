@@ -160,7 +160,7 @@ function updateY(h, newY) {
       } else h.isJumping = h.jumpBarrier = false
     }
     !h.lendBefore && down && Config.sounds.lending.play()
-  }
+  } else if (h.isJumping && h.jumpY < newY) h.isJumping = h.jumpBarrier = false
   h.lendBefore = !!pos
 }
 
