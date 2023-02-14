@@ -168,7 +168,7 @@ function updateY(h, newY) {
     !h.lendBefore && down && Config.sounds.lending.play()
   } else {
     if (h.isJumping && h.jumpY < newY) h.isJumping = h.jumpBarrier = false
-    if (h.isJumping) h.fallSpeed = diff
+    if (h.isJumping) h.fallSpeed = Math.abs(diff)
   }
   h.lendBefore = !!pos
 }
