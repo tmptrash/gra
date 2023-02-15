@@ -72,6 +72,7 @@ function id() {
 
 export default Config = {
   // html & css & ids
+  ver: 'v0.1',
   canvasId: 'canvas',
   audioId: 'audio',
   heroId: 'hero',
@@ -81,9 +82,11 @@ export default Config = {
   volumeQuery: 'input[type=range]',
   volumeLabelQuery: '.vol',
   frontColor: '#ccc',
+  verColor: '#000',
   textColor: '#fff',
   textFont: '20px Cambria, serif',
   frontFont: '16px Cambria, serif',
+  verFont: 'bold 11px Cambria, serif',
   fontGameOver: '42px Tahoma',
   bulletsFont: 'bold 13px Cambria, serif',
   gameOverId: 'game-over',
@@ -116,6 +119,7 @@ export default Config = {
   startLifes: 4,
   lifePos: [10, 10],
   countdownPos: [800, 20],
+  verPos: [562, 110],
   pickedY: 6,
   touchDelay: 1500,
   coyoteDelay: 80,

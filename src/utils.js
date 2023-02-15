@@ -66,6 +66,7 @@ export function logo(show = true) {
 
     function onLoadLogo() {
       drawSprite(logo)
+      text(Config.ver, ...Config.verPos, Config.verFont, Config.verColor)
     }
   }
 }
