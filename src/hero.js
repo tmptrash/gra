@@ -19,7 +19,6 @@ export function Hero() {
     jumpBarrier: false,
     isJumping: false,
     coyoteTime: 0,
-    fallSpeed: 20,
     pressed: { a: false, d: false, w: false },
     sprite: Sprite(...Config.hero),
     bulletsSprite: Sprite(...Config.bullets),
@@ -84,7 +83,7 @@ export function update(h) {
 
   // fall
   if (!h.isJumping) {
-    updateY(h, s.y + h.fallSpeed)
+    updateY(h, s.y + Config.fallSpeed)
   }
 
   // hit
@@ -163,12 +162,11 @@ function updateY(h, newY) {
           h.jumpStartTime -= ((Config.jumpTime / 2 - (performance.now() - h.jumpStartTime)) * 2)
           h.jumpBarrier = true
         }
-      } else h.isJumping = h.jumpBarrier = false, h.fallSpeed = Config.fallSpeed
+      } else h.isJumping = h.jumpBarrier = false
     }
     !h.lendBefore && down && Config.sounds.lending.play()
   } else {
     if (h.isJumping && h.jumpY < newY) h.isJumping = h.jumpBarrier = false
-    if (h.isJumping) h.fallSpeed = diff < 0 ? Config.fallSpeed : diff
   }
   h.lendBefore = !!pos
 }
