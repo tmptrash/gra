@@ -61,8 +61,7 @@ export function update(h) {
   // jump: v0 = sqrt(Config.jumpSize / 2) * 2, tmax = 2 * v0, y = v0 * t - t * t / 2
   if (h.isJumping) {
     // this is how we track if user press jump key longer to jump higher
-    // TODO:
-    //if (!h.pressed.w) h.jumpV0 -= (V0 / Shared.fps)
+    if (!h.pressed.w) h.jumpV0 -= (V0 / Shared.fps)
     const time = (t - h.jumpStartTime) / h.jumpTimeDiv
     const newY = h.jumpY - (h.jumpV0 * time - time * time / 2)
     s.img = s.imgs[`jump${h.gun ? 'Gun' : ''}${side(h)}`]
