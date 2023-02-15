@@ -72,7 +72,7 @@ function id() {
 
 export default Config = {
   // html & css & ids
-  ver: 'v0.1',
+  ver: 'v0.1-beta',
   canvasId: 'canvas',
   audioId: 'audio',
   heroId: 'hero',
@@ -119,7 +119,7 @@ export default Config = {
   startLifes: 4,
   lifePos: [10, 10],
   countdownPos: [800, 20],
-  verPos: [562, 110],
+  verPos: [534, 110],
   pickedY: 6,
   touchDelay: 1500,
   coyoteDelay: 80,
