@@ -5,6 +5,7 @@ import { rightBarrier, leftBarrier, topBarrier, downBarrier } from './barriers'
 import { Sprite, draw as drawSprite, update as updateSprite, stop, setImg } from './sprite'
 import { updateObjs, room } from './rooms'
 
+// TODO:
 const V0 = Math.sqrt(Config.jumpSize / 2) * 2
 
 export function Hero() {
@@ -18,6 +19,7 @@ export function Hero() {
     jumpY: 0,
     jumpBarrier: false,
     isJumping: false,
+    g: 1,
     coyoteTime: 0,
     pressed: { a: false, d: false, w: false },
     sprite: Sprite(...Config.hero),
@@ -60,9 +62,9 @@ export function update(h) {
   // jump: v0 = sqrt(Config.jumpSize / 2) * 2, tmax = 2 * v0, y = v0 * t - t * t / 2
   if (h.isJumping) {
     // this is how we track if user press jump key longer to jump higher
-    if (!h.pressed.w) h.jumpV0 -= (V0 / Shared.fps)
+    //if (!h.pressed.w) h.g += (1 / Shared.fps * 4)
     const time = (t - h.jumpStartTime) / h.jumpTimeDiv
-    const newY = h.jumpY - (h.jumpV0 * time - time * time / 2)
+    const newY = h.jumpY - (h.jumpV0 * time - h.g * time * time / 2)
     s.img = s.imgs[`jump${h.gun ? 'Gun' : ''}${side(h)}`]
     updateY(h, newY)
   }
@@ -83,7 +85,7 @@ export function update(h) {
 
   // fall
   if (!h.isJumping) {
-    updateY(h, s.y + Config.fallSpeed)
+    updateY(h, s.y + Config.fallSpeed * (t - h.t))
   }
 
   // hit
@@ -126,6 +128,7 @@ function onJumpKeyDown(h) {
     h.isJumping = true
     h.jumpStartTime = performance.now()
     h.jumpV0 = V0
+    h.g = 1
     h.jumpTime = 2 * h.jumpV0
     h.jumpTimeDiv = Config.jumpTime / h.jumpTime
     h.jumpY = h.sprite.y

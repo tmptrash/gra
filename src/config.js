@@ -98,7 +98,7 @@ export default Config = {
 
   // game related
   debug: false,
-  useSetTimeout: false,
+  useSetTimeout: true,
   musicVolume: .6,
   width: WIDTH,
   height: HEIGHT,
@@ -116,6 +116,7 @@ export default Config = {
   jumpTime: 1000,
   jumpSize: 250,
   stepSpeed: .31,
+  fallSpeed: .6,
   startLifes: 4,
   lifePos: [10, 10],
   countdownPos: [800, 20],
@@ -123,8 +124,7 @@ export default Config = {
   pickedY: 6,
   touchDelay: 1500,
   coyoteDelay: 80,
-  fallSpeed: 15,
-  // all keys: tinyurl.com/5n8deccv
+  // keys: tinyurl.com/5n8deccv
   leftKey: 'KeyA',
   rightKey: 'KeyD',
   jumpKey: 'KeyW',
