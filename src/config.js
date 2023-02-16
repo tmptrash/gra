@@ -98,7 +98,7 @@ export default Config = {
 
   // game related
   debug: false,
-  useSetTimeout: true,
+  useSetTimeout: false,
   musicVolume: .6,
   width: WIDTH,
   height: HEIGHT,
