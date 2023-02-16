@@ -113,10 +113,12 @@ export default Config = {
   mushroomPlayPeriod: 2000,
 
   // hero related
-  jumpTime: 1000,
-  jumpSize: 250,
+  jumpSpeed: .5,
+  jumpIncTime: 350,
+  jumpVelocity: -45,
+  gravity: 8.2,
   stepSpeed: .31,
-  fallSpeed: .6,
+  fallSpeed: 30,
   startLifes: 4,
   lifePos: [10, 10],
   countdownPos: [800, 20],

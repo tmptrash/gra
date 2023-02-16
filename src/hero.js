@@ -5,21 +5,13 @@ import { rightBarrier, leftBarrier, topBarrier, downBarrier } from './barriers'
 import { Sprite, draw as drawSprite, update as updateSprite, stop, setImg } from './sprite'
 import { updateObjs, room } from './rooms'
 
-// TODO:
-const V0 = Math.sqrt(Config.jumpSize / 2) * 2
-
 export function Hero() {
   const hero = {
     t: 0,
     dir: RIGHT,
-    jumpV0: V0,
-    jumpTimeDiv: 0,
+    v: 0,
     jumpStartTime: 0,
-    jumpTime: 0,
-    jumpY: 0,
-    jumpBarrier: false,
     isJumping: false,
-    g: 1,
     coyoteTime: 0,
     pressed: { a: false, d: false, w: false },
     sprite: Sprite(...Config.hero),
@@ -57,16 +49,13 @@ export function draw(hero) {
 export function update(h) {
   const t = performance.now()
   const s = h.sprite
-  h.t === 0 && (h.t = t)
+  const dt = (t - (h.t || (h.t = t))) / (Config.jumpSpeed * 100)
 
-  // jump: v0 = sqrt(Config.jumpSize / 2) * 2, tmax = 2 * v0, y = v0 * t - t * t / 2
   if (h.isJumping) {
     // this is how we track if user press jump key longer to jump higher
-    //if (!h.pressed.w) h.g += (1 / Shared.fps * 4)
-    const time = (t - h.jumpStartTime) / h.jumpTimeDiv
-    const newY = h.jumpY - (h.jumpV0 * time - h.g * time * time / 2)
+    h.pressed.w && t - h.jumpStartTime < Config.jumpIncTime && (h.v += dt * (Config.jumpVelocity / Config.gravity))
     s.img = s.imgs[`jump${h.gun ? 'Gun' : ''}${side(h)}`]
-    updateY(h, newY)
+    updateY(h, s.y + dt * h.v, dt)
   }
 
   // walk: x += (t - h.t) * Config.stepSpeed * h.dir
@@ -85,7 +74,7 @@ export function update(h) {
 
   // fall
   if (!h.isJumping) {
-    updateY(h, s.y + Config.fallSpeed * (t - h.t))
+    updateY(h, s.y + Config.fallSpeed * dt, dt)
   }
 
   // hit
@@ -125,13 +114,10 @@ function onJumpKeyDown(h) {
   const pos = downBarrier(h.sprite)
   h.sprite.y--
   if (!h.pressed.w && (pos || (!pos && performance.now() - h.coyoteTime < Config.coyoteDelay))) {
+    h.v = Config.jumpVelocity
     h.isJumping = true
-    h.jumpStartTime = performance.now()
-    h.jumpV0 = V0
-    h.g = 1
-    h.jumpTime = 2 * h.jumpV0
-    h.jumpTimeDiv = Config.jumpTime / h.jumpTime
     h.jumpY = h.sprite.y
+    h.jumpStartTime = performance.now()
     h.sprite.imgs.jumpLeft.frames.frame = h.sprite.imgs.jumpRight.frames.frame = 0
   }
   h.pressed.w = true
@@ -149,7 +135,7 @@ function updateX(hero, newX) {
   }
 }
 
-function updateY(h, newY) {
+function updateY(h, newY, dt) {
   const s = h.sprite
   let diff = newY - s.y
   Math.abs(diff) > Config.spriteSize && (diff = (Config.spriteSize - 1) * Math.sign(diff))
@@ -157,20 +143,14 @@ function updateY(h, newY) {
   s.y += diff
   const pos = down ? downBarrier(s) : topBarrier(s)
   if (pos) {
-    if (down) s.y = pos[1] - s.height - 1, h.coyoteTime = performance.now()
+    if (down) s.y = pos[1] - s.height - 1, h.coyoteTime = performance.now(), h.v = 0
     else s.y = pos[1] + 1
-    if (h.isJumping) {
-      if (!down) {
-        if (!h.jumpBarrier) {
-          h.jumpStartTime -= ((Config.jumpTime / 2 - (performance.now() - h.jumpStartTime)) * 2)
-          h.jumpBarrier = true
-        }
-      } else h.isJumping = h.jumpBarrier = false
-    }
+    h.isJumping && down && (h.isJumping = false)
     !h.lendBefore && down && Config.sounds.lending.play()
   } else {
-    if (h.isJumping && h.jumpY < newY) h.isJumping = h.jumpBarrier = false
+    if (h.isJumping && h.jumpY < newY) h.isJumping = false
   }
+  h.v += Config.gravity * dt
   h.lendBefore = !!pos
 }
 
