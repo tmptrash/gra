@@ -55,7 +55,7 @@ export function update(h) {
 
   if (h.isJumping) {
     // this is how we track if user press jump key longer to jump higher
-    h.pressed.w && t - h.jumpStartTime < Config.jumpIncTime && (h.v += dt * (Config.jumpVelocity / Config.gravity))
+    h.pressed.w && t - h.jumpStartTime < Config.jumpPressTimeMs && (h.v += dt * (Config.jumpVelocity / Config.gravity))
     s.img = s.imgs[`jump${h.gun ? 'Gun' : ''}${side(h)}`]
     updateY(h, s.y + dt * h.v, dt)
   }
@@ -103,7 +103,7 @@ function onJumpKeyDown(h) {
   const pos = downBarrier(h.sprite)
   const now = performance.now()
   h.sprite.y--
-  if (!h.pressed.w && (pos || (!pos && now - h.coyoteTime < Config.coyoteDelay))) {
+  if (!h.pressed.w && (pos || (!pos && now - h.coyoteTime < Config.coyoteDelayMs))) {
     h.v = Config.jumpVelocity
     h.isJumping = true
     h.jumpY = h.sprite.y

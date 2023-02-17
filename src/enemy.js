@@ -30,7 +30,7 @@ export function update(e) {
   const s = e.sprite
 
   if (e.horizontal) {
-    if (t - e.stepTime > Config.objTick) {
+    if (t - e.stepTime > Config.objTickMs) {
       s.x += (e.speed * Shared.speed * e.dir)
       e.stepTime = performance.now()
     }
@@ -40,7 +40,7 @@ export function update(e) {
     else if (e.dir === LEFT && (leftBarrier(s) || !left(s) || s.x < 0))
       e.dir = RIGHT, s.img = s.imgs.idleRight
   } else {
-    if (t - e.stepTime > Config.objTick) {
+    if (t - e.stepTime > Config.objTickMs) {
       s.y += (e.speed * Shared.speed * e.dir)
       e.stepTime = performance.now()
     }
@@ -51,7 +51,7 @@ export function update(e) {
       e.dir = DOWN, s.img = s.imgs.idleDown
   }
 
-  if (touch(s, Shared.hero.sprite, Config.intersectionOffs) && (t - e.touchTime > Config.touchDelay)) {
+  if (touch(s, Shared.hero.sprite, Config.intersectionOffs) && (t - e.touchTime > Config.touchDelayMs)) {
     Shared.hero.hit = true
     e.touchTime = t
   }

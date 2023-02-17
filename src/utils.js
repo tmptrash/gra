@@ -62,7 +62,7 @@ export function fn() {}
 
 export function logo(show = true) {
   if (show) {
-    const logo = Sprite({ x: Config.logoX, y: Config.logoY }, LogoPath, onLoadLogo)
+    const logo = Sprite({ x: Config.logoPos[0], y: Config.logoPos[1] }, LogoPath, onLoadLogo)
 
     function onLoadLogo() {
       drawSprite(logo)
@@ -115,7 +115,7 @@ export function text(t, x, y, font, style = '#ccc') {
 export function checkDesktop() {
   const isDesktop = !isMobile()
   if (!isDesktop) {
-    Shared.ctx.font = Config.fontGameOver
+    Shared.ctx.font = Config.gameOverFont
     Shared.ctx.fillText(Config.msgs.noMobileSupport, 120, 300)
   }
   return isDesktop

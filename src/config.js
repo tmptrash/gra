@@ -78,6 +78,8 @@ export default Config = {
   audioId: 'audio',
   heroId: 'hero',
   bulletId: 'bullet',
+  gameOverId: 'game-over',
+  gameCompletedId: 'completed',
   playQuery: '.play',
   spinnerQuery: '.spin',
   volumeQuery: 'input[type=range]',
@@ -88,14 +90,11 @@ export default Config = {
   textFont: '20px Cambria, serif',
   frontFont: '16px Cambria, serif',
   verFont: 'bold 11px Cambria, serif',
-  fontGameOver: '42px Tahoma',
+  gameOverFont: '42px Tahoma',
   bulletsFont: 'bold 13px Cambria, serif',
-  gameOverId: 'game-over',
-  gameCompletedId: 'completed',
 
   // logo
-  logoX: 256,
-  logoY: 50,
+  logoPos: [256, 50],
 
   // game related
   debug: false,
@@ -106,16 +105,16 @@ export default Config = {
   spriteSize: 32,
   hSprites: 256,
   vSprites: 125,
-  objTick: 30,
+  objTickMs: 30,
   intersectionOffs: 5,
   textDist: 5,
   textSpeed: .009,
-  mushroomDelay: 1000 * 60 * 1,
-  mushroomPlayPeriod: 2000,
+  mushroomDelayMs: 1000 * 60 * 1,
+  mushroomPlayPeriosMs: 2000,
 
   // hero related
   jumpSpeed: .5,
-  jumpIncTime: 340,
+  jumpPressTimeMs: 340,
   jumpVelocity: -45,
   gravity: 8.2,
   fallSpeed: 30,
@@ -125,8 +124,8 @@ export default Config = {
   countdownPos: [800, 20],
   verPos: [534, 110],
   pickedY: 6,
-  touchDelay: 1500,
-  coyoteDelay: 80,
+  touchDelayMs: 1500,
+  coyoteDelayMs: 80,
   // keys: tinyurl.com/5n8deccv
   leftKey: 'KeyA',
   rightKey: 'KeyD',
