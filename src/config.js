@@ -569,7 +569,7 @@ export default Config = {
     foundBraveMushroom: 'You found brave mushroom',
     foundTeleMushroom:  'You found tele mushroom',
     foundTeleport:      'You found teleport',
-    noMobileSupport:    'We support only Chrome under desktop for this game. Sorry :(',
+    noMobileSupport:    'We support only Desktop Chrome. Sorry :(',
     score:         s => `Your Score: ${s}`,
     yourTime:      t => `Your time: ${t}`,
     time:          s => `time: ${s}s`

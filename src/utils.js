@@ -116,7 +116,7 @@ export function checkDesktop() {
   const isDesktop = !isMobile()
   if (!isDesktop) {
     Shared.ctx.font = Config.gameOverFont
-    Shared.ctx.fillText(Config.msgs.noMobileSupport, 120, 300)
+    Shared.ctx.fillText(Config.msgs.noMobileSupport, 130, 300)
   }
   return isDesktop
 }
