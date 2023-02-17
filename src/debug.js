@@ -3,7 +3,7 @@ import Config from './config'
 import { mousePos, int, on, text } from './utils'
 import { room } from './rooms'
 
-const CHECK_EVERY = 1000
+const CHECK_EVERY = 3000
 
 export function Debug() {
   const debug = {
@@ -28,11 +28,12 @@ export function draw(debug) {
   const t = performance.now()
 
   if (t - debug.fTime > CHECK_EVERY) {
-    Shared.fps = debug.curFps
+    Shared.fps = (debug.curFps / (CHECK_EVERY / 1000)).toFixed()
     debug.curFps = 0
     debug.fTime = t
   }
   debug.curFps++
 
-  Config.debug && text(`fps: ${Shared.fps}   mouse ${x}:${y}   hero ${hx0}:${hy0}, ${hx1}:${hy1}   room ${roomX}:${roomY}, ${room()}`, 300, 20, Config.frontFont)
+  Config.debug && text(`mouse ${x}:${y}   hero ${hx0}:${hy0}, ${hx1}:${hy1}   room ${roomX}:${roomY}, ${room()}`, ...Config.debugPos, Config.frontFont)
+  text(`fps: ${Shared.fps}`, ...Config.fpsPos, Config.frontFont, Config.textColor)
 }

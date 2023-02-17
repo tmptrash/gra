@@ -91,10 +91,10 @@ function createObjs() {
   // Static items. Order is important!
   Shared.objs = [
     { draw: drawLevel,  update: updateLevel,  o: Level() },
-    { draw: drawDebug,  update: fn,           o: Debug() },
-    { draw: drawTimer,  update: fn,           o: Timer() },
     { draw: drawHero,   update: updateHero,   o: Hero(),   id: Config.heroId },
     { draw: drawBullet, update: updateBullet, o: Bullet(), id: Config.bulletId },
+    { draw: drawDebug,  update: fn,           o: Debug() },
+    { draw: drawTimer,  update: fn,           o: Timer() },
     { draw: drawPicked, update: fn,           o: Picked() },
     //{ draw: drawEffect, update: fn,           o: Effect() }
   ]
