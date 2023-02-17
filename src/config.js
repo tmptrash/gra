@@ -70,6 +70,7 @@ function id() {
   return ++uniqueId
 }
 
+// TODO: think about standartization of values
 export default Config = {
   // html & css & ids
   ver: 'v0.1-beta',
@@ -105,7 +106,7 @@ export default Config = {
   spriteSize: 32,
   hSprites: 256,
   vSprites: 125,
-  objTick: 17,
+  objTick: 30,
   intersectionOffs: 5,
   textDist: 5,
   textSpeed: .009,
@@ -114,11 +115,11 @@ export default Config = {
 
   // hero related
   jumpSpeed: .5,
-  jumpIncTime: 350,
+  jumpIncTime: 340,
   jumpVelocity: -45,
   gravity: 8.2,
-  stepSpeed: .31,
   fallSpeed: 30,
+  stepSpeed: .31,
   startLifes: 4,
   lifePos: [10, 10],
   countdownPos: [800, 20],

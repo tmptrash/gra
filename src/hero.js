@@ -5,11 +5,13 @@ import { rightBarrier, leftBarrier, topBarrier, downBarrier } from './barriers'
 import { Sprite, draw as drawSprite, update as updateSprite, stop, setImg } from './sprite'
 import { updateObjs, room } from './rooms'
 
+const HIT_DELAY = 150
+
 export function Hero() {
   const hero = {
     t: 0,
-    dir: RIGHT,
     v: 0,
+    dir: RIGHT,
     jumpStartTime: 0,
     isJumping: false,
     coyoteTime: 0,
@@ -68,21 +70,15 @@ export function update(h) {
   }
 
   // idle
-  if (!h.isJumping && !h.pressed.d && !h.pressed.a) {
-    s.img = s.imgs[`idle${h.gun ? 'Gun' : ''}${side(h)}`]
-  }
+  !h.isJumping && !h.pressed.d && !h.pressed.a && (s.img = s.imgs[`idle${h.gun ? 'Gun' : ''}${side(h)}`])
 
   // fall
-  if (!h.isJumping) {
-    updateY(h, s.y + Config.fallSpeed * dt, dt)
-  }
+  !h.isJumping && updateY(h, s.y + Config.fallSpeed * dt, dt)
 
   // hit
   if (h.hit) {
-    if (underMushroom()) {
-      Shared.sounds.hitMushroom.play()
-      h.hit = false
-    } else {
+    if (underMushroom()) Shared.sounds.hitMushroom.play(), h.hit = false
+    else {
       Shared.sounds.hit.play()
       if (--h.life < 1) Shared.stop = Config.gameOverId
       h.hit = false
@@ -91,14 +87,10 @@ export function update(h) {
   }
 
   // hit flashing
-  h.hitTime && t - h.hitTime < 150 ? setImg(h.sprite, `idleHit${side(h)}`) : h.hitTime = 0
+  h.hitTime && t - h.hitTime < HIT_DELAY ? setImg(h.sprite, `idleHit${side(h)}`) : h.hitTime = 0
 
   // fire
-  if (h.fire) {
-    Shared.bullet.hidden = false
-    h.fire = false
-    h.bullets--
-  }
+  h.fire && (Shared.bullet.hidden = false, h.fire = false, h.bullets--)
 
   updateScreen(h)
   updateSprite(s)
@@ -106,18 +98,16 @@ export function update(h) {
 }
 
 function onJumpKeyDown(h) {
-  if (h.isJumping) {
-    h.pressed.w = true
-    return
-  }
+  if (h.isJumping) { h.pressed.w = true; return }
   h.sprite.y++
   const pos = downBarrier(h.sprite)
+  const now = performance.now()
   h.sprite.y--
-  if (!h.pressed.w && (pos || (!pos && performance.now() - h.coyoteTime < Config.coyoteDelay))) {
+  if (!h.pressed.w && (pos || (!pos && now - h.coyoteTime < Config.coyoteDelay))) {
     h.v = Config.jumpVelocity
     h.isJumping = true
     h.jumpY = h.sprite.y
-    h.jumpStartTime = performance.now()
+    h.jumpStartTime = now
     h.sprite.imgs.jumpLeft.frames.frame = h.sprite.imgs.jumpRight.frames.frame = 0
   }
   h.pressed.w = true
@@ -130,9 +120,7 @@ function updateX(hero, newX) {
   const left = diff < 0
   s.x += diff
   const pos = left ? leftBarrier(s) : rightBarrier(s)
-  if (pos) {
-    s.x = left ? pos[0] + 1 : pos[0] - s.width - 1
-  }
+  pos && (s.x = left ? pos[0] + 1 : pos[0] - s.width - 1)
 }
 
 function updateY(h, newY, dt) {
@@ -147,9 +135,8 @@ function updateY(h, newY, dt) {
     else s.y = pos[1] + 1
     h.isJumping && down && (h.isJumping = false)
     !h.lendBefore && down && Config.sounds.lending.play()
-  } else {
-    if (h.isJumping && h.jumpY < newY) h.isJumping = false
-  }
+  } else h.isJumping && h.jumpY < newY && (h.isJumping = false)
+
   h.v += Config.gravity * dt
   h.lendBefore = !!pos
 }
