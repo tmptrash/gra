@@ -2,7 +2,7 @@
 Pure Javascript (no frameworks/engines) [Metroidvania](https://en.wikipedia.org/wiki/Metroidvania) game experiment.
 
 P.S. It just an attempt to write something interesting in JavaScript.\
-P.S.S I open for collaboration with other game devs and designers :)
+P.S.S I'm open for collaboration with other game devs and designers :)
 
 ## Game Description
 Embark on an epic journey through a mysterious underground cave as the daring, red-haired heroine. Your mission is to uncover the secrets of the labyrinth and unlock the hidden door using a mysterious key. But beware, danger lurks at every turn. The cave is filled with venomous insects, deadly predators, and other fiendish foes.
