@@ -12,7 +12,7 @@ Arm yourself with a gun and limited ammo as you navigate the treacherous twists 
 Enjoy!
 
 ## Requirements
-Chrome + fullscreen
+Desktop Chrome + fullscreen
 
 ## Available scripts
 
