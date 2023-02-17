@@ -63,6 +63,10 @@ import SoundDrop1 from '../sound/drop1.mp3'
 import SoundDrop2 from '../sound/drop2.mp3'
 import SoundDrop3 from '../sound/drop3.mp3'
 import SoundDrop4 from '../sound/drop4.mp3'
+import SoundGoUp from '../sound/go-up.mp3'
+import SoundGoDown from '../sound/go-down.mp3'
+import SoundGoLeft from '../sound/go-left.mp3'
+import SoundGoRight from '../sound/go-right.mp3'
 
 const ASSETS_ARR = [
   L1Path,
@@ -121,7 +125,11 @@ const ASSETS_ARR = [
   SoundDrop1,
   SoundDrop2,
   SoundDrop3,
-  SoundDrop4
+  SoundDrop4,
+  SoundGoUp,
+  SoundGoDown,
+  SoundGoLeft,
+  SoundGoRight
 ]
 
 export const ASSETS = {}

@@ -52,11 +52,11 @@ function pickBraveMushroom(i) {
   const timer = create('Countdown', [Config.mushroomDelayMs, ...Config.countdownPos])
   el.style.animation ='mushroomEffect 2s linear infinite'
   Shared.speed = .15
-  pick(i, true)
+  pick(i)
   Config.sounds.breath.play()
   Shared.objs.push(timer)
 
-  const int = repeat(Config.mushroomDelayMs, Config.mushroomPlayPeriosMs, () => {
+  const int = repeat(Config.mushroomDelayMs, Config.braveMushroomPlayPeriosMs, () => {
     Shared.speed = 1
     const idx = Shared.picked.items.findIndex(i => i.msg === 'foundBraveMushroom')
     idx !== -1 && (Shared.picked.items[idx].hidden = true)
@@ -69,17 +69,31 @@ function pickBraveMushroom(i) {
   })
 }
 
-// TODO:
 function pickTeleMushroom(i) {
-  pick(i, false)
-  const int = repeat(Config.mushroomDelayMs, Config.mushroomPlayPeriosMs, () => {
+  pick(i)
+  const timer = create('Countdown', [Config.mushroomDelayMs, ...Config.countdownPos])
+  Shared.objs.push(timer)
+  const int = repeat(Config.mushroomDelayMs, Config.teleMushroomPlayPeriosMs, () => {
     const idx = Shared.picked.items.findIndex(i => i.msg === 'foundTeleMushroom')
     idx !== -1 && (Shared.picked.items[idx].hidden = true)
+    delObj(timer)
   }, () => {
     Shared.stop && clearInterval(int)
-    //Config.sounds.breath.play()
-    //Config.sounds.heart.play()
+    // first we have to find a key and after that - a door
+    sayDir(Shared.hero.key ? Config.doorRoom : Config.keyRoom)
   })
+}
+
+function sayDir(itemPos) {
+  const roomX = Shared.offsX / Config.width
+  const roomY = Shared.offsY / Config.height
+
+  itemPos[0] < roomX && Config.sounds.goLeft.play()
+  itemPos[0] > roomX && Config.sounds.goRight.play()
+  setTimeout(() => {
+    itemPos[1] < roomY && Config.sounds.goUp.play()
+    itemPos[1] > roomY && Config.sounds.goDown.play()
+  }, 1500)
 }
 
 function pickHeart(i) {

@@ -1,3 +1,4 @@
+// TODO: put all these files into one map and reuse it in preload
 import L1Path from '../img/l1.png'
 import StalactiteUp1Path from '../img/stalactite-up-1.png'
 import StalactiteUp2Path from '../img/stalactite-up-2.png'
@@ -9,6 +10,7 @@ import BulletsPath from '../img/bullets-9.png'
 import DoorOpenPath from '../img/door-open-5.png'
 import KeyPath from '../img/key-6.png'
 import Mushroom9Path from '../img/mushroom-9.png'
+import MushroomTele9Path from '../img/mushroom-medium-9.png'
 // hero
 import IdleLeftPath from '../img/idle-left-3.png'
 import IdleHitLeftPath from '../img/idle-hit-left-1.png'
@@ -60,6 +62,10 @@ import SoundDrop1 from '../sound/drop1.mp3'
 import SoundDrop2 from '../sound/drop2.mp3'
 import SoundDrop3 from '../sound/drop3.mp3'
 import SoundDrop4 from '../sound/drop4.mp3'
+import SoundGoUp from '../sound/go-up.mp3'
+import SoundGoDown from '../sound/go-down.mp3'
+import SoundGoLeft from '../sound/go-left.mp3'
+import SoundGoRight from '../sound/go-right.mp3'
 
 const WIDTH  = 1024
 const HEIGHT = 800
@@ -93,14 +99,12 @@ export default Config = {
   gameOverFont: '42px Tahoma',
   bulletsFont: 'bold 13px Cambria, serif',
 
-  // logo
-  logoPos: [256, 50],
-
   // game related
   useSetTimeout: true,
   debug: false,
   debugPos: [300, 40],
   fpsPos: [WIDTH / 2 - 100, 20],
+  logoPos: [256, 50],
   musicVolume: .6,
   width: WIDTH,
   height: HEIGHT,
@@ -112,7 +116,10 @@ export default Config = {
   textDist: 5,
   textSpeed: .009,
   mushroomDelayMs: 1000 * 60 * 1,
-  mushroomPlayPeriosMs: 2000,
+  braveMushroomPlayPeriosMs: 2000,
+  teleMushroomPlayPeriosMs: 6000,
+  keyRoom: [7, 4],
+  doorRoom: [0, 3],
 
   // hero related
   jumpSpeed: .5,
@@ -161,7 +168,11 @@ export default Config = {
     drop1: SoundDrop1,
     drop2: SoundDrop2,
     drop3: SoundDrop3,
-    drop4: SoundDrop4
+    drop4: SoundDrop4,
+    goUp: SoundGoUp,
+    goDown: SoundGoDown,
+    goLeft: SoundGoLeft,
+    goRight: SoundGoRight
   },
 
   // sprites
@@ -370,7 +381,6 @@ export default Config = {
         //[[{x: 100, y: 200}, {idle: [GunAnimPath,   9,  150]}], 'gun',      'foundGun'],
         //[[{x: 200, y: 300}, {idle: [BulletsPath,   9,  150]}], 'bullets',  'foundBullets'],
         //[[{x: 830, y: 580}, {idle: [KeyPath,       7,  200]}], 'key',     'foundKey']
-        //[[{x: 400, y: 300}, {idle: [Mushroom1Path, 1,  100]}], 'mushroom', 'foundTeleMushroom'],
         //[[{x: 600, y: 200}, {idle: [PortalPath,    9,  111]}], 'portal', 'foundBraveMushroom']
       ],
       2: [
@@ -425,12 +435,16 @@ export default Config = {
       29: [
         [[{x: 880, y: 704}, {idle: [HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']
       ],
+      31: [
+        [[{x: 900, y: 500}, {idle: [MushroomTele9Path, 9,  100]}], 'mushroom', 'foundTeleMushroom']
+      ],
       39: [
         [[{x: 830, y: 580}, {idle: [KeyPath,       7,  200]}], 'key',     'foundKey'],
         [[{x: 576, y: 160}, {idle: [BulletsPath,   9,  150]}], 'bullets', 'foundBullets']
       ]
     },
     scripts: {
+      // TODO: text should be moved to Config.msgs
       0: [
         ['Drop',   {sprite1: [{x: 173, y: 164}, DropPath], sprite2: [{x: 151, y:  64}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed: 10, delay: 2000}],
         ['Drop',   {sprite1: [{x: 619, y: 172}, DropPath], sprite2: [{x: 632, y:  64}, {idle: [DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  9, delay: 4000}],
