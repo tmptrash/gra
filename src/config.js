@@ -9,7 +9,6 @@ function id() {
   return ++uniqueId
 }
 
-// TODO: think about standartization of values
 export default Config = {
   // html & css & ids
   ver: 'v0.1-beta',
