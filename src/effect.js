@@ -18,8 +18,21 @@ export function draw() {
     const y = Math.floor(offs / w)
     const x = offs % w
     const dist = Math.sqrt((x - s.x)**2 + (y - s.y)**2)
+    let c
     
-    d[i + 3] = dist > 400 ? 0 : 255 - (dist / 1.568627)
+    if (dist > 400) {
+      d[i] = d[i + 1] = d[i + 2] = 0
+    } else if (dist > 300) {
+      const c = dist - 290
+      d[i] /= c
+      d[i + 1] /= c
+      d[i + 2] /= c
+    } else {
+      const c = dist / 32
+      d[i] /= c
+      d[i + 1] /= c
+      d[i + 2] /= c
+    }
   }
 
   Shared.ctx.putImageData(id, 0, 0)
