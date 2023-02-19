@@ -1,4 +1,4 @@
-import Config from './config'
+import Config, { Msgs } from './config'
 import Shared from './shared'
 import LogoPath from '../img/logo.png'
 import { Sprite, draw as drawSprite } from './sprite'
@@ -81,7 +81,7 @@ export function touch(s, s1, offs = 0) {
 }
 
 export function msg(msgId) {
-  const m = Config.msgs[msgId]
+  const m = Msgs[msgId]
   if (m) {
     return typeof m === 'function' ? m() : m
   }
@@ -116,7 +116,7 @@ export function checkDesktop() {
   const isDesktop = !isMobile()
   if (!isDesktop) {
     Shared.ctx.font = Config.gameOverFont
-    Shared.ctx.fillText(Config.msgs.noMobileSupport, 130, 300)
+    Shared.ctx.fillText(Msgs.noMobileSupport, 130, 300)
   }
   return isDesktop
 }

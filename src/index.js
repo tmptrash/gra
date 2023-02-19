@@ -1,5 +1,5 @@
 import Shared from './shared'
-import Config from './config'
+import Config, { Msgs } from './config'
 import { Hero, draw as drawHero, update as updateHero } from './hero'
 import { Bullet, draw as drawBullet, update as updateBullet } from './bullet'
 import { Level, draw as drawLevel, update as updateLevel } from './level'
@@ -73,11 +73,11 @@ function drawStop() {
   const h = cfg.height
 
   if (Shared.stop === cfg.gameOverId) {
-    text(cfg.msgs.gameOver, w / 2 - 80, h / 2, cfg.gameOverFont, cfg.textColor)
+    text(Msgs.gameOver, w / 2 - 80, h / 2, cfg.gameOverFont, cfg.textColor)
   } else if (Shared.stop === cfg.gameCompletedId) {
-    text(cfg.msgs.youWin, w / 2 - 80, h / 2, cfg.gameOverFont, cfg.textColor)
-    text(cfg.msgs.score(score()), w / 2 - 60, h / 2 + 30, cfg.textFont, cfg.textColor)
-    text(cfg.msgs.yourTime(Shared.timer.val), w / 2 - 60, h / 2 + 60, cfg.textFont, cfg.textColor)
+    text(Msgs.youWin, w / 2 - 80, h / 2, cfg.gameOverFont, cfg.textColor)
+    text(Msgs.score(score()), w / 2 - 60, h / 2 + 30, cfg.textFont, cfg.textColor)
+    text(Msgs.yourTime(Shared.timer.val), w / 2 - 60, h / 2 + 60, cfg.textFont, cfg.textColor)
   }
 
   if (!stopped) {

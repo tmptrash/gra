@@ -1,4 +1,4 @@
-import Config from './config'
+import Config, { Msgs } from './config'
 import Shared from './shared'
 import { text } from './utils'
 
@@ -17,5 +17,5 @@ export function draw(t) {
   !t.t && (t.t = performance.now())
   const secs = ((performance.now() - t.t) / 1000).toFixed()
   if (Shared.stop) t.val = t.val || secs
-  else text(Config.msgs.time(t.val || secs), t.x, t.y, t.font, t.col)
+  else text(Msgs.time(t.val || secs), t.x, t.y, t.font, t.col)
 }
