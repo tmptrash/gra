@@ -19,7 +19,7 @@ export function Text(msg, x, y, after, delay, once, id) {
 
   if (once && Shared.showed[id]) return
   Shared.showed[id] = true
-  
+
   return text
 }
 

@@ -32,7 +32,7 @@ export default Config = {
   bulletsFont: 'bold 13px Cambria, serif',
 
   // game related
-  useSetTimeout: true,
+  useSetTimeout: false,
   debug: false,
   debugPos: [300, 40],
   fpsPos: [WIDTH / 2 - 100, 20],
@@ -135,7 +135,6 @@ export default Config = {
   rooms: {
     enemies: {
       0: [
-        //[[{x: 350, y: 377}, {idleLeft: [A.BugLeftPath,    2, 300], idleRight: [A.BugRightPath,    2, 300]}], .5,  true],
         [[{x: 32,  y: 150}, {idleUp:   [A.BugUpPath,      2, 300], idleDown:  [A.BugDownPath,     2, 300]}], .5,  false],
         [[{x: 140, y: 729}, {idleLeft: [A.BugLeftPath,    2, 300], idleRight: [A.BugRightPath,    2, 300]}], .5,  true]
       ],
