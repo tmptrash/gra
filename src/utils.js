@@ -31,6 +31,10 @@ export function off(el, event, handler) {
   el.removeEventListener(event, handler)
 }
 
+export function fire(e, params = null) {
+  Shared.obs.dispatchEvent(new CustomEvent(e, {detail: params}))
+}
+
 export function mousePos(canvas, { clientX, clientY }) {
   const rect = canvas.getBoundingClientRect()
   return {
@@ -56,6 +60,10 @@ export function delObj(obj) {
 
 export function findObjIdx(obj) {
   return Shared.objs.findIndex(o => o.o === obj)
+}
+
+export function findObjIdxById(id) {
+  return Shared.objs.findIndex(o => o.id === id)
 }
 
 export function fn() {}
@@ -106,6 +114,15 @@ export function hide(el) {
   el.style.display = 'none'
 }
 
+export function el(query) {
+  return document.querySelector(query)
+}
+
+export function css(e, attr, v) {
+  if (typeof e === 'string') el(e).style[attr] = v
+  else e.style[attr] = v
+}
+
 export function text(t, x, y, font, style = '#ccc') {
   Shared.ctx.fillStyle = style
   Shared.ctx.font = font
@@ -122,7 +139,7 @@ export function checkDesktop() {
 }
 
 export function resize() {
-  document.body.style.zoom = window.innerHeight * .9 / Config.height
+  css(document.body, 'zoom', window.innerHeight * .9 / Config.height)
 }
 
 export function score() {

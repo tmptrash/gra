@@ -2,6 +2,7 @@ import { ASSET_NAMES as A } from './assets'
 
 const WIDTH  = 1024
 const HEIGHT = 800
+const EFFECT_ID = 'effectId'
 let Config = null
 let uniqueId = 0
 
@@ -24,6 +25,9 @@ export const Msgs = {
   foundBraveMushroom: 'You found brave mushroom',
   foundTeleMushroom:  'You found tele mushroom',
   foundTeleport:      'You found teleport',
+  foundFlashlight:    'Flashlight! Use Z to activate',
+  flashlightOn:       'Flashlight is On',
+  flashlightOff:      'Flashlight is Off',
   noMobileSupport:    'We support only Desktop Chrome. Sorry :(',
   score:         s => `Your Score: ${s}`,
   yourTime:      t => `Your time: ${t}`,
@@ -37,6 +41,7 @@ export default Config = {
   audioId: 'audio',
   heroId: 'hero',
   bulletId: 'bullet',
+  effectId: EFFECT_ID,
   gameOverId: 'game-over',
   gameCompletedId: 'completed',
   playQuery: '.play',
@@ -73,6 +78,10 @@ export default Config = {
   teleMushroomPlayPeriosMs: 6000,
   keyRoom: [7, 4],
   doorRoom: [0, 3],
+  enemiesPos: 3,
+  itemsPos: 3,
+  scriptsPos: 3,
+  darknessLevel: 3,
 
   // hero related
   jumpSpeed: .5,
@@ -93,6 +102,7 @@ export default Config = {
   rightKey: 'KeyD',
   jumpKey: 'KeyW',
   fireKey: 'Space',
+  useKey: 'KeyZ',
 
   // bullet
   bulletsPos: [10, 26],
@@ -125,7 +135,8 @@ export default Config = {
     goUp: A.SoundGoUp,
     goDown: A.SoundGoDown,
     goLeft: A.SoundGoLeft,
-    goRight: A.SoundGoRight
+    goRight: A.SoundGoRight,
+    pick: A.SoundPick
   },
 
   // sprites
@@ -333,7 +344,6 @@ export default Config = {
         //[[{x: 100, y: 200}, {idle: [A.GunAnimPath,   9,  150]}], 'gun',      'foundGun'],
         //[[{x: 200, y: 300}, {idle: [A.BulletsPath,   9,  150]}], 'bullets',  'foundBullets'],
         //[[{x: 830, y: 580}, {idle: [A.KeyPath,       7,  200]}], 'key',      'foundKey']
-        //[[{x: 600, y: 200}, {idle: [A.PortalPath,    9,  111]}], 'portal',   'foundBraveMushroom']
       ],
       2: [
         [[{x: 128, y: 700}, {idle: [A.HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']
@@ -367,13 +377,15 @@ export default Config = {
         [[{x: 900, y: 600}, {idle: [A.HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']
       ],
       18: [
-        [[{x: 655, y: 140}, {idle: [A.Mushroom9Path, 9,  100]}], 'mushroom','foundBraveMushroom']
+        [[{x: 655, y: 140}, {idle: [A.Mushroom9Path, 9,  100]}], 'mushroom','foundBraveMushroom'],
+        [[{x: 800, y: 650}, {idle: [A.FlashlightPath,9,  100]}], 'pick',    'foundFlashlight']
       ],
       20: [
         [[{x: 860, y: 138}, {idle: [A.HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']
       ],
       21: [
-        [[{x: 530, y: 100}, {idle: [A.BulletsPath,   9,  150]}], 'bullets', 'foundBullets']
+        [[{x: 530, y: 100}, {idle: [A.BulletsPath,   9,  150]}], 'bullets', 'foundBullets'],
+        [[{x: 200, y: 650}, {idle: [A.FlashlightPath,9,  100]}], 'pick',    'foundFlashlight']
       ],
       22: [
         [[{x: 288, y: 168}, {idle: [A.HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']
@@ -399,11 +411,11 @@ export default Config = {
       0: [
         ['Drop',   {sprite1: [{x: 173, y: 164}, A.DropPath], sprite2: [{x: 151, y:  64}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed: 10, delay: 2000}],
         ['Drop',   {sprite1: [{x: 619, y: 172}, A.DropPath], sprite2: [{x: 632, y:  64}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  9, delay: 4000}],
-        ['Text',   {text:    [Msgs.welcome,       419, 300,     0, 3000, true], id: id()}],
-        ['Text',   {text:    [Msgs.keys,          386, 300,  3500, 4000, true], id: id()}],
-        ['Text',   {text:    [Msgs.findTheKey,    380, 300,  8000, 3000, true], id: id()}],
-        ['Text',   {text:    [Msgs.dontTouchBugs, 380, 300, 11500, 4000, true], id: id()}],
-        ['Text',   {text:    [Msgs.goodLuck,      467, 300, 16000, 4000, true], id: id()}],
+        ['Text',   {text:    [Msgs.welcome,       419, 300,     0, 3000, true], id: id(), after: EFFECT_ID}],
+        ['Text',   {text:    [Msgs.keys,          386, 300,  3500, 4000, true], id: id(), after: EFFECT_ID}],
+        ['Text',   {text:    [Msgs.findTheKey,    380, 300,  8000, 3000, true], id: id(), after: EFFECT_ID}],
+        ['Text',   {text:    [Msgs.dontTouchBugs, 380, 300, 11500, 4000, true], id: id(), after: EFFECT_ID}],
+        ['Text',   {text:    [Msgs.goodLuck,      467, 300, 16000, 4000, true], id: id(), after: EFFECT_ID}],
         ['Sprite', {sprite: [{x: 150, y:  64}, A.StalactiteUp1Path]}],
         ['Sprite', {sprite: [{x: 580, y:  64}, A.StalactiteUp2Path]}]
       ],

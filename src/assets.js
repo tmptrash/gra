@@ -13,6 +13,7 @@ import KeyPath from '../img/key-6.png'
 import Mushroom9Path from '../img/mushroom-9.png'
 import MushroomTele9Path from '../img/mushroom-medium-9.png'
 import BulletPath from '../img/bullet-1.png'
+import FlashlightPath from '../img/flashlight-9.png'
 // hero
 import IdleLeftPath from '../img/idle-left-3.png'
 import IdleHitLeftPath from '../img/idle-hit-left-1.png'
@@ -68,6 +69,7 @@ import SoundGoUp from '../sound/go-up.mp3'
 import SoundGoDown from '../sound/go-down.mp3'
 import SoundGoLeft from '../sound/go-left.mp3'
 import SoundGoRight from '../sound/go-right.mp3'
+import SoundPick from '../sound/pick.mp3'
 
 export const ASSET_NAMES = {
   'L1Path': L1Path,
@@ -82,6 +84,7 @@ export const ASSET_NAMES = {
   'Mushroom9Path': Mushroom9Path,
   'MushroomTele9Path': MushroomTele9Path,
   'BulletPath': BulletPath,
+  'FlashlightPath': FlashlightPath,
   'IdleLeftPath': IdleLeftPath,
   'IdleHitLeftPath': IdleHitLeftPath,
   'IdleHitRightPath': IdleHitRightPath,
@@ -131,7 +134,8 @@ export const ASSET_NAMES = {
   'SoundGoUp': SoundGoUp,
   'SoundGoDown': SoundGoDown,
   'SoundGoLeft': SoundGoLeft,
-  'SoundGoRight': SoundGoRight
+  'SoundGoRight': SoundGoRight,
+  'SoundPick': SoundPick
 }
 
 export const ASSETS = {}

@@ -6,6 +6,7 @@ export default {
   showed: {},
   speed: 1,
   volume: .5,
+  obs: document.createElement('div'),
 
   ctx: null,
   objs: null,

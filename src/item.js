@@ -1,7 +1,7 @@
 import Config from './config'
 import Shared from './shared'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
-import { delObj, touch, msg, repeat } from './utils'
+import { delObj, touch, msg, repeat, el, css, fire } from './utils'
 import { create } from './creator'
 
 const pickFns = {
@@ -10,7 +10,8 @@ const pickFns = {
   'foundHeart': pickHeart,
   'foundGun': pickGun,
   'foundBullets': pickBullets,
-  'foundKey': pickKey
+  'foundKey': pickKey,
+  'foundFlashlight': pickFlashlight
 }
 
 export function Item(spriteCfg, sound, msg, room) {
@@ -48,9 +49,9 @@ function pick(item, show = true) {
 }
 
 function pickBraveMushroom(i) {
-  const el = document.getElementById(Config.canvasId)
+  const e = el(`#${Config.canvasId}`)
   const timer = create('Countdown', [Config.mushroomDelayMs, ...Config.countdownPos])
-  el.style.animation ='mushroomEffect 2s linear infinite'
+  css(e, 'animation', 'mushroomEffect 2s linear infinite')
   Shared.speed = .15
   pick(i)
   Config.sounds.breath.play()
@@ -60,8 +61,9 @@ function pickBraveMushroom(i) {
     Shared.speed = 1
     const idx = Shared.picked.items.findIndex(i => i.msg === 'foundBraveMushroom')
     idx !== -1 && (Shared.picked.items[idx].hidden = true)
-    el.style.animation ='none'
+    css(e, 'animation', 'none')
     delObj(timer)
+    fire('after-brave')
   }, () => {
     Shared.stop && clearInterval(int)
     Config.sounds.breath.play()
@@ -114,4 +116,9 @@ function pickGun(i) {
 function pickKey(i) {
   Shared.hero.key = true
   pick(i)
+}
+
+function pickFlashlight(i) {
+  const show = Shared.picked.items.findIndex(i => i.msg === 'foundFlashlight') === -1
+  pick(i, show)
 }
