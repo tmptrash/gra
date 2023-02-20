@@ -1,6 +1,6 @@
 import Shared from './shared'
 import Config, { Msgs } from './config'
-import { bind, el, css, on } from './utils'
+import { bind, el, css, on, underMushroom } from './utils'
 import { addAfter, room } from './rooms'
 import { create } from './creator'
 
@@ -44,8 +44,7 @@ export function draw(e) {
 
 export function update(e) {
   const r = room()
-  const underMushroom = Shared.picked.items.findIndex(i => i.msg === 'foundBraveMushroom') !== -1
-  if (r !== e.room && !underMushroom) {
+  if (r !== e.room && !underMushroom()) {
     updateBrightness(e)
     e.room = r
   }

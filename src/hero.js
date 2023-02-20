@@ -1,8 +1,8 @@
 import Config from './config'
 import Shared from './shared'
-import { bind, LEFT, RIGHT } from './utils'
+import { bind, LEFT, RIGHT, underMushroom } from './utils'
 import { rightBarrier, leftBarrier, topBarrier, downBarrier } from './barriers'
-import { Sprite, draw as drawSprite, update as updateSprite, stop, setImg } from './sprite'
+import { Sprite, draw as drawSprite, update as updateSprite, setImg } from './sprite'
 import { updateObjs, room } from './rooms'
 
 const HIT_DELAY = 150
@@ -162,10 +162,6 @@ function updateScreen(h) {
     h.jumpY = Config.height + h.jumpY
     s.y = Config.height - 1
   }
-}
-
-function underMushroom() {
-  return Shared.picked.items.findIndex(i => i.msg === 'foundBraveMushroom' && !i.hidden) !== -1
 }
 
 function side(hero) {
