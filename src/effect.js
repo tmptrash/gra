@@ -44,15 +44,15 @@ export function draw(e) {
 
 export function update(e) {
   const r = room()
-  if (r !== e.room) {
+  const underMushroom = Shared.picked.items.findIndex(i => i.msg === 'foundBraveMushroom') !== -1
+  if (r !== e.room && !underMushroom) {
     updateBrightness(e)
     e.room = r
   }
 }
 
 function onFlashlight(e) {
-  const idx = Shared.picked.items.findIndex(i => i.msg === 'foundFlashlight')
-  if (idx === -1) return
+  if (Shared.picked.items.findIndex(i => i.msg === 'foundFlashlight') === -1) return
   e.flashlight = !e.flashlight
   updateBrightness(e)
   const msg = e.flashlight ? Msgs.flashlightOn : Msgs.flashlightOff

@@ -52,6 +52,7 @@ function pickBraveMushroom(i) {
   const e = el(`#${Config.canvasId}`)
   const timer = create('Countdown', [Config.mushroomDelayMs, ...Config.countdownPos])
   css(e, 'animation', 'mushroomEffect 2s linear infinite')
+  css(e, 'filter', 'none')
   Shared.speed = .15
   pick(i)
   Config.sounds.breath.play()
