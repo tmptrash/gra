@@ -13,6 +13,8 @@ import { Effect, draw as drawEffect, update as updateEffect } from './effect'
 import { Sounds } from './sounds'
 import { preload } from './assets'
 import { draw as drawText } from './text'
+import { Bullets, draw as drawBullets } from './bullets'
+import { Hearts, draw as drawHearts } from './hearts'
 
 let stopped = false
 
@@ -90,13 +92,15 @@ function drawStop() {
 function createObjs() {
   // Static items. Order is important!
   Shared.objs = [
-    { draw: drawLevel,  update: updateLevel,  o: Level() },
-    { draw: drawHero,   update: updateHero,   o: Hero(),   id: Config.heroId },
-    { draw: drawBullet, update: updateBullet, o: Bullet(), id: Config.bulletId },
-    { draw: drawEffect, update: updateEffect, o: Effect(), id: Config.effectId },
-    { draw: drawTimer,  update: fn,           o: Timer() },
-    { draw: drawDebug,  update: fn,           o: Debug() },
-    { draw: drawPicked, update: fn,           o: Picked() }
+    { draw: drawLevel,   update: updateLevel,  o: Level() },
+    { draw: drawHero,    update: updateHero,   o: Hero(),   id: Config.heroId },
+    { draw: drawBullet,  update: updateBullet, o: Bullet(), id: Config.bulletId },
+    { draw: drawEffect,  update: updateEffect, o: Effect(), id: Config.effectId },
+    { draw: drawBullets, update: fn,           o: Bullets() },
+    { draw: drawHearts,  update: fn,           o: Hearts() },
+    { draw: drawTimer,   update: fn,           o: Timer() },
+    { draw: drawDebug,   update: fn,           o: Debug() },
+    { draw: drawPicked,  update: fn,           o: Picked() }
   ]
 
   Shared.music  = Music()

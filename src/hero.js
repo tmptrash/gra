@@ -17,8 +17,6 @@ export function Hero() {
     coyoteTime: 0,
     pressed: { a: false, d: false, w: false },
     sprite: Sprite(...Config.hero),
-    bulletsSprite: Sprite(...Config.bullets),
-    lifeSprite: Sprite(...Config.heart),
     life: Config.startLifes,
     bullets: 0,
     hit: false,
@@ -37,15 +35,12 @@ export function Hero() {
   keyCfg.keyup[Config.rightKey]   = () => (hero.pressed.d = false, hero.pressed.a && (hero.dir = LEFT)),
   keyCfg.keyup[Config.jumpKey]    = () => hero.pressed.w = false
   bind(keyCfg)
-  stop(hero.lifeSprite)
 
   return hero
 }
 
 export function draw(hero) {
   drawSprite(hero.sprite)
-  drawLife(hero)
-  drawBullets(hero)
 }
 
 export function update(h) {
@@ -167,29 +162,6 @@ function updateScreen(h) {
     h.jumpY = Config.height + h.jumpY
     s.y = Config.height - 1
   }
-}
-
-function drawLife(hero) {
-  const s = hero.lifeSprite
-  for (let i = 0; i < hero.life; i++) {
-    s.x = Config.lifePos[0] + i * (s.width + 4)
-    s.y = Config.lifePos[1]
-    drawSprite(s)
-  }
-}
-
-function drawBullets(hero) {
-  if (hero.bullets <= 0) return
-
-  const s = hero.bulletsSprite
-  s.x = Config.bulletsPos[0]
-  s.y = Config.bulletsPos[1]
-  stop(s)
-  drawSprite(s)
-
-  Shared.ctx.fillStyle = Config.frontColor
-  Shared.ctx.font = Config.bulletsFont
-  Shared.ctx.fillText(`${hero.bullets}`, ...Config.bulletsAmountPos)
 }
 
 function underMushroom() {
