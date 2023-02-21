@@ -49,7 +49,7 @@ export function draw(g) {
 }
 
 export function update(g) {
-  if (Shared.stop && !g.stopped) removeObjs(), g.stopped = true
+  if (Shared.stop && !g.stopped) delObjs(), g.stopped = true
 }
 
 function drawStop(g) {
@@ -118,7 +118,7 @@ function createObjs() {
   Shared.timer  = findObjByFn(drawTimer)
 }
 
-function removeObjs() {
+function delObjs() {
   while (true) {
     const o = findObjByFn(drawText) || findObjById(Config.heroId)
     if (!o) return
