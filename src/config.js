@@ -85,6 +85,8 @@ export default Config = {
   itemsPos: 3,
   scriptsPos: 3,
   darknessLevel: 3,
+  brighnessDec: .2,
+  lightRadius: 350,
 
   // hero related
   jumpSpeed: .5,

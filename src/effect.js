@@ -6,7 +6,7 @@ import { create } from './creator'
 
 export function Effect() {
   const e = {
-    flashlight: false,
+    light: false,
     room: room(),
     el: el(`#${Config.canvasId}`)
   }
@@ -30,7 +30,7 @@ export function draw(e) {
   const s = Shared.hero.sprite
   const sx = s.x
   const sy = s.y
-  const diameter = e.flashlight ? 350 : 150
+  const diameter = e.light ? Config.lightRadius : 150
 
   for (let i = 3, offs = 0; i < l; i += 4, offs++) {
     const y = Math.floor(offs / w)
@@ -52,9 +52,9 @@ export function update(e) {
 
 function onFlashlight(e) {
   if (!picked('foundFlashlight')) return
-  e.flashlight = !e.flashlight
+  e.light = !e.light
   updateBrightness(e)
-  const msg = e.flashlight ? Msgs.flashlightOn : Msgs.flashlightOff
+  const msg = e.light ? Msgs.flashlightOn : Msgs.flashlightOff
   addAfter(Config.effectId, create('Text', {text: [msg, 437, 300, 0, 1000, false, 0], id: 0}, room()))
 }
 
@@ -65,9 +65,9 @@ function brightness(e, b) {
 function updateBrightness(e) {
   const roomY = Shared.offsY / Config.height
   if (roomY === 0) brightness(e, 1)
-  else if (roomY < Config.darknessLevel) brightness(e, 1 - Shared.offsY / Config.height / 5)
+  else if (roomY < Config.darknessLevel) brightness(e, 1 - (Shared.offsY / Config.height) * Config.brighnessDec)
   else {
-    if (e.flashlight) brightness(e, 1)
-    else brightness(e, 1 - (Shared.offsY / Config.height / 5))
+    if (e.light) brightness(e, 1)
+    else brightness(e, 1 - (Shared.offsY / Config.height) * Config.brighnessDec)
   }
 }
