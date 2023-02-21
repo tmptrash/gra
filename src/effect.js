@@ -64,9 +64,10 @@ function brightness(e, b) {
 
 function updateBrightness(e) {
   const roomY = Shared.offsY / Config.height
-  if (roomY < Config.darknessLevel) brightness(e, 1 / (Shared.offsY / Config.height + 1))
+  if (roomY === 0) brightness(e, 1)
+  else if (roomY < Config.darknessLevel) brightness(e, 1 - Shared.offsY / Config.height / 5)
   else {
     if (e.flashlight) brightness(e, 1)
-    else brightness(e, 1 / (Shared.offsY / Config.height + 1))
+    else brightness(e, 1 - (Shared.offsY / Config.height / 5))
   }
 }
