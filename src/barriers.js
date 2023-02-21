@@ -6,34 +6,38 @@ const Barriers = Config.barriers
 /**
  * Checks if sprite touches a barrier on the nearest right side
  */
-export function rightBarrier(sprite) {
-  return xBarrier(true, sprite)
+export function rightBarrier(sprite, inRoom = true) {
+  return xBarrier(true, sprite, inRoom)
 }
 
 /**
  * Checks if sprite touches a barrier on the nearest left side
  */
-export function leftBarrier(sprite) {
-  return xBarrier(false, sprite)
+export function leftBarrier(sprite, inRoom = true) {
+  return xBarrier(false, sprite, inRoom)
 }
 
 /**
  * Checks if sprite touches a barrier on the nearest down side
  */
-export function topBarrier(sprite) {
-  return yBarrier(true, sprite)
+export function topBarrier(sprite, inRoom = true) {
+  return yBarrier(true, sprite, inRoom)
 }
 
 /**
  * Checks if sprite touches a barrier on the nearest down side
  */
-export function downBarrier(sprite) {
-  return yBarrier(false, sprite)
+export function downBarrier(sprite, inRoom = true) {
+  return yBarrier(false, sprite, inRoom)
 }
 
-function xBarrier(right, sprite) {
+function xBarrier(right, sprite, inRoom) {
   let y = sprite.y
   const x = right ? sprite.x + sprite.width : sprite.x
+  if (inRoom) {
+    if (x < 0) return [1, y]
+    if (x > Config.width) return [Config.width - sprite.width - 1, y]
+  }
   const y1 = sprite.y + sprite.height
   const spriteSize = Config.spriteSize
   const xSprite = Math.floor((int(x) + Shared.offsX) / spriteSize)
@@ -51,9 +55,13 @@ function xBarrier(right, sprite) {
   return barrier(offs) ? getSpritePosX(xSprite, ySprite, right) : false
 }
 
-function yBarrier(up, sprite) {
+function yBarrier(up, sprite, inRoom) {
   let x = sprite.x
   const y = up ? sprite.y : sprite.y + sprite.height
+  if (inRoom) {
+    if (y < 0) return [x, 1]
+    if (y > Config.height) return [x, Config.height - sprite.height - 1]
+  }
   const x1 = x + sprite.width
   const spriteSize = Config.spriteSize
   const ySprite = Math.floor((int(y) + Shared.offsY) / spriteSize)

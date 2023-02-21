@@ -114,7 +114,7 @@ function updateX(hero, newX) {
   Math.abs(diff) > Config.spriteSize && (diff = (Config.spriteSize - 1) * Math.sign(diff))
   const left = diff < 0
   s.x += diff
-  const pos = left ? leftBarrier(s) : rightBarrier(s)
+  const pos = left ? leftBarrier(s, false) : rightBarrier(s, false)
   pos && (s.x = left ? pos[0] + 1 : pos[0] - s.width - 1)
 }
 
@@ -124,7 +124,7 @@ function updateY(h, newY, dt) {
   Math.abs(diff) > Config.spriteSize && (diff = (Config.spriteSize - 1) * Math.sign(diff))
   const down = diff > 0
   s.y += diff
-  const pos = down ? downBarrier(s) : topBarrier(s)
+  const pos = down ? downBarrier(s, false) : topBarrier(s, false)
   if (pos) {
     if (down) s.y = pos[1] - s.height - 1, h.coyoteTime = performance.now(), h.v = 0
     else { // hitting the ceiling      
