@@ -69,6 +69,8 @@ function pickBraveMushroom(i) {
     Shared.stop && clearInterval(int)
     Config.sounds.breath.play()
     Config.sounds.heart.play()
+    css(e, 'filter', 'none')
+    css(e, 'animation', 'mushroomEffect 2s linear infinite')
   })
 }
 
