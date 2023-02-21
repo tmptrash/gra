@@ -5,7 +5,7 @@ import { Bullet, draw as drawBullet, update as updateBullet } from './bullet'
 import { Level, draw as drawLevel, update as updateLevel } from './level'
 import { updateObjs, room } from './rooms'
 import { Debug, draw as drawDebug } from './debug'
-import { logo, fn, on, off, findObjById, findObjByFn, show, hide, text, delObj, checkDesktop, resize, score } from './utils'
+import { logo, fn, on, off, el, findObjById, findObjByFn, show, hide, text, delObj, checkDesktop, resize, score } from './utils'
 import { Music, play, stop } from './music'
 import { Picked, draw as drawPicked } from './picked'
 import { Timer, draw as drawTimer } from './timer'
@@ -18,11 +18,12 @@ import { Hearts, draw as drawHearts } from './hearts'
 
 let stopped = false
 
-const playBtn = document.querySelector(Config.playQuery)
-const spinner = document.querySelector(Config.spinnerQuery)
+const playBtn = el(Config.playQuery)
+const srcBtn  = el(Config.srcQuery)
+const spinner = el(Config.spinnerQuery)
 
 function main() {
-  Shared.ctx = document.getElementById(Config.canvasId).getContext('2d', { willReadFrequently: true })
+  Shared.ctx = el(`#${Config.canvasId}`).getContext('2d', { willReadFrequently: true })
   Shared.ctx.canvas.width = Config.width
   Shared.ctx.canvas.height = Config.height
   Shared.ctx.fillStyle = Config.frontColor
@@ -58,34 +59,39 @@ function onAssets() {
   createObjs()
   updateObjs(null, room())
   on(playBtn, 'click', start)
+  on(srcBtn, 'click', onSrc)
   show(playBtn)
+  show(srcBtn)
   hide(spinner)
 }
 
 function start() {
   hide(playBtn)
+  hide(srcBtn)
   off(playBtn, 'click', start)
+  off(srcBtn, 'click', onSrc)
   play(Shared.music)
   animate()
 }
 
 function drawStop() {
   const cfg = Config
+  const sh = Shared
   const w = cfg.width
   const h = cfg.height
 
-  if (Shared.stop === cfg.gameOverId) {
+  if (sh.stop === cfg.gameOverId) {
     text(Msgs.gameOver, w / 2 - 80, h / 2, cfg.gameOverFont, cfg.textColor)
-  } else if (Shared.stop === cfg.gameCompletedId) {
+  } else if (sh.stop === cfg.gameCompletedId) {
     text(Msgs.youWin, w / 2 - 80, h / 2, cfg.gameOverFont, cfg.textColor)
     text(Msgs.score(score()), w / 2 - 60, h / 2 + 30, cfg.textFont, cfg.textColor)
-    text(Msgs.yourTime(Shared.timer.val), w / 2 - 60, h / 2 + 60, cfg.textFont, cfg.textColor)
+    text(Msgs.yourTime(sh.timer.val), w / 2 - 60, h / 2 + 60, cfg.textFont, cfg.textColor)
   }
 
   if (!stopped) {
-    if (Shared.stop === cfg.gameOverId) Shared.sounds.gameOver.play()
-    else if(Shared.stop === cfg.gameCompletedId) Shared.sounds.win.play()
-    stop(Shared.music)
+    if (sh.stop === cfg.gameOverId) sh.sounds.gameOver.play()
+    else if(sh.stop === cfg.gameCompletedId) sh.sounds.win.play()
+    stop(sh.music)
   }
 }
 
@@ -117,6 +123,10 @@ function removeObjs() {
     if (!o) return
     else delObj(o)
   }
+}
+
+function onSrc() {
+  location = Config.src
 }
 
 main()

@@ -38,6 +38,14 @@
         box-shadow: 0 0 0 1px #fc673df7;
         background-color: #ea030d;
       }
+      button.src {
+        cursor: pointer;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 0 0 1px #8e8e8ef7;
+        background-color: #4e4848;
+        color: #8f8f8f;
+      }
       audio {
         width: 250px;
         height: 20px;
@@ -104,7 +112,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-J4J789X224"></script>
     <script>
       window.dataLayer = window.dataLayer || []
-      function gtag(){dataLayer.push(arguments)}
+      function gtag() {dataLayer.push(arguments)}
       gtag('js', new Date()); gtag('config', 'G-J4J789X224')
     </script>
   </head>
@@ -118,7 +126,8 @@
       <canvas id="canvas"></canvas>
     </div>
     <div class="footer">
-      <button class="play" style="display: none">Play</button>
+      <button class="play" style="display: none">play</button> &nbsp;
+      <button class="src" style="display: none">src</button>
       <div class="spin" style="display: none"></div>
     </div>
   </body>

@@ -1,13 +1,13 @@
 import Config from './config'
 import Shared from './shared'
-import { on, show } from './utils'
+import { on, show, el } from './utils'
 
 export function Music() {
   const music = {
     list: [...Config.music],
-    el: document.getElementById(Config.audioId),
-    vol: document.querySelector(Config.volumeQuery),
-    volLabel: document.querySelector(Config.volumeLabelQuery),
+    el: el(`#${Config.audioId}`),
+    vol: el(Config.volumeQuery),
+    volLabel: el(Config.volumeLabelQuery),
     idx: 0
   }
   on(music.el, 'ended', play.bind(null, music))

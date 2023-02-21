@@ -37,6 +37,7 @@ export const Msgs = {
 export default Config = {
   // html & css & ids
   ver: 'v0.1-beta',
+  src: 'https://github.com/tmptrash/gra',
   canvasId: 'canvas',
   audioId: 'audio',
   heroId: 'hero',
@@ -45,6 +46,7 @@ export default Config = {
   gameOverId: 'game-over',
   gameCompletedId: 'completed',
   playQuery: '.play',
+  srcQuery: '.src',
   spinnerQuery: '.spin',
   volumeQuery: 'input[type=range]',
   volumeLabelQuery: '.vol',
