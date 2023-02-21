@@ -1,7 +1,7 @@
 import Config from './config'
 import Shared from './shared'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
-import { delObj, touch, msg, repeat, el, css, fire } from './utils'
+import { delObj, touch, msg, repeat, el, css, fire, pickedIdx, picked } from './utils'
 import { create } from './creator'
 
 const pickFns = {
@@ -60,7 +60,7 @@ function pickBraveMushroom(i) {
 
   const int = repeat(Config.mushroomDelayMs, Config.braveMushroomPlayPeriosMs, () => {
     Shared.speed = 1
-    const idx = Shared.picked.items.findIndex(i => i.msg === 'foundBraveMushroom')
+    const idx = pickedIdx('foundBraveMushroom')
     idx !== -1 && (Shared.picked.items[idx].hidden = true)
     css(e, 'animation', 'none')
     delObj(timer)
@@ -77,7 +77,7 @@ function pickTeleMushroom(i) {
   const timer = create('Countdown', [Config.mushroomDelayMs, ...Config.countdownPos])
   Shared.objs.push(timer)
   const int = repeat(Config.mushroomDelayMs, Config.teleMushroomPlayPeriosMs, () => {
-    const idx = Shared.picked.items.findIndex(i => i.msg === 'foundTeleMushroom')
+    const idx = pickedIdx('foundTeleMushroom')
     idx !== -1 && (Shared.picked.items[idx].hidden = true)
     delObj(timer)
   }, () => {
@@ -120,6 +120,5 @@ function pickKey(i) {
 }
 
 function pickFlashlight(i) {
-  const show = Shared.picked.items.findIndex(i => i.msg === 'foundFlashlight') === -1
-  pick(i, show)
+  pick(i, !picked('foundFlashlight'))
 }

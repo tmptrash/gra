@@ -1,6 +1,6 @@
 import Shared from './shared'
 import Config, { Msgs } from './config'
-import { bind, el, css, on, underMushroom } from './utils'
+import { bind, el, css, on, picked } from './utils'
 import { addAfter, room } from './rooms'
 import { create } from './creator'
 
@@ -44,14 +44,14 @@ export function draw(e) {
 
 export function update(e) {
   const r = room()
-  if (r !== e.room && !underMushroom()) {
+  if (r !== e.room && !picked('foundBraveMushroom', false)) {
     updateBrightness(e)
     e.room = r
   }
 }
 
 function onFlashlight(e) {
-  if (Shared.picked.items.findIndex(i => i.msg === 'foundFlashlight') === -1) return
+  if (!picked('foundFlashlight')) return
   e.flashlight = !e.flashlight
   updateBrightness(e)
   const msg = e.flashlight ? Msgs.flashlightOn : Msgs.flashlightOff

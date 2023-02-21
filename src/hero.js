@@ -1,6 +1,6 @@
 import Config from './config'
 import Shared from './shared'
-import { bind, LEFT, RIGHT, underMushroom } from './utils'
+import { bind, LEFT, RIGHT, picked } from './utils'
 import { rightBarrier, leftBarrier, topBarrier, downBarrier } from './barriers'
 import { Sprite, draw as drawSprite, update as updateSprite, setImg } from './sprite'
 import { updateObjs, room } from './rooms'
@@ -72,7 +72,7 @@ export function update(h) {
 
   // hit
   if (h.hit) {
-    if (underMushroom()) Shared.sounds.hitMushroom.play(), h.hit = false
+    if (picked('foundBraveMushroom', false)) Shared.sounds.hitMushroom.play(), h.hit = false
     else {
       Shared.sounds.hit.play()
       if (--h.life < 1) Shared.stop = Config.gameOverId
