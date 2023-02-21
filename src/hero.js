@@ -127,8 +127,7 @@ function updateY(h, newY, dt) {
   const pos = down ? downBarrier(s) : topBarrier(s)
   if (pos) {
     if (down) s.y = pos[1] - s.height - 1, h.coyoteTime = performance.now(), h.v = 0
-    else {
-      // hitting the ceiling
+    else { // hitting the ceiling      
       h.v = h.jumpStartTime = 0
       s.y = pos[1] + 1
     }

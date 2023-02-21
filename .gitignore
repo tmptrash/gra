@@ -3,3 +3,4 @@ node_modules/
 package-lock.json
 
 dist
+src/cloc-1.94.exe

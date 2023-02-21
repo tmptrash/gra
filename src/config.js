@@ -61,6 +61,7 @@ export default Config = {
 
   // game related
   useSetTimeout: false,
+  setTimeoutDelay: 7,
   debug: false,
   debugPos: [300, 40],
   fpsPos: [WIDTH / 2 - 100, 20],
