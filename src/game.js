@@ -20,6 +20,7 @@ export function Game(animateFn) {
   const g = {
     stopped: false,
     playBtn: el(Config.playQuery),
+    reloadBtn: el(Config.reloadQuery),
     srcBtn: el(Config.srcQuery),
     spinner: el(Config.spinnerQuery),
     animateFn
@@ -88,9 +89,11 @@ function onSrc() {
 }
 
 function play(g) {
+  show(g.reloadBtn)
   hide(g.playBtn)
   hide(g.srcBtn)
-  off(g.playBtn, 'click', play)
+  on(g.reloadBtn, 'click', () => location.reload())
+  off(g.reloadBtn, 'click', location.reload)
   off(g.srcBtn, 'click', onSrc)
   playMusic(Shared.music)
   g.animateFn()

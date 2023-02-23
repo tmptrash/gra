@@ -46,6 +46,7 @@ export default Config = {
   gameOverId: 'game-over',
   gameCompletedId: 'completed',
   playQuery: '.play',
+  reloadQuery: '.reload',
   srcQuery: '.src',
   spinnerQuery: '.spin',
   volumeQuery: 'input[type=range]',

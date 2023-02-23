@@ -16,7 +16,7 @@
         justify-content: center;
         align-items: center;
       }
-      div.header { display: flex; justify-content: end; width: 1024px }
+      div.header { display: flex; justify-content: space-between; width: 1024px; margin-bottom: 4px }
       div.content {
         display: flex;
         align-items: center;
@@ -24,7 +24,7 @@
         flex-wrap: nowrap;
       }
       div.footer { display: flex; justify-content: center }
-      button.play {
+      button.red {
         cursor: pointer;
         border: none;
         border-radius: 8px;
@@ -50,6 +50,7 @@
         animation: spin 1s ease-in-out infinite;
         -webkit-animation: spinner 1s ease-in-out infinite;
       }
+      .volume { display: flex; justify-content: space-between }
       .vol { color: #ccc; font-family: monospace; margin-top: -3px }
       @keyframes spinner { to { -webkit-transform: rotate(360deg) }}
       @-webkit-keyframes spinner { to { -webkit-transform: rotate(360deg) }}
@@ -83,15 +84,18 @@
   </head>
   <body>
     <div class="header">
-      <div class="vol" style="display: none">vol:</div>
-      <audio id="audio" controls style="display: none"></audio>
-      <input type="range" min="0" max="100" value="50" style="display: none">
+      <button class="red reload" style="display: none">reload</button>&nbsp; &nbsp;
+      <div class="volume">
+        <div class="vol" style="display: none">vol:</div>
+        <audio id="audio" controls style="display: none"></audio>
+        <input type="range" min="0" max="100" value="50" style="display: none">
+      </div>
     </div>
     <div class="content">
       <canvas id="canvas"></canvas>
     </div>
     <div class="footer">
-      <button class="play" style="display: none">play</button> &nbsp; &nbsp;
+      <button class="red play" style="display: none">play</button> &nbsp; &nbsp;
       <button class="src" style="display: none">src</button>
       <div class="spin" style="display: none"></div>
     </div>
