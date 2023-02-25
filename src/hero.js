@@ -1,9 +1,10 @@
 import Config from './config'
 import Shared from './shared'
-import { bind, LEFT, RIGHT, picked } from './utils'
+import { bind, unbind, LEFT, RIGHT, picked, on } from './utils'
 import { rightBarrier, leftBarrier, topBarrier, downBarrier } from './barriers'
 import { Sprite, draw as drawSprite, update as updateSprite, setImg } from './sprite'
 import { updateObjs, room } from './rooms'
+import { play } from './sounds'
 
 const HIT_DELAY = 150
 
@@ -24,17 +25,11 @@ export function Hero() {
     gun: false,
     fire: false,
     key: false,
-    lendBefore: false
+    lendBefore: false,
+    handlers: []
   }
-  const keyCfg = { keydown: {}, keyup: {} }
-  keyCfg.keydown[Config.leftKey]  = () => (hero.pressed.a = true, hero.dir = LEFT)
-  keyCfg.keydown[Config.rightKey] = () => (hero.pressed.d = true, hero.dir = RIGHT),
-  keyCfg.keydown[Config.jumpKey]  = onJumpKeyDown.bind(null, hero),
-  keyCfg.keydown[Config.fireKey]  = () => (hero.gun && hero.bullets > 0 && (hero.fire = true))
-  keyCfg.keyup[Config.leftKey]    = () => (hero.pressed.a = false, hero.pressed.d && (hero.dir = RIGHT)),
-  keyCfg.keyup[Config.rightKey]   = () => (hero.pressed.d = false, hero.pressed.a && (hero.dir = LEFT)),
-  keyCfg.keyup[Config.jumpKey]    = () => hero.pressed.w = false
-  bind(keyCfg)
+  rebind(hero)
+  on(Shared.obs, 'rebind', rebind.bind(null, hero))
 
   return hero
 }
@@ -60,7 +55,7 @@ export function update(h) {
     updateX(h, s.x + (t - h.t) * Config.stepSpeed * h.dir)
     if (!h.isJumping) {
       s.img = s.imgs[`walk${h.gun ? 'Gun' : ''}${side(h)}`]
-      h.lendBefore && Config.sounds.steps.play()
+      h.lendBefore && play(Config.sounds.steps)
     }
   }
 
@@ -72,9 +67,9 @@ export function update(h) {
 
   // hit
   if (h.hit) {
-    if (picked('foundBraveMushroom', false)) Shared.sounds.hitMushroom.play(), h.hit = false
+    if (picked('foundBraveMushroom', false)) play(Shared.sounds.hitMushroom), h.hit = false
     else {
-      Shared.sounds.hit.play()
+      play(Shared.sounds.hit)
       if (--h.life < 1) Shared.stop = Config.gameOverId
       h.hit = false
       h.hitTime = t
@@ -90,6 +85,20 @@ export function update(h) {
   updateScreen(h)
   updateSprite(s)
   h.t = t
+}
+
+function rebind(h) {
+  unbind(h.handlers)
+  h.pressed = { a: false, d: false, w: false }
+  const keyCfg = { keydown: {}, keyup: {} }
+  keyCfg.keydown[Config.leftKey]  = () => (h.pressed.a = true, h.dir = LEFT)
+  keyCfg.keydown[Config.rightKey] = () => (h.pressed.d = true, h.dir = RIGHT),
+  keyCfg.keydown[Config.jumpKey]  = onJumpKeyDown.bind(null, h),
+  keyCfg.keydown[Config.fireKey]  = () => (h.gun && h.bullets > 0 && (h.fire = true))
+  keyCfg.keyup[Config.leftKey]    = () => (h.pressed.a = false, h.pressed.d && (h.dir = RIGHT)),
+  keyCfg.keyup[Config.rightKey]   = () => (h.pressed.d = false, h.pressed.a && (h.dir = LEFT)),
+  keyCfg.keyup[Config.jumpKey]    = () => h.pressed.w = false
+  h.handlers = bind(keyCfg)
 }
 
 function onJumpKeyDown(h) {
@@ -132,7 +141,7 @@ function updateY(h, newY, dt) {
       s.y = pos[1] + 1
     }
     h.isJumping && down && (h.isJumping = false)
-    !h.lendBefore && down && Config.sounds.lending.play()
+    !h.lendBefore && down && play(Config.sounds.lending)
   } else h.isJumping && h.jumpY < newY && (h.isJumping = false)
 
   h.v += Config.gravity * dt

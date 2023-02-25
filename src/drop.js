@@ -2,6 +2,7 @@ import Shared from './shared'
 import Config from './config'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import { downBarrier } from './barriers'
+import { play } from './sounds'
 
 export function Drop(cfg) {
   return {
@@ -39,7 +40,7 @@ export function update(drop) {
     s1.y += (drop.speed * Shared.speed * ((((t - drop.startTime) / 1000) ** 2 / 2) * 3))
     const pos = downBarrier(s1)
     if (pos || s1.y > Config.height) {
-      drop.sound.play()
+      play(drop.sound)
       drop.delayTime = -1
       s2.x = s1.x - (s2.img.frames.width / 2 - s1.img.frames.width / 2)
       s2.y = pos[1] - s2.height

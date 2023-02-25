@@ -1,6 +1,6 @@
 import Shared from './shared'
 import Config, { Msgs } from './config'
-import { bind, el, css, on, picked } from './utils'
+import { bind, el, css, on, picked, unbind } from './utils'
 import { addAfter, room } from './rooms'
 import { create } from './creator'
 
@@ -8,13 +8,12 @@ export function Effect() {
   const e = {
     light: false,
     room: room(),
-    el: el(`#${Config.canvasId}`)
+    el: el(`#${Config.canvasId}`),
+    handlers: []
   }
-  const keyCfg = { keydown: {}, keyup: {} }
-
-  keyCfg.keyup[Config.useKey] = onFlashlight.bind(null, e)
-  bind(keyCfg)
+  rebind(e)
   on(Shared.obs, 'after-brave', updateBrightness.bind(null, e))
+  on(Shared.obs, 'rebind', rebind.bind(null, e))
 
   return e
 }
@@ -48,6 +47,13 @@ export function update(e) {
     updateBrightness(e)
     e.room = r
   }
+}
+
+function rebind(e) {
+  unbind(e.handlers)
+  const keyCfg = { keydown: {}, keyup: {} }
+  keyCfg.keyup[Config.useKey] = onFlashlight.bind(null, e)
+  e.handlers = bind(keyCfg)
 }
 
 function onFlashlight(e) {

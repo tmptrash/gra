@@ -3,6 +3,7 @@ import Shared from './shared'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import { rightBarrier, leftBarrier, topBarrier, downBarrier, xyBarrier } from './barriers'
 import { touch, delObj, LEFT, RIGHT, UP, DOWN } from './utils'
+import { play } from './sounds'
 
 const CHECK_PERIOD = 500
 
@@ -58,7 +59,7 @@ export function update(e) {
 
   if (!Shared.bullet.hidden && touch(s, Shared.bullet.sprite)) {
     delObj(e)
-    Shared.sounds.bugDie.play()
+    play(Shared.sounds.bugDie)
     Shared.bullet.hidden = true
   }
 

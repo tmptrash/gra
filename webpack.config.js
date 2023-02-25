@@ -4,7 +4,7 @@
 module.exports = {
   mode: 'development',
   entry: {
-    index: './src/index.js',
+    index: './src/index.js'
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -14,16 +14,17 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Development',
       template: __dirname + '/src/index.html',
-      inject: 'body'
-    }),
+      inject: 'body',
+      filename: 'index.html'
+    })
   ],
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
     clean: true
   },
   optimization: {
-    runtimeChunk: 'single',
+    runtimeChunk: 'single'
   },
   module: {
     rules: [{
@@ -32,6 +33,15 @@ module.exports = {
     }, {
       test: /\.(mp3)$/i,
       loader: 'file-loader'
+    }, {
+      test: /\.css$/i,
+      use: [{
+        loader: 'style-loader',
+        options: { 
+          insert: 'head',
+          injectType: 'singletonStyleTag'
+      }
+      }, 'css-loader']
     }]
   }
-};
+}

@@ -1,6 +1,6 @@
 import Config from './config'
 import Shared from './shared'
-import { UP, delObj } from './utils'
+import { UP, delObj, msg } from './utils'
 
 export function Text(msg, x, y, after, delay, once, id) {
   const text = {
@@ -29,7 +29,7 @@ export function draw(t) {
 
   Shared.ctx.font = Config.textFont
   Shared.ctx.fillStyle = Config.textColor
-  Shared.ctx.fillText(t.msg, t.curX, t.curY)
+  Shared.ctx.fillText(typeof t.msg == 'string' ? t.msg : t.msg(), t.curX, t.curY)
 }
 
 export function update(t) {

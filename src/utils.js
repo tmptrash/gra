@@ -18,8 +18,17 @@ export function int(n) {
 }
 
 export function bind(handlers) {
+  const ret = {}
   for (const evt in handlers) {
-    on(window, evt, e => handlers[evt] && handlers[evt][e.code] && handlers[evt][e.code]())
+    ret[evt] = e => handlers[evt] && handlers[evt][e.code] && handlers[evt][e.code]()
+    on(window, evt, ret[evt])
+  }
+  return ret
+}
+
+export function unbind(handlers) {
+  for (const evt in handlers) {
+    off(window, evt, handlers[evt])
   }
 }
 
@@ -73,6 +82,7 @@ export function logo(show = true) {
     const logo = Sprite({ x: Config.logoPos[0], y: Config.logoPos[1] }, LogoPath, onLoadLogo)
 
     function onLoadLogo() {
+      Shared.ctx.clearRect(0, 0, Config.width, Config.height)
       drawSprite(logo)
       text(Config.ver, ...Config.verPos, Config.verFont, Config.verColor)
     }
@@ -106,12 +116,16 @@ export function repeat(timeout, every, timeoutCb, everyCb) {
   return int
 }
 
-export function show(el) {
-  el.style.display = ''
+export function show(e) {
+  const elem = typeof e === 'string' ? el(e) : e
+  elem.style.display = ''
+  return elem
 }
 
-export function hide(el) {
-  el.style.display = 'none'
+export function hide(e) {
+  const elem = typeof e === 'string' ? el(e) : e
+  elem.style.display = 'none'
+  return elem
 }
 
 export function el(query) {

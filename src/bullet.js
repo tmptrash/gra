@@ -4,6 +4,7 @@ import Shared from './shared'
 import { RIGHT, LEFT } from './utils'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import { leftBarrier, rightBarrier } from './barriers'
+import { play } from './sounds'
 
 export function Bullet() {
   return {
@@ -35,7 +36,7 @@ export function update(b) {
       b.sprite.y = h.sprite.y + h.sprite.height / 2 + Config.bulletYOffs
     }
     b.dir = h.dir
-    Config.sounds.fire.play()
+    play(Config.sounds.fire)
   } else {
     const d = b.dir
     const t = performance.now()

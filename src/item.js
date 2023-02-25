@@ -3,6 +3,7 @@ import Shared from './shared'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import { delObj, touch, msg, repeat, el, css, fire, pickedIdx, picked } from './utils'
 import { create } from './creator'
+import { play } from './sounds'
 
 const pickFns = {
   'foundBraveMushroom': pickBraveMushroom,
@@ -45,7 +46,7 @@ function pick(item, show = true) {
   Shared.picked.items.push(item)
   delObj(item)
   Shared.objs.push(create('Text', {text: [msg(item.msg), 437, 300, 0, 2000, false, 0], id: 0}, item.room))
-  item.sound.play()
+  play(item.sound)
 }
 
 function pickBraveMushroom(i) {
@@ -55,7 +56,7 @@ function pickBraveMushroom(i) {
   css(e, 'filter', 'none')
   Shared.speed = .15
   pick(i)
-  Config.sounds.breath.play()
+  play(Config.sounds.breath)
   Shared.objs.push(timer)
 
   const int = repeat(Config.mushroomDelayMs, Config.braveMushroomPlayPeriosMs, () => {
@@ -67,8 +68,8 @@ function pickBraveMushroom(i) {
     fire('after-brave')
   }, () => {
     Shared.stop && clearInterval(int)
-    Config.sounds.breath.play()
-    Config.sounds.heart.play()
+    play(Config.sounds.breath)
+    play(Config.sounds.heart)
     css(e, 'filter', 'none')
     css(e, 'animation', 'mushroomEffect 2s linear infinite')
   })
@@ -93,11 +94,11 @@ function sayDir(itemPos) {
   const roomX = Shared.offsX / Config.width
   const roomY = Shared.offsY / Config.height
 
-  itemPos[0] < roomX && Config.sounds.goLeft.play()
-  itemPos[0] > roomX && Config.sounds.goRight.play()
+  itemPos[0] < roomX && play(Config.sounds.goLeft)
+  itemPos[0] > roomX && play(Config.sounds.goRight)
   setTimeout(() => {
-    itemPos[1] < roomY && Config.sounds.goUp.play()
-    itemPos[1] > roomY && Config.sounds.goDown.play()
+    itemPos[1] < roomY && play(Config.sounds.goUp)
+    itemPos[1] > roomY && play(Config.sounds.goDown)
   }, 1500)
 }
 

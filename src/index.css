@@ -1,0 +1,70 @@
+html { height: 100% }
+body canvas { image-rendering: pixelated }
+body {
+  background-color: black;
+  margin: 0;
+  flex-wrap: nowrap;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+div.header { display: flex; justify-content: space-between; width: 1024px; margin-bottom: 4px }
+div.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+div.footer { display: flex; justify-content: center }
+button.red {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px #fc673df7;
+  background-color: #ea030d;
+}
+button.src {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px #8e8e8ef7;
+  background-color: #4e4848;
+  color: #8f8f8f;
+}
+audio { width: 250px; height: 20px }
+.spin {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, .3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spinner 1s ease-in-out infinite;
+}
+.volume { display: flex; justify-content: space-between }
+.vol { color: #ccc; font-family: monospace; margin-top: -3px }
+@keyframes spinner { to { -webkit-transform: rotate(360deg) }}
+@-webkit-keyframes spinner { to { -webkit-transform: rotate(360deg) }}
+@keyframes mushroomEffect { 100% { -webkit-filter: hue-rotate(360deg) }}
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 10rem;
+  margin-bottom: 8px;
+}
+input[type="range"]:focus { outline: none }
+input[type="range"]::-webkit-slider-runnable-track { background-color: #6f6f6f; border-radius: 0.5rem; height: 0.4rem }
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  margin-top: -4px; /* Centers thumb on the track */
+  background-color: #fc673df7; /*custom styles*/
+  height: .9rem;
+  width: .9rem;
+  border-radius: 5px;
+}

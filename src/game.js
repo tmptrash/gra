@@ -5,98 +5,48 @@ import { Bullet, draw as drawBullet, update as updateBullet } from './bullet'
 import { Level, draw as drawLevel, update as updateLevel } from './level'
 import { updateObjs, room } from './rooms'
 import { Debug, draw as drawDebug } from './debug'
-import { logo, fn, on, off, el, findObjById, findObjByFn, show, hide, text, delObj, checkDesktop, resize, score } from './utils'
+import { fn, el, findObjById, findObjByFn, text, delObj, checkDesktop, score } from './utils'
 import { Music, play as playMusic, stop } from './music'
 import { Picked, draw as drawPicked } from './picked'
 import { Timer, draw as drawTimer } from './timer'
 import { Effect, draw as drawEffect, update as updateEffect } from './effect'
-import { Sounds } from './sounds'
-import { preload } from './assets'
+import { Sounds, play as playSound } from './sounds'
 import { draw as drawText } from './text'
 import { Bullets, draw as drawBullets } from './bullets'
 import { Hearts, draw as drawHearts } from './hearts'
 
-export function Game(animateFn) {
+export function Game() {
   const g = {
     stopped: false,
-    playBtn: el(Config.playQuery),
-    reloadBtn: el(Config.reloadQuery),
-    srcBtn: el(Config.srcQuery),
-    spinner: el(Config.spinnerQuery),
-    animateFn
+    pause: false,
+    animateFn: null
   }
+  const fn = animate.bind(null, g)
+  g.animateFn = Config.useSetTimeout ? () => setTimeout(fn, Config.setTimeoutDelay) : () => requestAnimationFrame(fn)
   Shared.ctx = el(`#${Config.canvasId}`).getContext('2d', { willReadFrequently: true })
   Shared.ctx.canvas.width = Config.width
   Shared.ctx.canvas.height = Config.height
   Shared.ctx.fillStyle = Config.frontColor
   Shared.ctx.font = Config.frontFont
   Shared.ctx.imageSmoothingEnabled = false
-
   if (!checkDesktop()) return null
 
   return g
 }
 
-export function start(g) {
-  show(g.spinner)
-  resize()
-  logo()
-  on(window, 'resize', resize)
-  preload(onAssets.bind(null, g))
+export function play(g) {
+  playMusic(Shared.music)
+  pause(g, false)
 }
 
-export function draw(g) {
-  Shared.stop && drawStop(g)
+export function pause(g, p = true) {
+  g.pause = p
+  !p && animate(g)
 }
 
-export function update(g) {
-  if (Shared.stop && !g.stopped) delObjs(), g.stopped = true
-}
-
-function drawStop(g) {
-  const cfg = Config
-  const sh = Shared
-  const w = cfg.width
-  const h = cfg.height
-
-  if (sh.stop === cfg.gameOverId) {
-    text(Msgs.gameOver, w / 2 - 80, h / 2, cfg.gameOverFont, cfg.textColor)
-  } else if (sh.stop === cfg.gameCompletedId) {
-    text(Msgs.youWin, w / 2 - 80, h / 2, cfg.gameOverFont, cfg.textColor)
-    text(Msgs.score(score()), w / 2 - 60, h / 2 + 30, cfg.textFont, cfg.textColor)
-    text(Msgs.yourTime(sh.timer.val), w / 2 - 60, h / 2 + 60, cfg.textFont, cfg.textColor)
-  }
-
-  if (!g.stopped) {
-    if (sh.stop === cfg.gameOverId) sh.sounds.gameOver.play()
-    else if(sh.stop === cfg.gameCompletedId) sh.sounds.win.play()
-    stop(sh.music)
-  }
-}
-
-function onAssets(g) {
+export function onPreload() {
   createObjs()
   updateObjs(null, room())
-  on(g.playBtn, 'click', play.bind(null, g))
-  on(g.srcBtn, 'click', onSrc)
-  show(g.playBtn)
-  show(g.srcBtn)
-  hide(g.spinner)
-}
-
-function onSrc() {
-  location = Config.src
-}
-
-function play(g) {
-  show(g.reloadBtn)
-  hide(g.playBtn)
-  hide(g.srcBtn)
-  on(g.reloadBtn, 'click', () => location.reload())
-  off(g.reloadBtn, 'click', location.reload)
-  off(g.srcBtn, 'click', onSrc)
-  playMusic(Shared.music)
-  g.animateFn()
 }
 
 function createObjs() {
@@ -119,6 +69,45 @@ function createObjs() {
   Shared.hero   = findObjById(Config.heroId)
   Shared.bullet = findObjById(Config.bulletId)
   Shared.timer  = findObjByFn(drawTimer)
+}
+
+function animate(g) {
+  if (g.pause) return
+  draw(g)
+  update(g)
+  g.animateFn()
+}
+
+function draw(g) {
+  Shared.ctx.clearRect(0, 0, Config.width, Config.height)
+  Shared.objs.forEach(o => o.draw(o.o))
+  Shared.stop && drawStop(g)
+}
+
+function update(g) {
+  if (!Shared.stop) Shared.objs.forEach(o => o.update(o.o))
+  else if (!g.stopped) delObjs(), g.stopped = true
+}
+
+function drawStop(g) {
+  const cfg = Config
+  const sh = Shared
+  const w = cfg.width
+  const h = cfg.height
+
+  if (sh.stop === cfg.gameOverId) {
+    text(Msgs.gameOver, w / 2 - 80, h / 2, cfg.gameOverFont, cfg.textColor)
+  } else if (sh.stop === cfg.gameCompletedId) {
+    text(Msgs.youWin, w / 2 - 80, h / 2, cfg.gameOverFont, cfg.textColor)
+    text(Msgs.score(score()), w / 2 - 60, h / 2 + 30, cfg.textFont, cfg.textColor)
+    text(Msgs.yourTime(sh.timer.val), w / 2 - 60, h / 2 + 60, cfg.textFont, cfg.textColor)
+  }
+
+  if (!g.stopped) {
+    if (sh.stop === cfg.gameOverId) playSound(sh.sounds.gameOver)
+    else if(sh.stop === cfg.gameCompletedId) playSound(sh.sounds.win)
+    stop(sh.music)
+  }
 }
 
 function delObjs() {

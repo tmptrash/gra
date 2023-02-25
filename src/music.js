@@ -1,6 +1,6 @@
 import Config from './config'
 import Shared from './shared'
-import { on, show, el } from './utils'
+import { on, el } from './utils'
 
 export function Music() {
   const music = {
@@ -18,12 +18,11 @@ export function Music() {
 }
 
 export function play(music) {
+  if (!music.el.paused) return
   music.el.src = music.list[music.idx++]
   music.el.volume = Shared.volume
   music.el.play()
   music.idx >= music.list.length && (music.idx = 0)
-  show(music.vol)
-  show(music.volLabel)
 }
 
 export function stop(music) {
