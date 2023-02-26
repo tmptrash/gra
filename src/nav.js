@@ -3,6 +3,8 @@ import Config from './config'
 import { logo, on, el, show, hide, resize, fullscreen } from './utils'
 import { preload } from './assets'
 import { play, pause, onPreload } from './game'
+import { play as playSound, stop as stopSound } from './sounds'
+import { play as playMusic, stop as stopMusic } from './music'
 
 export function Nav(game, settings) {
   if (!game) return null
@@ -48,6 +50,8 @@ function onAssets(n) {
 function onMenu(n) {
   pause(n.game)
   logo()
+  stopMusic(Shared.music)
+  playSound(Config.sounds.menu)
   hide(n.menuBtn)
   hide(n.replayBtn)
   hide(n.settingsEl)
@@ -70,6 +74,8 @@ function onPlay(n) {
   hide(n.cfgBtn)
   hide(n.srcBtn)
   play(n.game)
+  stopSound(Config.sounds.menu)
+  playMusic(Shared.music)
   Config.fullscreen && fullscreen()
 }
 

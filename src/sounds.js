@@ -8,13 +8,7 @@ export function Sounds() {
   for (let s in sounds) {
     if (ASSETS[sounds[s]]) {
       sounds[s] = ASSETS[sounds[s]]
-    } else {
-      const a = new Audio()
-      Shared.assets++
-      a.oncanplaythrough = () => Shared.assets--
-      a.src = sounds[s]
-      sounds[s] = a
-    }
+    } else throw Error(`Sound not found: ${s}`)
   }
 
   return sounds
@@ -23,4 +17,8 @@ export function Sounds() {
 export function play(a) {
   a.volume = Shared.volume
   a.play()
+}
+
+export function stop(a) {
+  a.pause()
 }

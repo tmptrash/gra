@@ -15,5 +15,6 @@ export default {
   hero: null,
   bullet: null,
   sounds: null,
+  music: null,
   stop: false
 }

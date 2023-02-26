@@ -47,6 +47,7 @@ export function pause(g, p = true) {
 export function onPreload() {
   createObjs()
   updateObjs(null, room())
+  playSound(Config.sounds.menu)
 }
 
 function createObjs() {
