@@ -1,15 +1,15 @@
 import Config, { Msgs } from './config'
-import { el, on, fire, hide, show } from './utils'
+import { el, on, fire, hide, show, checkbox } from './utils'
 import { save } from './store'
 
-const KEYS = ['jump', 'left', 'right', 'fire', 'use']
+const KEYS = ['jump', 'left', 'right', 'fire', 'use', 'fullscreen']
 
 export function Settings() {
   const s = {}
-  iter(f => s[`${f}El`] = el(Config[`${f}Query`]))               // find fields in a DOM
-  iter(f => s[`${f}El`].value = Config[`${f}Key`])               // init fields from Config values
-  iter(f => on(s[`${f}El`], 'keydown', onKeydown.bind(null, s))) // bind fields handlers
-  clearErr()
+  iter(f => s[`${f}El`] = el(Config[`${f}Query`]))  // find fields in a DOM
+  initFields(s)                                     // init fields from Config values
+  addHandlers(s)                                    // bind fields handlers
+  clearErr(s)
   return s
 }
 
@@ -23,8 +23,13 @@ function onKeydown(s, e) {
   !updateErr(s) && (updateCfg(s), save(), fire('rebind'))
 }
 
-function clearErr() {
-  iter(f => hide(el(`div.${f}`)).textContent = '')
+function onCheck(f, e) {
+  fire('cfg', {f, v: Config[f] = e.target.checked})
+  save()
+}
+
+function clearErr(s) {
+  iter(f => type(s, f) === 'text' && (hide(el(`div.${f}`)).textContent = ''))
 }
 
 function uniqueKey(s, key, v) {
@@ -44,5 +49,45 @@ function updateErr(s) {
 }
 
 function updateCfg(s) {
-  iter(f => Config[`${f}Key`] = s[`${f}El`].value)
+  iter(f => fire('cfg', {f, v: Config[`${f}Key`] = s[`${f}El`].value}))
+}
+
+function cfg(s, f) {
+  switch(type(s, f)) {
+    case 'checkbox':
+      return Config[f]
+    case 'text':
+      return Config[f + 'Key']
+  }
+  return null
+}
+
+function initFields(s) {
+  iter(f => {
+    switch(type(s, f)) {
+      case 'checkbox':
+        s[`${f}El`].checked = cfg(s, f)
+        break
+      case 'text':
+        s[`${f}El`].value = cfg(s, f)
+        break
+    }
+  })
+}
+
+function addHandlers(s) {
+  iter(f => {
+    switch(type(s, f)) {
+      case 'checkbox':
+        on(s[`${f}El`], 'click', onCheck.bind(null, f))
+        break
+      case 'text':
+        on(s[`${f}El`], 'keydown', onKeydown.bind(null, s))
+        break
+    }
+  })
+}
+
+function type(s, f) {
+  return s[`${f}El`].type
 }

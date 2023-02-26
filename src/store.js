@@ -1,6 +1,6 @@
 import Config from './config'
 
-const SAVE_FIELDS = ['leftKey', 'rightKey', 'jumpKey', 'fireKey', 'useKey']
+const SAVE_FIELDS = ['leftKey', 'rightKey', 'jumpKey', 'fireKey', 'useKey', 'fullscreen']
 
 export function save() {
   const o = {}

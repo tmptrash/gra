@@ -1,11 +1,3 @@
-/* body {
-  align-items: center;
-  background-color: #000;
-  display: flex;
-  justify-content: center;
-  height: 100vh;
-} */
-
 .settings { border-width: 0; margin-bottom: 20px }
 
 .form {
@@ -26,10 +18,6 @@
   height: 35px;
   position: relative;
 }
-
-.ic1 { margin-top: 30px }
-
-.ic2 { margin-top: 30px }
 
 .input {
   background-color: #303245;

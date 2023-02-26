@@ -56,6 +56,7 @@ export default Config = {
   spinnerQuery: '.spin',
   volumeQuery: 'input[type=range]',
   volumeLabelQuery: '.vol',
+  fullscreenQuery: '#fullscreen',
   frontColor: '#ccc',
   verColor: '#000',
   textColor: '#fff',
@@ -66,6 +67,7 @@ export default Config = {
   bulletsFont: 'bold 13px Cambria, serif',
 
   // game related
+  fullscreen: false,
   useSetTimeout: false,
   setTimeoutDelay: 7,
   debug: false,

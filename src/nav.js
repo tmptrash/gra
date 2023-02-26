@@ -1,10 +1,12 @@
+import Shared from './shared'
 import Config from './config'
-import { logo, on, el, show, hide, resize } from './utils'
+import { logo, on, el, show, hide, resize, fullscreen } from './utils'
 import { preload } from './assets'
 import { play, pause, onPreload } from './game'
 
 export function Nav(game, settings) {
   if (!game) return null
+  on(Shared.obs, 'cfg', onSetCfg)
 
   return {
     playBtn: el(Config.playQuery),
@@ -68,6 +70,7 @@ function onPlay(n) {
   hide(n.cfgBtn)
   hide(n.srcBtn)
   play(n.game)
+  Config.fullscreen && fullscreen()
 }
 
 function onCfg(n) {
@@ -79,4 +82,8 @@ function onCfg(n) {
 
 function onSrc() {
   location = Config.src
+}
+
+function onSetCfg(p) {
+  p.detail.f === 'fullscreen' && fullscreen()
 }

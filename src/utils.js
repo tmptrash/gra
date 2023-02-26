@@ -44,6 +44,14 @@ export function fire(e, params = null) {
   Shared.obs.dispatchEvent(new CustomEvent(e, {detail: params}))
 }
 
+export function fullscreen() {
+  if (Config.fullscreen) document.documentElement.requestFullscreen()
+  else if (document.fullscreenElement) {
+    if (document.exitFullscreen) document.exitFullscreen()
+    else if (document.fullscreenElement.exitFullscreen) document.fullscreenElement.exitFullscreen()
+  }
+}
+
 export function mousePos(canvas, { clientX, clientY }) {
   const rect = canvas.getBoundingClientRect()
   return {
