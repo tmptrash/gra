@@ -154,7 +154,8 @@ export default Config = {
     goDown: A.SoundGoDown,
     goLeft: A.SoundGoLeft,
     goRight: A.SoundGoRight,
-    pick: A.SoundPick
+    pick: A.SoundPick,
+    portal: A.SoundPortal
   },
 
   // sprites

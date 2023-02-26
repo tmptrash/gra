@@ -4,10 +4,12 @@ import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import { touch } from './utils'
 import { room, updateObjs } from './rooms'
 import { create } from './creator'
+import { play } from './sounds'
 
-export function Portal(spriteCfg) {
+export function Portal(spriteCfg, sound) {
   return {
-    sprite: Sprite(...spriteCfg)
+    sprite: Sprite(...spriteCfg),
+    sound
   }
 }
 
@@ -26,6 +28,7 @@ export function update(p) {
     Shared.hero.sprite.y = 100
     updateObjs(room(x, y), room())
     Shared.objs.push(create('Text', {text: [Msgs.foundTeleport, 450, 300, 0, 3000, false, 0], id: 0}, r))
+    play(Config.sounds.portal)
     return
   }
   updateSprite(p.sprite)

@@ -70,6 +70,7 @@ import SoundGoDown from '../sound/go-down.mp3'
 import SoundGoLeft from '../sound/go-left.mp3'
 import SoundGoRight from '../sound/go-right.mp3'
 import SoundPick from '../sound/pick.mp3'
+import SoundPortal from '../sound/portal.mp3'
 
 export const ASSET_NAMES = {
   'L1Path': L1Path,
@@ -135,7 +136,8 @@ export const ASSET_NAMES = {
   'SoundGoDown': SoundGoDown,
   'SoundGoLeft': SoundGoLeft,
   'SoundGoRight': SoundGoRight,
-  'SoundPick': SoundPick
+  'SoundPick': SoundPick,
+  'SoundPortal': SoundPortal
 }
 
 export const ASSETS = {}
