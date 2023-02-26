@@ -41,9 +41,11 @@ function uniqueKey(s, key, v) {
 function updateErr(s) {
   let err = false
   iter(f => {
-    const uniq = uniqueKey(s, f, s[`${f}El`].value)
-    if (uniq) hide(el(`div.${f}`))
-    else show(el(`div.${f}`)).textContent = Msgs.alreadyUsed, err = true
+    if (type(s, f) === 'text') {
+      const uniq = uniqueKey(s, f, s[`${f}El`].value)
+      if (uniq) hide(el(`div.${f}`))
+      else show(el(`div.${f}`)).textContent = Msgs.alreadyUsed, err = true
+    }
   })
   return err
 }
