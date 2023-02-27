@@ -44,6 +44,14 @@ import BugBigRightPath from '../img/bug-big-right-3.png'
 import DropPath from '../img/drop-1.png'
 import DropDownPath from '../img/drop-down-12.png'
 import PortalPath from '../img/portal-9.png'
+import Plant1Path from '../img/plant1.png'
+import Plant2Path from '../img/plant2.png'
+import Plant3Path from '../img/plant3.png'
+import Plant4Path from '../img/plant4.png'
+import Plant5Path from '../img/plant5.png'
+import Plant6Path from '../img/plant6.png'
+import Plant7Path from '../img/plant7.png'
+import Plant8Path from '../img/plant8.png'
 // music
 import Cave0 from '../music/cave0.mp3'
 // sounds
@@ -114,6 +122,14 @@ export const ASSET_NAMES = {
   'DropPath': DropPath,
   'DropDownPath': DropDownPath,
   'PortalPath': PortalPath,
+  'Plant1Path': Plant1Path,
+  'Plant2Path': Plant2Path,
+  'Plant3Path': Plant3Path,
+  'Plant4Path': Plant4Path,
+  'Plant5Path': Plant5Path,
+  'Plant6Path': Plant6Path,
+  'Plant7Path': Plant7Path,
+  'Plant8Path': Plant8Path,
   'Cave0': Cave0,
   'SoundHit': SoundHit,
   'SoundKey': SoundKey,

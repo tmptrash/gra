@@ -17,7 +17,8 @@ export function updateObjs(fromRoom, toRoom) {
   scripts && scripts.forEach(cfg => {
     const s = create(cfg[0], cfg[1], toRoom)
     if (s.o) {
-      if (cfg[1].pos) objs.splice(cfg[1].pos, 0, s)
+      if (cfg[1].pos === 'end') objs.push(s)
+      else if (cfg[1].pos) objs.splice(cfg[1].pos, 0, s)
       else if(cfg[1].after) addAfter(cfg[1].after, s)
       else objs.splice(Config.scriptsPos, 0, s)
     }
