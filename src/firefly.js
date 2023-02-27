@@ -6,7 +6,7 @@ import { on } from './utils'
 
 const SPEED = 3
 const HALF_SPEED = SPEED / 2
-const MAX_AMOUNT = 20
+const MAX_AMOUNT = 60
 const DELAY = 40
 
 export function Firefly() {
@@ -32,7 +32,10 @@ export function Firefly() {
 }
 
 export function draw(f) {
-  f.sprites.forEach((s, i) => !f.hidden[i] && drawSprite(s))
+  const roomY = Shared.offsY / Config.height
+  const amount = MAX_AMOUNT / (5 - roomY)
+  const sprites = f.sprites
+  for (let i = 0; i < amount; i++) !f.hidden[i] && drawSprite(sprites[i])
 }
 
 export function update(f) {
