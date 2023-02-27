@@ -70,7 +70,7 @@ export default Config = {
   fullscreen: false,
   useSetTimeout: false,
   setTimeoutDelay: 7,
-  debug: true,
+  debug: false,
   debugPos: [300, 40],
   fpsPos: [WIDTH / 2 - 100, 20],
   logoPos: [256, 50],
