@@ -1,6 +1,8 @@
 import Config from './config'
+import Shared from './shared'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import { xyBarrier } from './barriers'
+import { on } from './utils'
 
 const SPEED = 3
 const HALF_SPEED = SPEED / 2
@@ -21,6 +23,7 @@ export function Firefly() {
     if (!xyBarrier(cfg[0].x, cfg[0].y)) ff.sprites.push(Sprite(...cfg))
     ff.t[i] = 0
   }
+  on(Shared.obs, 'change-room', onChangeRoom.bind(null, ff))
 
   return ff
 }
@@ -45,5 +48,14 @@ export function update(f) {
       updateSprite(s)
       f.t[i] = t
     }
+  })
+}
+
+function onChangeRoom(f) {
+  const w = Config.width - 64
+  const h = Config.height - 64
+  f.sprites.forEach((s, i) => {
+    s.x = Math.random() * w + 32
+    s.y = Math.random() * h + 32
   })
 }
