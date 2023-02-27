@@ -1,6 +1,6 @@
 import Config from './config'
 import Shared from './shared'
-import { bind, unbind, LEFT, RIGHT, picked, on } from './utils'
+import { bind, unbind, LEFT, RIGHT, picked, on, fire } from './utils'
 import { rightBarrier, leftBarrier, topBarrier, downBarrier } from './barriers'
 import { Sprite, draw as drawSprite, update as updateSprite, setImg } from './sprite'
 import { updateObjs, room } from './rooms'
@@ -154,21 +154,25 @@ function updateScreen(h) {
   if (s.x > Config.width) {
     updateObjs(room(), room(Shared.offsX + Config.width))
     Shared.offsX += Config.width
+    fire('change-room')
     s.x = 1
   } else if (s.x + s.width < 0) {
     updateObjs(room(), room(Shared.offsX - Config.width))
     Shared.offsX -= Config.width
     s.x = Config.width - s.width - 1
+    fire('change-room')
   } else if (s.y > Config.height) {
     updateObjs(room(), room(Shared.offsX, Shared.offsY + Config.height))
     Shared.offsY += Config.height
     s.y = 1
     h.isJumping = false
+    fire('change-room')
   } else if (s.y + s.height < 0) {
     updateObjs(room(), room(Shared.offsX, Shared.offsY - Config.height))
     Shared.offsY -= Config.height
     h.jumpY = Config.height + h.jumpY
     s.y = Config.height - 1
+    fire('change-room')
   }
 }
 

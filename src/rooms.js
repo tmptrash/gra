@@ -1,7 +1,7 @@
 import Shared from './shared'
 import Config from './config'
 import { create } from './creator'
-import { findObjIdxById, fire } from './utils'
+import { findObjIdxById } from './utils'
 
 export function updateObjs(fromRoom, toRoom) {
   const objs = Shared.objs
@@ -23,8 +23,6 @@ export function updateObjs(fromRoom, toRoom) {
       else objs.splice(Config.scriptsPos, 0, s)
     }
   })
-
-  fire('change-room')
 }
 
 export function room(offsX = Shared.offsX, offsY = Shared.offsY) {

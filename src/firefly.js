@@ -12,6 +12,7 @@ const DELAY = 40
 export function Firefly() {
   const ff = {
     sprites: [],
+    hidden: [],
     t: []
   }
   const w = Config.width - 64
@@ -20,8 +21,10 @@ export function Firefly() {
   for (let i = 0; i < MAX_AMOUNT; i++) {
     cfg[0].x = Math.random() * w + 32
     cfg[0].y = Math.random() * h + 32
-    if (!xyBarrier(cfg[0].x, cfg[0].y)) ff.sprites.push(Sprite(...cfg))
-    ff.t[i] = 0
+    ff.sprites.push(Sprite(...cfg))
+    ff.hidden.push(false)
+    ff.t.push(0)
+    ff.hidden[i] = xyBarrier(cfg[0].x, cfg[0].y)
   }
   on(Shared.obs, 'change-room', onChangeRoom.bind(null, ff))
 
@@ -29,7 +32,7 @@ export function Firefly() {
 }
 
 export function draw(f) {
-  f.sprites.forEach(s => drawSprite(s))
+  f.sprites.forEach((s, i) => !f.hidden[i] && drawSprite(s))
 }
 
 export function update(f) {
@@ -57,5 +60,6 @@ function onChangeRoom(f) {
   f.sprites.forEach((s, i) => {
     s.x = Math.random() * w + 32
     s.y = Math.random() * h + 32
+    f.hidden[i] = xyBarrier(s.x, s.y)
   })
 }
