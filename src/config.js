@@ -399,6 +399,9 @@ export default Config = {
       15: [
         [[{x: 900, y: 600}, {idle: [A.HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']
       ],
+      17: [
+        [[{x: 100, y: 704}, {idle: [A.FlashlightPath,9,  100]}], 'pick',    'foundFlashlight']
+      ],
       18: [
         [[{x: 655, y: 140}, {idle: [A.Mushroom9Path, 9,  100]}], 'mushroom','foundBraveMushroom'],
         [[{x: 800, y: 650}, {idle: [A.FlashlightPath,9,  100]}], 'pick',    'foundFlashlight']
@@ -456,7 +459,7 @@ export default Config = {
       2: [
         ['Drop',   {sprite1: [{x: 537, y: 140}, A.DropPath], sprite2: [{x: 537, y: 140}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 10, delay: 2000}],
         ['Sprite', {sprite:  [{x: 500, y:  64}, A.StalactiteUp1Path]}],
-        ['Sprite', {sprite:  [{x: 490, y: 422}, A.Plant6Path], pos: 'end'}],
+        ['Sprite', {sprite:  [{x: 490, y: 428}, A.Plant6Path], pos: 'end'}],
         ['Sprite', {sprite:  [{x: 129, y: 225}, A.Plant7Path], pos: 'end'}]
       ],
       3: [
@@ -484,7 +487,7 @@ export default Config = {
         ['Drop',   {sprite1: [{x: 525, y: 208}, A.DropPath], sprite2: [{x: 525, y: 208}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop4', speed: 30, delay:  200}],
         ['Drop',   {sprite1: [{x: 108, y: 479}, A.DropPath], sprite2: [{x: 108, y: 479}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 40, delay:  100}],
         ['Sprite', {sprite:  [{x: 487, y: 128}, A.StalactiteUp1Path]}],
-        ['Sprite', {sprite:  [{x: 649, y: 452}, A.Plant6Path], pos: 'end'}],
+        ['Sprite', {sprite:  [{x: 649, y: 458}, A.Plant6Path], pos: 'end'}],
         ['Sprite', {sprite:  [{x: 500, y: 550}, A.Plant7Path], pos: 'end'}],
         ['Sprite', {sprite:  [{x: 112, y: 537}, A.Plant8Path], pos: 'end'}]
       ],
@@ -517,7 +520,7 @@ export default Config = {
         ['Drop',   {sprite1: [{x: 333, y: 640}, A.DropPath], sprite2: [{x: 333, y: 640}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 10, delay: 1000}],
         ['Sprite', {sprite:  [{x: 498, y: 448}, A.StalactiteUp1Path]}],
         ['Sprite', {sprite:  [{x: 420, y: 715}, A.Plant4Path], pos: 'end'}],
-        ['Sprite', {sprite:  [{x: 550, y: 710}, A.Plant6Path], pos: 'end'}]
+        ['Sprite', {sprite:  [{x: 550, y: 716}, A.Plant6Path], pos: 'end'}]
       ],
       16: [
         ['Drop',   {sprite1: [{x: 219, y: 567}, A.DropPath], sprite2: [{x: 219, y: 567}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed:  5, delay: 2000}],
