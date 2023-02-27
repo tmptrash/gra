@@ -52,6 +52,7 @@ import Plant5Path from '../img/plant5.png'
 import Plant6Path from '../img/plant6.png'
 import Plant7Path from '../img/plant7.png'
 import Plant8Path from '../img/plant8.png'
+import FireflyPath from '../img/firefly-4.png'
 // music
 import Cave0 from '../music/cave0.mp3'
 // sounds
@@ -130,6 +131,7 @@ export const ASSET_NAMES = {
   'Plant6Path': Plant6Path,
   'Plant7Path': Plant7Path,
   'Plant8Path': Plant8Path,
+  'FireflyPath': FireflyPath,
   'Cave0': Cave0,
   'SoundHit': SoundHit,
   'SoundKey': SoundKey,

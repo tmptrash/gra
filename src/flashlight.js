@@ -4,7 +4,7 @@ import { bind, el, css, on, picked, unbind } from './utils'
 import { addAfter, room } from './rooms'
 import { create } from './creator'
 
-export function Effect() {
+export function Flashlight() {
   const e = {
     light: false,
     room: room(),
@@ -61,7 +61,7 @@ function onFlashlight(e) {
   e.light = !e.light
   updateBrightness(e)
   const msg = e.light ? Msgs.flashlightOn : Msgs.flashlightOff
-  addAfter(Config.effectId, create('Text', {text: [msg, 437, 300, 0, 1000, false, 0], id: 0}, room()))
+  addAfter(Config.effectsId, create('Text', {text: [msg, 437, 300, 0, 1000, false, 0], id: 0}, room()))
 }
 
 function brightness(e, b) {

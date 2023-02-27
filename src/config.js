@@ -2,7 +2,7 @@ import { ASSET_NAMES as A } from './assets'
 
 const WIDTH  = 1024
 const HEIGHT = 800
-const EFFECT_ID = 'effectId'
+const EFFECT_ID = 'effectsId'
 let Config = null
 let uniqueId = 0
 
@@ -43,7 +43,7 @@ export default Config = {
   audioId: 'audio',
   heroId: 'hero',
   bulletId: 'bullet',
-  effectId: EFFECT_ID,
+  effectsId: EFFECT_ID,
   gameOverId: 'game-over',
   gameCompletedId: 'completed',
   playQuery: '.play',
@@ -165,6 +165,7 @@ export default Config = {
   heart: [{ x: 0, y: 0 }, {idle: [A.HeartAnimPath, 9, 100]}],
   door: [{ x: 864, y: 32, run: false }, {idle: [A.DoorOpenPath, 5, 300]}],
   bullets: [{ x: 0, y: 0 }, {idle: [A.BulletsPath, 9, 150]}],
+  firefly: [{ x: 100, y: 100 }, {idle: [A.FireflyPath, 4, 300]}],
   hero: [{x: 200, y: 90}, {
     idleLeft:     [A.IdleLeftPath,     3, 260],
     idleRight:    [A.IdleRightPath,    3, 260],
