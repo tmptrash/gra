@@ -32,10 +32,9 @@ export function Firefly() {
     cfg[0].x = Math.random() * w + 32
     cfg[0].y = Math.random() * h + 32
     ff.sprites[i] = Sprite(...cfg)
-    ff.hidden[i] = false
-    ff.t[i] = 0
     ff.hidden[i] = xyBarrier(cfg[0].x, cfg[0].y)
     ff.dirs[i] = Math.floor(Math.random() * 8)
+    ff.t[i] = 0
   }
   on(Shared.obs, 'change-room', onChangeRoom.bind(null, ff))
 
