@@ -167,7 +167,9 @@ export default Config = {
   heart: [{ x: 0, y: 0 }, {idle: [A.HeartAnimPath, 9, 100]}],
   door: [{ x: 864, y: 32, run: false }, {idle: [A.DoorOpenPath, 5, 300]}],
   bullets: [{ x: 0, y: 0 }, {idle: [A.BulletsPath, 9, 150]}],
-  firefly: [{ x: 100, y: 100 }, {idle: [A.FireflyPath, 4, 300]}],
+  fireflySmall: [{ x: 0, y: 0 }, {idle: [A.FireflySPath, 4, 300]}],
+  fireflyMid: [{ x: 0, y: 0 }, {idle: [A.FireflyMPath, 4, 300]}],
+  fireflyBig: [{ x: 0, y: 0 }, {idle: [A.FireflyBPath, 5, 250]}],
   hero: [{x: 200, y: 90}, {
     idleLeft:     [A.IdleLeftPath,     3, 260],
     idleRight:    [A.IdleRightPath,    3, 260],

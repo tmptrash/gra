@@ -7,6 +7,7 @@ import { on } from './utils'
 const MAX_AMOUNT = Config.fireflyAmount
 const LEVELS = Config.vSprites * Config.spriteSize / Config.height
 const DIRS = new Int8Array([0,1,  1,1,  1,0,  1,-1,  0,-1,  -1,-1,  -1,0,  -1,1])
+const CFGS = [Config.fireflySmall, Config.fireflyMid, Config.fireflyBig]
 
 export function Firefly() {
   const ff = {
@@ -17,8 +18,8 @@ export function Firefly() {
   }
   const w = Config.width - 64
   const h = Config.height - 64
-  const cfg = Config.firefly
   for (let i = 0; i < MAX_AMOUNT; i++) {
+    const cfg = CFGS[Math.floor(Math.random() * 3)]
     cfg[0].x = Math.random() * w + 32
     cfg[0].y = Math.random() * h + 32
     ff.sprites[i] = Sprite(...cfg)
