@@ -50,7 +50,8 @@ export function update(f) {
       else if (x > w) x = w
       if (y < 32) y = 32
       else if (y > h) y = h
-      if (!xyBarrier(x, y)) s.x = x, s.y = y, f.dirs[i] = d
+      f.dirs[i] = d
+      if (!xyBarrier(x, y)) s.x = x, s.y = y
       updateSprite(s)
       f.t[i] = t
     }
