@@ -95,6 +95,8 @@ export default Config = {
   darknessLevel: 3,
   brighnessDec: .2,
   lightRadius: 350,
+  fireflyAmount: 50,
+  fireflySpeed: .8,
 
   // hero related
   jumpSpeed: .5,

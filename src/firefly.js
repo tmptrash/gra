@@ -4,19 +4,9 @@ import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import { xyBarrier } from './barriers'
 import { on } from './utils'
 
-const MAX_AMOUNT = 50
-const DELAY = 20
-const SPEED = .8
-const DIRS = new Int8Array([
-   0,  1,
-   1,  1,
-   1,  0,
-   1, -1,
-   0, -1,
-  -1, -1,
-  -1,  0,
-  -1,  1
-])
+const MAX_AMOUNT = Config.fireflyAmount
+const LEVELS = Config.vSprites * Config.spriteSize / Config.height
+const DIRS = new Int8Array([0,1,  1,1,  1,0,  1,-1,  0,-1,  -1,-1,  -1,0,  -1,1])
 
 export function Firefly() {
   const ff = {
@@ -43,7 +33,7 @@ export function Firefly() {
 
 export function draw(f) {
   const roomY = Shared.offsY / Config.height
-  const amount = MAX_AMOUNT / (5 - roomY)
+  const amount = MAX_AMOUNT / (LEVELS - roomY)
   const sprites = f.sprites
   for (let i = 0; i < amount; i++) !f.hidden[i] && drawSprite(sprites[i])
 }
@@ -53,7 +43,7 @@ export function update(f) {
   const h = Config.height - 64
   const t = performance.now()
   f.sprites.forEach((s, i) => {
-    if (t - f.t[i] > DELAY) {
+    if (t - f.t[i] > Config.objTickMs) {
       let [d, x, y] = newXY(f.dirs[i], s.x, s.y)
       if (x < 32) x = 32
       else if (x > w) x = w
@@ -81,5 +71,5 @@ function newXY(d, x, y) {
   d += dir
   if (d < 0) d = 7
   else if (d > 7) d = 0
-  return [d, x + DIRS[d * 2] * SPEED, y + DIRS[d * 2 + 1] * SPEED]
+  return [d, x + DIRS[d * 2] * Config.fireflySpeed, y + DIRS[d * 2 + 1] * Config.fireflySpeed]
 }
