@@ -11,7 +11,7 @@ import BulletsPath from '../img/bullets-9.png'
 import DoorOpenPath from '../img/door-open-5.png'
 import KeyPath from '../img/key-6.png'
 import Mushroom9Path from '../img/mushroom-9.png'
-import MushroomTele9Path from '../img/mushroom-medium-9.png'
+import MushroomT9Path from '../img/mushroom-medium-9.png'
 import BulletPath from '../img/bullet-1.png'
 import FlashlightPath from '../img/flashlight-9.png'
 // hero
@@ -95,7 +95,7 @@ export const ASSET_NAMES = {
   'DoorOpenPath': DoorOpenPath,
   'KeyPath': KeyPath,
   'Mushroom9Path': Mushroom9Path,
-  'MushroomTele9Path': MushroomTele9Path,
+  'MushroomT9Path': MushroomT9Path,
   'BulletPath': BulletPath,
   'FlashlightPath': FlashlightPath,
   'IdleLeftPath': IdleLeftPath,

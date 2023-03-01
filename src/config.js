@@ -404,9 +404,6 @@ export default Config = {
       15: [
         [[{x: 900, y: 600}, {idle: [A.HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']
       ],
-      17: [
-        [[{x: 100, y: 704}, {idle: [A.FlashlightPath,9,  100]}], 'pick',    'foundFlashlight']
-      ],
       18: [
         [[{x: 655, y: 140}, {idle: [A.Mushroom9Path, 9,  100]}], 'mushroom','foundBraveMushroom'],
         [[{x: 800, y: 650}, {idle: [A.FlashlightPath,9,  100]}], 'pick',    'foundFlashlight']
@@ -431,7 +428,7 @@ export default Config = {
         [[{x: 880, y: 704}, {idle: [A.HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']
       ],
       31: [
-        [[{x: 900, y: 500}, {idle: [A.MushroomTele9Path, 9,  100]}], 'mushroom', 'foundTeleMushroom']
+        [[{x: 900, y: 500}, {idle: [A.MushroomT9Path,9,  100]}], 'mushroom', 'foundTeleMushroom']
       ],
       39: [
         [[{x: 830, y: 580}, {idle: [A.KeyPath,       7,  200]}], 'key',     'foundKey'],
