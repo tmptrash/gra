@@ -2,37 +2,30 @@ import Config from './config'
 import Shared from './shared'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import { xyBarrier } from './barriers'
-import { on } from './utils'
+import { on, rnd } from './utils'
 
 const MAX_AMOUNT = Config.fireflyAmount
 const LEVELS = Config.vSprites * Config.spriteSize / Config.height
 const DIRS = new Int8Array([0,1,  1,1,  1,0,  1,-1,  0,-1,  -1,-1,  -1,0,  -1,1])
 const CFGS = [Config.fireflySmall, Config.fireflyMid, Config.fireflyBig]
+const W = Config.width - 64
+const H = Config.height - 64
+const SW = Config.spriteSize
 
 export function Firefly() {
-  const ff = {
+  const f = {
     sprites: Array(MAX_AMOUNT),
     hidden: Array(MAX_AMOUNT),
-    dirs: new Float32Array(MAX_AMOUNT * 2),
-    t: new Float64Array(MAX_AMOUNT)
+    dirs: new Uint8Array(MAX_AMOUNT),
+    t: new Float64Array(MAX_AMOUNT),
+    inited: false
   }
-  const w = Config.width - 64
-  const h = Config.height - 64
-  for (let i = 0; i < MAX_AMOUNT; i++) {
-    const cfg = CFGS[Math.floor(Math.random() * 3)]
-    cfg[0].x = Math.random() * w + 32
-    cfg[0].y = Math.random() * h + 32
-    ff.sprites[i] = Sprite(...cfg)
-    ff.hidden[i] = xyBarrier(cfg[0].x, cfg[0].y)
-    ff.dirs[i] = Math.floor(Math.random() * 8)
-    ff.t[i] = 0
-  }
-  on(Shared.obs, 'change-room', onChangeRoom.bind(null, ff))
-
-  return ff
+  on(Shared.obs, 'change-room', onChangeRoom.bind(null, f))
+  return f
 }
 
 export function draw(f) {
+  if (!f.inited) return
   const roomY = Shared.offsY / Config.height
   const amount = MAX_AMOUNT / (LEVELS - roomY)
   const sprites = f.sprites
@@ -40,16 +33,15 @@ export function draw(f) {
 }
 
 export function update(f) {
-  const w = Config.width - 64
-  const h = Config.height - 64
+  if (!f.inited) { init(f), f.inited = true; return }
   const t = performance.now()
   f.sprites.forEach((s, i) => {
     if (t - f.t[i] > Config.objTickMs) {
       let [d, x, y] = newXY(f.dirs[i], s.x, s.y)
-      if (x < 32) x = 32
-      else if (x > w) x = w
-      if (y < 32) y = 32
-      else if (y > h) y = h
+      if (x < SW) x = SW
+      else if (x > W) x = W
+      if (y < SW) y = SW
+      else if (y > H) y = H
       f.dirs[i] = d
       if (!xyBarrier(x, y)) s.x = x, s.y = y
       updateSprite(s)
@@ -59,19 +51,24 @@ export function update(f) {
 }
 
 function onChangeRoom(f) {
-  const w = Config.width - 64
-  const h = Config.height - 64
-  f.sprites.forEach((s, i) => {
-    s.x = Math.random() * w + 32
-    s.y = Math.random() * h + 32
-    f.hidden[i] = xyBarrier(s.x, s.y)
-  })
+  f.sprites.forEach((s, i) => (f.hidden[i] = xyBarrier((s.x = rnd(W, SW)), (s.y = rnd(H, SW)))))
 }
 
 function newXY(d, x, y) {
-  const dir = Math.floor(Math.random() * 3) - 1
-  d += dir
+  d += rnd(3, -1)
   if (d < 0) d = 7
   else if (d > 7) d = 0
   return [d, x + DIRS[d * 2] * Config.fireflySpeed, y + DIRS[d * 2 + 1] * Config.fireflySpeed]
+}
+
+function init(f) {
+  for (let i = 0; i < MAX_AMOUNT; i++) {
+    const cfg = CFGS[rnd(3)]
+    cfg[0].x = rnd(W, SW)
+    cfg[0].y = rnd(H, SW)
+    f.sprites[i] = Sprite(...cfg)
+    f.hidden[i] = xyBarrier(cfg[0].x, cfg[0].y)
+    f.dirs[i] = rnd(8)
+    f.t[i] = 0
+  }
 }

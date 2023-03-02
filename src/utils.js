@@ -184,3 +184,7 @@ export function pickedIdx(msgId) {
 export function idFrom(r, x, y) {
   return `${r}-${x}-${y}`
 }
+
+export function rnd(n, start = 0) {
+  return Math.floor(Math.random() * n) + start
+}
