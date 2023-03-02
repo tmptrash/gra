@@ -10,11 +10,12 @@ export default {
 
   ctx: null,
   objs: null,
-  picked: null,
+  picked: [],
   timer: null,
   hero: null,
   bullet: null,
   sounds: null,
   music: null,
-  stop: false
+  stop: false,
+  flashlightOn: false
 }

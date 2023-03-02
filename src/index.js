@@ -1,11 +1,11 @@
-load() // load settings from personal storage
+loadCfg() // load settings from personal storage
 import './index.css'
 import './settings.css'
 import './checkbox.css'
 import { Nav, start } from './nav'
 import { Game } from './game'
 import { Settings } from './settings'
-import { load } from './store'
+import { loadCfg } from './store'
 
 const game = Game()
 const settings = Settings()

@@ -165,11 +165,7 @@ export function resize() {
 }
 
 export function score() {
-  let s = 0
-  s += Shared.hero.life
-  s += Shared.hero.bullets
-  s += Shared.picked.items.length
-  return s
+  return Shared.hero.life + Shared.hero.bullets + Shared.picked.length
 }
 
 function isMobile() {
@@ -178,9 +174,13 @@ function isMobile() {
 }
 
 export function picked(msgId, hidden = null) {
-  return Shared.picked.items.findIndex(i => i.msg === msgId && (hidden === null || i.hidden === hidden)) !== -1
+  return Shared.picked.findIndex(i => i.msg === msgId && (hidden === null || i.hidden === hidden)) !== -1
 }
 
 export function pickedIdx(msgId) {
-  return Shared.picked.items.findIndex(i => i.msg === msgId)
+  return Shared.picked.findIndex(i => i.msg === msgId)
+}
+
+export function idFrom(r, x, y) {
+  return `${r}-${x}-${y}`
 }

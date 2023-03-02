@@ -19,12 +19,12 @@ export function Hero() {
     pressed: { a: false, d: false, w: false },
     sprite: Sprite(...Config.hero),
     life: Config.startLifes,
-    bullets: 0,
+    bullets: Config.startBullets,
+    gun: Config.hasGun,
+    key: Config.hasKey,
+    fire: false,
     hit: false,
     hitTime: performance.now(),
-    gun: false,
-    fire: false,
-    key: false,
     lendBefore: false,
     handlers: []
   }
@@ -154,24 +154,24 @@ function updateScreen(h) {
   if (s.x > Config.width) {
     updateObjs(room(), room(Shared.offsX + Config.width))
     Shared.offsX += Config.width
+    s.x = -s.width / 2
     fire('change-room')
-    s.x = 1
   } else if (s.x + s.width < 0) {
     updateObjs(room(), room(Shared.offsX - Config.width))
     Shared.offsX -= Config.width
-    s.x = Config.width - s.width - 1
+    s.x = Config.width - s.width / 2
     fire('change-room')
   } else if (s.y > Config.height) {
     updateObjs(room(), room(Shared.offsX, Shared.offsY + Config.height))
     Shared.offsY += Config.height
-    s.y = 1
+    s.y = -s.height / 2
     h.isJumping = false
     fire('change-room')
   } else if (s.y + s.height < 0) {
     updateObjs(room(), room(Shared.offsX, Shared.offsY - Config.height))
     Shared.offsY -= Config.height
     h.jumpY = Config.height + h.jumpY
-    s.y = Config.height - 1
+    s.y = Config.height - s.height / 2
     fire('change-room')
   }
 }

@@ -1,6 +1,6 @@
 import Config, { Msgs } from './config'
 import { el, on, fire, hide, show, checkbox } from './utils'
-import { save } from './store'
+import { saveCfg } from './store'
 
 const KEYS = ['jump', 'left', 'right', 'fire', 'use', 'fullscreen']
 
@@ -20,12 +20,12 @@ function iter(cb) {
 function onKeydown(s, e) {
   e.preventDefault()
   e.target.value = e.code
-  !updateErr(s) && (updateCfg(s), save(), fire('rebind'))
+  !updateErr(s) && (updateCfg(s), saveCfg(), fire('rebind'))
 }
 
 function onCheck(f, e) {
   fire('cfg', {f, v: Config[f] = e.target.checked})
-  save()
+  saveCfg()
 }
 
 function clearErr(s) {

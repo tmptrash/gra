@@ -5,20 +5,20 @@ import { addAfter, room } from './rooms'
 import { create } from './creator'
 
 export function Flashlight() {
-  const e = {
-    light: false,
+  const fl = {
     room: room(),
-    el: el(`#${Config.canvasId}`),
+    el: el(Config.canvasQuery),
     handlers: []
   }
-  rebind(e)
-  on(Shared.obs, 'after-brave', updateBrightness.bind(null, e))
-  on(Shared.obs, 'rebind', rebind.bind(null, e))
+  rebind(fl)
+  on(Shared.obs, 'after-brave', updateBrightness.bind(null, fl))
+  on(Shared.obs, 'rebind', rebind.bind(null, fl))
+  on(Shared.obs, 'play', updateBrightness.bind(null, fl))
 
-  return e
+  return fl
 }
 
-export function draw(e) {
+export function draw() {
   const roomY = Shared.offsY / Config.height
   if (roomY < Config.darknessLevel) return
 
@@ -29,7 +29,7 @@ export function draw(e) {
   const s = Shared.hero.sprite
   const sx = s.x
   const sy = s.y
-  const diameter = e.light ? Config.lightRadius : 150
+  const diameter = Shared.flashlightOn ? Config.flashLightRadius : 150
 
   for (let i = 3, offs = 0; i < l; i += 4, offs++) {
     const y = Math.floor(offs / w)
@@ -41,39 +41,39 @@ export function draw(e) {
   Shared.ctx.putImageData(id, 0, 0)
 }
 
-export function update(e) {
+export function update(fl) {
   const r = room()
-  if (r !== e.room && !picked('foundBraveMushroom', false)) {
-    updateBrightness(e)
-    e.room = r
+  if (r !== fl.room && !picked('foundBraveMushroom', false)) {
+    updateBrightness(fl)
+    fl.room = r
   }
 }
 
-function rebind(e) {
-  unbind(e.handlers)
+function rebind(fl) {
+  unbind(fl.handlers)
   const keyCfg = { keydown: {}, keyup: {} }
-  keyCfg.keyup[Config.useKey] = onFlashlight.bind(null, e)
-  e.handlers = bind(keyCfg)
+  keyCfg.keyup[Config.useKey] = onFlashlight.bind(null, fl)
+  fl.handlers = bind(keyCfg)
 }
 
-function onFlashlight(e) {
+function onFlashlight(fl) {
   if (!picked('foundFlashlight')) return
-  e.light = !e.light
-  updateBrightness(e)
-  const msg = e.light ? Msgs.flashlightOn : Msgs.flashlightOff
+  Shared.flashlightOn = !Shared.flashlightOn
+  updateBrightness(fl)
+  const msg = Shared.flashlightOn ? Msgs.flashlightOn : Msgs.flashlightOff
   addAfter(Config.effectsId, create('Text', {text: [msg, 437, 300, 0, 1000, false, 0], id: 0}, room()))
 }
 
-function brightness(e, b) {
-  css(e.el, 'filter', `brightness(${b})`)
+function brightness(fl, b) {
+  css(fl.el, 'filter', `brightness(${b})`)
 }
 
-function updateBrightness(e) {
+function updateBrightness(fl) {
   const roomY = Shared.offsY / Config.height
-  if (roomY === 0) brightness(e, 1)
-  else if (roomY < Config.darknessLevel) brightness(e, 1 - (Shared.offsY / Config.height) * Config.brighnessDec)
+  if (roomY === 0) brightness(fl, 1)
+  else if (roomY < Config.darknessLevel) brightness(fl, 1 - (Shared.offsY / Config.height) * Config.brighnessDec)
   else {
-    if (e.light) brightness(e, 1)
-    else brightness(e, 1 - (Shared.offsY / Config.height) * Config.brighnessDec)
+    if (Shared.flashlightOn) brightness(fl, 1)
+    else brightness(fl, 1 - (Shared.offsY / Config.height) * Config.brighnessDec)
   }
 }

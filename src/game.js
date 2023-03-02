@@ -5,7 +5,7 @@ import { Bullet, draw as drawBullet, update as updateBullet } from './bullet'
 import { Level, draw as drawLevel, update as updateLevel } from './level'
 import { updateObjs, room } from './rooms'
 import { Debug, draw as drawDebug } from './debug'
-import { fn, el, findObjById, findObjByFn, text, delObj, checkDesktop, score } from './utils'
+import { fn, el, on, findObjById, findObjByFn, text, delObj, checkDesktop, score } from './utils'
 import { Music, play as playMusic, stop } from './music'
 import { Picked, draw as drawPicked } from './picked'
 import { Timer, draw as drawTimer } from './timer'
@@ -14,6 +14,7 @@ import { Sounds, play as playSound } from './sounds'
 import { draw as drawText } from './text'
 import { Bullets, draw as drawBullets } from './bullets'
 import { Hearts, draw as drawHearts } from './hearts'
+import { saveShared, loadShared } from './store'
 
 export function Game() {
   const g = {
@@ -23,13 +24,14 @@ export function Game() {
   }
   const fn = animate.bind(null, g)
   g.animateFn = Config.useSetTimeout ? () => setTimeout(fn, Config.setTimeoutDelay) : () => requestAnimationFrame(fn)
-  Shared.ctx = el(`#${Config.canvasId}`).getContext('2d', { willReadFrequently: true })
+  Shared.ctx = el(Config.canvasQuery).getContext('2d', { willReadFrequently: true })
   Shared.ctx.canvas.width = Config.width
   Shared.ctx.canvas.height = Config.height
   Shared.ctx.fillStyle = Config.frontColor
   Shared.ctx.font = Config.frontFont
   Shared.ctx.imageSmoothingEnabled = false
   if (!checkDesktop()) return null
+  on(Shared.obs, 'change-room', saveShared)
 
   return g
 }
@@ -46,6 +48,7 @@ export function pause(g, p = true) {
 
 export function onPreload() {
   createObjs()
+  loadShared()
   updateObjs(null, room())
   playSound(Config.sounds.menu)
 }
@@ -54,8 +57,8 @@ function createObjs() {
   // Static items. Order is important!
   Shared.objs = [
     { draw: drawLevel,   update: updateLevel,   o: Level() },
-    { draw: drawHero,    update: updateHero,    o: Hero(),   id: Config.heroId },
-    { draw: drawBullet,  update: updateBullet,  o: Bullet(), id: Config.bulletId },
+    { draw: drawHero,    update: updateHero,    o: Hero(),    id: Config.heroId },
+    { draw: drawBullet,  update: updateBullet,  o: Bullet(),  id: Config.bulletId },
     { draw: drawEffect,  update: updateEffects, o: Effects(), id: Config.effectsId },
     { draw: drawBullets, update: fn,            o: Bullets() },
     { draw: drawHearts,  update: fn,            o: Hearts() },
@@ -66,7 +69,6 @@ function createObjs() {
 
   Shared.music  = Music()
   Shared.sounds = Sounds()
-  Shared.picked = findObjByFn(drawPicked)
   Shared.hero   = findObjById(Config.heroId)
   Shared.bullet = findObjById(Config.bulletId)
   Shared.timer  = findObjByFn(drawTimer)

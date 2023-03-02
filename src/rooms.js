@@ -1,7 +1,7 @@
 import Shared from './shared'
 import Config from './config'
 import { create } from './creator'
-import { findObjIdxById } from './utils'
+import { findObjIdxById, idFrom } from './utils'
 
 export function updateObjs(fromRoom, toRoom) {
   const objs = Shared.objs
@@ -11,7 +11,7 @@ export function updateObjs(fromRoom, toRoom) {
   enemies && enemies.forEach(cfg => objs.splice(Config.enemiesPos, 0, create('Enemy', cfg, toRoom)))
 
   const items = Config.rooms.items[toRoom]
-  items && items.forEach(cfg => !isPicked(cfg[0], toRoom) && objs.splice(Config.itemsPos, 0, create('Item', cfg, toRoom)))
+  items && items.forEach(cfg => !pickedInRoom(cfg[0], toRoom) && objs.splice(Config.itemsPos, 0, create('Item', cfg, toRoom)))
 
   const scripts = Config.rooms.scripts[toRoom]
   scripts && scripts.forEach(cfg => {
@@ -37,8 +37,7 @@ export function addAfter(id, obj) {
   else Shared.objs.push(obj)
 }
 
-function isPicked(itemCfg, room) {
-  return Shared.picked.items.findIndex(i => {
-    return i.sprite.img.img.src === itemCfg[1].idle[0] && i.room === room
-  }) !== -1
+function pickedInRoom(itemCfg, room) {
+  const id = idFrom(room, itemCfg[0].x, itemCfg[0].y)
+  return Shared.picked.findIndex(i => i.id === id) !== -1
 }

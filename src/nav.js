@@ -1,10 +1,11 @@
 import Shared from './shared'
 import Config from './config'
-import { logo, on, el, show, hide, resize, fullscreen } from './utils'
+import { logo, on, fire, el, css, show, hide, resize, fullscreen } from './utils'
 import { preload } from './assets'
 import { play, pause, onPreload } from './game'
 import { play as playSound, stop as stopSound } from './sounds'
 import { play as playMusic, stop as stopMusic } from './music'
+import { reset } from './store'
 
 export function Nav(game, settings) {
   if (!game) return null
@@ -36,7 +37,7 @@ export function start(n) {
 
 function onAssets(n) {
   on(n.menuBtn, 'click', onMenu.bind(null, n))
-  on(n.replayBtn, 'click', () => location.reload())
+  on(n.replayBtn, 'click', onReplay)
   on(n.playBtn, 'click', onPlay.bind(null, n))
   on(n.srcBtn, 'click', onSrc)
   on(n.cfgBtn, 'click', onCfg.bind(null, n))
@@ -61,6 +62,12 @@ function onMenu(n) {
   show(n.srcBtn)
   hide(n.vol)
   hide(n.volLabel)
+  css(Config.canvasQuery, 'filter', 'none')
+}
+
+function onReplay() {
+  reset()
+  location.reload()
 }
 
 function onPlay(n) {
@@ -77,6 +84,7 @@ function onPlay(n) {
   stopSound(Config.sounds.menu)
   playMusic(Shared.music)
   Config.fullscreen && fullscreen()
+  fire('play')
 }
 
 function onCfg(n) {

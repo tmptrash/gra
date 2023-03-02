@@ -1,15 +1,14 @@
+import Shared from './shared'
 import Config from './config'
 import { draw as drawSprite, stop } from './sprite'
 
 export function Picked() {
-  return {
-    items: []
-  }
+  return {}
 }
 
-export function draw(picked) {
+export function draw() {
   let x = Config.width - 2
-  picked.items.forEach(i => {
+  Shared.picked.forEach(i => {
     stop(i.sprite)
     if (!i.hidden) {
       x -= (i.sprite.width + 5)

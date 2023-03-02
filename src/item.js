@@ -1,7 +1,7 @@
 import Config from './config'
 import Shared from './shared'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
-import { delObj, touch, msg, repeat, el, css, fire, pickedIdx, picked } from './utils'
+import { delObj, touch, msg, repeat, el, css, fire, pickedIdx, picked, idFrom } from './utils'
 import { create } from './creator'
 import { play } from './sounds'
 
@@ -17,12 +17,11 @@ const pickFns = {
 
 export function Item(spriteCfg, sound, msg, room) {
   const item = {
-    picked: false,
+    spriteCfg,
     room,
     sprite: Sprite(...spriteCfg),
     stepTime: performance.now(),
-    sound: Shared.sounds[sound],
-    hidden: false,
+    sound,
     msg
   }
 
@@ -42,15 +41,22 @@ export function update(i) {
 }
 
 function pick(item, show = true) {
-  item.hidden = !show
-  Shared.picked.items.push(item)
+  const cfg = item.spriteCfg
+  // simple version of item with ability to save into store.js
+  Shared.picked.push({
+    id: idFrom(item.room, cfg[0].x, cfg[0].y),
+    sprite: item.sprite,
+    spriteCfg: cfg,
+    hidden: !show,
+    msg: item.msg
+  })
   delObj(item)
   Shared.objs.push(create('Text', {text: [msg(item.msg), 437, 300, 0, 2000, false, 0], id: 0}, item.room))
-  play(item.sound)
+  play(Shared.sounds[item.sound])
 }
 
 function pickBraveMushroom(i) {
-  const e = el(`#${Config.canvasId}`)
+  const e = el(Config.canvasQuery)
   const timer = create('Countdown', [Config.mushroomDelayMs, ...Config.countdownPos])
   css(e, 'animation', 'mushroomEffect 2s linear infinite')
   css(e, 'filter', 'none')
@@ -62,7 +68,7 @@ function pickBraveMushroom(i) {
   const int = repeat(Config.mushroomDelayMs, Config.braveMushroomPlayPeriosMs, () => {
     Shared.speed = 1
     const idx = pickedIdx('foundBraveMushroom')
-    idx !== -1 && (Shared.picked.items[idx].hidden = true)
+    idx !== -1 && (Shared.picked[idx].hidden = true)
     css(e, 'animation', 'none')
     delObj(timer)
     fire('after-brave')
@@ -81,7 +87,7 @@ function pickTeleMushroom(i) {
   Shared.objs.push(timer)
   const int = repeat(Config.mushroomDelayMs, Config.teleMushroomPlayPeriosMs, () => {
     const idx = pickedIdx('foundTeleMushroom')
-    idx !== -1 && (Shared.picked.items[idx].hidden = true)
+    idx !== -1 && (Shared.picked[idx].hidden = true)
     delObj(timer)
   }, () => {
     Shared.stop && clearInterval(int)

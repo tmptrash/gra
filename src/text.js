@@ -1,6 +1,6 @@
 import Config from './config'
 import Shared from './shared'
-import { UP, delObj, msg } from './utils'
+import { UP, delObj } from './utils'
 
 export function Text(msg, x, y, after, delay, once, id) {
   const text = {
