@@ -3,7 +3,7 @@ import Config from './config'
 import Shared from './shared'
 import { RIGHT, LEFT } from './utils'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
-import { leftBarrier, rightBarrier } from './barriers'
+import { leftBlock, rightBlock } from './blocks'
 import { play } from './sounds'
 
 export function Bullet() {
@@ -42,7 +42,7 @@ export function update(b) {
     const t = performance.now()
     b.sprite.x += (((t - b.time) * Config.bulletSpeed) * d)
     b.time = t
-    if ((d === LEFT ? leftBarrier(b.sprite) : rightBarrier(b.sprite)) || b.sprite.x < 0 || b.sprite.x > Config.width) {
+    if ((d === LEFT ? leftBlock(b.sprite) : rightBlock(b.sprite)) || b.sprite.x < 0 || b.sprite.x > Config.width) {
       b.time = 0
       b.hidden = true
     }

@@ -3,11 +3,9 @@ import Config from './config'
 import { Sprite, stop, draw as drawSprite } from './sprite'
 
 export function Bullets() {
-  const b = {
+  return {
     sprite: Sprite(...Config.bullets)
   }
-
-  return b
 }
 
 export function draw(b) {

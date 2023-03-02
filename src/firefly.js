@@ -1,7 +1,7 @@
 import Config from './config'
 import Shared from './shared'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
-import { xyBarrier } from './barriers'
+import { xyBlock } from './blocks'
 import { on, rnd } from './utils'
 
 const MAX_AMOUNT = Config.fireflyAmount
@@ -43,7 +43,7 @@ export function update(f) {
       if (y < SW) y = SW
       else if (y > H) y = H
       f.dirs[i] = d
-      if (!xyBarrier(x, y)) s.x = x, s.y = y
+      if (!xyBlock(x, y)) s.x = x, s.y = y
       updateSprite(s)
       f.t[i] = t
     }
@@ -51,7 +51,7 @@ export function update(f) {
 }
 
 function onChangeRoom(f) {
-  f.sprites.forEach((s, i) => (f.hidden[i] = xyBarrier((s.x = rnd(W, SW)), (s.y = rnd(H, SW)))))
+  f.sprites.forEach((s, i) => (f.hidden[i] = xyBlock((s.x = rnd(W, SW)), (s.y = rnd(H, SW)))))
 }
 
 function newXY(d, x, y) {
@@ -67,7 +67,7 @@ function init(f) {
     cfg[0].x = rnd(W, SW)
     cfg[0].y = rnd(H, SW)
     f.sprites[i] = Sprite(...cfg)
-    f.hidden[i] = xyBarrier(cfg[0].x, cfg[0].y)
+    f.hidden[i] = xyBlock(cfg[0].x, cfg[0].y)
     f.dirs[i] = rnd(8)
     f.t[i] = 0
   }

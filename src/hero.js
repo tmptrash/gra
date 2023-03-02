@@ -1,7 +1,7 @@
 import Config from './config'
 import Shared from './shared'
 import { bind, unbind, LEFT, RIGHT, picked, on, fire } from './utils'
-import { rightBarrier, leftBarrier, topBarrier, downBarrier } from './barriers'
+import { rightBlock, leftBlock, topBlock, downBlock } from './blocks'
 import { Sprite, draw as drawSprite, update as updateSprite, setImg } from './sprite'
 import { updateObjs, room } from './rooms'
 import { play } from './sounds'
@@ -104,7 +104,7 @@ function rebind(h) {
 function onJumpKeyDown(h) {
   if (h.isJumping) { h.pressed.w = true; return }
   h.sprite.y++
-  const pos = downBarrier(h.sprite)
+  const pos = downBlock(h.sprite)
   const now = performance.now()
   h.sprite.y--
   if (!h.pressed.w && (pos || (!pos && now - h.coyoteTime < Config.coyoteDelayMs))) {
@@ -123,7 +123,7 @@ function updateX(hero, newX) {
   Math.abs(diff) > Config.spriteSize && (diff = (Config.spriteSize - 1) * Math.sign(diff))
   const left = diff < 0
   s.x += diff
-  const pos = left ? leftBarrier(s, false) : rightBarrier(s, false)
+  const pos = left ? leftBlock(s, false) : rightBlock(s, false)
   pos && (s.x = left ? pos[0] + 1 : pos[0] - s.width - 1)
 }
 
@@ -133,7 +133,7 @@ function updateY(h, newY, dt) {
   Math.abs(diff) > Config.spriteSize && (diff = (Config.spriteSize - 1) * Math.sign(diff))
   const down = diff > 0
   s.y += diff
-  const pos = down ? downBarrier(s, false) : topBarrier(s, false)
+  const pos = down ? downBlock(s, false) : topBlock(s, false)
   if (pos) {
     if (down) s.y = pos[1] - s.height - 1, h.coyoteTime = performance.now(), h.v = 0
     else { // hitting the ceiling      

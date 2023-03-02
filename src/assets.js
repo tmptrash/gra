@@ -170,7 +170,6 @@ export function preload(cb) {
   const onLoad = () => Shared.assets--
   for (let i in ASSET_NAMES) {
     const asset = ASSET_NAMES[i]
-
     if (asset.endsWith('.mp3')) {
       ASSETS[asset] = new Audio()
       ASSETS[asset].oncanplaythrough = onLoad
