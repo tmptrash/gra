@@ -40,6 +40,7 @@ import BugBlueLeftPath from '../img/bug-black-blue-left-3.png'
 import BugBlueRightPath from '../img/bug-black-blue-right-3.png'
 import BugBigLeftPath from '../img/bug-big-left-3.png'
 import BugBigRightPath from '../img/bug-big-right-3.png'
+import ExplosionPath from '../img/explosion-25.png'
 // scripts
 import DropPath from '../img/drop-1.png'
 import DropDownPath from '../img/drop-down-12.png'
@@ -122,6 +123,7 @@ export const ASSET_NAMES = {
   'BugBlueRightPath': BugBlueRightPath,
   'BugBigLeftPath': BugBigLeftPath,
   'BugBigRightPath': BugBigRightPath,
+  'ExplosionPath': ExplosionPath,
   'DropPath': DropPath,
   'DropDownPath': DropDownPath,
   'PortalPath': PortalPath,

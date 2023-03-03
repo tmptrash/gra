@@ -73,7 +73,7 @@ export default Config = {
   fullscreen: false,
   useSetTimeout: false,
   setTimeoutDelay: 7,
-  debug: false,
+  debug: true,
   debugPos: [300, 40],
   fpsPos: [WIDTH / 2 - 100, 20],
   logoPos: [256, 50],
@@ -176,6 +176,7 @@ export default Config = {
   fireflySmall: [{ x: 0, y: 0 }, {idle: [A.FireflySPath, 4, 300]}],
   fireflyMid: [{ x: 0, y: 0 }, {idle: [A.FireflyMPath, 4, 300]}],
   fireflyBig: [{ x: 0, y: 0 }, {idle: [A.FireflyBPath, 5, 250]}],
+  explosion: [{x: 100, y: 100}, {idle: [A.ExplosionPath, 25, 20]}],
   hero: [{x: 200, y: 90}, {
     idleLeft:     [A.IdleLeftPath,     3, 260],
     idleRight:    [A.IdleRightPath,    3, 260],
@@ -374,8 +375,8 @@ export default Config = {
     },
     items: {
       0: [
-        //[[{x: 100, y: 200}, {idle: [A.GunAnimPath,   9,  150]}], 'gun',      'foundGun'],
-        //[[{x: 200, y: 300}, {idle: [A.BulletsPath,   9,  150]}], 'bullets',  'foundBullets'],
+        [[{x: 100, y: 200}, {idle: [A.GunAnimPath,   9,  150]}], 'gun',      'foundGun'],
+        [[{x: 200, y: 300}, {idle: [A.BulletsPath,   9,  150]}], 'bullets',  'foundBullets'],
         //[[{x: 830, y: 580}, {idle: [A.KeyPath,       7,  200]}], 'key',      'foundKey']
       ],
       2: [

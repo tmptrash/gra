@@ -13,6 +13,8 @@ export function Enemy(spriteCfg, speed, horizontal) {
     dir: horizontal ? RIGHT : DOWN,
     horizontal,
     sprite: Sprite(...spriteCfg),
+    exposionSprite: Sprite(...Config.explosion),
+    explosionOn: false,
     stepTime: performance.now(),
     speedTime: performance.now(),
     touchTime: 0
@@ -24,6 +26,7 @@ export function Enemy(spriteCfg, speed, horizontal) {
 
 export function draw(e) {
   drawSprite(e.sprite)
+  e.explosionOn && drawSprite(e.exposionSprite)
 }
 
 export function update(e) {
@@ -52,15 +55,23 @@ export function update(e) {
       e.dir = DOWN, s.img = s.imgs.idleDown
   }
 
-  if (touch(s, Shared.hero.sprite, Config.intersectionOffs) && (t - e.touchTime > Config.touchDelayMs)) {
+  if (!s.hidden && touch(s, Shared.hero.sprite, Config.intersectionOffs) && (t - e.touchTime > Config.touchDelayMs)) {
     Shared.hero.hit = true
     e.touchTime = t
   }
 
-  if (!Shared.bullet.hidden && touch(s, Shared.bullet.sprite)) {
-    delObj(e)
+  if (!s.hidden && !Shared.bullet.hidden && touch(s, Shared.bullet.sprite)) {
     play(Shared.sounds.bugDie)
-    Shared.bullet.hidden = true
+    Shared.bullet.hidden = s.hidden = true
+    e.explosionOn = true
+    e.exposionSprite.x = s.x
+    e.exposionSprite.y = s.y + s.height / 2 - e.exposionSprite.height / 2 - 10
+    e.exposionSprite.img.frames.frame = 0
+  }
+
+  if (e.explosionOn && e.exposionSprite.img.frames.frame >= e.exposionSprite.img.frames.amount - 1) {
+    e.explosionOn = false
+    delObj(e)
   }
 
   // update frames speed
@@ -70,6 +81,7 @@ export function update(e) {
   }
 
   updateSprite(s)
+  e.explosionOn && updateSprite(e.exposionSprite)
 }
 
 function right(sprite) {

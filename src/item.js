@@ -120,6 +120,7 @@ function pickBullets(i) {
 
 function pickGun(i) {
   Shared.hero.gun = true
+  Shared.hero.bullets += Config.bulletsAmount
   pick(i)
 }
 
