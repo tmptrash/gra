@@ -9,14 +9,15 @@ import { reset } from './store'
 
 export function Nav(game, settings) {
   if (!game) return null
-  on(Shared.obs, 'cfg', onSetCfg)
-
-  return {
+  const n = {
     playBtn: el(Config.playQuery),
     menuBtn: el(Config.menuQuery),
     replayBtn: el(Config.replayQuery),
+    helpBtn: el(Config.helpQuery),
     cfgBtn: el(Config.cfgQuery),
     srcBtn: el(Config.srcQuery),
+    helpWnd: el(Config.helpWndQuery),
+    helpClose: el(Config.helpCloseQuery),
     spinner: el(Config.spinnerQuery),
     settingsEl: el(Config.settingsQuery),
     contentEl: el(Config.contentQuery),
@@ -25,6 +26,10 @@ export function Nav(game, settings) {
     game,
     settings
   }
+  on(Shared.obs, 'cfg', onSetCfg)
+  on(Shared.obs, 'change-room', onHelpClose.bind(null, n))
+
+  return n
 }
 
 export function start(n) {
@@ -38,6 +43,8 @@ export function start(n) {
 function onAssets(n) {
   on(n.menuBtn, 'click', onMenu.bind(null, n))
   on(n.replayBtn, 'click', onReplay)
+  on(n.helpBtn, 'click', onHelp.bind(null, n))
+  on(n.helpClose, 'click', onHelpClose.bind(null, n))
   on(n.playBtn, 'click', onPlay.bind(null, n))
   on(n.srcBtn, 'click', onSrc)
   on(n.cfgBtn, 'click', onCfg.bind(null, n))
@@ -55,6 +62,7 @@ function onMenu(n) {
   playSound(Config.sounds.menu)
   hide(n.menuBtn)
   hide(n.replayBtn)
+  hide(n.helpBtn)
   hide(n.settingsEl)
   show(n.contentEl)
   show(n.playBtn)
@@ -70,11 +78,22 @@ function onReplay() {
   location.reload()
 }
 
+function onHelp(n) {
+  hide(n.helpBtn)
+  show(n.helpWnd)
+}
+
+function onHelpClose(n) {
+  hide(n.helpWnd)
+  show(n.helpBtn)
+}
+
 function onPlay(n) {
   hide(n.settingsEl)
   show(n.contentEl)
   show(n.menuBtn)
   show(n.replayBtn)
+  show(n.helpBtn)
   show(n.vol)
   show(n.volLabel)
   hide(n.playBtn)

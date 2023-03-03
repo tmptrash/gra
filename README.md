@@ -20,7 +20,7 @@ Desktop Chrome + fullscreen
 Installs all needed dependencies
 
 ### `npm run build`
-Builds the game into `dist` folder (to run just drop `index.html` to the Chrome browser)
+Builds the game into `dist` folder (to run just drop `index.html` into the Chrome browser)
 
 ### `npm start`
 Runs a game in development mode. It reacts to any change in js and html in real time

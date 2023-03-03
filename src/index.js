@@ -1,7 +1,8 @@
 loadCfg() // load settings from personal storage
-import './index.css'
-import './settings.css'
-import './checkbox.css'
+import './css/index.css'
+import './css/settings.css'
+import './css/checkbox.css'
+import './css/help.css'
 import { Nav, start } from './nav'
 import { Game } from './game'
 import { Settings } from './settings'
