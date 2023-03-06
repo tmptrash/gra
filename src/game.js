@@ -54,6 +54,9 @@ export function onPreload() {
 }
 
 function createObjs() {
+  Shared.music  = Music()
+  Shared.sounds = Sounds()
+
   // Static items. Order is important!
   Shared.objs = [
     { draw: drawLevel,   update: updateLevel,   o: Level() },
@@ -67,8 +70,6 @@ function createObjs() {
     { draw: drawPicked,  update: fn,            o: Picked() }
   ]
 
-  Shared.music  = Music()
-  Shared.sounds = Sounds()
   Shared.hero   = findObjById(Config.heroId)
   Shared.bullet = findObjById(Config.bulletId)
   Shared.timer  = findObjByFn(drawTimer)

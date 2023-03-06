@@ -6,6 +6,7 @@ import { Text, draw as drawText, update as updateText } from './text'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import { Portal, draw as drawPortal, update as updatePortal } from './portal'
 import { Countdown, draw as drawCountdown } from './countdown'
+import { Water, draw as drawWater, update as updateWater } from './water'
 import { fn } from './utils'
 
 export function create(ctor, cfg, room) {
@@ -18,6 +19,7 @@ export function create(ctor, cfg, room) {
     case 'Sprite'   : return { draw: drawSprite,    update: updateSprite, o: Sprite(...cfg.sprite), room }
     case 'Portal'   : return { draw: drawPortal,    update: updatePortal, o: Portal(cfg.sprite), room }
     case 'Countdown': return { draw: drawCountdown, update: fn,           o: Countdown(...cfg), room }
+    case 'Water'    : return { draw: drawWater,     update: updateWater,  o: Water(...cfg.params), room }
   }
 
   return null

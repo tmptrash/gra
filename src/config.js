@@ -63,6 +63,7 @@ export default Config = {
   frontColor: '#ccc',
   verColor: '#000',
   textColor: '#fff',
+  waterColor: '#3FABCC',
   textFont: '20px Cambria, serif',
   frontFont: '16px Cambria, serif',
   verFont: 'bold 11px Cambria, serif',
@@ -71,7 +72,7 @@ export default Config = {
 
   // game related
   fullscreen: false,
-  useSetTimeout: false,
+  useSetTimeout: true,
   setTimeoutDelay: 7,
   debug: false,
   debugPos: [300, 40],
@@ -153,6 +154,7 @@ export default Config = {
     breath: A.SoundBreath,
     lending: A.SoundLending,
     steps: A.SoundSteps,
+    waterSteps: A.SoundWaterSteps,
     bullets: A.SoundBullets,
     fire: A.SoundFire,
     bugDie: A.SoundBugDie,
@@ -444,7 +446,7 @@ export default Config = {
     },
     scripts: {
       0: [
-        ['Drop',   {sprite1: [{x: 173, y: 164}, A.DropPath], sprite2: [{x: 151, y:  64}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed: 10, delay: 2000}],
+        ['Drop',   {sprite1: [{x: 173, y: 164}, A.DropPath], sprite2: [{x: 151, y:  64}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, before: 16, sound: 'drop1', speed: 10, delay: 2000}],
         ['Drop',   {sprite1: [{x: 619, y: 172}, A.DropPath], sprite2: [{x: 632, y:  64}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  9, delay: 4000}],
         ['Text',   {text:    [Msgs.welcome,       419, 300,     0, 3000, true], id: id(), after: EFFECT_ID}],
         ['Text',   {text:    [Msgs.keys,          386, 300,  3500, 4000, true], id: id(), after: EFFECT_ID}],
@@ -454,9 +456,10 @@ export default Config = {
         ['Sprite', {sprite:  [{x: 150, y:  64}, A.StalactiteUp1Path]}],
         ['Sprite', {sprite:  [{x: 580, y:  64}, A.StalactiteUp2Path]}],
         ['Sprite', {sprite:  [{x: 840, y: 530}, A.Plant1Path], pos: 'end'}],
-        ['Sprite', {sprite:  [{x: 135, y: 340}, A.Plant2Path], pos: 'end'}],
+        //['Sprite', {sprite:  [{x: 135, y: 340}, A.Plant2Path], pos: 'end'}],
         ['Sprite', {sprite:  [{x: 570, y: 390}, A.Plant3Path], pos: 'end'}],
-        ['Sprite', {sprite:  [{x: 350, y: 710}, A.Plant4Path], pos: 'end'}]
+        ['Sprite', {sprite:  [{x: 350, y: 710}, A.Plant4Path], pos: 'end'}],
+        ['Water',  {params: [64, 370, 256, 370, 6, 16], pos: 'end' }]
       ],
       1: [
         ['Drop',   {sprite1: [{x: 112, y: 159}, A.DropPath], sprite2: [{x: 112, y: 159}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 10, delay: 2000}],

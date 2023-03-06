@@ -26,7 +26,9 @@ export function Hero() {
     hit: false,
     hitTime: performance.now(),
     lendBefore: false,
-    handlers: []
+    handlers: [],
+    stepSound: Config.sounds.steps,
+    stepSpeed: Config.stepSpeed
   }
   rebind(hero)
   on(Shared.obs, 'rebind', rebind.bind(null, hero))
@@ -34,8 +36,8 @@ export function Hero() {
   return hero
 }
 
-export function draw(hero) {
-  drawSprite(hero.sprite)
+export function draw(h) {
+  drawSprite(h.sprite)
 }
 
 export function update(h) {
@@ -52,10 +54,10 @@ export function update(h) {
 
   // walk: x += (t - h.t) * Config.stepSpeed * h.dir
   if (h.pressed.d || h.pressed.a) {
-    updateX(h, s.x + (t - h.t) * Config.stepSpeed * h.dir)
+    updateX(h, s.x + (t - h.t) * h.stepSpeed * h.dir)
     if (!h.isJumping) {
       s.img = s.imgs[`walk${h.gun ? 'Gun' : ''}${side(h)}`]
-      h.lendBefore && play(Config.sounds.steps)
+      h.lendBefore && play(h.stepSound)
     }
   }
 

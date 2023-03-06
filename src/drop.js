@@ -10,6 +10,7 @@ export function Drop(cfg) {
     sound: Shared.sounds[cfg.sound],
     sprite1: Sprite(...cfg.sprite1),
     sprite2: Sprite(...cfg.sprite2),
+    before: cfg.before || 0,
     x: cfg.sprite1[0].x,
     y: cfg.sprite1[0].y,
     time: performance.now(),
@@ -43,7 +44,7 @@ export function update(drop) {
       play(drop.sound)
       drop.delayTime = -1
       s2.x = s1.x - (s2.img.frames.width / 2 - s1.img.frames.width / 2)
-      s2.y = pos[1] - s2.height
+      s2.y = pos[1] - s2.height - drop.before
       s1.y = drop.y
       s2.img.frames.frame = 0
     }

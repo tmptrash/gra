@@ -66,6 +66,7 @@ import SoundGun from '../sound/gun.mp3'
 import SoundWin from '../sound/win.mp3'
 import SoundLending from '../sound/lending.mp3'
 import SoundSteps from '../sound/steps.mp3'
+import SoundWaterSteps from '../sound/water-steps.mp3'
 import SoundBite from '../sound/bite.mp3'
 import SoundBreath from '../sound/breath.mp3'
 import SoundBullets from '../sound/bullets.mp3'
@@ -145,6 +146,7 @@ export const ASSET_NAMES = {
   'SoundWin': SoundWin,
   'SoundLending': SoundLending,
   'SoundSteps': SoundSteps,
+  'SoundWaterSteps': SoundWaterSteps,
   'SoundBite': SoundBite,
   'SoundHitMushroom': SoundHitMushroom,
   'SoundBreath': SoundBreath,
