@@ -25,7 +25,6 @@ export function Water(x0, y0, x1, y1, size, deep, dropCfg) {
 
 export function draw(w) {
   const c = Shared.ctx
-  const frames = w.dropSprite.img.frames
   c.fillStyle = Config.waterColor
   c.globalAlpha = .4
   c.fillRect(w.x0, w.y0 - 1, w.x1 - w.x0, w.y1 - w.y0 + w.deep)
@@ -43,8 +42,7 @@ export function update(w) {
   const s = Shared.hero.sprite
   const inWater = s.x > w.x0 && s.x < w.x1 - 5 && s.y + s.height > w.y0 + 2 && s.y + s.height < w.y0 + w.deep
   const frames = w.dropSprite.img.frames
-  Shared.hero.stepSound = inWater ? Config.sounds.waterSteps : Config.sounds.steps
-  Shared.hero.stepSpeed = inWater ? Config.stepSpeed / 2 : Config.stepSpeed
+  Shared.hero.inWater = inWater
   w.cy0 += w.cy0i
   w.cy1 += w.cy1i
   if (w.cy0 > w.y0 + w.size || w.cy0 < w.y0 - w.size) w.cy0i *= -1

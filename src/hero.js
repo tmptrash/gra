@@ -4,9 +4,10 @@ import { bind, unbind, LEFT, RIGHT, picked, on, fire } from './utils'
 import { rightBlock, leftBlock, topBlock, downBlock } from './blocks'
 import { Sprite, draw as drawSprite, update as updateSprite, setImg } from './sprite'
 import { updateObjs, room } from './rooms'
-import { play } from './sounds'
+import { play, stop } from './sounds'
 
 const HIT_DELAY = 150
+const WATER_FADE_PERIOD = 1000
 
 export function Hero() {
   const hero = {
@@ -28,7 +29,10 @@ export function Hero() {
     lendBefore: false,
     handlers: [],
     stepSound: Config.sounds.steps,
-    stepSpeed: Config.stepSpeed
+    waterStepSound: Config.sounds.waterSteps,
+    waterStepTime: 0,
+    stepSpeed: Config.stepSpeed,
+    inWater: false
   }
   rebind(hero)
   on(Shared.obs, 'rebind', rebind.bind(null, hero))
@@ -55,11 +59,17 @@ export function update(h) {
   // walk: x += (t - h.t) * Config.stepSpeed * h.dir
   if (h.pressed.d || h.pressed.a) {
     updateX(h, s.x + (t - h.t) * h.stepSpeed * h.dir)
+    h.stepSpeed = h.inWater ? Config.stepSpeed / 2 : Config.stepSpeed
     if (!h.isJumping) {
       s.img = s.imgs[`walk${h.gun ? 'Gun' : ''}${side(h)}`]
-      h.lendBefore && play(h.stepSound)
+      if (h.lendBefore) {
+        h.stepSound.volume = h.waterStepSound.volume = Shared.volume
+        play(h.inWater ? h.waterStepSound : h.stepSound)
+        if (h.inWater) h.waterStepTime = performance.now()
+        else fadeWater(h)
+      }
     }
-  }
+  } else fadeWater(h)
 
   // idle
   !h.isJumping && !h.pressed.d && !h.pressed.a && (s.img = s.imgs[`idle${h.gun ? 'Gun' : ''}${side(h)}`])
@@ -180,4 +190,12 @@ function updateScreen(h) {
 
 function side(hero) {
   return hero.dir === LEFT ? 'Left' : 'Right'
+}
+
+function fadeWater(h) {
+  if (performance.now() - h.waterStepTime > WATER_FADE_PERIOD) stop(h.stepSound), stop(h.waterStepSound)
+    else {
+      let v = h.stepSound.volume - .0166      
+      h.waterStepSound.volume = h.stepSound.volume = (v < 0 ? v = 0 : v)
+    }
 }
