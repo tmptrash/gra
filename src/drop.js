@@ -44,7 +44,7 @@ export function update(drop) {
       play(drop.sound)
       drop.delayTime = -1
       s2.x = s1.x - (s2.img.frames.width / 2 - s1.img.frames.width / 2)
-      s2.y = pos[1] - s2.height - drop.before
+      s2.y = pos[1] - s2.height - drop.before + 1
       s1.y = drop.y
       s2.img.frames.frame = 0
     }

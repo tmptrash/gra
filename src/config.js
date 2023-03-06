@@ -72,7 +72,7 @@ export default Config = {
 
   // game related
   fullscreen: false,
-  useSetTimeout: true,
+  useSetTimeout: false,
   setTimeoutDelay: 7,
   debug: false,
   debugPos: [300, 40],
@@ -155,6 +155,7 @@ export default Config = {
     lending: A.SoundLending,
     steps: A.SoundSteps,
     waterSteps: A.SoundWaterSteps,
+    jumpInWater: A.SoundJumpInWater,
     bullets: A.SoundBullets,
     fire: A.SoundFire,
     bugDie: A.SoundBugDie,
@@ -459,7 +460,7 @@ export default Config = {
         //['Sprite', {sprite:  [{x: 135, y: 340}, A.Plant2Path], pos: 'end'}],
         ['Sprite', {sprite:  [{x: 570, y: 390}, A.Plant3Path], pos: 'end'}],
         ['Sprite', {sprite:  [{x: 350, y: 710}, A.Plant4Path], pos: 'end'}],
-        ['Water',  {params: [64, 370, 256, 370, 6, 16], pos: 'end' }]
+        ['Water',  {params: [64, 370, 256, 370, 6, 16], drop: [{x: 0, y:0}, {idle: [A.DropDownPath, 12, 80]}], pos: 'end' }]
       ],
       1: [
         ['Drop',   {sprite1: [{x: 112, y: 159}, A.DropPath], sprite2: [{x: 112, y: 159}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 10, delay: 2000}],

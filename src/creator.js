@@ -19,7 +19,7 @@ export function create(ctor, cfg, room) {
     case 'Sprite'   : return { draw: drawSprite,    update: updateSprite, o: Sprite(...cfg.sprite), room }
     case 'Portal'   : return { draw: drawPortal,    update: updatePortal, o: Portal(cfg.sprite), room }
     case 'Countdown': return { draw: drawCountdown, update: fn,           o: Countdown(...cfg), room }
-    case 'Water'    : return { draw: drawWater,     update: updateWater,  o: Water(...cfg.params), room }
+    case 'Water'    : return { draw: drawWater,     update: updateWater,  o: Water(...cfg.params, cfg.drop), room }
   }
 
   return null
