@@ -61,7 +61,7 @@ export function update(e) {
   }
 
   if (!s.hidden && !Shared.bullet.hidden && touch(s, Shared.bullet.sprite)) {
-    play(Shared.sounds.bugDie)
+    play(Shared.sounds.bugDie.cloneNode(false))
     Shared.bullet.hidden = s.hidden = true
     e.explosionOn = true
     e.exposionSprite.x = s.x
