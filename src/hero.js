@@ -193,7 +193,7 @@ function side(hero) {
 }
 
 function fadeWater(h) {
-  if (performance.now() - h.waterStepTime > WATER_FADE_PERIOD) stop(h.stepSound), stop(h.waterStepSound)
+  if (performance.now() - h.waterStepTime > WATER_FADE_PERIOD) stop(h.waterStepSound)
     else {
       let v = h.stepSound.volume - .0166      
       h.waterStepSound.volume = h.stepSound.volume = (v < 0 ? v = 0 : v)
