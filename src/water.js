@@ -35,7 +35,7 @@ export function draw(w) {
   c.bezierCurveTo(w.cx0, w.cy0, w.cx1, w.cy1, w.x1, w.y1)
   c.stroke()
   c.globalAlpha = 1
-  w.inWater && !w.lastFrame && drawSprite(w.dropSprite)
+  !w.lastFrame && drawSprite(w.dropSprite)
 }
 
 export function update(w) {
@@ -55,6 +55,6 @@ export function update(w) {
     w.dropSprite.y = w.y0 - w.dropSprite.height
     play(Config.sounds.jumpInWater)
   } else if (!inWater) w.inWater = false
-  w.inWater && !w.lastFrame && updateSprite(w.dropSprite)
-  if (w.inWater && frames.frame === 0) w.lastFrame = true
+  !w.lastFrame && updateSprite(w.dropSprite)
+  if (!w.lastFrame && frames.frame === 0) w.lastFrame = true
 }

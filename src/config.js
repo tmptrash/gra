@@ -460,7 +460,7 @@ export default Config = {
         //['Sprite', {sprite:  [{x: 135, y: 340}, A.Plant2Path], pos: 'end'}],
         ['Sprite', {sprite:  [{x: 570, y: 390}, A.Plant3Path], pos: 'end'}],
         ['Sprite', {sprite:  [{x: 350, y: 710}, A.Plant4Path], pos: 'end'}],
-        ['Water',  {params:  [64, 370, 320, 370, 6, 16], drop: [{x: 0, y:0}, {idle: [A.DropDownPath, 12, 80]}], pos: 'end' }]
+        ['Water',  {params:  [63, 370, 321, 370, 6, 16], drop: [{x: 0, y:0}, {idle: [A.DropDownPath, 12, 80]}], pos: 'end' }]
       ],
       1: [
         ['Drop',   {sprite1: [{x: 112, y: 159}, A.DropPath], sprite2: [{x: 112, y: 159}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 10, delay: 2000}],
