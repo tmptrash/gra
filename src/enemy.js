@@ -7,7 +7,7 @@ import { play } from './sounds'
 
 const CHECK_PERIOD = 500
 
-export function Enemy(spriteCfg, speed, horizontal) {
+export function Enemy(spriteCfg, speed, horizontal, checkBottom = true) {
   const enemy = {
     speed,
     dir: horizontal ? RIGHT : DOWN,
@@ -17,7 +17,8 @@ export function Enemy(spriteCfg, speed, horizontal) {
     explosionOn: false,
     stepTime: performance.now(),
     speedTime: performance.now(),
-    touchTime: 0
+    touchTime: 0,
+    checkBottom
   }
 
   enemy.sprite.img = horizontal ? enemy.sprite.imgs.idleRight : enemy.sprite.imgs.idleDown
@@ -39,9 +40,9 @@ export function update(e) {
       e.stepTime = performance.now()
     }
 
-    if (e.dir === RIGHT && (rightBlock(s) || !right(s) || s.x + s.width > Config.width))
+    if (e.dir === RIGHT && (rightBlock(s) || e.checkBottom && !right(s) || s.x + s.width > Config.width))
       e.dir = LEFT, s.img = s.imgs.idleLeft
-    else if (e.dir === LEFT && (leftBlock(s) || !left(s) || s.x < 0))
+    else if (e.dir === LEFT && (leftBlock(s) || e.checkBottom && !left(s) || s.x < 0))
       e.dir = RIGHT, s.img = s.imgs.idleRight
   } else {
     if (t - e.stepTime > Config.objTickMs) {
