@@ -1,6 +1,6 @@
 import Config from './config'
 import Shared from './shared'
-import { bind, unbind, LEFT, RIGHT, picked, on, fire } from './utils'
+import { bind, unbind, LEFT, RIGHT, picked, on, fire, inWater } from './utils'
 import { rightBlock, leftBlock, topBlock, downBlock } from './blocks'
 import { Sprite, draw as drawSprite, update as updateSprite, setImg } from './sprite'
 import { updateObjs, room } from './rooms'
@@ -32,7 +32,8 @@ export function Hero() {
     waterStepSound: Config.sounds.waterSteps,
     waterStepTime: 0,
     stepSpeed: Config.stepSpeed,
-    inWater: false
+    inWater: false,
+    inWaterTime: 0
   }
   rebind(hero)
   on(Shared.obs, 'rebind', rebind.bind(null, hero))
@@ -42,6 +43,7 @@ export function Hero() {
 
 export function draw(h) {
   drawSprite(h.sprite)
+  h.inWaterTime && drawOxigen(h)
 }
 
 export function update(h) {
@@ -93,6 +95,13 @@ export function update(h) {
 
   // fire
   h.fire && (Shared.bullet.hidden = false, h.fire = false, h.bullets--)
+
+  // in water
+  if (h.inWater && inWater(s.x, s.y - 1)) {
+    const t = performance.now()
+    !h.inWaterTime && (h.inWaterTime = t)
+    if (t - h.inWaterTime > Config.underWaterTime) h.hit = true, h.inWaterTime = t
+  } else h.inWaterTime = 0
 
   updateScreen(h)
   updateSprite(s)
@@ -198,4 +207,11 @@ function fadeWater(h) {
       let v = h.stepSound.volume - .0166      
       h.waterStepSound.volume = h.stepSound.volume = (v < 0 ? v = 0 : v)
     }
+}
+
+function drawOxigen(h) {
+  const s = h.sprite
+  const d = (Config.underWaterTime - (performance.now() - h.inWaterTime)) / 200
+  Shared.ctx.fillStyle = Config.oxigenColor
+  Shared.ctx.fillRect(s.x - 10, s.y - 10, d , 4)
 }

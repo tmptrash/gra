@@ -63,7 +63,9 @@ export default Config = {
   frontColor: '#ccc',
   verColor: '#000',
   textColor: '#fff',
-  waterColor: '#3FABCC',
+  waterColor: '#3fabcc',
+  waterAlphaColor: '#36778c', // depends on waterColor
+  oxigenColor: 'green',
   textFont: '20px Cambria, serif',
   frontFont: '16px Cambria, serif',
   verFont: 'bold 11px Cambria, serif',
@@ -119,6 +121,7 @@ export default Config = {
   pickedY: 6,
   touchDelayMs: 1500,
   coyoteDelayMs: 80,
+  underWaterTime: 10000,
 
   // keys
   jumpQuery: '#jump',
@@ -277,7 +280,7 @@ export default Config = {
       ],
       16: [
         [[{x: 800, y: 729}, {idleLeft: [A.BugLeftPath,    2, 300], idleRight: [A.BugRightPath,    2, 300]}], 2,   true],
-        [[{x: 100, y: 730}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.5, true, false]
+        [[{x: 100, y: 720}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.5, true, false]
       ],
       17: [
         [[{x: 150, y: 729}, {idleLeft: [A.BugLeftPath,    2, 300], idleRight: [A.BugRightPath,    2, 300]}], 2,   true],
@@ -536,12 +539,12 @@ export default Config = {
         ['Sprite', {sprite:  [{x: 550, y: 716}, A.Plant6Path], pos: 'end'}]
       ],
       16: [
-        ['Drop',   {sprite1: [{x: 219, y: 567}, A.DropPath], sprite2: [{x: 219, y: 567}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, before: 51, sound: 'drop1', speed:  5, delay: 2000}],
-        ['Drop',   {sprite1: [{x: 658, y: 140}, A.DropPath], sprite2: [{x: 658, y: 140}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 10, delay: 1000}],
+        ['Drop',   {sprite1: [{x: 219, y: 567}, A.DropPath], sprite2: [{x: 219, y: 567}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, before: 90, sound: 'drop1', speed:  5, delay: 2000}],
+        ['Drop',   {sprite1: [{x: 658, y: 140}, A.DropPath], sprite2: [{x: 658, y: 140}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, before: 20, sound: 'drop2', speed: 10, delay: 1000}],
         ['Sprite', {sprite:  [{x: 168, y: 480}, A.StalactiteUp1Path]}],
         ['Sprite', {sprite:  [{x: 618, y:  32}, A.StalactiteUp2Path]}],
         ['Portal', {sprite:  [{x: 300, y:  96}, {idle: [A.PortalPath, 9, 80]}], pos: 1}],
-        ['Water',  {params:  [31, 720, 321, 720, 7, 52], drop: [{x: 0, y:0}, {idle: [A.DropDownPath, 12, 80]}], pos: 'end' }]
+        ['Water',  {params:  [31, 680, 321, 680, 7, 92], drop: [{x: 0, y:0}, {idle: [A.DropDownPath, 12, 80]}], pos: 'end' }]
       ],
       17: [
         ['Drop',   {sprite1: [{x: 271, y:  32}, A.DropPath], sprite2: [{x: 271, y:  32}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed:  5, delay: 2000}],
