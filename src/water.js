@@ -19,7 +19,7 @@ export function Water(x0, y0, x1, y1, size, deep, dropCfg) {
     deep,
     inWater: false,
     dropSprite: Sprite(...dropCfg),
-    lastFrame: false
+    lastFrame: true
   }
 }
 
