@@ -6,7 +6,7 @@ const EFFECT_ID = 'effectsId'
 let Config = null
 let uniqueId = 0
 
-function id() {
+export function id() {
   return ++uniqueId
 }
 

@@ -1,5 +1,5 @@
 import Shared from './shared'
-import Config from './config'
+import Config, { id } from './config'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import { play } from './sounds'
 
@@ -19,7 +19,8 @@ export function Water(x0, y0, x1, y1, size, deep, dropCfg) {
     deep,
     inWater: false,
     dropSprite: Sprite(...dropCfg),
-    lastFrame: true
+    lastFrame: true,
+    id: id()
   }
 }
 
@@ -42,7 +43,8 @@ export function update(w) {
   const s = Shared.hero.sprite
   const inWater = s.x > w.x0 && s.x < w.x1 - 5 && s.y + s.height > w.y0 + 2 && s.y + s.height < w.y0 + w.deep
   const frames = w.dropSprite.img.frames
-  Shared.hero.inWater = inWater
+  if (inWater) Shared.hero.inWater = w.id
+  else if (Shared.hero.inWater === w.id) Shared.hero.inWater = false
   w.cy0 += w.cy0i
   w.cy1 += w.cy1i
   if (w.cy0 > w.y0 + w.size || w.cy0 < w.y0 - w.size) w.cy0i *= -1

@@ -32,7 +32,7 @@ export function Hero() {
     waterStepSound: Config.sounds.waterSteps,
     waterStepTime: 0,
     stepSpeed: Config.stepSpeed,
-    inWater: false,
+    inWater: false, // bool | id
     inWaterTime: 0
   }
   rebind(hero)
