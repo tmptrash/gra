@@ -11,6 +11,7 @@ export default {
   ctx: null,
   objs: null,
   picked: [],
+  killed: {},
   timer: null,
   hero: null,
   bullet: null,

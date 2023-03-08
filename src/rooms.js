@@ -1,14 +1,14 @@
 import Shared from './shared'
 import Config from './config'
 import { create } from './creator'
-import { findObjIdxById, idFrom } from './utils'
+import { findObjIdxById, idFrom, enemyId } from './utils'
 
 export function updateObjs(fromRoom, toRoom) {
   const objs = Shared.objs
   for (let i = 0; i < objs.length; i++) objs[i].room === fromRoom && (objs.splice(i, 1), i--)
   
   const enemies = Config.rooms.enemies[toRoom]
-  enemies && enemies.forEach(cfg => objs.splice(Config.enemiesPos, 0, create('Enemy', cfg, toRoom)))
+  enemies && enemies.forEach(cfg => !Shared.killed[enemyId(cfg, toRoom)] && objs.splice(Config.enemiesPos, 0, create('Enemy', cfg, toRoom)))
 
   const items = Config.rooms.items[toRoom]
   items && items.forEach(cfg => !pickedInRoom(cfg[0], toRoom) && objs.splice(Config.itemsPos, 0, create('Item', cfg, toRoom)))

@@ -13,7 +13,7 @@ export function create(ctor, cfg, room) {
   switch (ctor) {
     case 'Door'     : return { draw: drawDoor,      update: updateDoor,   o: Door(), room }
     case 'Item'     : return { draw: drawItem,      update: updateItem,   o: Item(...cfg, room), room }
-    case 'Enemy'    : return { draw: drawEnemy,     update: updateEnemy,  o: Enemy(...cfg), room }
+    case 'Enemy'    : return { draw: drawEnemy,     update: updateEnemy,  o: Enemy(room, ...cfg), room }
     case 'Drop'     : return { draw: drawDrop,      update: updateDrop,   o: Drop(cfg), room }
     case 'Text'     : return { draw: drawText,      update: updateText,   o: Text(...cfg.text, cfg.id), room, id: cfg.id }
     case 'Sprite'   : return { draw: drawSprite,    update: updateSprite, o: Sprite(...cfg.sprite), room }

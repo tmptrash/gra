@@ -193,3 +193,8 @@ export function inWater(x, y) {
   const c = Shared.ctx.getImageData(x, y, 1, 1).data
   return `#${c[0].toString(16)}${c[1].toString(16)}${c[2].toString(16)}` === Config.waterAlphaColor
 }
+
+export function enemyId(cfg, r) {
+  const c = cfg[0][0]
+  return `${c.x}-${c.y}-${r}`
+}

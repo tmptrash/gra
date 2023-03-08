@@ -8,7 +8,7 @@ const SHARE = 'share'
 const CFG_FIELDS = [ 'leftKey', 'rightKey', 'jumpKey', 'fireKey', 'useKey', 'fullscreen' ]
 const SHARE_FIELDS = [
   // common fields
-  'offsX', 'offsY', 'showed', 'flashlightOn',
+  'offsX', 'offsY', 'showed', 'flashlightOn', 'killed',
   // special fields
   ['volume', v => v, loadVolume], ['picked', savePicked, loadPicked], ['timer', saveTimer, loadTimer], ['hero', saveHero, loadHero]
 ]

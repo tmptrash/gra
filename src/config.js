@@ -240,14 +240,12 @@ export default Config = {
         [[{x: 800, y: 695}, {idleLeft: [A.BugBlkLeftPath, 5, 100], idleRight: [A.BugBlkRightPath, 5, 100]}], 5,   true]
       ],
       8: [
-        //[[{x: 560, y: 217}, {idleLeft: [A.BugLeftPath,    2, 300], idleRight: [A.BugRightPath,    2, 300]}], 1,   true],
         [[{x: 270, y: 345}, {idleLeft: [A.BugLeftPath,    2, 300], idleRight: [A.BugRightPath,    2, 300]}], 1,   true],
         [[{x: 350, y: 729}, {idleLeft: [A.BugLeftPath,    2, 300], idleRight: [A.BugRightPath,    2, 300]}], 2,   true]
       ],
       9: [
         [[{x: 150, y: 697}, {idleLeft: [A.BugLeftPath,    2, 300], idleRight: [A.BugRightPath,    2, 300]}], 2,   true],
         [[{x: 200, y: 697}, {idleLeft: [A.BugLeftPath,    2, 300], idleRight: [A.BugRightPath,    2, 300]}], 1,   true],
-        //[[{x: 270, y: 697}, {idleLeft: [A.BugLeftPath,    2, 300], idleRight: [A.BugRightPath,    2, 300]}], 2,   true],
         [[{x: 890, y: 377}, {idleLeft: [A.BugLeftPath,    2, 300], idleRight: [A.BugRightPath,    2, 300]}], 1,   true]
       ],
       10: [

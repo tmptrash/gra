@@ -2,12 +2,12 @@ import Config from './config'
 import Shared from './shared'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import { rightBlock, leftBlock, topBlock, downBlock, xyBlock } from './blocks'
-import { touch, delObj, LEFT, RIGHT, UP, DOWN } from './utils'
+import { touch, delObj, LEFT, RIGHT, UP, DOWN, enemyId } from './utils'
 import { play } from './sounds'
 
 const CHECK_PERIOD = 500
 
-export function Enemy(spriteCfg, speed, horizontal, checkBottom = true) {
+export function Enemy(room, spriteCfg, speed, horizontal, checkBottom = true) {
   const enemy = {
     speed,
     dir: horizontal ? RIGHT : DOWN,
@@ -18,7 +18,8 @@ export function Enemy(spriteCfg, speed, horizontal, checkBottom = true) {
     stepTime: performance.now(),
     speedTime: performance.now(),
     touchTime: 0,
-    checkBottom
+    checkBottom,
+    id: enemyId([spriteCfg], room)
   }
 
   enemy.sprite.img = horizontal ? enemy.sprite.imgs.idleRight : enemy.sprite.imgs.idleDown
@@ -68,6 +69,7 @@ export function update(e) {
     e.exposionSprite.x = s.x
     e.exposionSprite.y = s.y + s.height / 2 - e.exposionSprite.height / 2 - 10
     e.exposionSprite.img.frames.frame = 0
+    Shared.killed[e.id] = true
   }
 
   if (e.explosionOn && e.exposionSprite.img.frames.frame >= e.exposionSprite.img.frames.amount - 1) {
