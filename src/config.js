@@ -161,6 +161,7 @@ export default Config = {
     jumpInWater: A.SoundJumpInWater,
     bullets: A.SoundBullets,
     fire: A.SoundFire,
+    missfire: A.SoundMissfire,
     bugDie: A.SoundBugDie,
     drop1: A.SoundDrop1,
     drop2: A.SoundDrop2,

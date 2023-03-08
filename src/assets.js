@@ -76,6 +76,7 @@ import SoundBullets from '../sound/bullets.mp3'
 import SoundGameOver from '../sound/game-over.mp3'
 import SoundHeart from '../sound/heart.mp3'
 import SoundFire from '../sound/fire.mp3'
+import SoundMissfire from '../sound/missfire.mp3'
 import SoundBugDie from '../sound/bug-die.mp3'
 import SoundDrop1 from '../sound/drop1.mp3'
 import SoundDrop2 from '../sound/drop2.mp3'
@@ -160,6 +161,7 @@ export const ASSET_NAMES = {
   'SoundGameOver': SoundGameOver,
   'SoundHeart': SoundHeart,
   'SoundFire': SoundFire,
+  'SoundMissfire': SoundMissfire,
   'SoundBugDie': SoundBugDie,
   'SoundDrop1': SoundDrop1,
   'SoundDrop2': SoundDrop2,

@@ -115,7 +115,7 @@ function rebind(h) {
   keyCfg.keydown[Config.leftKey]  = () => (h.pressed.a = true, h.dir = LEFT)
   keyCfg.keydown[Config.rightKey] = () => (h.pressed.d = true, h.dir = RIGHT),
   keyCfg.keydown[Config.jumpKey]  = onJumpKeyDown.bind(null, h),
-  keyCfg.keydown[Config.fireKey]  = () => (h.gun && h.bullets > 0 && (h.fire = true))
+  keyCfg.keydown[Config.fireKey]  = onFire.bind(null, h),
   keyCfg.keyup[Config.leftKey]    = () => (h.pressed.a = false, h.pressed.d && (h.dir = RIGHT)),
   keyCfg.keyup[Config.rightKey]   = () => (h.pressed.d = false, h.pressed.a && (h.dir = LEFT)),
   keyCfg.keyup[Config.jumpKey]    = () => h.pressed.w = false
@@ -136,6 +136,13 @@ function onJumpKeyDown(h) {
     h.sprite.imgs.jumpLeft.frames.frame = h.sprite.imgs.jumpRight.frames.frame = 0
   }
   h.pressed.w = true
+}
+
+function onFire(h) {
+  if (h.gun && h.bullets > 0) {
+    if (!h.inWater) h.fire = true
+    else play(Config.sounds.missfire)
+  }
 }
 
 function updateX(hero, newX) {
