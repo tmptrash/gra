@@ -540,7 +540,7 @@ export default Config = {
       ],
       16: [
         ['Drop',   {sprite1: [{x: 219, y: 567}, A.DropPath], sprite2: [{x: 219, y: 567}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, before: 90, sound: 'drop1', speed:  5, delay: 2000}],
-        ['Drop',   {sprite1: [{x: 658, y: 140}, A.DropPath], sprite2: [{x: 658, y: 140}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, before: 20, sound: 'drop2', speed: 10, delay: 1000}],
+        ['Drop',   {sprite1: [{x: 658, y: 140}, A.DropPath], sprite2: [{x: 658, y: 140}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 10, delay: 1000}],
         ['Sprite', {sprite:  [{x: 168, y: 480}, A.StalactiteUp1Path]}],
         ['Sprite', {sprite:  [{x: 618, y:  32}, A.StalactiteUp2Path]}],
         ['Portal', {sprite:  [{x: 300, y:  96}, {idle: [A.PortalPath, 9, 80]}], pos: 1}],

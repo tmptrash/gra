@@ -2,7 +2,7 @@ import Config from './config'
 import Shared from './shared'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import { xyBlock } from './blocks'
-import { on, rnd } from './utils'
+import { on, rnd, inWater } from './utils'
 
 const MAX_AMOUNT = Config.fireflyAmount
 const LEVELS = Config.vSprites * Config.spriteSize / Config.height
@@ -43,7 +43,7 @@ export function update(f) {
       if (y < SW) y = SW
       else if (y > H) y = H
       f.dirs[i] = d
-      if (!xyBlock(x, y)) s.x = x, s.y = y
+      if (!xyBlock(x, y) && !inWater(x + s.width, y + s.height)) s.x = x, s.y = y
       updateSprite(s)
       f.t[i] = t
     }
