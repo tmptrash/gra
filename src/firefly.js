@@ -67,7 +67,7 @@ function init(f) {
     cfg[0].x = rnd(W, SW)
     cfg[0].y = rnd(H, SW)
     f.sprites[i] = Sprite(...cfg)
-    f.hidden[i] = xyBlock(cfg[0].x, cfg[0].y)
+    f.hidden[i] = xyBlock(cfg[0].x, cfg[0].y) || inWater(cfg[0].x, cfg[0].y)
     f.dirs[i] = rnd(8)
     f.t[i] = 0
   }
