@@ -191,7 +191,8 @@ export function rnd(n, start = 0) {
 
 export function inWater(x, y) {
   const c = Shared.ctx.getImageData(x, y, 1, 1).data
-  return `#${c[0].toString(16)}${c[1].toString(16)}${c[2].toString(16)}` === Config.waterAlphaColor
+  const col = `#${c[0].toString(16)}${c[1].toString(16)}${c[2].toString(16)}`
+  return col === Config.waterAlphaColor || col === Config.waterAlphaColor1
 }
 
 export function enemyId(cfg, r) {

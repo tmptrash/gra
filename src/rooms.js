@@ -8,7 +8,7 @@ export function updateObjs(fromRoom, toRoom) {
   for (let i = 0; i < objs.length; i++) objs[i].room === fromRoom && (objs.splice(i, 1), i--)
   
   const enemies = Config.rooms.enemies[toRoom]
-  enemies && enemies.forEach(cfg => !Shared.killed[enemyId(cfg, toRoom)] && objs.splice(Config.enemiesPos, 0, create('Enemy', cfg, toRoom)))
+  enemies && enemies.forEach(cfg => !Shared.killed[enemyId(cfg, toRoom)] && objs.splice(cfg[4] || Config.enemiesPos, 0, create('Enemy', cfg, toRoom)))
 
   const items = Config.rooms.items[toRoom]
   items && items.forEach(cfg => !pickedInRoom(cfg[0], toRoom) && objs.splice(Config.itemsPos, 0, create('Item', cfg, toRoom)))
