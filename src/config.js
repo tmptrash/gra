@@ -376,7 +376,7 @@ export default Config = {
       39: [
         [[{x: 200, y: 693}, {idleLeft: [A.BugBigLeftPath, 3, 200], idleRight: [A.BugBigRightPath, 3, 200]}], 5,   true, true, 3],
         [[{x: 600, y: 693}, {idleLeft: [A.BugBigLeftPath, 3, 200], idleRight: [A.BugBigRightPath, 3, 200]}], 5,   true, true, 3],
-        [[{x: 750, y: 661}, {idleLeft: [A.BugBigLeftPath, 3, 200], idleRight: [A.BugBigRightPath, 3, 200]}], 5,   true]
+        [[{x: 750, y: 661}, {idleLeft: [A.BugBigLeftPath, 3, 200], idleRight: [A.BugBigRightPath, 3, 200]}], 5,   true, true, 3]
       ]
     },
     items: {
@@ -610,7 +610,7 @@ export default Config = {
         ['Drop',   {sprite1: [{x: 544, y: 544}, A.DropPath], sprite2: [{x: 544, y: 544}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, before: 23, sound: 'drop1', speed:  8, delay: 2000}],
         ['Drop',   {sprite1: [{x: 769, y: 447}, A.DropPath], sprite2: [{x: 769, y: 447}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  8, delay: 1000}],
         ['Drop',   {sprite1: [{x: 621, y: 319}, A.DropPath], sprite2: [{x: 621, y: 319}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, before: 23, sound: 'drop2', speed:  8, delay: 3000}],
-        ['Water',  {params:  [0, 715, 673, 715, 6, 24], drop: [{x: 0, y:0}, {idle: [A.DropDownPath, 12, 40]}], pos: 8 }]
+        ['Water',  {params:  [0, 715, 673, 715, 6, 24], drop: [{x: 0, y:0}, {idle: [A.DropDownPath, 12, 40]}], pos: 11 }]
       ]
     }
   },
