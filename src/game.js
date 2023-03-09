@@ -62,7 +62,7 @@ function createObjs() {
     { draw: drawLevel,   update: updateLevel,   o: Level() },
     { draw: drawHero,    update: updateHero,    o: Hero(),    id: Config.heroId },
     { draw: drawBullet,  update: updateBullet,  o: Bullet(),  id: Config.bulletId },
-    { draw: drawBullets, update: fn,            o: Bullets() },
+    { draw: drawBullets, update: fn,            o: Bullets(), id: Config.bulletsId },
     { draw: drawEffect,  update: updateEffects, o: Effects(), id: Config.effectsId },
     { draw: drawHearts,  update: fn,            o: Hearts() },
     { draw: drawTimer,   update: fn,            o: Timer() },

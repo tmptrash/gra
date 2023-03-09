@@ -43,6 +43,7 @@ export default Config = {
   audioId: 'audio',
   heroId: 'hero',
   bulletId: 'bullet',
+  bulletsId: 'bullets',
   effectsId: EFFECT_ID,
   gameOverId: 'game-over',
   gameCompletedId: 'completed',
@@ -367,16 +368,16 @@ export default Config = {
         [[{x: 250, y: 629}, {idleLeft: [A.BugBigLeftPath, 3, 200], idleRight: [A.BugBigRightPath, 3, 200]}], 5,   true]
       ],
       38: [
-        [[{x: 600, y: 693}, {idleLeft: [A.BugBigLeftPath, 3, 200], idleRight: [A.BugBigRightPath, 3, 200]}], 5,   true, true, 3],
-        [[{x: 480, y: 693}, {idleLeft: [A.BugBigLeftPath, 3, 200], idleRight: [A.BugBigRightPath, 3, 200]}], 4.5, true, true, 3],
-        [[{x: 300, y: 437}, {idleLeft: [A.BugBigLeftPath, 3, 200], idleRight: [A.BugBigRightPath, 3, 200]}], 5,   true, true, 3],
-        [[{x: 450, y: 437}, {idleLeft: [A.BugBigLeftPath, 3, 200], idleRight: [A.BugBigRightPath, 3, 200]}], 4.5, true, true, 3],
-        [[{x: 400, y: 437}, {idleLeft: [A.BugBigLeftPath, 3, 200], idleRight: [A.BugBigRightPath, 3, 200]}], 5,   true, true, 3]
+        [[{x: 600, y: 693}, {idleLeft: [A.BugBigLeftPath, 3, 200], idleRight: [A.BugBigRightPath, 3, 200]}], 5,   true, true, 'hero'],
+        [[{x: 480, y: 693}, {idleLeft: [A.BugBigLeftPath, 3, 200], idleRight: [A.BugBigRightPath, 3, 200]}], 4.5, true, true, 'hero'],
+        [[{x: 300, y: 437}, {idleLeft: [A.BugBigLeftPath, 3, 200], idleRight: [A.BugBigRightPath, 3, 200]}], 5,   true, true, 'hero'],
+        [[{x: 450, y: 437}, {idleLeft: [A.BugBigLeftPath, 3, 200], idleRight: [A.BugBigRightPath, 3, 200]}], 4.5, true, true, 'hero'],
+        [[{x: 400, y: 437}, {idleLeft: [A.BugBigLeftPath, 3, 200], idleRight: [A.BugBigRightPath, 3, 200]}], 5,   true, true, 'hero']
       ],
       39: [
-        [[{x: 200, y: 693}, {idleLeft: [A.BugBigLeftPath, 3, 200], idleRight: [A.BugBigRightPath, 3, 200]}], 5,   true, true, 3],
-        [[{x: 600, y: 693}, {idleLeft: [A.BugBigLeftPath, 3, 200], idleRight: [A.BugBigRightPath, 3, 200]}], 5,   true, true, 3],
-        [[{x: 750, y: 661}, {idleLeft: [A.BugBigLeftPath, 3, 200], idleRight: [A.BugBigRightPath, 3, 200]}], 5,   true, true, 3]
+        [[{x: 200, y: 693}, {idleLeft: [A.BugBigLeftPath, 3, 200], idleRight: [A.BugBigRightPath, 3, 200]}], 5,   true, true, 'hero'],
+        [[{x: 600, y: 693}, {idleLeft: [A.BugBigLeftPath, 3, 200], idleRight: [A.BugBigRightPath, 3, 200]}], 5,   true, true, 'hero'],
+        [[{x: 750, y: 661}, {idleLeft: [A.BugBigLeftPath, 3, 200], idleRight: [A.BugBigRightPath, 3, 200]}], 5,   true, true, 'hero']
       ]
     },
     items: {
@@ -598,19 +599,19 @@ export default Config = {
         ['Water',  {params:  [0, 650, 545, 650, 6, 89], drop: [{x: 0, y:0}, {idle: [A.DropDownPath, 12, 40]}], after: 'hero' }]
       ],
       37: [
-        ['Water',  {params:  [415, 712, 1023, 712, 6, 27], drop: [{x: 0, y:0}, {idle: [A.DropDownPath, 12, 40]}], pos: 5 }]
+        ['Water',  {params:  [415, 712, 1023, 712, 6, 27], drop: [{x: 0, y:0}, {idle: [A.DropDownPath, 12, 40]}], after: 'bullets' }]
       ],
       38: [
         ['Drop',   {sprite1: [{x: 400, y: 576}, A.DropPath], sprite2: [{x: 400, y: 576}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, before: 26, sound: 'drop1', speed: 8, delay: 2000}],
         ['Drop',   {sprite1: [{x: 627, y: 576}, A.DropPath], sprite2: [{x: 627, y: 576}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, before: 26, sound: 'drop3', speed: 8, delay: 1000}],
         ['Drop',   {sprite1: [{x: 800, y: 576}, A.DropPath], sprite2: [{x: 800, y: 576}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, before: 26, sound: 'drop2', speed: 8, delay: 3000}],
-        ['Water',  {params:  [0, 712, 1023, 712, 6, 27], drop: [{x: 0, y:0}, {idle: [A.DropDownPath, 12, 40]}], pos: 8 }]
+        ['Water',  {params:  [0, 712, 1023, 712, 6, 27], drop: [{x: 0, y:0}, {idle: [A.DropDownPath, 12, 40]}], after: 'bullets' }]
       ],
       39: [
         ['Drop',   {sprite1: [{x: 544, y: 544}, A.DropPath], sprite2: [{x: 544, y: 544}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, before: 23, sound: 'drop1', speed:  8, delay: 2000}],
         ['Drop',   {sprite1: [{x: 769, y: 447}, A.DropPath], sprite2: [{x: 769, y: 447}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  8, delay: 1000}],
         ['Drop',   {sprite1: [{x: 621, y: 319}, A.DropPath], sprite2: [{x: 621, y: 319}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, before: 23, sound: 'drop2', speed:  8, delay: 3000}],
-        ['Water',  {params:  [0, 715, 673, 715, 6, 24], drop: [{x: 0, y:0}, {idle: [A.DropDownPath, 12, 40]}], pos: 9 }]
+        ['Water',  {params:  [0, 715, 673, 715, 6, 24], drop: [{x: 0, y:0}, {idle: [A.DropDownPath, 12, 40]}], after: 'bullets' }]
       ]
     }
   },
