@@ -49,9 +49,7 @@ function onAssets(n) {
   on(n.srcBtn, 'click', onSrc)
   on(n.cfgBtn, 'click', onCfg.bind(null, n))
   hide(n.spinner)
-  show(n.playBtn)
-  show(n.cfgBtn)
-  show(n.srcBtn)
+  show([n.playBtn, n.cfgBtn, n.srcBtn])
   onPreload()
 }
 
@@ -60,16 +58,8 @@ function onMenu(n) {
   logo()
   stopMusic(Shared.music)
   playSound(Config.sounds.menu)
-  hide(n.menuBtn)
-  hide(n.replayBtn)
-  hide(n.helpBtn)
-  hide(n.settingsEl)
-  show(n.contentEl)
-  show(n.playBtn)
-  show(n.cfgBtn)
-  show(n.srcBtn)
-  hide(n.vol)
-  hide(n.volLabel)
+  hide([n.menuBtn, n.replayBtn, n.helpBtn, n.settingsEl, n.vol, n.volLabel])
+  show([n.contentEl, n.playBtn, n.cfgBtn, n.srcBtn])
   css(Config.canvasQuery, 'filter', 'none')
 }
 
@@ -89,16 +79,8 @@ function onHelpClose(n) {
 }
 
 function onPlay(n) {
-  hide(n.settingsEl)
-  show(n.contentEl)
-  show(n.menuBtn)
-  show(n.replayBtn)
-  show(n.helpBtn)
-  show(n.vol)
-  show(n.volLabel)
-  hide(n.playBtn)
-  hide(n.cfgBtn)
-  hide(n.srcBtn)
+  show([n.contentEl, n.menuBtn, n.replayBtn, n.helpBtn, n.vol, n.volLabel])
+  hide([n.settingsEl, n.playBtn, n.cfgBtn, n.srcBtn])
   play(n.game)
   stopSound(Config.sounds.menu)
   playMusic(Shared.music)
@@ -107,10 +89,8 @@ function onPlay(n) {
 }
 
 function onCfg(n) {
-  show(n.menuBtn)
-  hide(n.contentEl)
-  hide(n.cfgBtn)
-  show(n.settingsEl)
+  show([n.menuBtn, n.settingsEl])
+  hide([n.contentEl, n.cfgBtn])
 }
 
 function onSrc() {

@@ -51,6 +51,7 @@ export function update(h) {
   const s = h.sprite
   const dt = (t - (h.t || (h.t = t))) / (Config.jumpSpeed * 100)
 
+  // jump
   if (h.isJumping) {
     // this is how we track if user press jump key longer to jump higher
     h.pressed.w && t - h.jumpStartTime < Config.jumpPressTimeMs && (h.v += dt * (Config.jumpVelocity / Config.gravity))

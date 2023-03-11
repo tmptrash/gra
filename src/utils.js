@@ -125,12 +125,14 @@ export function repeat(timeout, every, timeoutCb, everyCb) {
 }
 
 export function show(e) {
+  if (isArr(e)) { e.forEach(el => show(el)); return null }
   const elem = typeof e === 'string' ? el(e) : e
   elem.style.display = ''
   return elem
 }
 
 export function hide(e) {
+  if (isArr(e)) { e.forEach(el => hide(el)); return null }
   const elem = typeof e === 'string' ? el(e) : e
   elem.style.display = 'none'
   return elem
