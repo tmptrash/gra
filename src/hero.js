@@ -100,13 +100,16 @@ export function update(h) {
   // fire
   h.fire && (Shared.bullet.hidden = false, h.fire = false, h.bullets--)
 
-  // in water
+  // under water
   if (h.inWater && inWater(s.x, s.y - 1)) {
     const t = performance.now()
     !h.inWaterTime && (h.inWaterTime = t)
     if (t - h.inWaterTime > Config.underWaterTime) h.hit = true, h.inWaterTime = t
     h.dust = false
   } else h.inWaterTime = 0
+
+  // in water
+  h.inWater && (h.dust = false)
 
   // dust
   if (h.dust) {
