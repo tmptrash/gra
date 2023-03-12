@@ -186,6 +186,7 @@ export default Config = {
   fireflyMid: [{ x: 0, y: 0 }, {idle: [A.FireflyMPath, 4, 300]}],
   fireflyBig: [{ x: 0, y: 0 }, {idle: [A.FireflyBPath, 5, 250]}],
   explosion: [{x: 100, y: 100}, {idle: [A.ExplosionPath, 25, 20]}],
+  dust: [{x: 0, y: 0}, {idle: [A.DustPath, 12, 15]}],
   hero: [{x: 230, y: 0}, {
     idleLeft:     [A.IdleLeftPath,     3, 260],
     idleRight:    [A.IdleRightPath,    3, 260],

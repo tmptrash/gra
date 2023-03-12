@@ -19,6 +19,8 @@ export function Hero() {
     coyoteTime: 0,
     pressed: { a: false, d: false, w: false },
     sprite: Sprite(...Config.hero),
+    dustSprite: Sprite(...Config.dust),
+    dust: false,
     life: Config.startLifes,
     bullets: Config.startBullets,
     gun: Config.hasGun,
@@ -44,6 +46,7 @@ export function Hero() {
 export function draw(h) {
   drawSprite(h.sprite)
   h.inWaterTime && drawOxigen(h)
+  h.dust && !h.inWater && drawSprite(h.dustSprite)
 }
 
 export function update(h) {
@@ -102,7 +105,15 @@ export function update(h) {
     const t = performance.now()
     !h.inWaterTime && (h.inWaterTime = t)
     if (t - h.inWaterTime > Config.underWaterTime) h.hit = true, h.inWaterTime = t
+    h.dust = false
   } else h.inWaterTime = 0
+
+  // dust
+  if (h.dust) {
+    const ds = h.dustSprite
+    updateSprite(ds)
+    h.dust = ds.imgs.idle.frames.frame < ds.imgs.idle.frames.amount - 1
+  }
 
   updateScreen(h)
   updateSprite(s)
@@ -170,7 +181,14 @@ function updateY(h, newY, dt) {
       s.y = pos[1] + 1
     }
     h.isJumping && down && (h.isJumping = false)
-    !h.lendBefore && down && play(Config.sounds.lending)
+    // lending
+    if (!h.lendBefore && down && !h.inWater) {
+      play(Config.sounds.lending)
+      h.dustSprite.x = s.x + s.width / 2 - h.dustSprite.width / 2 + 3
+      h.dustSprite.y = s.y + s.height - h.dustSprite.height + 3
+      h.dustSprite.imgs.idle.frames.frame = 0
+      h.dust = true
+    }
   } else h.isJumping && h.jumpY < newY && (h.isJumping = false)
 
   h.v += Config.gravity * dt
