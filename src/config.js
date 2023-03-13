@@ -400,7 +400,7 @@ export default Config = {
         [[{x: 121, y: 604}, {idle: [A.BulletsPath,   9,  150]}], 'bullets', 'foundBullets']
       ],
       7: [
-        [[{x: 880, y: 600}, {idle: [A.BulletsPath,   9,  150]}], 'bullets', 'foundBullets']
+        [[{x: 870, y: 600}, {idle: [A.BulletsPath,   9,  150]}], 'bullets', 'foundBullets']
       ],
       8: [
         [[{x: 80,  y: 230}, {idle: [A.HeartAnimPath, 9,  100]}], 'heart',   'foundHeart'],
