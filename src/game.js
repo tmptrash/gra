@@ -101,7 +101,7 @@ function drawStop(g) {
 
   if (sh.stop === cfg.gameOverId) {
     text(Msgs.gameOver, w / 2 - 80, h / 2, cfg.gameOverFont, cfg.textColor)
-    text(Msgs.pressRestart, w / 2 - 50, h / 2 + 30, cfg.textFont, cfg.frontColor)
+    text(Msgs.pressRestart, w / 2 - 57, h / 2 + 30, cfg.textFont, cfg.frontColor)
   } else if (sh.stop === cfg.gameCompletedId) {
     text(Msgs.youWin, w / 2 - 80, h / 2, cfg.gameOverFont, cfg.textColor)
     text(Msgs.score(score()), w / 2 - 60, h / 2 + 30, cfg.textFont, cfg.textColor)
