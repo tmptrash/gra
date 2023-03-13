@@ -201,3 +201,10 @@ export function enemyId(cfg, r) {
   const c = cfg[0][0]
   return `${c.x}-${c.y}-${r}`
 }
+
+export function arr(size, v) {
+  const a = Array(size)
+  const fn = typeof v === 'function' ? v : () => v
+  for (let i = 0; i < size; i++) a[i] = fn()
+  return a
+}

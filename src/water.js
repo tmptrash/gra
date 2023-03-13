@@ -30,7 +30,7 @@ export function draw(w) {
   c.globalAlpha = .4
   c.fillRect(w.x0, w.y0 - 1, w.x1 - w.x0, w.y1 - w.y0 + w.deep)
   c.strokeStyle = Config.waterColor
-  c.lineWidth = 3;
+  c.lineWidth = 3
   c.beginPath()
   c.moveTo(w.x0, w.y0)
   c.bezierCurveTo(w.cx0, w.cy0, w.cx1, w.cy1, w.x1, w.y1)

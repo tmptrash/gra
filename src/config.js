@@ -32,7 +32,8 @@ export const Msgs = {
   score:           s => `Your Score: ${s}`,
   yourTime:        t => `Your time: ${t}`,
   time:            s => `time: ${s}s`,
-  alreadyUsed:          'this key is already used'
+  alreadyUsed:          'this key is already used',
+  pressRestart:         'Press F5 to continue'
 }
 
 export default Config = {
@@ -68,6 +69,7 @@ export default Config = {
   waterAlphaColor: '#36778c',  // depends on waterColor
   waterAlphaColor1: '#26677c', // depends on waterColor
   oxigenColor: 'green',
+  ropeColor: '#3F6840',
   textFont: '20px Cambria, serif',
   frontFont: '16px Cambria, serif',
   verFont: 'bold 11px Cambria, serif',
@@ -452,67 +454,78 @@ export default Config = {
     },
     scripts: {
       0: [
-        ['Drop',   {sprite1: [{x: 133, y: 164}, A.DropPath], sprite2: [{x: 133, y: 164}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, before: 16, sound: 'drop1', speed: 10, delay: 2000}],
-        ['Drop',   {sprite1: [{x: 619, y: 172}, A.DropPath], sprite2: [{x: 632, y:  64}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  9, delay: 4000}],
-        ['Text',   {text:    [Msgs.welcome,       419, 300,     0, 3000, true], id: id(), after: EFFECT_ID}],
-        ['Text',   {text:    [Msgs.keys,          386, 300,  3500, 4000, true], id: id(), after: EFFECT_ID}],
-        ['Text',   {text:    [Msgs.findTheKey,    380, 300,  8000, 3000, true], id: id(), after: EFFECT_ID}],
-        ['Text',   {text:    [Msgs.dontTouchBugs, 380, 300, 11500, 4000, true], id: id(), after: EFFECT_ID}],
-        ['Text',   {text:    [Msgs.goodLuck,      467, 300, 16000, 4000, true], id: id(), after: EFFECT_ID}],
-        ['Sprite', {sprite:  [{x: 110, y:  64}, A.StalactiteUp1Path]}],
-        ['Sprite', {sprite:  [{x: 580, y:  64}, A.StalactiteUp2Path]}],
-        ['Sprite', {sprite:  [{x: 840, y: 530}, A.Plant1Path], pos: 'end'}],
-        ['Sprite', {sprite:  [{x: 570, y: 390}, A.Plant3Path], pos: 'end'}],
-        ['Sprite', {sprite:  [{x: 350, y: 710}, A.Plant4Path], pos: 'end'}],
-        ['Water',  {params:  [63, 370, 321, 370, 6, 16], drop: [{x: 0, y:0}, {idle: [A.DropDownPath, 12, 40]}], pos: 'end' }]
+        ['Drop',       {sprite1: [{x: 133, y: 164}, A.DropPath], sprite2: [{x: 133, y: 164}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, before: 16, sound: 'drop1', speed: 10, delay: 2000}],
+        ['Drop',       {sprite1: [{x: 619, y: 172}, A.DropPath], sprite2: [{x: 632, y:  64}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  9, delay: 4000}],
+        ['Text',       {text:    [Msgs.welcome,       419, 300,     0, 3000, true], id: id(), after: EFFECT_ID}],
+        ['Text',       {text:    [Msgs.keys,          386, 300,  3500, 4000, true], id: id(), after: EFFECT_ID}],
+        ['Text',       {text:    [Msgs.findTheKey,    380, 300,  8000, 3000, true], id: id(), after: EFFECT_ID}],
+        ['Text',       {text:    [Msgs.dontTouchBugs, 380, 300, 11500, 4000, true], id: id(), after: EFFECT_ID}],
+        ['Text',       {text:    [Msgs.goodLuck,      467, 300, 16000, 4000, true], id: id(), after: EFFECT_ID}],
+        ['Stalactite', {sprite:  [{x: 110, y:  64}, A.StalactiteUp1Path]}],
+        ['Stalactite', {sprite:  [{x: 580, y:  64}, A.StalactiteUp2Path]}],
+        ['Sprite',     {sprite:  [{x: 840, y: 530}, A.Plant1Path], pos: 'end'}],
+        ['Sprite',     {sprite:  [{x: 570, y: 390}, A.Plant3Path], pos: 'end'}],
+        ['Sprite',     {sprite:  [{x: 350, y: 710}, A.Plant4Path], pos: 'end'}],
+        ['Water',      {params:  [63, 370, 321, 370, 6, 16], drop: [{x: 0, y:0}, {idle: [A.DropDownPath, 12, 40]}], pos: 'end' }]
+        //['Rope',       {params:  [205, 0, 524, 159, 400, 20, 4, .7, 3]}]
       ],
       1: [
-        ['Drop',   {sprite1: [{x: 112, y: 159}, A.DropPath], sprite2: [{x: 112, y: 159}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 10, delay: 2000}],
-        ['Sprite', {sprite:  [{x:  75, y: 530}, A.StalactiteDown1Path]}],
-        ['Sprite', {sprite:  [{x: 650, y: 490}, A.Plant5Path], pos: 'end'}],
-        ['Sprite', {sprite:  [{x: 208, y: 590}, A.Plant4Path], pos: 'end'}],
-        ['Sprite', {sprite:  [{x: 894, y: 135}, A.Plant7Path], pos: 'end'}]
+        ['Drop',       {sprite1: [{x: 112, y: 159}, A.DropPath], sprite2: [{x: 112, y: 159}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 10, delay: 2000}],
+        //['Sprite',     {sprite:  [{x:  75, y: 530}, A.StalactiteDown1Path]}],
+        ['Sprite',     {sprite:  [{x: 650, y: 490}, A.Plant5Path], pos: 'end'}],
+        ['Sprite',     {sprite:  [{x: 208, y: 590}, A.Plant4Path], pos: 'end'}],
+        ['Sprite',     {sprite:  [{x: 894, y: 135}, A.Plant7Path], pos: 'end'}],
+        ['Stalactite', {sprite:  [{x: 241, y: 287}, A.StalactiteUpRowPath], amount: 2}],
+        ['Stalactite', {sprite:  [{x: 620, y:  63}, A.StalactiteUpRowPath], amount: 2}]
       ],
       2: [
-        ['Drop',   {sprite1: [{x: 537, y: 140}, A.DropPath], sprite2: [{x: 537, y: 140}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 10, delay: 2000}],
-        ['Sprite', {sprite:  [{x: 500, y:  64}, A.StalactiteUp1Path]}],
-        ['Sprite', {sprite:  [{x: 490, y: 428}, A.Plant6Path], pos: 'end'}],
-        ['Sprite', {sprite:  [{x: 129, y: 225}, A.Plant7Path], pos: 'end'}]
+        ['Drop',       {sprite1: [{x: 537, y: 140}, A.DropPath], sprite2: [{x: 537, y: 140}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 10, delay: 2000}],
+        ['Stalactite', {sprite:  [{x: 500, y:  64}, A.StalactiteUp1Path], amount: 2}],
+        ['Sprite',     {sprite:  [{x: 490, y: 428}, A.Plant6Path], pos: 'end'}],
+        ['Sprite',     {sprite:  [{x: 129, y: 225}, A.Plant7Path], pos: 'end'}]
       ],
       3: [
-        ['Drop',   {sprite1: [{x: 380, y: 191}, A.DropPath], sprite2: [{x: 380, y: 191}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop4', speed: 10, delay: 3000}],
-        ['Drop',   {sprite1: [{x: 914, y:  64}, A.DropPath], sprite2: [{x: 631, y:  64}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  8, delay: 2500}],
-        ['Sprite', {sprite:  [{x: 332, y: 225}, A.Plant7Path], pos: 'end'}],
-        ['Sprite', {sprite:  [{x: 910, y: 110}, A.Plant2Path], pos: 'end'}]
+        ['Drop',       {sprite1: [{x: 380, y: 191}, A.DropPath], sprite2: [{x: 380, y: 191}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop4', speed: 10, delay: 3000}],
+        ['Drop',       {sprite1: [{x: 914, y:  64}, A.DropPath], sprite2: [{x: 631, y:  64}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  8, delay: 2500}],
+        ['Sprite',     {sprite:  [{x: 332, y: 225}, A.Plant7Path], pos: 'end'}],
+        ['Sprite',     {sprite:  [{x: 910, y: 110}, A.Plant2Path], pos: 'end'}],
+        ['Stalactite', {sprite:  [{x: 380, y: 416}, A.StalactiteUpRowPath], amount: 2}],
       ],
       4: [
-        ['Drop',   {sprite1: [{x: 739, y: 170}, A.DropPath], sprite2: [{x: 739, y: 170}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed: 10, delay: 1000}],
-        ['Drop',   {sprite1: [{x: 484, y: 448}, A.DropPath], sprite2: [{x: 484, y: 448}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  8, delay: 2500}],
-        ['Sprite', {sprite:  [{x: 700, y:  64}, A.StalactiteUp2Path]}],
-        ['Sprite', {sprite:  [{x: 740, y: 295}, A.Plant3Path], pos: 'end'}],
-        ['Sprite', {sprite:  [{x: 420, y: 617}, A.Plant4Path], pos: 'end'}]
+        ['Drop',       {sprite1: [{x: 739, y: 170}, A.DropPath], sprite2: [{x: 739, y: 170}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed: 10, delay: 1000}],
+        ['Drop',       {sprite1: [{x: 484, y: 448}, A.DropPath], sprite2: [{x: 484, y: 448}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  8, delay: 2500}],
+        ['Stalactite', {sprite:  [{x: 700, y:  64}, A.StalactiteUp2Path]}],
+        ['Stalactite', {sprite:  [{x: 364, y:  63}, A.StalactiteUpRowPath]}],
+        ['Sprite',     {sprite:  [{x: 740, y: 295}, A.Plant3Path], pos: 'end'}],
+        ['Sprite',     {sprite:  [{x: 420, y: 617}, A.Plant4Path], pos: 'end'}],
+        ['Stalactite', {sprite:  [{x: 576, y: 449}, A.StalactiteUpRowPath], amount: 2}],
       ],
       5: [
-        ['Drop',   {sprite1: [{x: 120, y: 535}, A.DropPath], sprite2: [{x: 120, y: 535}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed: 10, delay: 1000}],
-        ['Drop',   {sprite1: [{x:1007, y: 128}, A.DropPath], sprite2: [{x:1007, y: 128}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 20, delay:  500}],
-        ['Sprite', {sprite:  [{x:  69, y: 448}, A.StalactiteUp1Path]}],
-        ['Sprite', {sprite:  [{x:  90, y: 560}, A.Plant5Path], pos: 'end'}],
-        ['Sprite', {sprite:  [{x: 930, y: 330}, A.Plant5Path], pos: 'end'}]
+        ['Drop',       {sprite1: [{x: 120, y: 535}, A.DropPath], sprite2: [{x: 120, y: 535}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed: 10, delay: 1000}],
+        ['Drop',       {sprite1: [{x:1007, y: 128}, A.DropPath], sprite2: [{x:1007, y: 128}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 20, delay:  500}],
+        ['Stalactite', {sprite:  [{x:  69, y: 448}, A.StalactiteUp1Path]}],
+        ['Sprite',     {sprite:  [{x:  90, y: 560}, A.Plant5Path], pos: 'end'}],
+        ['Sprite',     {sprite:  [{x: 930, y: 330}, A.Plant5Path], pos: 'end'}]
       ],
       6: [
-        ['Drop',   {sprite1: [{x: 654, y:  64}, A.DropPath], sprite2: [{x: 654, y:  64}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  5, delay: 1000}],
-        ['Drop',   {sprite1: [{x: 525, y: 208}, A.DropPath], sprite2: [{x: 525, y: 208}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop4', speed: 30, delay:  200}],
-        ['Drop',   {sprite1: [{x: 108, y: 479}, A.DropPath], sprite2: [{x: 108, y: 479}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 40, delay:  100}],
-        ['Sprite', {sprite:  [{x: 487, y: 128}, A.StalactiteUp1Path]}],
-        ['Sprite', {sprite:  [{x: 649, y: 458}, A.Plant6Path], pos: 'end'}],
-        ['Sprite', {sprite:  [{x: 500, y: 550}, A.Plant7Path], pos: 'end'}],
-        ['Sprite', {sprite:  [{x: 112, y: 537}, A.Plant8Path], pos: 'end'}]
+        ['Drop',       {sprite1: [{x: 654, y:  64}, A.DropPath], sprite2: [{x: 654, y:  64}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  5, delay: 1000}],
+        ['Drop',       {sprite1: [{x: 525, y: 208}, A.DropPath], sprite2: [{x: 525, y: 208}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop4', speed: 30, delay:  200}],
+        ['Drop',       {sprite1: [{x: 108, y: 479}, A.DropPath], sprite2: [{x: 108, y: 479}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 40, delay:  100}],
+        ['Stalactite', {sprite:  [{x: 530, y: 128}, A.StalactiteUpRowPath]}],
+        ['Stalactite', {sprite:  [{x: 740, y:  63}, A.StalactiteUp1Path], amount: 2}],
+        ['Stalactite', {sprite:  [{x: 938, y: 191}, A.StalactiteUp1Path], amount: 2}],
+        ['Sprite',     {sprite:  [{x: 649, y: 458}, A.Plant6Path], pos: 'end'}],
+        ['Sprite',     {sprite:  [{x: 500, y: 550}, A.Plant7Path], pos: 'end'}],
+        ['Sprite',     {sprite:  [{x: 112, y: 537}, A.Plant8Path], pos: 'end'}]
       ],
       7: [
-        ['Drop',   {sprite1: [{x: 605, y: 395}, A.DropPath], sprite2: [{x: 605, y: 395}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed:  5, delay: 2000}],
-        ['Sprite', {sprite:  [{x: 565, y: 288}, A.StalactiteUp2Path]}],
-        ['Sprite', {sprite:  [{x: 610, y: 665}, A.Plant8Path], pos: 'end'}],
-        ['Sprite', {sprite:  [{x: 104, y: 302}, A.Plant1Path], pos: 'end'}]
+        ['Drop',       {sprite1: [{x: 590, y: 395}, A.DropPath], sprite2: [{x: 590, y: 395}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed:  5, delay: 2000}],
+        ['Stalactite', {sprite:  [{x: 550, y: 288}, A.StalactiteUp2Path], amount: 2}],
+        ['Sprite',     {sprite:  [{x: 610, y: 665}, A.Plant8Path], pos: 'end'}],
+        ['Sprite',     {sprite:  [{x: 104, y: 302}, A.Plant1Path], pos: 'end'}],
+        ['Stalactite', {sprite:  [{x:  17, y: 191}, A.StalactiteUpRowPath]}],
+        ['Stalactite', {sprite:  [{x: 131, y:  63}, A.StalactiteUp1Path]}],
+        ['Stalactite', {sprite:  [{x: 888, y: 544}, A.StalactiteUpRowPath]}],
       ],
       8: [
         ['Drop',   {sprite1: [{x: 422, y:  64}, A.DropPath], sprite2: [{x: 422, y:  64}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, before: 21, sound: 'drop2', speed: 10, delay:  500}],
