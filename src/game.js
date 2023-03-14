@@ -62,8 +62,9 @@ function createObjs() {
     { draw: drawLevel,   update: updateLevel,   o: Level() },
     { draw: drawHero,    update: updateHero,    o: Hero(),    id: Config.heroId },
     { draw: drawBullet,  update: updateBullet,  o: Bullet(),  id: Config.bulletId },
-    { draw: drawBullets, update: fn,            o: Bullets(), id: Config.bulletsId },
+    { draw: fn,          update: fn,            o: {},        id: Config.beforeEffectsId }, // we need it only for insertion of scripts in this position
     { draw: drawEffect,  update: updateEffects, o: Effects(), id: Config.effectsId },
+    { draw: drawBullets, update: fn,            o: Bullets(), id: Config.bulletsId },
     { draw: drawHearts,  update: fn,            o: Hearts() },
     { draw: drawTimer,   update: fn,            o: Timer() },
     { draw: drawDebug,   update: fn,            o: Debug() },

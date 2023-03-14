@@ -65,6 +65,7 @@ import StalactiteDownRowPath from '../img/stalactite-down-row.png'
 import Cave0 from '../music/cave0.mp3'
 // sounds
 import SoundHit from '../sound/hit.mp3'
+import SoundJump from '../sound/jump.mp3'
 import SoundHitMushroom from '../sound/hit-mushroom.mp3'
 import SoundKey from '../sound/key.mp3'
 import SoundGun from '../sound/gun.mp3'
@@ -153,6 +154,7 @@ export const ASSET_NAMES = {
   'StalactiteDownRowPath': StalactiteDownRowPath,
   'Cave0': Cave0,
   'SoundHit': SoundHit,
+  'SoundJump': SoundJump,
   'SoundKey': SoundKey,
   'SoundGun': SoundGun,
   'SoundWin': SoundWin,

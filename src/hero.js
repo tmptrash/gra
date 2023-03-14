@@ -144,6 +144,7 @@ function onJumpKeyDown(h) {
   const now = performance.now()
   h.sprite.y--
   if (!h.pressed.w && (pos || (!pos && now - h.coyoteTime < Config.coyoteDelayMs))) {
+    play(Config.sounds.jump)
     h.v = Config.jumpVelocity
     h.isJumping = true
     h.jumpY = h.sprite.y
