@@ -88,7 +88,7 @@ export function update(h) {
     if (picked('foundBraveMushroom', false)) play(Shared.sounds.hitMushroom), h.hit = false
     else {
       play(Shared.sounds.hit)
-      if (--h.life < 1) Shared.stop = Config.gameOverId
+      if (--h.life < 1) Shared.stop = Config.gameOverId, stop(h.waterStepSound)
       h.hit = false
       h.hitTime = t
     }
