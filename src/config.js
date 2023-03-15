@@ -310,8 +310,6 @@ export default Config = {
         [[{x: 500, y: 727}, {idleLeft: [A.BugBlkLeftPath, 5, 100], idleRight: [A.BugBlkRightPath, 5, 100]}], 2.9, true]
       ],
       24: [
-        [[{x: 400, y: 725}, {idleLeft: [A.BugBigLeftPath, 3, 200], idleRight: [A.BugBigRightPath, 3, 200]}], 3.3, true],
-        [[{x: 600, y: 727}, {idleLeft: [A.BugBlkLeftPath, 5, 100], idleRight: [A.BugBlkRightPath, 5, 100]}], 3.5, true],
         [[{x: 100, y: 727}, {idleLeft: [A.BugBlkLeftPath, 5, 100], idleRight: [A.BugBlkRightPath, 5, 100]}], 3,   true]
       ],
       25: [
