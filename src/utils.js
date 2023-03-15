@@ -167,7 +167,7 @@ export function resize() {
 }
 
 export function score() {
-  return Shared.hero.life + Shared.hero.bullets + Shared.picked.length
+  return Shared.hero.life + Shared.hero.bullets + Shared.picked.length + Object.keys(Shared.killed).length
 }
 
 function isMobile() {
