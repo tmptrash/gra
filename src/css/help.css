@@ -3,17 +3,18 @@ div.help {
   height: 208px;
   background-color: #323030;
   position: absolute;
-  border: solid #68472a 1px;
+  border: solid #df7126 1px;
   border-radius: 8px;
   color: #ccc;
   font-family: monospace;
   padding: 8px;
   text-align: justify;
+  margin-top: 20px;
 }
 
 div.help .close {
   text-align: end;
   margin-bottom: 10px;
-  color: #999;
+  color: #df7126;
   cursor: pointer;
 }

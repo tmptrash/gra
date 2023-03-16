@@ -22,14 +22,12 @@ button.red {
   cursor: pointer;
   border: none;
   border-radius: 8px;
-  box-shadow: 0 0 0 1px #fc673df7;
-  background-color: #ea030d;
+  background-color: #df7126;
 }
 button.src {
   cursor: pointer;
   border: none;
   border-radius: 8px;
-  box-shadow: 0 0 0 1px #8e8e8ef7;
   background-color: #4e4848;
   color: #8f8f8f;
 }
@@ -45,7 +43,7 @@ audio { width: 250px; height: 20px }
   -webkit-animation: spinner 1s ease-in-out infinite;
 }
 .volume { display: flex; justify-content: space-between }
-.vol { color: #ccc; font-family: monospace; margin-top: -3px }
+.vol { color: #6f6f6f; font-family: monospace; margin-top: -2px }
 @keyframes spinner { to { -webkit-transform: rotate(360deg) }}
 @-webkit-keyframes spinner { to { -webkit-transform: rotate(360deg) }}
 @keyframes mushroomEffect { 100% { -webkit-filter: hue-rotate(360deg) }}
@@ -63,7 +61,7 @@ input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
   appearance: none;
   margin-top: -4px; /* Centers thumb on the track */
-  background-color: #fc673df7; /*custom styles*/
+  background-color: #df7126; /*custom styles*/
   height: .9rem;
   width: .9rem;
   border-radius: 5px;
