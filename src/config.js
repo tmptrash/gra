@@ -532,9 +532,9 @@ export default Config = {
         ['Stalactite', {sprite:  [{x: 888, y: 544}, A.StalactiteUpRowPath]}]
       ],
       8: [
-        ['Drop',       {sprite1: [{x: 422, y:  64}, A.DropPath], sprite2: [{x: 422, y:  64}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, before: 21, sound: 'drop2', speed: 10, delay:  500}],
-        ['Drop',       {sprite1: [{x:  84, y: 128}, A.DropPath], sprite2: [{x:  84, y: 128}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed: 10, delay:  200}],
-        ['Drop',       {sprite1: [{x: 460, y: 652}, A.DropPath], sprite2: [{x: 460, y: 652}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed: 10, delay: 1000}],
+        ['Drop',       {sprite1: [{x: 419, y: 115}, A.DropPath], sprite2: [{x: 419, y: 115}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, before: 21, sound: 'drop2', speed: 10, delay:  500}],
+        ['Drop',       {sprite1: [{x:  80, y: 109}, A.DropPath], sprite2: [{x:  80, y: 109}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed: 10, delay:  200}],
+        ['Drop',       {sprite1: [{x: 445, y: 652}, A.DropPath], sprite2: [{x: 445, y: 652}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed: 10, delay: 1000}],
         ['Stalactite', {sprite:  [{x: 325, y: 544}, A.StalactiteUp2Path], amount: 2}],
         ['Sprite',     {sprite:  [{x:  90, y: 270}, A.Plant2Path], pos: 'end'}],
         ['Water',      {params:  [127, 365, 450, 365, 7, 21], drop: [{x: 0, y:0}, {idle: [A.DropDownPath, 12, 80]}], pos: 'end' }],
