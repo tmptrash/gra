@@ -5,7 +5,7 @@ import { Bullet, draw as drawBullet, update as updateBullet } from './bullet'
 import { Level, draw as drawLevel, update as updateLevel } from './level'
 import { updateObjs, room } from './rooms'
 import { Debug, draw as drawDebug } from './debug'
-import { fn, el, on, findObjById, findObjByFn, text, delObj, checkDesktop, score } from './utils'
+import { fn, el, on, findObjById, findObjByFn, text, delObj, checkDesktop, score, loadText } from './utils'
 import { Music, play as playMusic, stop } from './music'
 import { Picked, draw as drawPicked } from './picked'
 import { Timer, draw as drawTimer } from './timer'
@@ -31,6 +31,7 @@ export function Game() {
   Shared.ctx.font = Config.frontFont
   Shared.ctx.imageSmoothingEnabled = false
   if (!checkDesktop()) return null
+  loadText()
   on(Shared.obs, 'change-room', saveShared)
 
   return g

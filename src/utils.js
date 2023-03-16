@@ -156,10 +156,17 @@ export function text(t, x, y, font, style = '#ccc') {
 export function checkDesktop() {
   const isDesktop = !isMobile()
   if (!isDesktop) {
+    Shared.ctx.clearRect(0, 0, Config.width, Config.height)
     Shared.ctx.font = Config.gameOverFont
     Shared.ctx.fillText(Msgs.noMobileSupport, 130, 300)
   }
   return isDesktop
+}
+
+export function loadText() {
+  Shared.ctx.clearRect(0, 0, Config.width, Config.height)
+  Shared.ctx.font = Config.frontFont
+  Shared.ctx.fillText(Msgs.loading, Config.width / 2 - 65, Config.height / 2)
 }
 
 export function resize() {
