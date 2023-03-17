@@ -66,7 +66,7 @@ function onMenu(n) {
 
 function onReplay() {
   reset()
-  location.replace(location.origin)
+  location.replace(`${location.origin}?c`)
 }
 
 function onHelp(n) {
