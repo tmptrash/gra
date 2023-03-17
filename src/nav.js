@@ -1,6 +1,6 @@
 import Shared from './shared'
 import Config from './config'
-import { logo, on, fire, el, css, show, hide, resize, fullscreen } from './utils'
+import { logo, on, fire, el, css, show, hide, resize, fullscreen, reloaded } from './utils'
 import { preload } from './assets'
 import { play, pause, onPreload } from './game'
 import { play as playSound, stop as stopSound } from './sounds'
@@ -35,7 +35,7 @@ export function Nav(game, settings) {
 export function start(n) {
   resize()
   show(n.spinner)
-  logo()
+  !reloaded() && logo()
   on(window, 'resize', resize)
   preload(onAssets.bind(null, n))
 }
@@ -49,8 +49,9 @@ function onAssets(n) {
   on(n.srcBtn, 'click', onSrc)
   on(n.cfgBtn, 'click', onCfg.bind(null, n))
   hide(n.spinner)
-  show([n.playBtn, n.cfgBtn, n.srcBtn])
+  !reloaded() && show([n.playBtn, n.cfgBtn, n.srcBtn])
   onPreload()
+  reloaded() && onPlay(n)
 }
 
 function onMenu(n) {
@@ -65,7 +66,7 @@ function onMenu(n) {
 
 function onReplay() {
   reset()
-  location.reload()
+  location.replace(location.origin)
 }
 
 function onHelp(n) {

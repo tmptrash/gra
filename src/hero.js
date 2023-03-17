@@ -88,7 +88,11 @@ export function update(h) {
     if (picked('foundBraveMushroom', false)) play(Shared.sounds.hitMushroom), h.hit = false
     else {
       play(Shared.sounds.hit)
-      if (--h.life < 1) Shared.stop = Config.gameOverId, stop(h.waterStepSound)
+      if (--h.life < 1) {
+        stop(h.waterStepSound)
+        Shared.stop = Config.gameOverId
+        setTimeout(() => location.replace(`${location.origin}?c`), Config.replayPeriod)
+      }
       h.hit = false
       h.hitTime = t
     }
@@ -189,7 +193,7 @@ function updateY(h, newY, dt) {
     if (!h.lendBefore && down && !h.inWater) {
       play(Config.sounds.lending)
       h.dustSprite.x = s.x + s.width / 2 - h.dustSprite.width / 2 + 3
-      h.dustSprite.y = s.y + s.height - h.dustSprite.height + 3
+      h.dustSprite.y = s.y + s.height - h.dustSprite.height + 2
       h.dustSprite.imgs.idle.frames.frame = 0
       h.dust = true
     }
