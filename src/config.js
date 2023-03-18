@@ -80,7 +80,7 @@ export default Config = {
   useSetTimeout: false,
   setTimeoutDelay: 7,
   replayPeriod: 2000,
-  debug: true,
+  debug: false,
   debugPos: [300, 40],
   fpsPos: [WIDTH / 2 - 100, 20],
   logoPos: [256, 50],
