@@ -275,10 +275,10 @@ export default Config = {
         [[{x: 550, y: 727}, {idleLeft: [A.BugBlkLeftPath, 5, 100], idleRight: [A.BugBlkRightPath, 5, 100]}], 2.7, true]
       ],
       14: [
-        [[{x: 100, y: 740}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.5, true, false],
+        [[{x: 100, y: 715}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.5, true, false],
         [[{x: 300, y: 685}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.8, true, false],
-        [[{x: 600, y: 715}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}],   2, true, false],
-        [[{x: 400, y: 735}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 2.4, true, false]
+        [[{x: 600, y: 700}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}],   2, true, false],
+        [[{x: 400, y: 710}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 2.4, true, false]
       ],
       15: [
         [[{x: 680, y: 727}, {idleLeft: [A.BugBlkLeftPath, 5, 100], idleRight: [A.BugBlkRightPath, 5, 100]}], 3,   true],
@@ -287,7 +287,7 @@ export default Config = {
       ],
       16: [
         [[{x: 800, y: 729}, {idleLeft: [A.BugLeftPath,    2, 300], idleRight: [A.BugRightPath,    2, 300]}], 2,   true],
-        [[{x: 100, y: 720}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.5, true, false]
+        [[{x: 100, y: 700}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.5, true, false]
       ],
       17: [
         [[{x: 150, y: 729}, {idleLeft: [A.BugLeftPath,    2, 300], idleRight: [A.BugRightPath,    2, 300]}], 2,   true],
@@ -316,8 +316,8 @@ export default Config = {
       ],
       25: [
         [[{x: 768, y: 535}, {idleLeft: [A.BugBlkLeftPath, 5, 100], idleRight: [A.BugBlkRightPath, 5, 100]}], 2.9, true],
-        [[{x: 100, y: 730}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.5, true, false],
-        [[{x: 200, y: 690}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.7, true, false]
+        [[{x: 100, y: 710}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.5, true, false],
+        [[{x: 300, y: 680}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.7, true, false]
       ],
       27: [
         [[{x: 500, y: 659}, {idleLeft: [A.BugBlueLeftPath,3, 200], idleRight: [A.BugBlueRightPath,3, 200]}], 3.3, true],
@@ -350,21 +350,21 @@ export default Config = {
         [[{x: 200, y: 691}, {idleLeft: [A.BugBlueLeftPath,3, 200], idleRight: [A.BugBlueRightPath,3, 200]}], 3.3, true]
       ],
       34: [
-        [[{x: 200, y: 710}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.9, true, false],
-        [[{x: 400, y: 660}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.6, true, false],
+        [[{x: 200, y: 675}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.9, true, false],
+        [[{x: 300, y: 660}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.6, true, false],
         [[{x: 600, y: 690}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.3, true, false],
-        [[{x: 700, y: 710}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.7, true, false],
-        [[{x: 500, y: 700}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 2.1, true, false]
+        [[{x: 700, y: 680}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.7, true, false],
+        [[{x: 500, y: 670}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 2.1, true, false]
       ],
       35: [
-        [[{x: 100, y: 710}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.9, true, false],
+        [[{x: 100, y: 680}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.9, true, false],
         [[{x: 400, y: 660}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.6, true, false],
         [[{x: 600, y: 690}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.3, true, false],
-        [[{x: 200, y: 710}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.7, true, false],
-        [[{x: 500, y: 700}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 2.1, true, false]
+        [[{x: 200, y: 670}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.7, true, false],
+        [[{x: 500, y: 685}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 2.1, true, false]
       ],
       36: [
-        [[{x: 200, y: 710}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.7, true, false],
+        [[{x: 200, y: 670}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.7, true, false],
         [[{x: 500, y: 660}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.3, true, false],
         [[{x: 100, y: 690}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.3, true, false]
       ],
