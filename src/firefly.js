@@ -43,7 +43,7 @@ export function update(f) {
       if (y < SW) y = SW
       else if (y > H) y = H
       f.dirs[i] = d
-      if (!xyBlock(x, y) && !inWater(x + s.width, y + s.height)) s.x = x, s.y = y
+      if (!hidden(x, y, s)) s.x = x, s.y = y
       updateSprite(s)
       f.t[i] = t
     }
@@ -51,7 +51,11 @@ export function update(f) {
 }
 
 function onChangeRoom(f) {
-  f.sprites.forEach((s, i) => (f.hidden[i] = xyBlock((s.x = rnd(W, SW)), (s.y = rnd(H, SW)))))
+  f.sprites.forEach((s, i) => {
+    s.x = rnd(W, SW)
+    s.y = rnd(H, SW)
+    f.hidden[i] = hidden(s.x, s.y, s)
+  })
 }
 
 function newXY(d, x, y) {
@@ -67,8 +71,12 @@ function init(f) {
     cfg[0].x = rnd(W, SW)
     cfg[0].y = rnd(H, SW)
     f.sprites[i] = Sprite(...cfg)
-    f.hidden[i] = xyBlock(cfg[0].x, cfg[0].y) || inWater(cfg[0].x, cfg[0].y)
+    f.hidden[i] = hidden(cfg[0].x, cfg[0].y, f.sprites[i])
     f.dirs[i] = rnd(8)
     f.t[i] = 0
   }
+}
+
+function hidden(x, y, s) {
+  return xyBlock(x, y) || xyBlock(x + s.width, y + s.height) || inWater(x, y) || inWater(x + s.width, y + s.height)
 }

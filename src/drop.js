@@ -38,7 +38,9 @@ export function update(drop) {
 
   // drop
   if (!drop.delayTime && t - drop.time > Config.objTickMs) {
-    s1.y += (drop.speed * Shared.speed * ((((t - drop.startTime) / 1000) ** 2 / 2) * 3) + drop.before)
+    let inc = drop.speed * Shared.speed * ((((t - drop.startTime) / 1000) ** 2 / 2) * 3)
+    inc > Config.spriteSize && (inc = Config.spriteSize - 1)
+    s1.y += (inc + drop.before)
     const pos = downBlock(s1)
     s1.y -= drop.before
     if (pos || s1.y > Config.height) {
