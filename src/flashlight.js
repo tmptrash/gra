@@ -1,19 +1,20 @@
 import Shared from './shared'
 import Config, { Msgs } from './config'
-import { bind, el, css, on, picked, unbind } from './utils'
-import { addAfter, room } from './rooms'
+import { bind, el, css, on, picked, unbind, addAfter } from './utils'
+import { room } from './rooms'
 import { create } from './creator'
 
 export function Flashlight() {
   const fl = {
     room: room(),
     el: el(Config.canvasQuery),
-    handlers: []
+    handlers: [],
+    listeners: Array(3)
   }
   rebind(fl)
-  on(Shared.obs, 'after-brave', updateBrightness.bind(null, fl))
-  on(Shared.obs, 'rebind', rebind.bind(null, fl))
-  on(Shared.obs, 'play', updateBrightness.bind(null, fl))
+  fl.listeners[0] = [Shared.obs, 'after-brave', updateBrightness.bind(null, fl)]
+  fl.listeners[1] = [Shared.obs, 'rebind', rebind.bind(null, fl)]
+  fl.listeners[2] = [Shared.obs, 'play', updateBrightness.bind(null, fl)]
 
   return fl
 }

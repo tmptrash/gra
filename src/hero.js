@@ -35,10 +35,11 @@ export function Hero() {
     waterStepTime: 0,
     stepSpeed: Config.stepSpeed,
     inWater: false, // bool | id
-    inWaterTime: 0
+    inWaterTime: 0,
+    listeners: Array(1)
   }
   rebind(hero)
-  on(Shared.obs, 'rebind', rebind.bind(null, hero))
+  hero.listeners[0] = [Shared.obs, 'rebind', rebind.bind(null, hero)]
 
   return hero
 }

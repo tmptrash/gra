@@ -2,7 +2,7 @@ import Config from './config'
 import Shared from './shared'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import { xyBlock } from './blocks'
-import { on, rnd, inWater } from './utils'
+import { rnd, inWater } from './utils'
 
 const MAX_AMOUNT = Config.fireflyAmount
 const LEVELS = Config.vSprites * Config.spriteSize / Config.height
@@ -18,9 +18,11 @@ export function Firefly() {
     hidden: Array(MAX_AMOUNT),
     dirs: new Uint8Array(MAX_AMOUNT),
     t: new Float64Array(MAX_AMOUNT),
-    inited: false
+    inited: false,
+    listeners: Array(1)
   }
-  on(Shared.obs, 'change-room', onChangeRoom.bind(null, f))
+  f.listeners[0] = [Shared.obs, 'change-room', onChangeRoom.bind(null, f)]
+
   return f
 }
 

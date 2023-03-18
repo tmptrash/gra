@@ -1,7 +1,7 @@
 import Config from './config'
 import Shared from './shared'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
-import { delObj, touch, msg, repeat, el, css, fire, pickedIdx, picked, idFrom } from './utils'
+import { addObj, delObj, touch, msg, repeat, el, css, fire, pickedIdx, picked, idFrom } from './utils'
 import { create } from './creator'
 import { play } from './sounds'
 
@@ -51,7 +51,7 @@ function pick(item, show = true) {
     msg: item.msg
   })
   delObj(item)
-  Shared.objs.push(create('Text', {text: [msg(item.msg), 437, 300, 0, 2000, false, 0], id: 0}, item.room))
+  addObj(create('Text', {text: [msg(item.msg), 437, 300, 0, 2000, false, 0], id: 0}, item.room))
   play(Shared.sounds[item.sound])
 }
 
@@ -63,7 +63,7 @@ function pickBraveMushroom(i) {
   Shared.speed = .15
   pick(i)
   play(Config.sounds.breath)
-  Shared.objs.push(timer)
+  addObj(timer)
 
   const int = repeat(Config.mushroomDelayMs, Config.braveMushroomPlayPeriosMs, () => {
     Shared.speed = 1
@@ -84,7 +84,7 @@ function pickBraveMushroom(i) {
 function pickTeleMushroom(i) {
   pick(i)
   const timer = create('Countdown', [Config.mushroomDelayMs, ...Config.countdownPos])
-  Shared.objs.push(timer)
+  addObj(timer)
   const int = repeat(Config.mushroomDelayMs, Config.teleMushroomPlayPeriosMs, () => {
     const idx = pickedIdx('foundTeleMushroom')
     idx !== -1 && (Shared.picked[idx].hidden = true)

@@ -1,6 +1,6 @@
 import Shared from './shared'
 import Config from './config'
-import { mousePos, int, on, text } from './utils'
+import { mousePos, int, text } from './utils'
 import { room } from './rooms'
 
 const CHECK_EVERY = 3000
@@ -9,9 +9,10 @@ export function Debug() {
   const debug = {
     pos: {},
     fTime: performance.now(),
-    curFps: 0
+    curFps: 0,
+    listeners: Array(1)
   }
-  on(window, 'mousemove', e => debug.pos = mousePos(Shared.ctx.canvas, e), false)
+  debug.listeners[0] = [ window, 'mousemove', e => debug.pos = mousePos(Shared.ctx.canvas, e) ]
   return debug
 }
 

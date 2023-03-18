@@ -36,8 +36,16 @@ export function on(el, event, handler) {
   el.addEventListener(event, handler)
 }
 
+export function ons(listeners) {
+  listeners && listeners.forEach(l => on(l[0], l[1], l[2]))
+}
+
 export function off(el, event, handler) {
   el.removeEventListener(event, handler)
+}
+
+export function offs(listeners) {
+  listeners && listeners.forEach(l => off(l[0], l[1], l[2]))
 }
 
 export function fire(e, params = null) {
@@ -45,11 +53,13 @@ export function fire(e, params = null) {
 }
 
 export function fullscreen() {
-  if (Config.fullscreen) document.documentElement.requestFullscreen()
-  else if (document.fullscreenElement) {
-    if (document.exitFullscreen) document.exitFullscreen()
-    else if (document.fullscreenElement.exitFullscreen) document.fullscreenElement.exitFullscreen()
-  }
+  try {
+    if (Config.fullscreen) document.documentElement.requestFullscreen()
+    else if (document.fullscreenElement) {
+      if (document.exitFullscreen) document.exitFullscreen()
+      else if (document.fullscreenElement.exitFullscreen) document.fullscreenElement.exitFullscreen()
+    }
+  } catch {}
 }
 
 export function mousePos(canvas, { clientX, clientY }) {
@@ -70,9 +80,22 @@ export function findObjByFn(drawFn) {
   return obj ? obj.o : null
 }
 
+export function addObj(cfg, pos) {
+  if (cfg.o) {
+    const objs = Shared.objs
+    if (!pos || pos === 'end') objs.push(cfg), addListeners(cfg.o)
+    else if (typeof pos === 'number') objs.splice(pos, 0, cfg), addListeners(cfg.o)
+    else if (typeof pos === 'string') addAfter(pos, cfg), addListeners(cfg.o)
+  }
+}
+
 export function delObj(obj) {
   const idx = findObjIdx(obj)
-  idx !== -1 && Shared.objs.splice(idx, 1)
+  if (idx !== -1) {
+    const o = Shared.objs[idx].o
+    o.kill ? o.kill() : offs(o.listeners)
+    Shared.objs.splice(idx, 1)
+  }
 }
 
 export function findObjIdx(obj) {
@@ -204,9 +227,9 @@ export function rnd(n, start = 0) {
 }
 
 export function inWater(x, y) {
-  const c = Shared.ctx.getImageData(x, y, 1, 1).data
-  const col = `#${c[0].toString(16)}${c[1].toString(16)}${c[2].toString(16)}`
-  return col === Config.waterAlphaColor || col === Config.waterAlphaColor1
+  const params = {x, y, r: false}
+  fire('in-water', params)
+  return params.r
 }
 
 export function enemyId(cfg, r) {
@@ -219,4 +242,14 @@ export function arr(size, v) {
   const fn = typeof v === 'function' ? v : () => v
   for (let i = 0; i < size; i++) a[i] = fn()
   return a
+}
+
+export function addAfter(id, obj) {
+  const idx = findObjIdxById(id)
+  if (idx !== -1) Shared.objs.splice(idx + 1, 0, obj)
+  else Shared.objs.push(obj)
+}
+
+function addListeners(d) {
+  d.listeners && ons(d.listeners)
 }

@@ -5,7 +5,7 @@ import { Bullet, draw as drawBullet, update as updateBullet } from './bullet'
 import { Level, draw as drawLevel, update as updateLevel } from './level'
 import { updateObjs, room } from './rooms'
 import { Debug, draw as drawDebug } from './debug'
-import { fn, el, on, findObjById, findObjByFn, text, delObj, checkDesktop, score, loadText } from './utils'
+import { fn, el, ons, findObjById, findObjByFn, text, delObj, checkDesktop, score, loadText, addObj } from './utils'
 import { Music, play as playMusic, stop } from './music'
 import { Picked, draw as drawPicked } from './picked'
 import { Timer, draw as drawTimer } from './timer'
@@ -20,7 +20,8 @@ export function Game() {
   const g = {
     stopped: false,
     pause: false,
-    animateFn: null
+    animateFn: null,
+    listeners: Array(1)
   }
   const fn = animate.bind(null, g)
   g.animateFn = Config.useSetTimeout ? () => setTimeout(fn, Config.setTimeoutDelay) : () => requestAnimationFrame(fn)
@@ -32,7 +33,8 @@ export function Game() {
   Shared.ctx.imageSmoothingEnabled = false
   if (!checkDesktop()) return null
   loadText()
-  on(Shared.obs, 'change-room', saveShared)
+  g.listeners[0] = [Shared.obs, 'change-room', saveShared]
+  ons(g.listeners)
 
   return g
 }
@@ -59,18 +61,17 @@ function createObjs() {
   Shared.sounds = Sounds()
 
   // Static items. Order is important!
-  Shared.objs = [
-    { draw: drawLevel,   update: updateLevel,   o: Level() },
-    { draw: drawHero,    update: updateHero,    o: Hero(),    id: Config.heroId },
-    { draw: drawBullet,  update: updateBullet,  o: Bullet(),  id: Config.bulletId },
-    { draw: fn,          update: fn,            o: {},        id: Config.beforeEffectsId }, // we need it only for insertion of scripts in this position
-    { draw: drawEffect,  update: updateEffects, o: Effects(), id: Config.effectsId },
-    { draw: drawBullets, update: fn,            o: Bullets(), id: Config.bulletsId },
-    { draw: drawHearts,  update: fn,            o: Hearts() },
-    { draw: drawTimer,   update: fn,            o: Timer() },
-    { draw: drawDebug,   update: fn,            o: Debug() },
-    { draw: drawPicked,  update: fn,            o: Picked() }
-  ]
+  Shared.objs = []
+  addObj({ draw: drawLevel,   update: updateLevel,   o: Level() })
+  addObj({ draw: drawHero,    update: updateHero,    o: Hero(),    id: Config.heroId })
+  addObj({ draw: drawBullet,  update: updateBullet,  o: Bullet(),  id: Config.bulletId })
+  addObj({ draw: fn,          update: fn,            o: {},        id: Config.beforeEffectsId }) // we need it only for insertion of scripts in this position
+  addObj({ draw: drawEffect,  update: updateEffects, o: Effects(), id: Config.effectsId })
+  addObj({ draw: drawBullets, update: fn,            o: Bullets(), id: Config.bulletsId })
+  addObj({ draw: drawHearts,  update: fn,            o: Hearts() })
+  addObj({ draw: drawTimer,   update: fn,            o: Timer() })
+  addObj({ draw: drawDebug,   update: fn,            o: Debug() })
+  addObj({ draw: drawPicked,  update: fn,            o: Picked() })
 
   Shared.hero   = findObjById(Config.heroId)
   Shared.bullet = findObjById(Config.bulletId)

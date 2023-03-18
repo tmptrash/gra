@@ -1,6 +1,6 @@
 import Shared from './shared'
 import Config from './config'
-import { logo, on, fire, el, css, show, hide, resize, fullscreen, reloaded } from './utils'
+import { logo, ons, fire, el, css, show, hide, resize, fullscreen, reloaded } from './utils'
 import { preload } from './assets'
 import { play, pause, onPreload } from './game'
 import { play as playSound, stop as stopSound } from './sounds'
@@ -24,10 +24,11 @@ export function Nav(game, settings) {
     vol: el(Config.volumeQuery),
     volLabel: el(Config.volumeLabelQuery),
     game,
-    settings
+    settings,
+    listeners: Array(3 + 7)
   }
-  on(Shared.obs, 'cfg', onSetCfg)
-  on(Shared.obs, 'change-room', onHelpClose.bind(null, n))
+  n.listeners[0] = [Shared.obs, 'cfg', onSetCfg]
+  n.listeners[1] = [Shared.obs, 'change-room', onHelpClose.bind(null, n)]
 
   return n
 }
@@ -36,22 +37,23 @@ export function start(n) {
   resize()
   show(n.spinner)
   !reloaded() && logo()
-  on(window, 'resize', resize)
+  n.listeners[2] = [window, 'resize', resize]
   preload(onAssets.bind(null, n))
 }
 
 function onAssets(n) {
-  on(n.menuBtn, 'click', onMenu.bind(null, n))
-  on(n.replayBtn, 'click', onReplay)
-  on(n.helpBtn, 'click', onHelp.bind(null, n))
-  on(n.helpClose, 'click', onHelpClose.bind(null, n))
-  on(n.playBtn, 'click', onPlay.bind(null, n))
-  on(n.srcBtn, 'click', onSrc)
-  on(n.cfgBtn, 'click', onCfg.bind(null, n))
+  n.listeners[3] = [n.menuBtn, 'click', onMenu.bind(null, n)]
+  n.listeners[4] = [n.replayBtn, 'click', onReplay]
+  n.listeners[5] = [n.helpBtn, 'click', onHelp.bind(null, n)]
+  n.listeners[6] = [n.helpClose, 'click', onHelpClose.bind(null, n)]
+  n.listeners[7] = [n.playBtn, 'click', onPlay.bind(null, n)]
+  n.listeners[8] = [n.srcBtn, 'click', onSrc]
+  n.listeners[9] = [n.cfgBtn, 'click', onCfg.bind(null, n)]
+  ons(n.listeners)
   hide(n.spinner)
   !reloaded() && show([n.playBtn, n.cfgBtn, n.srcBtn])
   onPreload()
-  reloaded() && onPlay(n)
+  reloaded() && onPlay(n, true)
 }
 
 function onMenu(n) {
@@ -79,13 +81,13 @@ function onHelpClose(n) {
   show(n.helpBtn)
 }
 
-function onPlay(n) {
+function onPlay(n, manually = false) {
   show([n.contentEl, n.menuBtn, n.replayBtn, n.helpBtn, n.vol, n.volLabel])
   hide([n.settingsEl, n.playBtn, n.cfgBtn, n.srcBtn])
   play(n.game)
   stopSound(Config.sounds.menu)
   playMusic(Shared.music)
-  Config.fullscreen && fullscreen()
+  Config.fullscreen && !manually && fullscreen()
   fire('play')
 }
 

@@ -67,8 +67,6 @@ export default Config = {
   verColor: '#000',
   textColor: '#fff',
   waterColor: '#3fabcc',
-  waterAlphaColor: '#36778c',  // depends on waterColor
-  waterAlphaColor1: '#26677c', // depends on waterColor
   oxigenColor: 'green',
   ropeColor: '#3F6840',
   textFont: '20px Cambria, serif',
@@ -82,7 +80,7 @@ export default Config = {
   useSetTimeout: false,
   setTimeoutDelay: 7,
   replayPeriod: 2000,
-  debug: false,
+  debug: true,
   debugPos: [300, 40],
   fpsPos: [WIDTH / 2 - 100, 20],
   logoPos: [256, 50],
@@ -365,7 +363,7 @@ export default Config = {
       ],
       36: [
         [[{x: 200, y: 670}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.7, true, false],
-        [[{x: 500, y: 660}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.3, true, false],
+        [[{x: 450, y: 660}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.3, true, false],
         [[{x: 100, y: 690}, {idleLeft: [A.FishLeftPath,   4, 150], idleRight: [A.FishRightPath,   4, 150]}], 1.3, true, false]
       ],
       37: [

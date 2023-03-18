@@ -1,45 +1,27 @@
 import Shared from './shared'
 import Config from './config'
 import { create } from './creator'
-import { findObjIdxById, idFrom, enemyId } from './utils'
+import { idFrom, enemyId, addObj, delObj } from './utils'
 
 export function updateObjs(fromRoom, toRoom) {
   const objs = Shared.objs
-  for (let i = 0; i < objs.length; i++) objs[i].room === fromRoom && (objs.splice(i, 1), i--)
-  
+  for (let i = 0; i < objs.length; i++) objs[i].room === fromRoom && (delObj(objs[i].o), i--)
+
   const enemies = Config.rooms.enemies[toRoom]
-  enemies && enemies.forEach(cfg => {
-    if (!Shared.killed[enemyId(cfg, toRoom)]) {
-      if (typeof cfg[4] === 'string') addAfter(cfg[4], create('Enemy', cfg, toRoom))
-      else objs.splice(cfg[4] || Config.enemiesPos, 0, create('Enemy', cfg, toRoom))
-    }
-  })
+  const killed = Shared.killed
+  enemies && enemies.forEach(cfg => !killed[enemyId(cfg, toRoom)] && addObj(create('Enemy', cfg, toRoom), cfg[4] || Config.enemiesPos))
 
   const items = Config.rooms.items[toRoom]
-  items && items.forEach(cfg => !pickedInRoom(cfg[0], toRoom) && objs.splice(Config.itemsPos, 0, create('Item', cfg, toRoom)))
+  items && items.forEach(cfg => !pickedInRoom(cfg[0], toRoom) && addObj(create('Item', cfg, toRoom), Config.itemsPos))
 
   const scripts = Config.rooms.scripts[toRoom]
-  scripts && scripts.forEach(cfg => {
-    const s = create(cfg[0], cfg[1], toRoom)
-    if (s.o) {
-      if (cfg[1].pos === 'end') objs.push(s)
-      else if (cfg[1].pos) objs.splice(cfg[1].pos, 0, s)
-      else if(cfg[1].after) addAfter(cfg[1].after, s)
-      else objs.splice(Config.scriptsPos, 0, s)
-    }
-  })
+  scripts && scripts.forEach(cfg => addObj(create(cfg[0], cfg[1], toRoom), cfg[1].pos || cfg[1].after || Config.scriptsPos))
 }
 
 export function room(offsX = Shared.offsX, offsY = Shared.offsY) {
   const roomX = offsX / Config.width
   const roomY = offsY / Config.height
   return roomX + roomY * (Config.hSprites * Config.spriteSize / Config.width)
-}
-
-export function addAfter(id, obj) {
-  const idx = findObjIdxById(id)
-  if (idx !== -1) Shared.objs.splice(idx + 1, 0, obj)
-  else Shared.objs.push(obj)
 }
 
 function pickedInRoom(itemCfg, room) {

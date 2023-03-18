@@ -4,7 +4,7 @@ import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import { play } from './sounds'
 
 export function Water(x0, y0, x1, y1, size, deep, dropCfg) {
-  return {
+  const w = {
     x0,
     y0,
     x1,
@@ -20,8 +20,11 @@ export function Water(x0, y0, x1, y1, size, deep, dropCfg) {
     inWater: false,
     dropSprite: Sprite(...dropCfg),
     lastFrame: true,
-    id: id()
+    id: id(),
+    listeners: Array(1)
   }
+  w.listeners[0] = [Shared.obs, 'in-water', inWater.bind(null, w)]
+  return w
 }
 
 export function draw(w) {
@@ -41,7 +44,7 @@ export function draw(w) {
 
 export function update(w) {
   const s = Shared.hero.sprite
-  const inWater = s.x > w.x0 && s.x < w.x1 - 5 && s.y + s.height > w.y0 + 2 && s.y + s.height < w.y0 + w.deep
+  const inWater = isInWater(s.x, s.y + s.height, w)
   const frames = w.dropSprite.img.frames
   if (inWater) Shared.hero.inWater = w.id
   else if (Shared.hero.inWater === w.id) Shared.hero.inWater = false
@@ -59,4 +62,15 @@ export function update(w) {
   } else if (!inWater) w.inWater = false
   !w.lastFrame && updateSprite(w.dropSprite)
   if (!w.lastFrame && frames.frame === 0) w.lastFrame = true
+}
+
+function inWater(w, p) {
+  const x = p.detail.x
+  const y = p.detail.y
+  if (p.r) return
+  p.detail.r = isInWater(x, y, w)
+}
+
+function isInWater(x, y, w) {
+  return x > w.x0 && x < w.x1 && y > w.y0 && y < w.y1 + w.deep
 }

@@ -1,6 +1,6 @@
 import Config from './config'
 import Shared from './shared'
-import { on, el } from './utils'
+import { ons, el } from './utils'
 
 export function Music() {
   const music = {
@@ -8,10 +8,12 @@ export function Music() {
     el: el(`#${Config.audioId}`),
     vol: el(Config.volumeQuery),
     volLabel: el(Config.volumeLabelQuery),
-    idx: 0
+    idx: 0,
+    listeners: Array(2)
   }
-  on(music.el, 'ended', play.bind(null, music))
-  on(music.vol, 'change', onVolume.bind(null, music))
+  music.listeners[0] = [music.el, 'ended', play.bind(null, music)]
+  music.listeners[1] = [music.vol, 'change', onVolume.bind(null, music)]
+  ons(music.listeners)
   Shared.volume = Config.musicVolume
 
   return music
