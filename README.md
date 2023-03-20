@@ -30,5 +30,9 @@ http://js-gra.netlify.app
 
 ## Screenshots
 ![logo](https://github.com/tmptrash/gra/blob/main/screenshots/logo.png)
-![first-room](https://github.com/tmptrash/gra/blob/main/screenshots/room.png)
-![portal-room](https://github.com/tmptrash/gra/blob/main/screenshots/portal.png)
+![scr0](https://github.com/tmptrash/gra/blob/main/screenshots/scr0.png)
+![scr1](https://github.com/tmptrash/gra/blob/main/screenshots/scr1.png)
+![scr2](https://github.com/tmptrash/gra/blob/main/screenshots/scr2.png)
+![scr3](https://github.com/tmptrash/gra/blob/main/screenshots/scr3.png)
+![scr4](https://github.com/tmptrash/gra/blob/main/screenshots/scr4.png)
+![scr5](https://github.com/tmptrash/gra/blob/main/screenshots/scr5.png)

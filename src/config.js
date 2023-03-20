@@ -385,8 +385,7 @@ export default Config = {
     },
     items: {
       0: [
-        //[[{x: 100, y: 200}, {idle: [A.GunAnimPath,   9,  150]}], 'gun',      'foundGun'],
-        //[[{x: 200, y: 300}, {idle: [A.BulletsPath,   9,  150]}], 'bullets',  'foundBullets'],
+        //[[{x: 220, y: 300}, {idle: [A.BulletsPath,   9,  150]}], 'bullets',  'foundBullets'],
         //[[{x: 830, y: 580}, {idle: [A.KeyPath,       7,  200]}], 'key',      'foundKey']
       ],
       2: [
