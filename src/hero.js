@@ -58,7 +58,7 @@ export function update(h) {
   h.climb = false
 
   // climb
-  if (h.pressed.q) {
+  if (h.pressed.q && !xyBlock(s.x, s.y + s.height + 2)) {
     xyBlock(s.x - 2, s.y) && (h.climb = 'Left')
     xyBlock(s.x + s.width + 2, s.y) && (h.climb = 'Right')
     if (h.climb) {
