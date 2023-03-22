@@ -67,6 +67,7 @@ export function update(h) {
       s.img = s.imgs[`climb${h.climb}`]
       updateY(h, s.y + dt * Config.climbFallSpeed, dt)
       h.v = 0
+      h.coyoteTime = performance.now()
       play(Config.sounds.friction)
     }
   } else stop(Config.sounds.friction)
@@ -166,7 +167,7 @@ function onJumpKeyDown(h) {
   const pos = downBlock(h.sprite)
   const now = performance.now()
   h.sprite.y--
-  if (!h.pressed.w && (h.climb || pos || (!pos && now - h.coyoteTime < Config.coyoteDelayMs))) {
+  if (!h.pressed.w && (h.climb || pos || ((!pos || !h.climb) && now - h.coyoteTime < Config.coyoteDelayMs))) {
     play(Config.sounds.jump)
     h.v = Config.jumpVelocity
     h.isJumping = true
