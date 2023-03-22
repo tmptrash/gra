@@ -126,18 +126,21 @@ export default Config = {
   touchDelayMs: 1500,
   coyoteDelayMs: 80,
   underWaterTime: 10000,
+  climbFallSpeed: 2,
 
   // keys
   jumpQuery: '#jump',
   leftQuery: '#left',
   rightQuery: '#right',
   fireQuery: '#fire',
+  climbQuery: '#climb',
   useQuery: '#use',
   // keys: tinyurl.com/5n8deccv
   leftKey: 'KeyA',
   rightKey: 'KeyD',
   jumpKey: 'KeyW',
   fireKey: 'Space',
+  climbKey: 'KeyQ',
   useKey: 'KeyZ',
 
   // bullet
@@ -178,6 +181,7 @@ export default Config = {
     goRight: A.SoundGoRight,
     pick: A.SoundPick,
     portal: A.SoundPortal,
+    friction: A.SoundFriction,
     menu: A.Menu
   },
 
@@ -206,7 +210,10 @@ export default Config = {
     jumpGunRight: [A.JumpGunRightPath, 9, 150],
 
     idleHitLeft:  [A.IdleHitLeftPath,  1, 100],
-    idleHitRight: [A.IdleHitRightPath, 1, 100]
+    idleHitRight: [A.IdleHitRightPath, 1, 100],
+
+    climbLeft:    [A.ClimbLeftPath,    1, 500],
+    climbRight:   [A.ClimbRightPath,   1, 500]
   }],
   l1: [{x: 0, y: 0, width: WIDTH, height: HEIGHT}, A.L1Path],
 
@@ -409,7 +416,7 @@ export default Config = {
         [[{x: 550, y: 128}, {idle: [A.BulletsPath,   9,  150]}], 'bullets', 'foundBullets']
       ],
       11: [
-        [[{x: 832, y: 224}, {idle: [A.HeartAnimPath, 9,  100]}], 'heart',   'foundHeart'],
+        [[{x: 832, y: 224}, {idle: [A.HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']
       ],
       13: [
         [[{x: 800, y: 600}, {idle: [A.HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']

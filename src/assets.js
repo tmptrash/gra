@@ -16,10 +16,14 @@ import BulletPath from '../img/bullet-1.png'
 import FlashlightPath from '../img/flashlight-9.png'
 // hero
 import IdleLeftPath from '../img/idle-left-3.png'
+import IdleRightPath from '../img/idle-right-3.png'
+import ClimbLeftPath from '../img/climb-left-1.png'
+import ClimbRightPath from '../img/climb-right-1.png'
+import ClimbGunLeftPath from '../img/climb-left-1.png'
+import ClimbGunRightPath from '../img/climb-right-1.png'
 import IdleHitLeftPath from '../img/idle-hit-left-1.png'
 import IdleHitRightPath from '../img/idle-hit-right-1.png'
 import IdleGunLeftPath from '../img/idle-gun-left-3.png'
-import IdleRightPath from '../img/idle-right-3.png'
 import IdleGunRightPath from '../img/idle-gun-right-3.png'
 import WalkLeftPath from '../img/walk-left-6.png'
 import WalkGunLeftPath from '../img/walk-gun-left-6.png'
@@ -92,6 +96,7 @@ import SoundGoLeft from '../sound/go-left.mp3'
 import SoundGoRight from '../sound/go-right.mp3'
 import SoundPick from '../sound/pick.mp3'
 import SoundPortal from '../sound/portal.mp3'
+import SoundFriction from '../sound/friction.mp3'
 import Menu from '../sound/menu.mp3'
 
 export const ASSET_NAMES = {
@@ -109,10 +114,14 @@ export const ASSET_NAMES = {
   'BulletPath': BulletPath,
   'FlashlightPath': FlashlightPath,
   'IdleLeftPath': IdleLeftPath,
+  'IdleRightPath': IdleRightPath,
+  'ClimbLeftPath': ClimbLeftPath,
+  'ClimbRightPath': ClimbRightPath,
+  'ClimbGunLeftPath': ClimbGunLeftPath,
+  'ClimbGunRightPath': ClimbGunRightPath,
   'IdleHitLeftPath': IdleHitLeftPath,
   'IdleHitRightPath': IdleHitRightPath,
   'IdleGunLeftPath': IdleGunLeftPath,
-  'IdleRightPath': IdleRightPath,
   'IdleGunRightPath': IdleGunRightPath,
   'WalkLeftPath': WalkLeftPath,
   'WalkGunLeftPath': WalkGunLeftPath,
@@ -181,6 +190,7 @@ export const ASSET_NAMES = {
   'SoundGoRight': SoundGoRight,
   'SoundPick': SoundPick,
   'SoundPortal': SoundPortal,
+  'SoundFriction': SoundFriction,
   'Menu': Menu
 }
 

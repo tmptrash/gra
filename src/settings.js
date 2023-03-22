@@ -2,7 +2,7 @@ import Config, { Msgs } from './config'
 import { el, on, fire, hide, show, checkbox } from './utils'
 import { saveCfg } from './store'
 
-const KEYS = ['jump', 'left', 'right', 'fire', 'use', 'fullscreen']
+const KEYS = ['jump', 'left', 'right', 'fire', 'climb', 'use', 'fullscreen']
 
 export function Settings() {
   const s = {}

@@ -1,7 +1,7 @@
 import Config from './config'
 import Shared from './shared'
-import { bind, unbind, LEFT, RIGHT, picked, on, fire, inWater } from './utils'
-import { rightBlock, leftBlock, topBlock, downBlock } from './blocks'
+import { bind, unbind, LEFT, RIGHT, picked, fire, inWater } from './utils'
+import { rightBlock, leftBlock, topBlock, downBlock, xyBlock } from './blocks'
 import { Sprite, draw as drawSprite, update as updateSprite, setImg } from './sprite'
 import { updateObjs, room } from './rooms'
 import { play, stop } from './sounds'
@@ -17,7 +17,7 @@ export function Hero() {
     jumpStartTime: 0,
     isJumping: false,
     coyoteTime: 0,
-    pressed: { a: false, d: false, w: false },
+    pressed: { a: false, d: false, w: false, q: false },
     sprite: Sprite(...Config.hero),
     dustSprite: Sprite(...Config.dust),
     dust: false,
@@ -36,7 +36,8 @@ export function Hero() {
     stepSpeed: Config.stepSpeed,
     inWater: false, // bool | id
     inWaterTime: 0,
-    listeners: Array(1)
+    listeners: Array(1),
+    climb: false
   }
   rebind(hero)
   hero.listeners[0] = [Shared.obs, 'rebind', rebind.bind(null, hero)]
@@ -54,6 +55,20 @@ export function update(h) {
   const t = performance.now()
   const s = h.sprite
   const dt = (t - (h.t || (h.t = t))) / (Config.jumpSpeed * 100)
+  h.climb = false
+
+  // climb
+  if (h.pressed.q) {
+    xyBlock(s.x - 2, s.y) && (h.climb = 'Left')
+    xyBlock(s.x + s.width + 2, s.y) && (h.climb = 'Right')
+    if (h.climb) {
+      h.isJumping = false
+      s.img = s.imgs[`climb${h.climb}`]
+      updateY(h, s.y + dt * Config.climbFallSpeed, dt)
+      h.v = 0
+      play(Config.sounds.friction)
+    }
+  } else stop(Config.sounds.friction)
 
   // jump
   if (h.isJumping) {
@@ -64,7 +79,7 @@ export function update(h) {
   }
 
   // walk: x += (t - h.t) * Config.stepSpeed * h.dir
-  if (h.pressed.d || h.pressed.a) {
+  if ((h.pressed.d || h.pressed.a) && !h.pressed.q) {
     updateX(h, s.x + (t - h.t) * h.stepSpeed * h.dir)
     h.stepSpeed = h.inWater ? Config.stepSpeed / 2 : Config.stepSpeed
     if (!h.isJumping) {
@@ -79,10 +94,10 @@ export function update(h) {
   } else fadeWater(h)
 
   // idle
-  !h.isJumping && !h.pressed.d && !h.pressed.a && (s.img = s.imgs[`idle${h.gun ? 'Gun' : ''}${side(h)}`])
+  !h.isJumping && !h.pressed.d && !h.pressed.a && !h.climb && (s.img = s.imgs[`idle${h.gun ? 'Gun' : ''}${side(h)}`])
 
   // fall
-  !h.isJumping && updateY(h, s.y + Config.fallSpeed * dt, dt)
+  !h.isJumping && !h.climb && updateY(h, s.y + Config.fallSpeed * dt, dt)
 
   // hit
   if (h.hit) {
@@ -136,9 +151,11 @@ function rebind(h) {
   keyCfg.keydown[Config.rightKey] = () => (h.pressed.d = true, h.dir = RIGHT),
   keyCfg.keydown[Config.jumpKey]  = onJumpKeyDown.bind(null, h),
   keyCfg.keydown[Config.fireKey]  = onFire.bind(null, h),
+  keyCfg.keydown[Config.climbKey] = () => h.pressed.q = true,
   keyCfg.keyup[Config.leftKey]    = () => (h.pressed.a = false, h.pressed.d && (h.dir = RIGHT)),
   keyCfg.keyup[Config.rightKey]   = () => (h.pressed.d = false, h.pressed.a && (h.dir = LEFT)),
-  keyCfg.keyup[Config.jumpKey]    = () => h.pressed.w = false
+  keyCfg.keyup[Config.jumpKey]    = () => h.pressed.w = false,
+  keyCfg.keyup[Config.climbKey]   = () => h.pressed.q = false
   h.handlers = bind(keyCfg)
 }
 
@@ -148,12 +165,13 @@ function onJumpKeyDown(h) {
   const pos = downBlock(h.sprite)
   const now = performance.now()
   h.sprite.y--
-  if (!h.pressed.w && (pos || (!pos && now - h.coyoteTime < Config.coyoteDelayMs))) {
+  if (!h.pressed.w && (h.climb || pos || (!pos && now - h.coyoteTime < Config.coyoteDelayMs))) {
     play(Config.sounds.jump)
     h.v = Config.jumpVelocity
     h.isJumping = true
     h.jumpY = h.sprite.y
     h.jumpStartTime = now
+    h.climb = h.pressed.q = false
     h.sprite.imgs.jumpLeft.frames.frame = h.sprite.imgs.jumpRight.frames.frame = 0
   }
   h.pressed.w = true

@@ -5,7 +5,7 @@ import { Sprite } from './sprite'
 const LS = localStorage
 const CFG = 'cfg'
 const SHARE = 'share'
-const CFG_FIELDS = [ 'leftKey', 'rightKey', 'jumpKey', 'fireKey', 'useKey', 'fullscreen' ]
+const CFG_FIELDS = [ 'leftKey', 'rightKey', 'jumpKey', 'fireKey', 'climbKey', 'useKey', 'fullscreen' ]
 const SHARE_FIELDS = [
   // common fields
   'offsX', 'offsY', 'showed', 'flashlightOn', 'killed',
