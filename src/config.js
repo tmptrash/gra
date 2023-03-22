@@ -140,7 +140,7 @@ export default Config = {
   rightKey: 'KeyD',
   jumpKey: 'KeyW',
   fireKey: 'Space',
-  climbKey: 'KeyQ',
+  climbKey: 'ShiftRight',
   useKey: 'KeyZ',
 
   // bullet

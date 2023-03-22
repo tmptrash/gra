@@ -81,7 +81,7 @@ export function update(h) {
   }
 
   // walk: x += (t - h.t) * Config.stepSpeed * h.dir
-  if ((h.pressed.d || h.pressed.a) && !h.pressed.q) {
+  if ((h.pressed.d || h.pressed.a) && !h.climb) {
     updateX(h, s.x + (t - h.t) * h.stepSpeed * h.dir)
     h.stepSpeed = h.inWater ? Config.stepSpeed / 2 : Config.stepSpeed
     if (!h.isJumping) {
