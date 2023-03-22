@@ -19,8 +19,6 @@ import IdleLeftPath from '../img/idle-left-3.png'
 import IdleRightPath from '../img/idle-right-3.png'
 import ClimbLeftPath from '../img/climb-left-1.png'
 import ClimbRightPath from '../img/climb-right-1.png'
-import ClimbGunLeftPath from '../img/climb-left-1.png'
-import ClimbGunRightPath from '../img/climb-right-1.png'
 import IdleHitLeftPath from '../img/idle-hit-left-1.png'
 import IdleHitRightPath from '../img/idle-hit-right-1.png'
 import IdleGunLeftPath from '../img/idle-gun-left-3.png'
@@ -117,8 +115,6 @@ export const ASSET_NAMES = {
   'IdleRightPath': IdleRightPath,
   'ClimbLeftPath': ClimbLeftPath,
   'ClimbRightPath': ClimbRightPath,
-  'ClimbGunLeftPath': ClimbGunLeftPath,
-  'ClimbGunRightPath': ClimbGunRightPath,
   'IdleHitLeftPath': IdleHitLeftPath,
   'IdleHitRightPath': IdleHitRightPath,
   'IdleGunLeftPath': IdleGunLeftPath,
