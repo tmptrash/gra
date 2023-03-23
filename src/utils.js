@@ -20,10 +20,7 @@ export function int(n) {
 export function bind(handlers) {
   const ret = {}
   for (const evt in handlers) {
-    ret[evt] = e => {
-      e.preventDefault()
-      handlers[evt] && handlers[evt][e.code] && handlers[evt][e.code]()
-    }
+    ret[evt] = e => handlers[evt] && handlers[evt][e.code] && handlers[evt][e.code]()
     on(window, evt, ret[evt])
   }
   return ret
