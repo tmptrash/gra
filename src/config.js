@@ -224,7 +224,7 @@ export default Config = {
     enemies: {
       0: [
         //[[{x: 32,  y: 150}, {idleUp:   [A.BugUpPath,      2, 300], idleDown:  [A.BugDownPath,     2, 300]}], .5,  false],
-        [[{x: 140, y: 697}, {idleLeft: [A.BugLeftPath,    2, 300], idleRight: [A.BugRightPath,    2, 300]}], .5,  true]
+        [[{x: 340, y: 697}, {idleLeft: [A.BugLeftPath,    2, 300], idleRight: [A.BugRightPath,    2, 300]}], .5,  true]
       ],
       1: [
         [[{x: 620, y: 505}, {idleLeft: [A.BugLeftPath,    2, 300], idleRight: [A.BugRightPath,    2, 300]}], .8,  true],
