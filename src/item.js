@@ -3,6 +3,7 @@ import Shared from './shared'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
 import { addObj, delObj, touch, msg, repeat, el, css, fire, pickedIdx, picked, idFrom } from './utils'
 import { create } from './creator'
+import { saveShared } from './store'
 import { play } from './sounds'
 
 const pickFns = {
@@ -72,6 +73,7 @@ function pickBraveMushroom(i) {
     css(e, 'animation', 'none')
     delObj(timer)
     fire('after-brave')
+    saveShared()
   }, () => {
     Shared.stop && clearInterval(int)
     play(Config.sounds.breath)

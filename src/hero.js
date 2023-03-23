@@ -60,8 +60,8 @@ export function update(h) {
   // climb
   if (h.pressed.q && !xyBlock(s.x, s.y + s.height + 2)) {
     const y = s.y + s.height / 2
-    xyBlock(s.x - 2, y) && (h.climb = 'Left')
-    xyBlock(s.x + s.width + 2, y) && (h.climb = 'Right')
+    xyBlock(s.x - Config.climbSize, y) && (h.climb = 'Left')
+    xyBlock(s.x + s.width + Config.climbSize, y) && (h.climb = 'Right')
     if (h.climb) {
       h.isJumping = false
       s.img = s.imgs[`climb${h.climb}`]

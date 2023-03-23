@@ -63,6 +63,7 @@ import FireflyBPath from '../img/firefly-big-5.png'
 import DustPath from '../img/dust-12.png'
 import StalactiteUpRowPath from '../img/stalactite-up-row.png'
 import StalactiteDownRowPath from '../img/stalactite-down-row.png'
+import SignClimbPath from '../img/sign-climb.png'
 // music
 import Cave0 from '../music/cave0.mp3'
 // sounds
@@ -157,6 +158,7 @@ export const ASSET_NAMES = {
   'DustPath': DustPath,
   'StalactiteUpRowPath': StalactiteUpRowPath,
   'StalactiteDownRowPath': StalactiteDownRowPath,
+  'SignClimbPath': SignClimbPath,
   'Cave0': Cave0,
   'SoundHit': SoundHit,
   'SoundJump': SoundJump,

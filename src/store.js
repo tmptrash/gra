@@ -58,7 +58,10 @@ function savePicked(picked) {
 }
 
 function loadPicked(picked) {
-  return picked && picked.map(i => ({sprite: Sprite(...i.spriteCfg), ...i}))
+  return picked && picked.map(i => {
+    i.msg === 'foundBraveMushroom' && (i.hidden = true)
+    return {sprite: Sprite(...i.spriteCfg), ...i}
+  })
 }
 
 function saveTimer(timer) {
