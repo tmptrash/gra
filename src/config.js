@@ -411,7 +411,7 @@ export default Config = {
         [[{x: 870, y: 600}, {idle: [A.BulletsPath,   9,  150]}], 'bullets', 'foundBullets']
       ],
       8: [
-        [[{x: 451, y: 190}, {idle: [A.HeartAnimPath, 9,  100]}], 'heart',   'foundHeart'],
+        [[{x: 560, y: 140}, {idle: [A.HeartAnimPath, 9,  100]}], 'heart',   'foundHeart'],
         [[{x: 330, y: 650}, {idle: [A.BulletsPath,   9,  150]}], 'bullets', 'foundBullets']
       ],
       10: [
@@ -551,7 +551,8 @@ export default Config = {
         ['Stalactite', {sprite:  [{x: 103, y: 545}, A.StalactiteUp1Path], amount: 2, pos: 'end'}],
         ['Stalactite', {sprite:  [{x: 552, y: 193}, A.StalactiteDownRowPath], amount: 2, pos: 'end'}],
         ['Stalactite', {sprite:  [{x: 138, y:  31}, A.StalactiteUpRowPath], amount: 1, pos: 'end'}],
-        ['Text',       {text:    [Msgs.climb, 350, 160, 0, 6000, false], id: id(), after: EFFECT_ID}],
+        ['Sprite',     {sprite:  [{x: 453, y: 145}, A.Plant1Path], pos: 'end'}],
+        ['Text',       {text:    [Msgs.climb, 330, 160, 0, 6000, true], id: id(), after: EFFECT_ID}]
       ],
       10: [
         ['Drop',       {sprite1: [{x: 590, y: 288}, A.DropPath], sprite2: [{x: 590, y: 288}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed:  9, delay: 1000}],

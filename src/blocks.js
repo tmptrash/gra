@@ -75,6 +75,11 @@ export function xyBlock(x, y) {
   return block(ySprite * Config.hSprites + xSprite)
 }
 
+export function xyBlockPosX(x, y) {
+  const spriteSize = Config.spriteSize
+  return Math.floor((int(x)) / spriteSize) * spriteSize
+}
+
 function getSpritePosX(xSprite, ySprite, left = true) {
   const spriteSize = Config.spriteSize
   return [xSprite * spriteSize + (left ? 0 : spriteSize) - Shared.offsX, ySprite * spriteSize - Shared.offsY]

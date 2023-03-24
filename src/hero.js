@@ -1,7 +1,7 @@
 import Config from './config'
 import Shared from './shared'
 import { bind, unbind, LEFT, RIGHT, picked, fire, inWater } from './utils'
-import { rightBlock, leftBlock, topBlock, downBlock, xyBlock } from './blocks'
+import { rightBlock, leftBlock, topBlock, downBlock, xyBlock, xyBlockPosX } from './blocks'
 import { Sprite, draw as drawSprite, update as updateSprite, setImg } from './sprite'
 import { updateObjs, room } from './rooms'
 import { play, stop } from './sounds'
@@ -60,12 +60,14 @@ export function update(h) {
   // climb
   if (h.pressed.q && !xyBlock(s.x, s.y + s.height + 2)) {
     const y = s.y + s.height / 2
-    xyBlock(s.x - Config.climbSize, y) && (h.climb = 'Left')
-    xyBlock(s.x + s.width + Config.climbSize, y) && (h.climb = 'Right')
+    let posX
+    xyBlock(s.x - Config.climbSize, y) && (h.climb = 'Left', posX = xyBlockPosX(s.x - Config.climbSize, y))
+    xyBlock(s.x + s.width + Config.climbSize, y) && (h.climb = 'Right', posX = xyBlockPosX(s.x + s.width + Config.climbSize, y))
     if (h.climb) {
       h.isJumping = false
       s.img = s.imgs[`climb${h.climb}`]
       updateY(h, s.y + dt * Config.climbFallSpeed, dt)
+      s.x = posX + (h.climb === 'Left' ? Config.spriteSize + 1 : -s.width - 1)
       h.v = 0
       h.coyoteTime = performance.now()
       play(Config.sounds.friction)
