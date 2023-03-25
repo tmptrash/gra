@@ -58,21 +58,7 @@ export function update(h) {
   h.climb = false
 
   // climb
-  if (h.pressed.q && !xyBlock(s.x, s.y + s.height + 2)) {
-    const y = s.y + s.height / 2
-    let posX
-    xyBlock(s.x - Config.climbSize, y) && (h.climb = 'Left', posX = xyBlockPosX(s.x - Config.climbSize, y))
-    xyBlock(s.x + s.width + Config.climbSize, y) && (h.climb = 'Right', posX = xyBlockPosX(s.x + s.width + Config.climbSize, y))
-    if (h.climb) {
-      h.isJumping = false
-      s.img = s.imgs[`climb${h.climb}`]
-      updateY(h, s.y + dt * Config.climbFallSpeed, dt)
-      s.x = posX + (h.climb === 'Left' ? Config.spriteSize + 1 : -s.width - 1)
-      h.v = 0
-      h.coyoteTime = performance.now()
-      play(Config.sounds.friction)
-    }
-  } else stop(Config.sounds.friction)
+  h.pressed.q && !xyBlock(s.x, s.y + s.height + 2) ? climb(h, dt) : stop(Config.sounds.friction)
 
   // jump
   if (h.isJumping) {
@@ -271,4 +257,21 @@ function drawOxigen(h) {
   const d = (Config.underWaterTime - (performance.now() - h.inWaterTime)) / 200
   Shared.ctx.fillStyle = Config.oxigenColor
   Shared.ctx.fillRect(s.x - 10, s.y - 10, d , 4)
+}
+
+function climb(h, dt) {
+  const s = h.sprite
+  const y = s.y + s.height / 2
+  let x
+  if (xyBlock(s.x - Config.climbSize, y)) h.climb = 'Left', x = xyBlockPosX(s.x - Config.climbSize, y)
+  else if (xyBlock(s.x + s.width + Config.climbSize, y)) h.climb = 'Right', x = xyBlockPosX(s.x + s.width + Config.climbSize, y)
+  if (h.climb) {
+    h.isJumping = false
+    s.img = s.imgs[`climb${h.climb}`]
+    updateY(h, s.y + dt * Config.climbFallSpeed, dt)
+    s.x = x + (h.climb === 'Left' ? Config.spriteSize + 1 : -s.width - 1)
+    h.v = 0
+    h.coyoteTime = performance.now()
+    play(Config.sounds.friction)
+  }
 }

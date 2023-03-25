@@ -1,6 +1,6 @@
 import Shared from './shared'
 import { Sprite, draw as drawSprite, update as updateSprite } from './sprite'
-import { touch, arr } from './utils'
+import { touch, arr, picked } from './utils'
 
 export function Stalactite(spriteCfg, amount = 1) {
   return {
@@ -20,7 +20,7 @@ export function update(s) {
   const heroSprite = Shared.hero.sprite
   s.sprites.forEach(s => {
     if (touch(s, heroSprite, 6)) {
-      Shared.hero.life = 0
+      !picked('foundBraveMushroom', false) && (Shared.hero.life = 0)
       Shared.hero.hit = true
     } else updateSprite(s)
   })
