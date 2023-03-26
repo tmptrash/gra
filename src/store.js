@@ -60,6 +60,7 @@ function savePicked(picked) {
 function loadPicked(picked) {
   return picked && picked.map(i => {
     i.msg === 'foundBraveMushroom' && (i.hidden = true)
+    i.msg === 'foundTeleMushroom' && (i.hidden = true)
     return {sprite: Sprite(...i.spriteCfg), ...i}
   })
 }
