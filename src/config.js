@@ -98,7 +98,7 @@ export default Config = {
   mushroomDelayMs: 1000 * 60 * 1,
   braveMushroomPlayPeriosMs: 2000,
   teleMushroomPlayPeriosMs: 6000,
-  keyRoom: [7, 4],
+  keyRoom: [5, 4],
   doorRoom: [0, 3],
   enemiesPos: 3,
   itemsPos: 3,
@@ -456,14 +456,14 @@ export default Config = {
       25: [
         [[{x: 880, y: 704}, {idle: [A.HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']
       ],
+      28: [
+        [[{x: 200, y: 300}, {idle: [A.MushroomT9Path,9,  100]}], 'mushroom', 'foundTeleMushroom']
+      ],
       29: [
         [[{x: 880, y: 704}, {idle: [A.HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']
       ],
-      31: [
-        [[{x: 850, y: 620}, {idle: [A.MushroomT9Path,9,  100]}], 'mushroom', 'foundTeleMushroom']
-      ],
       37: [
-        [[{x: 830, y: 580}, {idle: [A.KeyPath,       7,  200]}], 'key',     'foundKey']
+        [[{x: 700, y: 615}, {idle: [A.KeyPath,       7,  200]}], 'key',     'foundKey']
       ],
       39: [
         [[{x: 615, y: 120}, {idle: [A.BulletsPath,   9,  150]}], 'bullets', 'foundBullets']
@@ -478,8 +478,8 @@ export default Config = {
         ['Text',       {text:    [Msgs.findTheKey,    380, 300,  8000, 3000, true], id: id(), after: EFFECT_ID}],
         ['Text',       {text:    [Msgs.dontTouchBugs, 380, 300, 11500, 4000, true], id: id(), after: EFFECT_ID}],
         ['Text',       {text:    [Msgs.goodLuck,      467, 300, 16000, 4000, true], id: id(), after: EFFECT_ID}],
-        ['Stalactite', {sprite:  [{x: 110, y:  64}, A.StalactiteUp1Path]}],
-        ['Stalactite', {sprite:  [{x: 580, y:  64}, A.StalactiteUp2Path]}],
+        ['Stalactite', {sprite:  [{x: 110, y:  63}, A.StalactiteUp1Path]}],
+        ['Stalactite', {sprite:  [{x: 580, y:  63}, A.StalactiteUp2Path]}],
         ['Sprite',     {sprite:  [{x: 730, y: 630}, A.Plant1Path], pos: 'end'}],
         ['Sprite',     {sprite:  [{x: 570, y: 390}, A.Plant3Path], pos: 'end'}],
         ['Sprite',     {sprite:  [{x: 350, y: 680}, A.Plant4Path], pos: 'end'}],
@@ -567,7 +567,7 @@ export default Config = {
       13: [
         ['Drop',       {sprite1: [{x:  46, y: 288}, A.DropPath], sprite2: [{x:  46, y: 288}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop4', speed:  8, delay: 4000}],
         ['Drop',       {sprite1: [{x: 384, y: 395}, A.DropPath], sprite2: [{x: 384, y: 395}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 10, delay: 1000}],
-        ['Sprite',     {sprite:  [{x: 345, y: 288}, A.StalactiteUp2Path]}],
+        ['Sprite',     {sprite:  [{x: 345, y: 287}, A.StalactiteUp2Path]}],
         ['Sprite',     {sprite:  [{x: 300, y: 720}, A.Plant2Path], pos: 'end'}],
         ['Stalactite', {sprite:  [{x: 795, y: 705}, A.StalactiteDownRowPath], amount: 2, pos: 'end'}]
       ],
@@ -583,9 +583,7 @@ export default Config = {
         ['Stalactite', {sprite:  [{x: 750, y: 705}, A.StalactiteDownRowPath], amount: 3, pos: 'end'}]
       ],
       17: [
-        ['Drop',       {sprite1: [{x: 271, y:  32}, A.DropPath], sprite2: [{x: 271, y:  32}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed:  5, delay: 2000}],
-        //['Drop',       {sprite1: [{x: 108, y: 256}, A.DropPath], sprite2: [{x: 108, y: 256}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 10, delay: 1000}],
-        ['Stalactite', {sprite:  [{x: 620, y: 607}, A.StalactiteUpRowPath]}],
+        ['Drop',       {sprite1: [{x: 711, y: 260}, A.DropPath], sprite2: [{x: 711, y: 260}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed:  5, delay: 2000}],
         ['Stalactite', {sprite:  [{x: 310, y: 705}, A.StalactiteDownRowPath], pos: 'end'}],
         ['Stalactite', {sprite:  [{x: 688, y: 159}, A.StalactiteUp1Path], pos: 'end'}],
         ['Portal',     {sprite:  [{x: 200, y:  30}, {idle: [A.PortalPath, 9, 80]}], pos: 1}]
