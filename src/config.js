@@ -464,7 +464,7 @@ export default Config = {
         [[{x: 880, y: 704}, {idle: [A.HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']
       ],
       37: [
-        [[{x: 700, y: 615}, {idle: [A.KeyPath,       7,  200]}], 'key',     'foundKey']
+        [[{x: 700, y: 625}, {idle: [A.KeyPath,       7,  200]}], 'key',     'foundKey']
       ],
       39: [
         [[{x: 615, y: 120}, {idle: [A.BulletsPath,   9,  150]}], 'bullets', 'foundBullets']
