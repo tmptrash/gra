@@ -105,7 +105,7 @@ export default Config = {
   scriptsPos: 3,
   darknessLevel: 3,
   brighnessDec: .2,
-  flashLightRadius: 450,
+  flashLightRadius: 250,
   fireflyAmount: 50,
   fireflySpeed: .8,
 
