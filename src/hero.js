@@ -141,7 +141,7 @@ function rebind(h) {
   keyCfg.keydown[Config.rightKey] = () => (h.pressed.d = true, h.dir = RIGHT),
   keyCfg.keydown[Config.jumpKey]  = onJumpKeyDown.bind(null, h),
   keyCfg.keydown[Config.fireKey]  = onFire.bind(null, h),
-  keyCfg.keydown[Config.climbKey] = () => h.pressed.q = true,
+  keyCfg.keydown[Config.climbKey] = () => h.pressed.q = true
   keyCfg.keyup[Config.leftKey]    = () => (h.pressed.a = false, h.pressed.d && (h.dir = RIGHT)),
   keyCfg.keyup[Config.rightKey]   = () => (h.pressed.d = false, h.pressed.a && (h.dir = LEFT)),
   keyCfg.keyup[Config.jumpKey]    = () => h.pressed.w = false,
