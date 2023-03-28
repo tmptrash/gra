@@ -138,13 +138,13 @@ function rebind(h) {
   h.pressed = { a: false, d: false, w: false }
   const keyCfg = { keydown: {}, keyup: {} }
   keyCfg.keydown[Config.leftKey]  = () => (h.pressed.a = true, h.dir = LEFT)
-  keyCfg.keydown[Config.rightKey] = () => (h.pressed.d = true, h.dir = RIGHT),
-  keyCfg.keydown[Config.jumpKey]  = onJumpKeyDown.bind(null, h),
-  keyCfg.keydown[Config.fireKey]  = onFire.bind(null, h),
+  keyCfg.keydown[Config.rightKey] = () => (h.pressed.d = true, h.dir = RIGHT)
+  keyCfg.keydown[Config.jumpKey]  = onJumpKeyDown.bind(null, h)
+  keyCfg.keydown[Config.fireKey]  = onFire.bind(null, h)
   keyCfg.keydown[Config.climbKey] = () => h.pressed.q = true
-  keyCfg.keyup[Config.leftKey]    = () => (h.pressed.a = false, h.pressed.d && (h.dir = RIGHT)),
-  keyCfg.keyup[Config.rightKey]   = () => (h.pressed.d = false, h.pressed.a && (h.dir = LEFT)),
-  keyCfg.keyup[Config.jumpKey]    = () => h.pressed.w = false,
+  keyCfg.keyup[Config.leftKey]    = () => (h.pressed.a = false, h.pressed.d && (h.dir = RIGHT))
+  keyCfg.keyup[Config.rightKey]   = () => (h.pressed.d = false, h.pressed.a && (h.dir = LEFT))
+  keyCfg.keyup[Config.jumpKey]    = () => h.pressed.w = false
   keyCfg.keyup[Config.climbKey]   = () => h.pressed.q = false
   h.handlers = bind(keyCfg)
 }
