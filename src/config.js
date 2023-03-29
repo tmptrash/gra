@@ -493,7 +493,7 @@ export default Config = {
         //['Rope',       {params:  [205, 0, 524, 159, 400, 20, 4, .7, 3]}]
       ],
       1: [
-        ['Drop',       {sprite1: [{x: 112, y: 159}, A.DropPath], sprite2: [{x: 112, y: 159}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 10, delay: 2000}],
+        ['Drop',       {sprite1: [{x: 120, y: 222}, A.DropPath], sprite2: [{x: 120, y: 222}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 10, delay: 2000}],
         ['Sprite',     {sprite:  [{x: 650, y: 490}, A.Plant5Path], pos: 'end'}],
         ['Sprite',     {sprite:  [{x: 170, y: 590}, A.Plant4Path], pos: 'end'}],
         ['Sprite',     {sprite:  [{x: 894, y: 135}, A.Plant7Path], pos: 'end'}],
@@ -584,13 +584,15 @@ export default Config = {
         ['Water',      {params:  [31, 680, 993, 680, 6, 91], drop: [{x: 0, y:0}, {idle: [A.DropDownPath, 12, 40]}], pos: 'end' }]
       ],
       16: [
-        ['Drop',       {sprite1: [{x: 219, y: 567}, A.DropPath], sprite2: [{x: 219, y: 567}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, before: 90, sound: 'drop1', speed:  5, delay: 2000}],
+        ['Drop',       {sprite1: [{x: 215, y: 507}, A.DropPath], sprite2: [{x: 215, y: 507}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, before: 90, sound: 'drop1', speed:  5, delay: 2000}],
         ['Water',      {params:  [31, 680, 321, 680, 7, 92], drop: [{x: 0, y:0}, {idle: [A.DropDownPath, 12, 80]}], pos: 'end' }],
-        ['Stalactite', {sprite:  [{x: 750, y: 705}, A.StalactiteDownRowPath], amount: 3, pos: 'end'}]
+        ['Stalactite', {sprite:  [{x: 450, y: 705}, A.StalactiteDownRowPath], amount: 3, pos: 'end'}],
+        ['Stalactite', {sprite:  [{x: 750, y: 705}, A.StalactiteDownRowPath], amount: 3, pos: 'end'}],
+        ['Stalactite', {sprite:  [{x: 193, y: 479}, A.StalactiteUpSmallRowPath], pos: 'end'}]
       ],
       17: [
         ['Drop',       {sprite1: [{x: 711, y: 260}, A.DropPath], sprite2: [{x: 711, y: 260}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed:  5, delay: 2000}],
-        ['Stalactite', {sprite:  [{x: 310, y: 705}, A.StalactiteDownRowPath], pos: 'end'}],
+        ['Stalactite', {sprite:  [{x: 230, y: 705}, A.StalactiteDownRowPath], amount: 3, pos: 'end'}],
         ['Stalactite', {sprite:  [{x: 688, y: 159}, A.StalactiteUp1Path], pos: 'end'}],
         ['Portal',     {sprite:  [{x: 200, y:  30}, {idle: [A.PortalPath, 9, 80]}], pos: 1}]
       ],
@@ -634,27 +636,27 @@ export default Config = {
         ['Drop',       {sprite1: [{x: 304, y: 253}, A.DropPath], sprite2: [{x: 304, y: 253}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, before: 139, sound: 'drop1', speed: 10, delay: 1000}],
         ['Water',      {params:  [31, 630, 641, 630, 6, 140], drop: [{x: 0, y:0}, {idle: [A.DropDownPath, 12, 40]}], after: 'hero'}],
         ['Stalactite', {sprite:  [{x: 282, y: 224}, A.StalactiteUpSmallRowPath], amount: 1}],
-        ['Stalactite', {sprite:  [{x:  32, y: 411}, A.StalactiteRightSmallRowPath], pos: 'end'}],
-        ['Stalactite', {sprite:  [{x:  32, y: 443}, A.StalactiteRightSmallRowPath], pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 266, y: 164}, A.StalactiteDownSmallRowPath], amount: 2, pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 376, y: 164}, A.StalactiteDownSmallRowPath], amount: 2, pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 486, y: 164}, A.StalactiteDownSmallRowPath], amount: 2, pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 796, y: 164}, A.StalactiteDownSmallRowPath], amount: 2, pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 896, y: 164}, A.StalactiteDownSmallRowPath], amount: 2, pos: 'end'}],
+        ['Stalactite', {sprite:  [{x:  32, y: 411}, A.StalactiteRightSmallRowPath]}],
+        ['Stalactite', {sprite:  [{x:  32, y: 443}, A.StalactiteRightSmallRowPath]}],
+        ['Stalactite', {sprite:  [{x: 266, y: 164}, A.StalactiteDownSmallRowPath], amount: 2}],
+        ['Stalactite', {sprite:  [{x: 376, y: 164}, A.StalactiteDownSmallRowPath], amount: 2}],
+        ['Stalactite', {sprite:  [{x: 486, y: 164}, A.StalactiteDownSmallRowPath], amount: 2}],
+        ['Stalactite', {sprite:  [{x: 796, y: 164}, A.StalactiteDownSmallRowPath], amount: 2}],
+        ['Stalactite', {sprite:  [{x: 896, y: 164}, A.StalactiteDownSmallRowPath], amount: 2}],
       ],
       26: [
-        ['Stalactite', {sprite:  [{x: 639, y: 680}, A.StalactiteRightSmallRowPath], pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 639, y: 700}, A.StalactiteRightSmallRowPath], pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 639, y: 732}, A.StalactiteRightSmallRowPath], pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 609, y: 643}, A.StalactiteDownSmallRowPath], pos: 'end'}],
+        ['Stalactite', {sprite:  [{x: 639, y: 680}, A.StalactiteRightSmallRowPath], after: 'beforeEffects'}],
+        ['Stalactite', {sprite:  [{x: 639, y: 700}, A.StalactiteRightSmallRowPath], after: 'beforeEffects'}],
+        ['Stalactite', {sprite:  [{x: 639, y: 732}, A.StalactiteRightSmallRowPath], after: 'beforeEffects'}],
+        ['Stalactite', {sprite:  [{x: 609, y: 643}, A.StalactiteDownSmallRowPath], after: 'beforeEffects'}],
         ['Stalactite', {sprite:  [{x: 422, y: 319}, A.StalactiteUpSmallRowPath], amount: 8}],
         ['Stalactite', {sprite:  [{x: 425, y: 260}, A.StalactiteDownSmallRowPath], amount: 8}],
         ['Stalactite', {sprite:  [{x: 321, y: 708}, A.StalactiteDownSmallRowPath], amount: 4}],
         ['Stalactite', {sprite:  [{x: 449, y: 515}, A.StalactiteDownSmallRowPath]}],
-        ['Stalactite', {sprite:  [{x: 737, y: 515}, A.StalactiteDownSmallRowPath], pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 281, y: 164}, A.StalactiteDownSmallRowPath], pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 146, y: 164}, A.StalactiteDownSmallRowPath], amount: 2, pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 60, y: 164}, A.StalactiteDownSmallRowPath], pos: 'end'}]
+        ['Stalactite', {sprite:  [{x: 737, y: 515}, A.StalactiteDownSmallRowPath], after: 'beforeEffects'}],
+        ['Stalactite', {sprite:  [{x: 281, y: 164}, A.StalactiteDownSmallRowPath], after: 'beforeEffects'}],
+        ['Stalactite', {sprite:  [{x: 146, y: 164}, A.StalactiteDownSmallRowPath], amount: 2, after: 'beforeEffects'}],
+        ['Stalactite', {sprite:  [{x: 60, y: 164}, A.StalactiteDownSmallRowPath], after: 'beforeEffects'}]
       ],
       27: [
         ['Drop',       {sprite1: [{x: 300, y:  32}, A.DropPath], sprite2: [{x: 300, y:  32}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed:  8, delay: 2000}],
@@ -679,8 +681,8 @@ export default Config = {
       ],
       32: [
         ['Drop',       {sprite1: [{x: 642, y: 576}, A.DropPath], sprite2: [{x: 642, y: 576}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed:  8, delay: 2000}],
-        ['Stalactite', {sprite:  [{x: 421, y: 673}, A.StalactiteDownRowPath], amount: 7, pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 164, y: 609}, A.StalactiteDownRowPath], amount: 3, pos: 'end'}]
+        ['Stalactite', {sprite:  [{x: 421, y: 673}, A.StalactiteDownRowPath], amount: 7}],
+        ['Stalactite', {sprite:  [{x: 164, y: 609}, A.StalactiteDownRowPath], amount: 3}]
       ],
       33: [
         ['Stalactite', {sprite:  [{x: 120, y: 160}, A.StalactiteUpRowPath]}],
@@ -697,46 +699,46 @@ export default Config = {
       35: [
         ['Drop',       {sprite1: [{x: 627, y: 608}, A.DropPath], sprite2: [{x: 627, y: 608}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, before: 88, sound: 'drop3', speed:  8, delay: 2000}],
         ['Water',      {params:  [0, 650, 1023, 650, 6, 89], drop: [{x: 0, y:0}, {idle: [A.DropDownPath, 12, 40]}], after: 'hero' }],
-        ['Stalactite', {sprite:  [{x: 850, y: 132}, A.StalactiteDownSmallRowPath], pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 650, y: 132}, A.StalactiteDownSmallRowPath], amount: 2, pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 450, y: 132}, A.StalactiteDownSmallRowPath], amount: 3, pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 290, y: 132}, A.StalactiteDownSmallRowPath], amount: 3, pos: 'end'}],
-        ['Stalactite', {sprite:  [{x:  90, y: 132}, A.StalactiteDownSmallRowPath], amount: 3, pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 100, y: 353}, A.StalactiteDownRowPath], amount: 2, pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 300, y: 353}, A.StalactiteDownRowPath], amount: 2, pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 600, y: 353}, A.StalactiteDownRowPath], amount: 2, pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 800, y: 353}, A.StalactiteDownRowPath], amount: 2, pos: 'end'}]
+        ['Stalactite', {sprite:  [{x: 850, y: 132}, A.StalactiteDownSmallRowPath], after: 'beforeEffects'}],
+        ['Stalactite', {sprite:  [{x: 650, y: 132}, A.StalactiteDownSmallRowPath], amount: 2, after: 'beforeEffects'}],
+        ['Stalactite', {sprite:  [{x: 450, y: 132}, A.StalactiteDownSmallRowPath], amount: 3, after: 'beforeEffects'}],
+        ['Stalactite', {sprite:  [{x: 290, y: 132}, A.StalactiteDownSmallRowPath], amount: 3, after: 'beforeEffects'}],
+        ['Stalactite', {sprite:  [{x:  90, y: 132}, A.StalactiteDownSmallRowPath], amount: 3, after: 'beforeEffects'}],
+        ['Stalactite', {sprite:  [{x: 100, y: 353}, A.StalactiteDownRowPath], amount: 2, after: 'beforeEffects'}],
+        ['Stalactite', {sprite:  [{x: 300, y: 353}, A.StalactiteDownRowPath], amount: 2, after: 'beforeEffects'}],
+        ['Stalactite', {sprite:  [{x: 600, y: 353}, A.StalactiteDownRowPath], amount: 2, after: 'beforeEffects'}],
+        ['Stalactite', {sprite:  [{x: 800, y: 353}, A.StalactiteDownRowPath], amount: 2, after: 'beforeEffects'}]
       ],
       36: [
         ['Water',      {params:  [0, 650, 545, 650, 6, 89], drop: [{x: 0, y:0}, {idle: [A.DropDownPath, 12, 40]}], after: 'hero' }],
-        ['Stalactite', {sprite:  [{x: 156, y: 388}, A.StalactiteDownSmallRowPath], amount: 6, pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 196, y: 258}, A.StalactiteLeftSmallRowPath], pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 196, y: 290}, A.StalactiteLeftSmallRowPath], pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 196, y: 312}, A.StalactiteLeftSmallRowPath], pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 225, y: 227}, A.StalactiteDownSmallRowPath], pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 576, y: 227}, A.StalactiteDownSmallRowPath], pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 548, y: 257}, A.StalactiteLeftSmallRowPath], pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 548, y: 289}, A.StalactiteLeftSmallRowPath], pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 548, y: 322}, A.StalactiteLeftSmallRowPath], pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 548, y: 354}, A.StalactiteLeftSmallRowPath], pos: 'end'}],
+        ['Stalactite', {sprite:  [{x: 156, y: 388}, A.StalactiteDownSmallRowPath], amount: 6}],
+        ['Stalactite', {sprite:  [{x: 196, y: 258}, A.StalactiteLeftSmallRowPath]}],
+        ['Stalactite', {sprite:  [{x: 196, y: 290}, A.StalactiteLeftSmallRowPath]}],
+        ['Stalactite', {sprite:  [{x: 196, y: 312}, A.StalactiteLeftSmallRowPath]}],
+        ['Stalactite', {sprite:  [{x: 225, y: 227}, A.StalactiteDownSmallRowPath]}],
+        ['Stalactite', {sprite:  [{x: 576, y: 227}, A.StalactiteDownSmallRowPath]}],
+        ['Stalactite', {sprite:  [{x: 548, y: 257}, A.StalactiteLeftSmallRowPath]}],
+        ['Stalactite', {sprite:  [{x: 548, y: 289}, A.StalactiteLeftSmallRowPath]}],
+        ['Stalactite', {sprite:  [{x: 548, y: 322}, A.StalactiteLeftSmallRowPath]}],
+        ['Stalactite', {sprite:  [{x: 548, y: 354}, A.StalactiteLeftSmallRowPath]}],
 
-        ['Stalactite', {sprite:  [{x: 607, y: 354}, A.StalactiteRightSmallRowPath], pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 607, y: 322}, A.StalactiteRightSmallRowPath], pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 607, y: 289}, A.StalactiteRightSmallRowPath], pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 607, y: 257}, A.StalactiteRightSmallRowPath], pos: 'end'}],
+        ['Stalactite', {sprite:  [{x: 607, y: 354}, A.StalactiteRightSmallRowPath]}],
+        ['Stalactite', {sprite:  [{x: 607, y: 322}, A.StalactiteRightSmallRowPath]}],
+        ['Stalactite', {sprite:  [{x: 607, y: 289}, A.StalactiteRightSmallRowPath]}],
+        ['Stalactite', {sprite:  [{x: 607, y: 257}, A.StalactiteRightSmallRowPath]}],
 
-        ['Stalactite', {sprite:  [{x: 708, y: 257}, A.StalactiteLeftSmallRowPath], pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 708, y: 289}, A.StalactiteLeftSmallRowPath], pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 708, y: 322}, A.StalactiteLeftSmallRowPath], pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 708, y: 354}, A.StalactiteLeftSmallRowPath], pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 737, y: 227}, A.StalactiteDownSmallRowPath], pos: 'end'}],
+        ['Stalactite', {sprite:  [{x: 708, y: 257}, A.StalactiteLeftSmallRowPath]}],
+        ['Stalactite', {sprite:  [{x: 708, y: 289}, A.StalactiteLeftSmallRowPath]}],
+        ['Stalactite', {sprite:  [{x: 708, y: 322}, A.StalactiteLeftSmallRowPath]}],
+        ['Stalactite', {sprite:  [{x: 708, y: 354}, A.StalactiteLeftSmallRowPath]}],
+        ['Stalactite', {sprite:  [{x: 737, y: 227}, A.StalactiteDownSmallRowPath]}],
 
-        ['Stalactite', {sprite:  [{x: 767, y: 354}, A.StalactiteRightSmallRowPath], pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 767, y: 322}, A.StalactiteRightSmallRowPath], pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 767, y: 289}, A.StalactiteRightSmallRowPath], pos: 'end'}],
-        ['Stalactite', {sprite:  [{x: 767, y: 257}, A.StalactiteRightSmallRowPath], pos: 'end'}],
+        ['Stalactite', {sprite:  [{x: 767, y: 354}, A.StalactiteRightSmallRowPath]}],
+        ['Stalactite', {sprite:  [{x: 767, y: 322}, A.StalactiteRightSmallRowPath]}],
+        ['Stalactite', {sprite:  [{x: 767, y: 289}, A.StalactiteRightSmallRowPath]}],
+        ['Stalactite', {sprite:  [{x: 767, y: 257}, A.StalactiteRightSmallRowPath]}],
 
-        ['Stalactite', {sprite:  [{x: 496, y: 388}, A.StalactiteDownSmallRowPath], amount: 2, pos: 'end'}]
+        ['Stalactite', {sprite:  [{x: 496, y: 388}, A.StalactiteDownSmallRowPath], amount: 2}]
       ],
       37: [
         ['Water',      {params:  [607, 712, 1023, 712, 6, 27], drop: [{x: 0, y:0}, {idle: [A.DropDownPath, 12, 40]}], after: 'beforeEffects' }],
