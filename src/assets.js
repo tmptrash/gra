@@ -66,6 +66,7 @@ import StalactiteDownRowPath from '../img/stalactite-down-row.png'
 import StalactiteDownSmallRowPath from '../img/stalactite-down-small-row.png'
 import StalactiteUpSmallRowPath from '../img/stalactite-up-small-row.png'
 import StalactiteRightSmallRowPath from '../img/stalactite-right-small-row.png'
+import StalactiteLeftSmallRowPath from '../img/stalactite-left-small-row.png'
 import SignClimbPath from '../img/sign-climb.png'
 // music
 import Cave0 from '../music/cave0.mp3'
@@ -164,6 +165,7 @@ export const ASSET_NAMES = {
   'StalactiteDownSmallRowPath': StalactiteDownSmallRowPath,
   'StalactiteUpSmallRowPath': StalactiteUpSmallRowPath,
   'StalactiteRightSmallRowPath': StalactiteRightSmallRowPath,
+  'StalactiteLeftSmallRowPath': StalactiteLeftSmallRowPath,
   'SignClimbPath': SignClimbPath,
   'Cave0': Cave0,
   'SoundHit': SoundHit,
