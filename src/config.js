@@ -615,9 +615,6 @@ export default Config = {
         ['Stalactite', {sprite:  [{x:  20, y: 705}, A.StalactiteDownRowPath], amount: 3, pos: 'end'}]
       ],
       22: [
-        ['Drop',       {sprite1: [{x: 471, y: 544}, A.DropPath], sprite2: [{x: 471, y: 544}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop3', speed: 10, delay: 2000}],
-        ['Drop',       {sprite1: [{x: 609, y: 653}, A.DropPath], sprite2: [{x: 609, y: 653}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed: 10, delay: 1000}],
-        ['Drop',       {sprite1: [{x: 801, y: 631}, A.DropPath], sprite2: [{x: 801, y: 631}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed:  7, delay: 3000}],
         ['Stalactite', {sprite:  [{x:  20, y: 705}, A.StalactiteDownRowPath], amount: 3, pos: 'end'}],
         ['Stalactite', {sprite:  [{x: 300, y: 705}, A.StalactiteDownRowPath], amount: 3, pos: 'end'}],
         ['Stalactite', {sprite:  [{x: 620, y: 705}, A.StalactiteDownRowPath], amount: 3, pos: 'end'}]
