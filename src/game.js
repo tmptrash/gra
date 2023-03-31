@@ -5,7 +5,7 @@ import { Bullet, draw as drawBullet, update as updateBullet } from './bullet'
 import { Level, draw as drawLevel, update as updateLevel } from './level'
 import { updateObjs, room } from './rooms'
 import { Debug, draw as drawDebug } from './debug'
-import { fn, el, ons, findObjById, findObjByFn, text, delObj, checkDesktop, score, loadText, addObj } from './utils'
+import { fn, el, ons, findObjById, findObjByFn, text, delObj, checkDesktop, score, loadText, addObj, isChrome } from './utils'
 import { Music, play as playMusic, stop } from './music'
 import { Picked, draw as drawPicked } from './picked'
 import { Timer, draw as drawTimer } from './timer'
@@ -31,7 +31,7 @@ export function Game() {
   Shared.ctx.fillStyle = Config.frontColor
   Shared.ctx.font = Config.frontFont
   Shared.ctx.imageSmoothingEnabled = false
-  if (!checkDesktop()) return null
+  if (!checkDesktop() || !isChrome()) return null
   loadText()
   g.listeners[0] = [Shared.obs, 'change-room', saveShared]
   ons(g.listeners)

@@ -191,6 +191,10 @@ export function checkDesktop() {
   return isDesktop
 }
 
+export function isChrome() {
+  return /Chrome/.test(navigator.userAgent)
+}
+
 export function loadText() {
   Shared.ctx.clearRect(0, 0, Config.width, Config.height)
   Shared.ctx.font = Config.frontFont
