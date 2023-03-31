@@ -183,13 +183,13 @@ export function text(t, x, y, font, style = '#ccc') {
 
 export function checkChromeDesktop() {
   const isDesktop = !isMobile()
-  const isChrome = isChrome()
-  if (!isDesktop || !isChrome) {
+  const chrome = isChrome()
+  if (!isDesktop || !chrome) {
     Shared.ctx.clearRect(0, 0, Config.width, Config.height)
     Shared.ctx.font = Config.gameOverFont
     Shared.ctx.fillText(Msgs.noMobileSupport, 130, 300)
   }
-  return isDesktop && isChrome
+  return isDesktop && chrome
 }
 
 export function loadText() {
