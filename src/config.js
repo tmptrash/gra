@@ -424,7 +424,8 @@ export default Config = {
         [[{x: 330, y: 650}, {idle: [A.BulletsPath,   9,  150]}], 'bullets', 'foundBullets']
       ],
       10: [
-        [[{x: 550, y: 128}, {idle: [A.BulletsPath,   9,  150]}], 'bullets', 'foundBullets']
+        [[{x: 550, y: 128}, {idle: [A.BulletsPath,   9,  150]}], 'bullets', 'foundBullets'],
+        [[{x: 960, y: 640}, {idle: [A.MushroomT9Path,9,  100]}], 'mushroom', 'foundTeleMushroom']
       ],
       11: [
         [[{x: 220, y: 250}, {idle: [A.HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']
@@ -461,9 +462,6 @@ export default Config = {
       ],
       25: [
         [[{x: 880, y: 704}, {idle: [A.HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']
-      ],
-      28: [
-        [[{x: 200, y: 300}, {idle: [A.MushroomT9Path,9,  100]}], 'mushroom', 'foundTeleMushroom']
       ],
       29: [
         [[{x: 880, y: 704}, {idle: [A.HeartAnimPath, 9,  100]}], 'heart',   'foundHeart']
