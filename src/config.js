@@ -15,7 +15,7 @@ export const Msgs = {
   keys:           () => `left - ${fmt(Config.leftKey)}, right - ${fmt(Config.rightKey)}, jump - ${fmt(Config.jumpKey)}, climb - ${fmt(Config.climbKey)}`,
   climb:          () => `Jump to the wall and press ${fmt(Config.climbKey)} to climb`,
   findTheKey:           'Find a key and open the door',
-  dontTouchBugs:        'And don\'t touch these bugs',
+  dontTouchBugs:        'Don\'t touch bugs and stalactites',
   goodLuck:             'Good luck!',
   gameOver:             'You died!',
   youWin:               'You win!',
@@ -566,6 +566,7 @@ export default Config = {
         ['Text',       {text:    [Msgs.climb, 330, 160, 0, 6000, true], id: id(), after: EFFECT_ID}]
       ],
       10: [
+        ['Sprite',     {sprite:  [{x: 304, y: 648}, A.SignRightPath]}],
         ['Sprite',     {sprite:  [{x: 530, y: 120}, A.Plant5Path], pos: 'end'}]
       ],
       13: [
