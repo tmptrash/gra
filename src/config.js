@@ -528,6 +528,7 @@ export default Config = {
         ['Drop',       {sprite1: [{x: 120, y: 535}, A.DropPath], sprite2: [{x: 120, y: 535}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed: 10, delay: 1000}],
         ['Drop',       {sprite1: [{x:1007, y: 128}, A.DropPath], sprite2: [{x:1007, y: 128}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 20, delay:  500}],
         ['Stalactite', {sprite:  [{x:  69, y: 448}, A.StalactiteUp1Path]}],
+        ['Sprite',     {sprite:  [{x: 459, y: 392}, A.SignRightPath]}],
         ['Sprite',     {sprite:  [{x:  90, y: 560}, A.Plant5Path], pos: 'end'}],
         ['Sprite',     {sprite:  [{x: 930, y: 330}, A.Plant5Path], pos: 'end'}]
       ],
