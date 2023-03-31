@@ -566,8 +566,6 @@ export default Config = {
         ['Text',       {text:    [Msgs.climb, 330, 160, 0, 6000, true], id: id(), after: EFFECT_ID}]
       ],
       10: [
-        ['Drop',       {sprite1: [{x: 590, y: 288}, A.DropPath], sprite2: [{x: 590, y: 288}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop1', speed:  9, delay: 1000}],
-        ['Drop',       {sprite1: [{x: 985, y: 512}, A.DropPath], sprite2: [{x: 985, y: 512}, {idle: [A.DropDownPath, 12, 80]}], pos: 1, sound: 'drop2', speed: 10, delay: 1000}],
         ['Sprite',     {sprite:  [{x: 530, y: 120}, A.Plant5Path], pos: 'end'}]
       ],
       13: [
