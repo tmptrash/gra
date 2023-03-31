@@ -36,3 +36,5 @@ http://js-gra.netlify.app
 ![scr3](https://github.com/tmptrash/gra/blob/main/screenshots/scr3.png)
 ![scr4](https://github.com/tmptrash/gra/blob/main/screenshots/scr4.png)
 ![scr5](https://github.com/tmptrash/gra/blob/main/screenshots/scr5.png)
+![scr6](https://github.com/tmptrash/gra/blob/main/screenshots/scr6.png)
+![scr7](https://github.com/tmptrash/gra/blob/main/screenshots/scr7.png)
