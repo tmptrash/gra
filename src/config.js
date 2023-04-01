@@ -668,7 +668,7 @@ export default Config = {
       ],
       29: [
         ['Stalactite', {sprite:  [{x:  60, y: 31}, A.StalactiteUp1Path], amount: 4}],
-        ['Stalactite', {sprite:  [{x: 415, y: 31}, A.StalactiteUpRowPath], amount: 4}]
+        ['Stalactite', {sprite:  [{x: 415, y: 31}, A.StalactiteUpRowPath], amount: 3}]
       ],
       30: [
         ['Stalactite', {sprite:  [{x:  40, y: 31}, A.StalactiteUpRowPath], amount: 8}],
