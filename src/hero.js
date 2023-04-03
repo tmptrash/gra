@@ -216,26 +216,30 @@ function updateScreen(h) {
   const s = h.sprite
 
   if (s.x > Config.width) {
-    updateObjs(room(), room(Shared.offsX + Config.width))
+    const r = room()
     Shared.offsX += Config.width
     s.x = -s.width / 2
+    updateObjs(r, room())
     fire('change-room')
   } else if (s.x + s.width < 0) {
-    updateObjs(room(), room(Shared.offsX - Config.width))
+    const r = room()
     Shared.offsX -= Config.width
     s.x = Config.width - s.width / 2
+    updateObjs(r, room())
     fire('change-room')
   } else if (s.y > Config.height) {
-    updateObjs(room(), room(Shared.offsX, Shared.offsY + Config.height))
+    const r = room()
     Shared.offsY += Config.height
     s.y = -s.height / 2
     h.isJumping = false
+    updateObjs(r, room())
     fire('change-room')
   } else if (s.y + s.height < 0) {
-    updateObjs(room(), room(Shared.offsX, Shared.offsY - Config.height))
+    const r = room()
     Shared.offsY -= Config.height
     h.jumpY = Config.height + h.jumpY
     s.y = Config.height - s.height / 2
+    updateObjs(r, room())
     fire('change-room')
   }
 }

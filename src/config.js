@@ -101,7 +101,6 @@ export default Config = {
   keyRoom: [5, 4],
   doorRoom: [0, 3],
   enemiesPos: 3,
-  enemyHits: 2,
   itemsPos: 3,
   scriptsPos: 3,
   darknessLevel: 3,

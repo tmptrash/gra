@@ -20,7 +20,7 @@ export function Enemy(room, spriteCfg, speed, horizontal, checkBottom = true) {
     touchTime: 0,
     checkBottom,
     id: enemyId([spriteCfg], room),
-    hits: Config.enemyHits
+    hits: Shared.offsY / Config.height
   }
 
   enemy.sprite.img = horizontal ? enemy.sprite.imgs.idleRight : enemy.sprite.imgs.idleDown
