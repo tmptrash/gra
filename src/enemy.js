@@ -19,7 +19,8 @@ export function Enemy(room, spriteCfg, speed, horizontal, checkBottom = true) {
     speedTime: performance.now(),
     touchTime: 0,
     checkBottom,
-    id: enemyId([spriteCfg], room)
+    id: enemyId([spriteCfg], room),
+    hits: Config.enemyHits
   }
 
   enemy.sprite.img = horizontal ? enemy.sprite.imgs.idleRight : enemy.sprite.imgs.idleDown
@@ -56,20 +57,21 @@ export function update(e) {
     else if (e.dir === UP && (topBlock(s) || !up(s) || s.y < 0))
       e.dir = DOWN, s.img = s.imgs.idleDown
   }
-
+  // bite Mary
   if (!s.hidden && touch(s, Shared.hero.sprite, Config.intersectionOffs) && (t - e.touchTime > Config.touchDelayMs)) {
     Shared.hero.hit = true
     e.touchTime = t
   }
-
+  // kill enemy
   if (!s.hidden && !Shared.bullet.hidden && touch(s, Shared.bullet.sprite)) {
-    play(Shared.sounds.bugDie.cloneNode(false))
-    Shared.bullet.hidden = s.hidden = true
-    e.explosionOn = true
-    e.exposionSprite.x = s.x
-    e.exposionSprite.y = s.y + s.height / 2 - e.exposionSprite.height / 2 - 10
-    e.exposionSprite.img.frames.frame = 0
-    Shared.killed[e.id] = true
+    if (--e.hits < 1) {
+      play(Shared.sounds.bugDie.cloneNode(false))
+      s.hidden = e.explosionOn = Shared.killed[e.id] = true
+      e.exposionSprite.x = s.x
+      e.exposionSprite.y = s.y + s.height / 2 - e.exposionSprite.height / 2 - 10
+      e.exposionSprite.img.frames.frame = 0
+    } else play(Config.sounds.enemyHit)
+    Shared.bullet.hidden = true
   }
 
   if (e.explosionOn && e.exposionSprite.img.frames.frame >= e.exposionSprite.img.frames.amount - 1) {

@@ -101,6 +101,7 @@ import SoundGoRight from '../sound/go-right.mp3'
 import SoundPick from '../sound/pick.mp3'
 import SoundPortal from '../sound/portal.mp3'
 import SoundFriction from '../sound/friction.mp3'
+import SoundEnemyHit from '../sound/enemy-hit.mp3'
 import Menu from '../sound/menu.mp3'
 
 export const ASSET_NAMES = {
@@ -199,6 +200,7 @@ export const ASSET_NAMES = {
   'SoundPick': SoundPick,
   'SoundPortal': SoundPortal,
   'SoundFriction': SoundFriction,
+  'SoundEnemyHit': SoundEnemyHit,
   'Menu': Menu
 }
 
