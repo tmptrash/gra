@@ -70,7 +70,10 @@ export function update(e) {
       e.exposionSprite.x = s.x
       e.exposionSprite.y = s.y + s.height / 2 - e.exposionSprite.height / 2 - 10
       e.exposionSprite.img.frames.frame = 0
-    } else play(Config.sounds.enemyHit)
+    } else {
+      play(Config.sounds.enemyHit)
+      s.x -= (4 * e.speed * Shared.speed * e.dir)
+    }
     Shared.bullet.hidden = true
   }
 
