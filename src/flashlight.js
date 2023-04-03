@@ -1,6 +1,6 @@
 import Shared from './shared'
 import Config, { Msgs } from './config'
-import { bind, el, css, on, picked, unbind, addAfter } from './utils'
+import { bind, el, css, picked, unbind, addAfter } from './utils'
 import { room } from './rooms'
 import { create } from './creator'
 

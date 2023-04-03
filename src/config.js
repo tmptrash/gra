@@ -112,7 +112,7 @@ export default Config = {
   // hero related
   jumpSpeed: .5,
   jumpPressTimeMs: 340,
-  jumpVelocity: -40,
+  jumpVelocity: -41,
   gravity: 8.2,
   fallSpeed: 30,
   stepSpeed: .31,
