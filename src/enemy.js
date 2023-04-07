@@ -72,7 +72,7 @@ export function update(e) {
       e.exposionSprite.img.frames.frame = 0
     } else {
       play(Config.sounds.enemyHit)
-      s.x -= (4 * e.speed * Shared.speed * e.dir)
+      s.x += (4 * e.speed * Shared.speed * Shared.bullet.dir)
     }
     Shared.bullet.hidden = true
   }
