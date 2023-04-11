@@ -25,7 +25,7 @@ export function Game() {
   }
   const fn = animate.bind(null, g)
   g.animateFn = Config.useSetTimeout ? () => setTimeout(fn, Config.setTimeoutDelay) : () => requestAnimationFrame(fn)
-  Shared.ctx = el(Config.canvasQuery).getContext('2d', { willReadFrequently: true })
+  Shared.ctx = el(Config.canvasQuery).getContext('2d', { willReadFrequently: true, alpha: false })
   Shared.ctx.canvas.width = Config.width
   Shared.ctx.canvas.height = Config.height
   Shared.ctx.fillStyle = Config.frontColor
