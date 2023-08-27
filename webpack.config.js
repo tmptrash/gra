@@ -1,5 +1,6 @@
- const path = require('path');
- const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ServiceWorkerPlugin = require('./plugins/ServiceWorkerPlugin');
 
 module.exports = {
   mode: 'development',
@@ -16,7 +17,8 @@ module.exports = {
       template: __dirname + '/src/html/index.html',
       inject: 'body',
       filename: 'index.html'
-    })
+    }),
+    new ServiceWorkerPlugin()
   ],
   output: {
     filename: '[name].js',
@@ -37,10 +39,10 @@ module.exports = {
       test: /\.css$/i,
       use: [{
         loader: 'style-loader',
-        options: { 
+        options: {
           insert: 'head',
           injectType: 'singletonStyleTag'
-      }
+        }
       }, 'css-loader']
     }]
   }
