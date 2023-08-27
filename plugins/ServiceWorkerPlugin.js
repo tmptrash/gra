@@ -15,7 +15,10 @@ class ServiceWorkerPlugin {
 
       console.log('\x1b[33m', `The largest bundle is ${largestBundle} with size: ${largestBundleSize} bytes`)
 
-      new WorkboxPlugin.GenerateSW(this.options).apply(compiler);
+      new WorkboxPlugin.GenerateSW({
+        ...this.options,
+        maximumFileSizeToCacheInBytes: largestBundleSize,
+      }).apply(compiler);
       
       cb()
     })

@@ -18,7 +18,9 @@ module.exports = {
       inject: 'body',
       filename: 'index.html'
     }),
-    new ServiceWorkerPlugin()
+    new ServiceWorkerPlugin({
+      swDest: 'serviceWorker.js',
+    })
   ],
   output: {
     filename: '[name].js',
