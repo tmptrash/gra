@@ -1,6 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ServiceWorkerPlugin = require('./plugins/ServiceWorkerPlugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
+const GetLargestBundleSizePlugin = require('./plugins/GetLargestBundleSizePlugin');
+
+const buildOptions = { largestBundleSize: 0 }
 
 module.exports = {
   mode: 'development',
@@ -18,8 +21,10 @@ module.exports = {
       inject: 'body',
       filename: 'index.html'
     }),
-    new ServiceWorkerPlugin({
+    new GetLargestBundleSizePlugin(buildOptions),
+    new WorkboxPlugin.GenerateSW({
       swDest: 'serviceWorker.js',
+      maximumFileSizeToCacheInBytes: buildOptions.largestBundleSize,
     })
   ],
   output: {
