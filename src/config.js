@@ -50,6 +50,7 @@ export default Config = {
   effectsId: EFFECT_ID,
   gameOverId: 'game-over',
   gameCompletedId: 'completed',
+  startQuery: '.start',
   playQuery: '.play',
   menuQuery: '.menu',
   replayQuery: '.replay',

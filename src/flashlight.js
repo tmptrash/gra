@@ -32,11 +32,14 @@ export function draw() {
   const sy = s.y
   const diameter = Shared.flashlightOn ? Config.flashLightRadius : 150
 
-  for (let i = 3, offs = 0; i < l; i += 4, offs++) {
+  for (let i = 0, offs = 0; i < l; i += 4, offs++) {
     const y = Math.floor(offs / w)
     const x = offs % w
     const dist = Math.sqrt((x - sx) ** 2 + (y - sy) ** 2)
-    d[i] = dist > diameter ? 0 : diameter - dist
+    const coef = dist > diameter ? 0 : 1 - (dist / diameter)
+    d[i] = d[i] * coef
+    d[i + 1] = d[i + 1] * coef
+    d[i + 2] = d[i + 2] * coef
   }
 
   Shared.ctx.putImageData(id, 0, 0)

@@ -10,6 +10,7 @@ import { reset } from './store'
 export function Nav(game, settings) {
   if (!game) return null
   const n = {
+    startBtn: el(Config.startQuery),
     playBtn: el(Config.playQuery),
     menuBtn: el(Config.menuQuery),
     replayBtn: el(Config.replayQuery),
@@ -49,11 +50,19 @@ function onAssets(n) {
   n.listeners[7] = [n.playBtn, 'click', onPlay.bind(null, n)]
   n.listeners[8] = [n.srcBtn, 'click', onSrc]
   n.listeners[9] = [n.cfgBtn, 'click', onCfg.bind(null, n)]
+  n.listeners[10] = [n.startBtn, 'click', onStart.bind(null, n)]
   ons(n.listeners)
   hide(n.spinner)
-  !reloaded() && show([n.playBtn, n.cfgBtn, n.srcBtn])
+
+  if (!reloaded()) { show(n.startBtn); return }
   onPreload()
-  reloaded() && onPlay(n, true)
+  onPlay(n, true)
+}
+
+function onStart(n) {
+  hide(n.startBtn)
+  show([n.playBtn, n.cfgBtn, n.srcBtn])
+  onPreload()
 }
 
 function onMenu(n) {
