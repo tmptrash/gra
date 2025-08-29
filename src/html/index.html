@@ -6,6 +6,14 @@
     <link rel="shortcut icon" href="#">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-J4J789X224"></script>
     <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('serviceWorker.js')
+            .then(() => console.log('Service Worker registered'))
+            .catch(({ message }) => console.log(`Service Worker registration failed: ${message}`))
+        })
+      }
+      
       window.dataLayer = window.dataLayer || []
       function gtag() {dataLayer.push(arguments)}
       gtag('js', new Date()); gtag('config', 'G-J4J789X224')
